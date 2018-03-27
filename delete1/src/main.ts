@@ -2,7 +2,7 @@
 class GameMain {
     constructor() {
         Laya.init(1280, 720);
-        console.log("Laya.init(600, 400);");
+        console.log("Laya.init(600, 400); in main.ts");
     }
 }
 new GameMain();
