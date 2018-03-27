@@ -2,8 +2,8 @@
 class GameMain {
     constructor() {
         Laya.init(1280, 720);
-        var txt = new Laya.Text();
-        txt.text = "hello aaaaaaaa"
+        var txt = new laya.display.Text()//Laya.Text();
+        txt.text = "hello layabox"
         txt.color = "#FF0000"
 
         //设置文本字体大小，单位是像素. default fontSize is 12
