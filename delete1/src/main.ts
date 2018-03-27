@@ -2,11 +2,26 @@
 class GameMain {
     constructor() {
         Laya.init(1280, 720);
-        console.log("Laya.init(600, 400); in main.ts");
+        var txt = new Laya.Text();
+        txt.text = "hello aaaaaaaa"
+        txt.color = "#FF0000"
+
+        //设置文本字体大小，单位是像素. default fontSize is 12
+        txt.fontSize = 66;
+
+        //设置字体描边
+        txt.stroke = 5;//描边为5像素
+        txt.strokeColor = "#FFFFFF";
+        txt.bold = true;
+        //设置文本的显示起点位置X,Y
+        txt.pos(0, 0);
+
+        //设置舞台背景色
+        Laya.stage.bgColor = '#23238E';
+        Laya.stage.addChild(txt)
     }
 }
 new GameMain();
-console.log("new GameMain();");
 
 // 1   .laya 文件夹下存放的是项目在开发运行中的一些配置信息。
 // 2   项目的输出目录（bin）
