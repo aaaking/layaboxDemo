@@ -2,22 +2,19 @@
 class GameMain {
     constructor() {
         Laya.init(1280, 720);
-        var txt = new laya.display.Text()//Laya.Text();
+        var txt: Laya.Text = new laya.display.Text()//Laya.Text();
         txt.text = "hello layabox"
         txt.color = "#FF0000"
 
-        //设置文本字体大小，单位是像素. default fontSize is 12
-        txt.fontSize = 66;
+        txt.fontSize = 66;//设置文本字体大小，单位是像素. default fontSize is 12
 
-        //设置字体描边
-        txt.stroke = 5;//描边为5像素
+        txt.stroke = 5;//设置字体描边  描边为5像素
         txt.strokeColor = "#FFFFFF";
         txt.bold = true;
-        //设置文本的显示起点位置X,Y
-        txt.pos(0, 0);
+        txt.pos(0, 0);//设置文本的显示起点位置X,Y
+        txt.borderColor = "#23cfcf";//设置文本框的颜色
 
-        //设置舞台背景色
-        Laya.stage.bgColor = '#23238E';
+        Laya.stage.bgColor = '#23238E';//设置舞台背景色
         Laya.stage.addChild(txt)
     }
 }
