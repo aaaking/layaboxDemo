@@ -1,7 +1,7 @@
 // 程序入口
 var GameMain = /** @class */ (function () {
     function GameMain() {
-        Laya.init(600, 400);
+        Laya.init(1080, 920);
     }
     return GameMain;
 }());
