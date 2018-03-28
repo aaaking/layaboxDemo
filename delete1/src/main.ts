@@ -8,12 +8,20 @@ class GameMain {
     //BitmapFont
     private mFontName: string = "diyFont";
     private mBitmapFont: Laya.BitmapFont;
+    //loadImage
+    //需要切换的图片资源路径
+    private monkey1: string = "res/img/monkey1.png";
+    private monkey2: string = "res/img/monkey2.png";
+    //切换状态
+    private flag: boolean = false;
+    private img: Laya.Sprite;
     constructor() {
         Laya.init(1280, 720, Laya.WebGL);//Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);1069 522
         Laya.stage.bgColor = '#23238E';//设置舞台背景色
         Laya.stage.addChild(this.testText())
         Laya.stage.addChild(this.testTextInput())
         this.testBitmapFont()
+        this.testLoadImage()
     }
 
     private testText(): Laya.Text {
@@ -91,6 +99,19 @@ class GameMain {
         Laya.stage.addChild(txt);
     }
 
+    private testLoadImage(): void {
+        this.img = new Laya.Sprite();
+        this.switchImg();//显示绘制的图片
+        this.img.on(Laya.Event.CLICK, this, this.switchImg);//侦听switchImg中图片区域的点击事件，触发后执行switchImg切换图片
+        Laya.stage.addChild(this.img);
+    }
+    private afterLoadImage() {
+    }
+    private switchImg(): void {
+        this.img.graphics.clear();//清空图片
+        var imgUrl: string = (this.flag = !this.flag) ? this.monkey1 : this.monkey2;//获得要切换的图片资源路径
+        this.img.loadImage(imgUrl, 100, 50, 0, 0, new Laya.Handler(this, this.afterLoadImage));
+    }
 }
 new GameMain();
 
