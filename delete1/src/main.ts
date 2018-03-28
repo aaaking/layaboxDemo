@@ -16,6 +16,7 @@ class GameMain {
     //切换状态
     private flag: boolean = false;
     private img1: Laya.Sprite;
+    private cMask1: Laya.Sprite;
     private flag2: boolean = false;
     private img2: Laya.Sprite;
     constructor() {
@@ -107,6 +108,10 @@ class GameMain {
         this.img1 = new Laya.Sprite();
         this.switchImg();//显示绘制的图片
         this.img1.on("click", this, this.switchImg);//侦听switchImg中图片区域的点击事件，触发后执行switchImg切换图片
+        this.cMask1 = new Laya.Sprite();//创建遮罩对象
+        this.cMask1.graphics.drawCircle(55, 55, 50, "#000000");//画一个圆形的遮罩区域
+        this.cMask1.pos(0, 0);//圆形所在的位置坐标
+        this.img1.mask = this.cMask1;//实现img显示对象的遮罩效果
         Laya.stage.addChild(this.img1);
     }
     private afterLoadImage() {
@@ -114,7 +119,7 @@ class GameMain {
     private switchImg(): void {
         this.img1.graphics.clear();//清空图片
         var imgUrl: string = (this.flag = !this.flag) ? this.monkey1 : this.monkeyRemote;//获得要切换的图片资源路径
-        this.img1.loadImage(imgUrl, 5, 5, 0, 0, new Laya.Handler(this, this.afterLoadImage, null, true));
+        this.img1.loadImage(imgUrl, 5, 5, 100, 100, new Laya.Handler(this, this.afterLoadImage, null, true));
     }
 
     private testTexture() {
