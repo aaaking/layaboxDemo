@@ -5,11 +5,15 @@ class GameMain {
     private prevY: number = 0;
     //TextInput
     private mTextInput: Laya.TextInput;
+    //BitmapFont
+    private mFontName: string = "diyFont";
+    private mBitmapFont: Laya.BitmapFont;
     constructor() {
         Laya.init(1280, 720, Laya.WebGL);//Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);1069 522
         Laya.stage.bgColor = '#23238E';//设置舞台背景色
         Laya.stage.addChild(this.testText())
         Laya.stage.addChild(this.testTextInput())
+        this.testBitmapFont()
     }
 
     private testText(): Laya.Text {
@@ -56,14 +60,41 @@ class GameMain {
 
     private testTextInput(): Laya.TextInput {
         this.mTextInput = new Laya.TextInput();//创建一个 TextInput 类的实例对象 textInput 。
+        this.mTextInput.prompt = "请输入文字"
         this.mTextInput.wordWrap = true;//设置 textInput 的文本自动换行。
         this.mTextInput.multiline = true
         this.mTextInput.fontSize = 30;//设置 textInput 的字体大小。
         this.mTextInput.pos(0, 0)
-        this.mTextInput.size(300, 200)
+        this.mTextInput.size(300, 100)
         this.mTextInput.bgColor = "#c30c30";
         return this.mTextInput
     }
+
+    private testBitmapFont(): Laya.BitmapFont {
+        this.mBitmapFont = new Laya.BitmapFont()
+        this.mBitmapFont.loadFont("res/bitmapFont/testFont.fnt", new Laya.Handler(this, this.onLoaded));
+        return this.mBitmapFont
+    }
+    private onLoaded(): void {
+        this.afterLoadBitmapFont();
+    }
+    private afterLoadBitmapFont(): void {
+        this.mBitmapFont.setSpaceWidth(10);//如果位图字体中，没放空格，最好设置一个空格宽度
+        Laya.Text.registerBitmapFont(this.mFontName, this.mBitmapFont);
+        var txt: Laya.Text = new Laya.Text();
+        txt.text = "这是layabox测试文件\nabcdefghi\n哈嘻嘿";
+        // txt.size(250, txt.height)//txt.height=36
+        txt.width = 250;//txt.height=96，这跟上面的height不一样，好奇葩
+        txt.pos(10, this.mTextInput.height + 5)
+        txt.wordWrap = true;
+        txt.align = "center";
+        txt.bgColor = "#c30c30"
+        txt.font = this.mFontName;//使用我们注册的字体
+        txt.fontSize = 20;
+        Laya.stage.addChild(txt);
+        console.log("txt.height: " + txt.height)
+    }
+
 }
 new GameMain();
 
