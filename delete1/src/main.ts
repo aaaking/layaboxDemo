@@ -10,6 +10,7 @@ class GameMain {
     private txtBitmapFont: Laya.Text
     //load Image
     //需要切换的图片资源路径
+    private resChip: string = "res/img/chip.png";
     private monkey1: string = "res/img/monkey1.png";
     private monkey2: string = "res/img/monkey2.png";
     private monkeyRemote: string = "https://sfault-avatar.b0.upaiyun.com/396/794/3967943700-57332f6666c7b_big64";
@@ -150,6 +151,7 @@ class GameMain {
         console.log("loadProgress: " + pro)//loadProgress: 0.5 loadProgress: 1
     }
 
+    //LayaAir引擎提供了颜色滤镜、发光（或阴影）滤镜、模糊滤镜三种效果。其中颜色滤镜支持Canvas与WebGL模式，而发光滤镜与模糊滤镜由于对性能的消耗较大，因此仅支持WebGL模式。
     private testColorFilter() {
         this.imgColorFilter = new Laya.Sprite();
         this.imgColorFilter.loadImage(this.monkeyRemote);
@@ -171,13 +173,35 @@ class GameMain {
         //     ];
         var GrayFilter: Laya.ColorFilter = new Laya.ColorFilter(colorMatrix);//创建灰色颜色滤镜
         this.imgColorFilter.filters = [GrayFilter]
-        this.imgColorFilter.pos(5, 205)
+        this.imgColorFilter.pos(95, 205)
         Laya.stage.addChild(this.imgColorFilter);
         //normal remote img
         var normalImg = new Laya.Sprite();
         normalImg.loadImage(this.monkeyRemote)
-        normalImg.pos(95, 205)
+        normalImg.pos(5, 205)
+        //glow filter
+        var glowImg = new Laya.Sprite()
+        glowImg.loadImage(this.monkeyRemote, 20, 295, 100, 100)
+        var glowFilter: Laya.GlowFilter = new Laya.GlowFilter("#ff0000", 15, 0, 0)
+        glowImg.filters = [glowFilter]
+        //shadow filter
+        var shadowImg = new Laya.Sprite()
+        shadowImg.loadImage(this.monkeyRemote, 140, 295, 100, 100)
+        var shadowFilter: Laya.GlowFilter = new Laya.GlowFilter("#000000", 8, 4, -4)
+        shadowImg.filters = [shadowFilter]
+        //blurFilter
+        var beforeBlurImg = new Laya.Sprite()
+        beforeBlurImg.loadImage(this.resChip, 10, 405, 100, 100)
+        var blurImg = new Laya.Sprite()
+        blurImg.loadImage(this.resChip, 115, 405, 100, 100)
+        var blurFilter:Laya.BlurFilter = new Laya.BlurFilter();
+        blurFilter.strength = 25;//设置模糊强度
+        blurImg.filters = [blurFilter]
         Laya.stage.addChild(normalImg);
+        Laya.stage.addChild(glowImg);
+        Laya.stage.addChild(shadowImg);
+        Laya.stage.addChild(beforeBlurImg);
+        Laya.stage.addChild(blurImg);
     }
 }
 new GameMain();
