@@ -9,7 +9,7 @@ class GameMain {
     private mFontName: string = "diyFont";
     private mBitmapFont: Laya.BitmapFont;
     private txtBitmapFont: Laya.Text
-    //loadImage
+    //load Image
     //需要切换的图片资源路径
     private monkey1: string = "res/img/monkey1.png";
     private monkey2: string = "res/img/monkey2.png";
@@ -20,14 +20,17 @@ class GameMain {
     private cMask1: Laya.Sprite;
     private flag2: boolean = false;
     private img2: Laya.Sprite;
+    //滤镜
+    private imgColorFilter: Laya.Sprite;
     constructor() {
-        Laya.init(1280, 720, Laya.WebGL);//Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);1069 522
+        Laya.init(1920, 1080, Laya.WebGL);//Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);1069 522
         Laya.stage.bgColor = '#23238E';//设置舞台背景色
         Laya.stage.addChild(this.testText())
         Laya.stage.addChild(this.testTextInput())
         this.testBitmapFont()
         this.testLoadImage()
         this.testTexture()
+        this.testColorFilter()
     }
 
     private testText(): Laya.Text {
@@ -146,6 +149,36 @@ class GameMain {
     }
     private loadProgress(pro: number) {
         console.log("loadProgress: " + pro)//loadProgress: 0.5 loadProgress: 1
+    }
+
+    private testColorFilter() {
+        this.imgColorFilter = new Laya.Sprite();
+        this.imgColorFilter.loadImage(this.monkeyRemote);
+        //颜色滤镜矩阵,灰色
+        var colorMatrix: any =
+            [
+                0.3086, 0.6094, 0.0820, 0, 0,  //R
+                0.3086, 0.6094, 0.0820, 0, 0, //G
+                0.3086, 0.6094, 0.0820, 0, 0,  //B
+                0, 0, 0, 1, 0, //A
+            ];
+        //颜色滤镜矩阵，红色
+        // var colorMatrix: any =
+        //     [
+        //         1, 0, 0, 0, 0, //R
+        //         0, 0, 0, 0, 0, //G
+        //         0, 0, 0, 0, 0, //B
+        //         0, 0, 0, 1, 0, //A
+        //     ];
+        var GrayFilter: Laya.ColorFilter = new Laya.ColorFilter(colorMatrix);//创建灰色颜色滤镜
+        this.imgColorFilter.filters = [GrayFilter]
+        this.imgColorFilter.pos(5, 205)
+        Laya.stage.addChild(this.imgColorFilter);
+        //normal remote img
+        var normalImg = new Laya.Sprite();
+        normalImg.loadImage(this.monkeyRemote)
+        normalImg.pos(95, 205)
+        Laya.stage.addChild(normalImg);
     }
 }
 new GameMain();
