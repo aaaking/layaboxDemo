@@ -111,7 +111,7 @@ class GameMain {
         this.cMask1 = new Laya.Sprite();//创建遮罩对象
         this.cMask1.graphics.drawCircle(55, 55, 50, "#000000");//画一个圆形的遮罩区域
         this.cMask1.pos(0, 0);//圆形所在的位置坐标
-        this.img1.mask = this.cMask1;//实现img显示对象的遮罩效果
+        this.img1.mask = this.cMask1;//实现img显示对象的遮罩效果,LayaAir的遮罩，可以设置一个对象(支持位图和矢量图)，然后根据对象形状进行遮罩显示。
         Laya.stage.addChild(this.img1);
     }
     private afterLoadImage() {
