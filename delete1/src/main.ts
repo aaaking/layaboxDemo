@@ -3,10 +3,13 @@ class GameMain {
     private txt: Laya.Text;
     private prevX: number = 0;
     private prevY: number = 0;
+    //TextInput
+    private mTextInput: Laya.TextInput;
     constructor() {
         Laya.init(1280, 720, Laya.WebGL);//Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);1069 522
         Laya.stage.bgColor = '#23238E';//设置舞台背景色
         Laya.stage.addChild(this.testText())
+        Laya.stage.addChild(this.testTextInput())
     }
 
     private testText(): Laya.Text {
@@ -31,7 +34,6 @@ class GameMain {
         this.txt.on(Laya.Event.MOUSE_DOWN, this, this.startScrollText);
         return txt;
     }
-
     private startScrollText(): void {
         this.prevX = this.txt.mouseX;
         this.prevY = this.txt.mouseY;
@@ -50,6 +52,17 @@ class GameMain {
     private finishScrollText(): void {
         Laya.stage.off(Laya.Event.MOUSE_MOVE, this, this.scrollText);
         Laya.stage.off(Laya.Event.MOUSE_UP, this, this.finishScrollText);
+    }
+
+    private testTextInput(): Laya.TextInput {
+        this.mTextInput = new Laya.TextInput();//创建一个 TextInput 类的实例对象 textInput 。
+        this.mTextInput.wordWrap = true;//设置 textInput 的文本自动换行。
+        this.mTextInput.multiline = true
+        this.mTextInput.fontSize = 30;//设置 textInput 的字体大小。
+        this.mTextInput.pos(0, 0)
+        this.mTextInput.size(300, 200)
+        this.mTextInput.bgColor = "#c30c30";
+        return this.mTextInput
     }
 }
 new GameMain();
