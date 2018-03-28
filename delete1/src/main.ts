@@ -12,9 +12,12 @@ class GameMain {
     //需要切换的图片资源路径
     private monkey1: string = "res/img/monkey1.png";
     private monkey2: string = "res/img/monkey2.png";
+    private monkeyRemote: string = "https://sfault-avatar.b0.upaiyun.com/396/794/3967943700-57332f6666c7b_big64";
     //切换状态
     private flag: boolean = false;
-    private img: Laya.Sprite;
+    private img1: Laya.Sprite;
+    private flag2: boolean = false;
+    private img2: Laya.Sprite;
     constructor() {
         Laya.init(1280, 720, Laya.WebGL);//Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);1069 522
         Laya.stage.bgColor = '#23238E';//设置舞台背景色
@@ -22,6 +25,7 @@ class GameMain {
         Laya.stage.addChild(this.testTextInput())
         this.testBitmapFont()
         this.testLoadImage()
+        this.testTexture()
     }
 
     private testText(): Laya.Text {
@@ -100,17 +104,42 @@ class GameMain {
     }
 
     private testLoadImage(): void {
-        this.img = new Laya.Sprite();
+        this.img1 = new Laya.Sprite();
         this.switchImg();//显示绘制的图片
-        this.img.on(Laya.Event.CLICK, this, this.switchImg);//侦听switchImg中图片区域的点击事件，触发后执行switchImg切换图片
-        Laya.stage.addChild(this.img);
+        this.img1.on("click", this, this.switchImg);//侦听switchImg中图片区域的点击事件，触发后执行switchImg切换图片
+        Laya.stage.addChild(this.img1);
     }
     private afterLoadImage() {
     }
     private switchImg(): void {
-        this.img.graphics.clear();//清空图片
-        var imgUrl: string = (this.flag = !this.flag) ? this.monkey1 : this.monkey2;//获得要切换的图片资源路径
-        this.img.loadImage(imgUrl, 100, 50, 0, 0, new Laya.Handler(this, this.afterLoadImage));
+        this.img1.graphics.clear();//清空图片
+        var imgUrl: string = (this.flag = !this.flag) ? this.monkey1 : this.monkeyRemote;//获得要切换的图片资源路径
+        this.img1.loadImage(imgUrl, 5, 5, 0, 0, new Laya.Handler(this, this.afterLoadImage, null, true));
+    }
+
+    private testTexture() {
+        //laya.display.Graphics，可以找到drawTexture()方法，
+        //laya.net.LoaderManager中的load()方法和getRes()方法，
+        //以及laya.utils.Handler中的create()方法
+        Laya.loader.load([this.monkey1, this.monkey2], Laya.Handler.create(this, this.loadComplete, null, true), Laya.Handler.create(this, this.loadProgress, null, false));//cannot load remote img url
+    }
+    private loadComplete(pro: number): void {
+        this.img2 = new Laya.Sprite();
+        this.img2.pos(5, this.img1.y + this.img1.height + 5)
+        this.switchImg2();
+        this.img2.on(Laya.Event.CLICK, this, this.switchImg2);
+        Laya.stage.addChild(this.img2);//添加到舞台
+        console.log("loadComplete: " + pro)//loadComplete: true
+    }
+    private switchImg2(): void {
+        this.img2.graphics.clear();//清空绘制
+        var imgUrl: string = (this.flag2 = !this.flag2) ? this.monkey1 : this.monkey2;//获得要切换的图片资源路径
+        var texture: Laya.Texture = Laya.loader.getRes(imgUrl);//获取图片资源
+        this.img2.graphics.drawTexture(texture, 5, 5, 0, 0, null, 1);//绘制纹理
+        this.img2.size(texture.width, texture.height);//设置纹理宽高 this must be written or click event may not work
+    }
+    private loadProgress(pro: number) {
+        console.log("loadProgress: " + pro)//loadProgress: 0.5 loadProgress: 1
     }
 }
 new GameMain();
