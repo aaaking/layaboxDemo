@@ -20,7 +20,7 @@ class GameMain {
     private cMask1: Laya.Sprite;
     private flag2: boolean = false;
     private img2: Laya.Sprite;
-    //滤镜
+    //three kinds of filters滤镜
     private imgColorFilter: Laya.Sprite;
     constructor() {
         Laya.init(1920, 1080, Laya.WebGL);//Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);1069 522
