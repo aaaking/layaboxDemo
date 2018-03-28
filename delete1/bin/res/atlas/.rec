@@ -33,3 +33,8 @@ P B9680947 vscroll$up.png
 R 7E990267 vscroll.png
 P E466EB1C vslider$bar.png
 R 2BFF7046 vslider.png
+D res
+D res/img
+R 06BD9BB7 chip.png
+R 1310FBAB monkey1.png
+R 48822634 monkey2.png
