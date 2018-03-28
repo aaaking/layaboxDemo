@@ -72,11 +72,8 @@ class GameMain {
 
     private testBitmapFont(): Laya.BitmapFont {
         this.mBitmapFont = new Laya.BitmapFont()
-        this.mBitmapFont.loadFont("res/bitmapFont/testFont.fnt", new Laya.Handler(this, this.onLoaded));
+        this.mBitmapFont.loadFont("res/bitmapFont/testFont.fnt", new Laya.Handler(this, this.afterLoadBitmapFont));
         return this.mBitmapFont
-    }
-    private onLoaded(): void {
-        this.afterLoadBitmapFont();
     }
     private afterLoadBitmapFont(): void {
         this.mBitmapFont.setSpaceWidth(10);//如果位图字体中，没放空格，最好设置一个空格宽度
@@ -92,7 +89,6 @@ class GameMain {
         txt.font = this.mFontName;//使用我们注册的字体
         txt.fontSize = 20;
         Laya.stage.addChild(txt);
-        console.log("txt.height: " + txt.height)
     }
 
 }
