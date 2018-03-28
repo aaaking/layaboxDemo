@@ -1,0 +1,37 @@
+{
+    "x":0,
+    "type":"View",
+    "selectedBox":1,
+    "selecteID":4,
+    "props":{"width":600,"sceneColor":"#000000","height":400},
+    "nodeParent":-1,
+    "label":"View",
+    "isOpen":true,
+    "isDirectory":true,
+    "isAniNode":true,
+    "hasChild":true,
+    "compId":1,
+    "child":[
+        {
+            "x":15,
+            "type":"Circle",
+            "props":{"y":50,"x":50,"radius":50,"lineWidth":1,"fillColor":"#ff0000"},
+            "nodeParent":1,
+            "label":"Circle",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":4,
+            "child":[
+                ]
+        }],
+    "animations":[
+        {
+            "nodes":[
+                ],
+            "name":"ani1",
+            "id":1,
+            "frameRate":24,
+            "action":0
+        }]
+}

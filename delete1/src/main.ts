@@ -1,3 +1,5 @@
+import CircleUI = ui.res.CircleUI;
+import PieUI = ui.res.PieUI;
 class GameMain {
     private txt: Laya.Text;
     private prevX: number = 0;
@@ -22,6 +24,8 @@ class GameMain {
     private img2: Laya.Sprite;
     //three kinds of filters滤镜
     private imgColorFilter: Laya.Sprite;
+    private mCircle: CircleUI;
+    private mPie: PieUI;
     constructor() {
         Laya.init(1920, 1080, Laya.WebGL);//Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);1069 522
         Laya.stage.bgColor = '#23238E';//设置舞台背景色
@@ -31,6 +35,16 @@ class GameMain {
         this.testLoadImage()
         this.testTexture()
         this.testColorFilter()
+        Laya.loader.load("res/atlas/comp.atlas", Laya.Handler.create(this, this.onLoaded));
+    }
+    private onLoaded(): void {
+        this.mCircle = new CircleUI();
+        this.mCircle.pos(Laya.stage.width - /*this.mCircle.width*/100, 5)
+        // console.log("this.mCircle.width: " + this.mCircle.width)//this is the ui's width which is 600 instead of view's width which 100
+        this.mPie = new PieUI();
+        this.mPie.pos(180, 205)
+        Laya.stage.addChild(this.mCircle);
+        Laya.stage.addChild(this.mPie);
     }
 
     private testText(): Laya.Text {
@@ -138,7 +152,7 @@ class GameMain {
         this.switchImg2();
         this.img2.on(Laya.Event.CLICK, this, this.switchImg2);
         Laya.stage.addChild(this.img2);//添加到舞台
-        console.log("loadComplete: " + pro)//loadComplete: true
+        // console.log("loadComplete: " + pro)//loadComplete: true
     }
     private switchImg2(): void {
         this.img2.graphics.clear();//清空绘制
@@ -148,7 +162,7 @@ class GameMain {
         this.img2.size(texture.width, texture.height);//设置纹理宽高 this must be written or click event may not work
     }
     private loadProgress(pro: number) {
-        console.log("loadProgress: " + pro)//loadProgress: 0.5 loadProgress: 1
+        // console.log("loadProgress: " + pro)//loadProgress: 0.5 loadProgress: 1
     }
 
     //LayaAir引擎提供了颜色滤镜、发光（或阴影）滤镜、模糊滤镜三种效果。其中颜色滤镜支持Canvas与WebGL模式，而发光滤镜与模糊滤镜由于对性能的消耗较大，因此仅支持WebGL模式。
@@ -194,7 +208,7 @@ class GameMain {
         beforeBlurImg.loadImage(this.resChip, 10, 405, 100, 100)
         var blurImg = new Laya.Sprite()
         blurImg.loadImage(this.resChip, 115, 405, 100, 100)
-        var blurFilter:Laya.BlurFilter = new Laya.BlurFilter();
+        var blurFilter: Laya.BlurFilter = new Laya.BlurFilter();
         blurFilter.strength = 25;//设置模糊强度
         blurImg.filters = [blurFilter]
         Laya.stage.addChild(normalImg);
