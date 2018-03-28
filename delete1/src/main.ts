@@ -1,4 +1,3 @@
-// 程序入口
 class GameMain {
     private txt: Laya.Text;
     private prevX: number = 0;
@@ -50,7 +49,7 @@ class GameMain {
         txt.wordWrap = false;//automatic wrap，default false
         txt.size(400, 400);//txt.width = 400; txt.height = 400//txt.height * 2;
         //设置文本的显示起点位置X,Y // txt.x = Laya.stage.width - txt.width >> 1; // txt.y = Laya.stage.height - txt.height >> 1;
-        txt.pos(5, Laya.stage.height - txt.height >> 1);
+        txt.pos(Laya.stage.width - txt.width - 5, 5);
         this.txt = txt
         this.txt.on(Laya.Event.MOUSE_DOWN, this, this.startScrollText);
         return txt;
