@@ -8,6 +8,7 @@ class GameMain {
     //BitmapFont
     private mFontName: string = "diyFont";
     private mBitmapFont: Laya.BitmapFont;
+    private txtBitmapFont: Laya.Text
     //loadImage
     //需要切换的图片资源路径
     private monkey1: string = "res/img/monkey1.png";
@@ -91,17 +92,17 @@ class GameMain {
     private afterLoadBitmapFont(): void {
         this.mBitmapFont.setSpaceWidth(10);//如果位图字体中，没放空格，最好设置一个空格宽度
         Laya.Text.registerBitmapFont(this.mFontName, this.mBitmapFont);
-        var txt: Laya.Text = new Laya.Text();
-        txt.text = "这是layabox测试文件\nabcdefghi\n哈嘻嘿";
-        // txt.size(250, txt.height)//txt.height=36
-        txt.width = 250;//txt.height=96，这跟上面的height不一样，好奇葩
-        txt.pos(10, this.mTextInput.height + 5)
-        txt.wordWrap = true;
-        txt.align = "center";
-        txt.bgColor = "#c30c30"
-        txt.font = this.mFontName;//使用我们注册的字体
-        txt.fontSize = 20;
-        Laya.stage.addChild(txt);
+        this.txtBitmapFont = new Laya.Text();
+        this.txtBitmapFont.text = "这是layabox测试文件\nabcdefghi\n哈嘻嘿";
+        // this.txt.size(250, txt.height)//txt.height=36
+        this.txtBitmapFont.width = 250;//txt.height=96，这跟上面的height不一样，好奇葩
+        this.txtBitmapFont.pos(10, this.mTextInput.height + 5)
+        this.txtBitmapFont.wordWrap = true;
+        this.txtBitmapFont.align = "center";
+        this.txtBitmapFont.bgColor = "#c30c30"
+        this.txtBitmapFont.font = this.mFontName;//使用我们注册的字体
+        this.txtBitmapFont.fontSize = 20;
+        Laya.stage.addChild(this.txtBitmapFont);
     }
 
     private testLoadImage(): void {
