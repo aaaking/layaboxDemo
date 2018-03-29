@@ -36,7 +36,7 @@ module test {
             this.testLoadImage()
             this.testTexture()
             this.testColorFilter()
-            Laya.loader.load("res/atlas/comp.atlas", Laya.Handler.create(this, this.onLoaded));
+            this.onLoaded()//Laya.loader.load("res/atlas/comp.atlas", Laya.Handler.create(this, this.onLoaded));
             this.testAnimation()
         }
         private onLoaded(): void {
