@@ -224,21 +224,13 @@ module test {
         private testAnimation() {
             this.numAnim = new Laya.Animation()
             this.numAnim.pos(500, 500)
-            this.numAnim.loadAtlas("res/atlas/number.atlas", Laya.Handler.create(this, this.animLoaded), "load")// "res/atlas/number.json"也行
-        }
-        private animLoaded() {
-            Laya.stage.addChild(this.numAnim);
-            // this.numAnim.play()
-            // Laya.Animation.createFrames(["number/4.png", "number/5.png"], "ha");
-            // this.numAnim.play(0, true, "ha");
-            this.numAnim.loadImages(["number/4.png", "number/5.png"]).play()
-        }
-        private aniUrls(aniName: string, length: number): any {
-            var urls: any = [];
-            for (var i: number = 0; i < length; i++) {
-                urls.push("number/" + aniName + i + ".png");
-            }
-            return urls;
+            this.numAnim.loadAtlas("res/atlas/number.atlas", Laya.Handler.create(this, function () {
+                Laya.stage.addChild(this.numAnim);
+                // this.numAnim.play()
+                // Laya.Animation.createFrames(["number/4.png", "number/5.png"], "ha");
+                // this.numAnim.play(0, true, "ha");
+                this.numAnim.loadImages(["number/4.png", "number/5.png"]).play()
+            }), "load")// "res/atlas/number.json"也行
         }
     }
 }
