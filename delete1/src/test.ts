@@ -1,4 +1,4 @@
-module main {
+module test {
     import CircleUI = ui.res.CircleUI;
     import PieUI = ui.res.PieUI;
     export class GameMain {
@@ -220,7 +220,7 @@ module main {
         }
     }
 }
-new main.GameMain();
+new test.GameMain();
 
 // 1   .laya 文件夹下存放的是项目在开发运行中的一些配置信息。
 // 2   项目的输出目录（bin）
