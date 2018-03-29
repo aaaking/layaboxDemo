@@ -224,7 +224,7 @@ module test {
         private testAnimation() {
             this.numAnim = new Laya.Animation()
             this.numAnim.pos(500, 500)
-            this.numAnim.loadAtlas("res/atlas/number.atlas", Laya.Handler.create(this, this.animLoaded), "load")
+            this.numAnim.loadAtlas("res/atlas/number.atlas", Laya.Handler.create(this, this.animLoaded), "load")// "res/atlas/number.json"也行
         }
         private animLoaded() {
             Laya.stage.addChild(this.numAnim);
