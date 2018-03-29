@@ -149,13 +149,13 @@ module test {
             //以及laya.utils.Handler中的create()方法
             Laya.loader.load([this.monkey1, this.monkey2], Laya.Handler.create(this, this.loadComplete, null, true), Laya.Handler.create(this, this.loadProgress, null, false));//cannot load remote img url
         }
-        private loadComplete(pro: number, pro2: number): void {
+        private loadComplete(pro: any, pro2: any, pro3: any, pro4: any): void {
             this.img2 = new Laya.Sprite();
             this.img2.pos(5, this.img1.y + this.img1.height + 5)
             this.switchImg2();
             this.img2.on(Laya.Event.CLICK, this, this.switchImg2);
             Laya.stage.addChild(this.img2);//添加到舞台
-            // console.log("loadComplete: " + pro + "loadComplete:2 " + pro2)//loadComplete: true undefined
+            // console.log("loadComplete: " + pro + "  loadComplete:2 " + pro2 + "  loadComplete:3 " + pro3 + "  loadComplete:4 " + pro4)//loadComplete: true undefined
         }
         private switchImg2(): void {
             this.img2.graphics.clear();//清空绘制
@@ -164,8 +164,8 @@ module test {
             this.img2.graphics.drawTexture(texture, 5, 5, 0, 0, null, 1);//绘制纹理
             this.img2.size(texture.width, texture.height);//设置纹理宽高 this must be written or click event may not work
         }
-        private loadProgress(pro: number) {
-            // console.log("loadProgress: " + pro)//loadProgress: 0.5 loadProgress: 1
+        private loadProgress(pro: any, pro2: any, pro3: any, pro4: any) {
+            // console.log("loadProgress: " + pro + "  loadComplete:2 " + pro2 + "  loadComplete:3 " + pro3 + "  loadComplete:4 " + pro4)//loadProgress: 0.5 loadProgress: 1
         }
 
         //LayaAir引擎提供了颜色滤镜、发光（或阴影）滤镜、模糊滤镜三种效果。其中颜色滤镜支持Canvas与WebGL模式，而发光滤镜与模糊滤镜由于对性能的消耗较大，因此仅支持WebGL模式。
