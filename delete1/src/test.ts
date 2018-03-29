@@ -38,6 +38,7 @@ module test {
             this.testColorFilter()
             this.onLoaded()//Laya.loader.load("res/atlas/comp.atlas", Laya.Handler.create(this, this.onLoaded));
             this.testAnimation()
+            this.testTweenAndEase()
         }
         private onLoaded(): void {
             this.mCircle = new CircleUI();
@@ -148,13 +149,13 @@ module test {
             //以及laya.utils.Handler中的create()方法
             Laya.loader.load([this.monkey1, this.monkey2], Laya.Handler.create(this, this.loadComplete, null, true), Laya.Handler.create(this, this.loadProgress, null, false));//cannot load remote img url
         }
-        private loadComplete(pro: number): void {
+        private loadComplete(pro: number, pro2: number): void {
             this.img2 = new Laya.Sprite();
             this.img2.pos(5, this.img1.y + this.img1.height + 5)
             this.switchImg2();
             this.img2.on(Laya.Event.CLICK, this, this.switchImg2);
             Laya.stage.addChild(this.img2);//添加到舞台
-            // console.log("loadComplete: " + pro)//loadComplete: true
+            // console.log("loadComplete: " + pro + "loadComplete:2 " + pro2)//loadComplete: true undefined
         }
         private switchImg2(): void {
             this.img2.graphics.clear();//清空绘制
@@ -223,7 +224,7 @@ module test {
         private numAnim: Laya.Animation
         private testAnimation() {
             this.numAnim = new Laya.Animation()
-            this.numAnim.pos(500, 500)
+            this.numAnim.pos(Laya.stage.width - 75, 25)
             this.numAnim.loadAtlas("res/atlas/number.atlas", Laya.Handler.create(this, this.afterLoadAtlas), "load")// "res/atlas/number.json"也行
         }
         private afterLoadAtlas() {
@@ -233,10 +234,38 @@ module test {
             // this.numAnim.play(0, true, "ha");
             this.numAnim.loadImages(["number/4.png", "number/5.png"]).play()
         }
-    }
-}
-new test.GameMain();
 
+        //test tween and ease
+        private testTweenAndEase() {
+            var w: number = 800;//"LayaBox字符串总宽度"
+            var offsetX: number = Laya.stage.width - w >> 1;//文本创建的起始位置(>>在此使用右移运算符，相当于/2 用>>效率更高)
+            var demoString: string = "LayaBox";
+            var letterText: Laya.Text;
+            //根据"LayaBox"字符串长度创建单个字符，并对每个单独字符使用缓动动画
+            for (var i: number = 0, len: number = demoString.length; i < len; ++i) {
+                letterText = this.createLetter(demoString.charAt(i));
+                letterText.x = w / len * i + offsetX;
+                // letterText.y = 110;//文本的初始y属性
+                // //对象letterText属性y从缓动目标的10向初始的y属性110运动，每次执行缓动效果需要3000毫秒，缓类型采用elasticOut函数方式，延迟间隔i*100毫秒执行。
+                // Laya.Tween.from(letterText, { y: 10 }, 3000, Laya.Ease.elasticOut, null, i * 1000);
+                letterText.y = -110;//文本的初始y属性
+                //对象letterText属性y从始的y属性-110向缓动目标的10向初运动，每次执行缓动效果需要3000毫秒，缓类型采用elasticOut函数方式，延迟间隔i*100毫秒执行。
+                Laya.Tween.to(letterText, { y: 10, update: new Laya.Handler(this, function (p: any) { /*do something*/ }, [letterText]) }, 1000, Laya.Ease.elasticOut, Laya.Handler.create(this, function (p: Laya.Text) { p.color = "#ff0000" }, [letterText]), i * 100);
+            }
+        }
+        //创建单个字符文本，并加载到舞台
+        private createLetter(char: string): Laya.Text {
+            var letter: Laya.Text = new Laya.Text();
+            letter.text = char;
+            letter.color = "#ffffff";
+            letter.font = "Impact";
+            letter.fontSize = 100;
+            Laya.stage.addChild(letter);
+            return letter;
+        }
+    }
+    new test.GameMain();
+}
 // 1   .laya 文件夹下存放的是项目在开发运行中的一些配置信息。
 // 2   项目的输出目录（bin）
 // 3   UI项目目录（laya）
