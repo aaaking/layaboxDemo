@@ -36,9 +36,23 @@ module test {
             this.testLoadImage()
             this.testTexture()
             this.testColorFilter()
-            this.onLoaded()//Laya.loader.load("res/atlas/comp.atlas", Laya.Handler.create(this, this.onLoaded));
-            this.testAnimation()
+            // this.onLoaded()//Laya.loader.load("res/atlas/comp.atlas", Laya.Handler.create(this, this.onLoaded));
             this.testTweenAndEase()
+            Laya.loader.load("res/atlas/comp.atlas", new Laya.Handler(this, function() {
+                this.onLoaded()
+                this.testAnimation()
+                var anim1 = new Laya.Animation()
+                anim1.loadAnimation("TimeLine.ani")
+                anim1.pos(400, 130)
+                Laya.stage.addChild(anim1)
+                anim1.play(0)
+
+                var anim2 = new Laya.Animation()
+                anim2.loadAnimation("TimeLine.ani")
+                anim2.pos(400, 260)
+                Laya.stage.addChild(anim2)
+                anim2.play(0, true, "ani2")
+            }))
         }
         private onLoaded(): void {
             this.mCircle = new CircleUI();
@@ -46,6 +60,7 @@ module test {
             // console.log("this.mCircle.width: " + this.mCircle.width)//this is the ui's width which is 600 instead of view's width which 100
             this.mPie = new PieUI();
             this.mPie.pos(180, 205)
+            this.mPie.myanim.play()
             Laya.stage.addChild(this.mCircle);
             Laya.stage.addChild(this.mPie);
         }

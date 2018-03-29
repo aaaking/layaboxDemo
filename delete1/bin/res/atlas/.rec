@@ -17,7 +17,7 @@ R 274B8076 hscroll.png
 P E466EB1C hslider$bar.png
 R C4BECA54 hslider.png
 R 5EDC128C html.png
-R ACFFCCCF image.png
+P ACFFCCCF image.png
 R 5EDC128C label.png
 R 5EDC128C linkbutton.png
 P 9E4DD730 progress$bar.png
@@ -35,6 +35,6 @@ P E466EB1C vslider$bar.png
 R 2BFF7046 vslider.png
 D res
 D res/img
-R 06BD9BB7 chip.png
+P 06BD9BB7 chip.png
 R 1310FBAB monkey1.png
 R 48822634 monkey2.png
