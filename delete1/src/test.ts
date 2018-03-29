@@ -37,6 +37,7 @@ module test {
             this.testTexture()
             this.testColorFilter()
             Laya.loader.load("res/atlas/comp.atlas", Laya.Handler.create(this, this.onLoaded));
+            this.testAnimation()
         }
         private onLoaded(): void {
             this.mCircle = new CircleUI();
@@ -217,6 +218,27 @@ module test {
             Laya.stage.addChild(shadowImg);
             Laya.stage.addChild(beforeBlurImg);
             Laya.stage.addChild(blurImg);
+        }
+        //test animation
+        private numAnim: Laya.Animation
+        private testAnimation() {
+            this.numAnim = new Laya.Animation()
+            this.numAnim.pos(500, 500)
+            this.numAnim.loadAtlas("res/atlas/number.atlas", Laya.Handler.create(this, this.animLoaded), "load")
+        }
+        private animLoaded() {
+            Laya.stage.addChild(this.numAnim);
+            // this.numAnim.play()
+            // Laya.Animation.createFrames(["number/4.png", "number/5.png"], "ha");
+            // this.numAnim.play(0, true, "ha");
+            this.numAnim.loadImages(["number/4.png", "number/5.png"]).play()
+        }
+        private aniUrls(aniName: string, length: number): any {
+            var urls: any = [];
+            for (var i: number = 0; i < length; i++) {
+                urls.push("number/" + aniName + i + ".png");
+            }
+            return urls;
         }
     }
 }

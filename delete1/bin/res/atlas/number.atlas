@@ -1,0 +1,178 @@
+{
+    "frames": {
+        "0.png": {
+            "frame": {
+                "h": 45,
+                "idx": 0,
+                "w": 30,
+                "x": 0,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 47,
+                "w": 33
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        "3.png": {
+            "frame": {
+                "h": 45,
+                "idx": 0,
+                "w": 31,
+                "x": 0,
+                "y": 46
+            },
+            "sourceSize": {
+                "h": 47,
+                "w": 33
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        "4.png": {
+            "frame": {
+                "h": 44,
+                "idx": 0,
+                "w": 32,
+                "x": 31,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 47,
+                "w": 33
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 1
+            }
+        },
+        "5.png": {
+            "frame": {
+                "h": 44,
+                "idx": 0,
+                "w": 31,
+                "x": 32,
+                "y": 45
+            },
+            "sourceSize": {
+                "h": 47,
+                "w": 33
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 2
+            }
+        },
+        "6.png": {
+            "frame": {
+                "h": 45,
+                "idx": 0,
+                "w": 31,
+                "x": 64,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 47,
+                "w": 33
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        "7.png": {
+            "frame": {
+                "h": 43,
+                "idx": 0,
+                "w": 31,
+                "x": 64,
+                "y": 46
+            },
+            "sourceSize": {
+                "h": 47,
+                "w": 33
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 2
+            }
+        },
+        "8.png": {
+            "frame": {
+                "h": 45,
+                "idx": 0,
+                "w": 31,
+                "x": 96,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 47,
+                "w": 33
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        "9.png": {
+            "frame": {
+                "h": 45,
+                "idx": 0,
+                "w": 31,
+                "x": 128,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 47,
+                "w": 33
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        "one.png": {
+            "frame": {
+                "h": 44,
+                "idx": 0,
+                "w": 19,
+                "x": 96,
+                "y": 46
+            },
+            "sourceSize": {
+                "h": 47,
+                "w": 33
+            },
+            "spriteSourceSize": {
+                "x": 7,
+                "y": 1
+            }
+        },
+        "two.png": {
+            "frame": {
+                "h": 44,
+                "idx": 0,
+                "w": 31,
+                "x": 116,
+                "y": 46
+            },
+            "sourceSize": {
+                "h": 47,
+                "w": 33
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 1
+            }
+        }
+    },
+    "meta": {
+        "image": "number.png",
+        "prefix": "number/"
+    }
+}
