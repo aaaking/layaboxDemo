@@ -1,6 +1,7 @@
 module test {
     import CircleUI = ui.res.CircleUI;
     import PieUI = ui.res.PieUI;
+    import EffectAnimUI = ui.res.EffectAnimDemoUI;
     export class GameMain {
         private txt: Laya.Text;
         private prevX: number = 0;
@@ -52,6 +53,10 @@ module test {
                 anim2.pos(400, 260)
                 Laya.stage.addChild(anim2)
                 anim2.play(0, true, "ani2")
+                //effect animation demo
+                var effectAnimUI = new EffectAnimUI()
+                effectAnimUI.pos(300, 300)
+                Laya.stage.addChild(effectAnimUI)
             }))
         }
         private onLoaded(): void {
