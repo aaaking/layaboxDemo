@@ -66,6 +66,7 @@ module test {
             }))
             this.testHttpRequest()
             this.testWebcocket()
+            this.testByte()
         }
         private onLoaded(): void {
             this.mCircle = new CircleUI();
@@ -332,7 +333,7 @@ module test {
         }
         private openHandler(event: any = null): void {//正确建立连接；
             console.log("websocket openHandler " + event)
-            this.byte.writeByte(1);//写入一个字节
+            this.byte.writeByte(1);//写入一个字节0-255
             this.byte.writeInt16(20);//写入一个int16的数据
             this.byte.writeFloat32(20.5);//写入一个32位的浮点数据
             this.byte.writeUTFString("hello");// 写入一个字符串；
@@ -362,6 +363,32 @@ module test {
         }
         private errorHandlerWebsocket(e: any = null): void {//连接出错
             console.log("websocket errorHandlerWebsocket " + e)
+        }
+
+        //test Byte
+        private testByte() {
+            //有三种方法可以实例化一个Byte，根据参数的不同创建二进制数据。
+            //实例化一个二进制数组Byte
+            var byte: Laya.Byte = new Laya.Byte();
+            //或者传入一个类型化数组
+            var uint8Byte: Uint8Array = new Uint8Array(10);
+            var byte: Laya.Byte = new Laya.Byte(uint8Byte);
+            //或者传入一个ArrayBuffer类型
+            var buffer: ArrayBuffer = new ArrayBuffer(20);
+            var byte: Laya.Byte = new Laya.Byte(buffer);
+            //writeArrayBuffer(arraybuffer:*, offset:number = 0, length:number = 0):void
+            var byte: Laya.Byte = new Laya.Byte();
+            var byte1: Laya.Byte = new Laya.Byte();
+            byte1.writeFloat32(20.0);//写入一个四个字节的浮点数
+            byte1.writeInt16(16);//写入一个两个字节的整数
+            byte1.writeUTFString("hell world");//写入一个字符串；
+            byte.writeArrayBuffer(byte1.buffer);//把byte1的数据从第六个字节开始读入byte中。省略其中的浮点数20.0和整数16
+            byte.pos = 0;//
+            console.log("byte.readUTFString(): " + byte.readUTFString() + "  byte.length: " + byte.length)//从byte中读出字符串。
+            // console.log("byte.getUTFString(): " + byte.getUTFString())// log is undefined
+            console.log(Laya.Byte.getSystemEndian());//打印系统的字节顺序
+            byte.pos = 6
+            console.log("byte.bytesAvailable: " + byte.bytesAvailable)//可从字节流的当前位置到末尾读取的数据的字节数。
         }
     }
     new test.GameMain();
