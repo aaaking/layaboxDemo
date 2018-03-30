@@ -67,6 +67,7 @@ module test {
             this.testHttpRequest()
             this.testWebcocket()
             this.testByte()
+            this.testJsonp()
         }
         private onLoaded(): void {
             this.mCircle = new CircleUI();
@@ -303,8 +304,9 @@ module test {
             //知乎的「知」字，可以知道它的 unicode 为 0x77e5，
             //encodeURI对它进行 UTF-8 编码，变成了三个字节：0xe7, 0x9f, 0xa5因此，encodeURI 得到的结果则是 「%E7%9F%A5」
             //如果是使用 escape 编码「知」,得到的结果就是 「%u77E5」；
-            var city = "%E5%8C%97%E4%BA%AC"//java code: String city = java.net.URLEncoder.encode("北京", "utf-8");
-            xhr.send("https://www.sojson.com/open/api/weather/json.shtml?city=" + city, "", "get", "text");
+            var city = "city=%E5%8C%97%E4%BA%AC"//java code: String city = java.net.URLEncoder.encode("北京", "utf-8");
+            var jsonpCallback = "&jsonp=jsonpCallbackFunction"
+            xhr.send("https://www.sojson.com/open/api/weather/json.shtml?" + city + jsonpCallback, "", "get", "text");
         }
         private processHandler(data: any): void {
             console.log("processHandler: " + data);
@@ -314,6 +316,9 @@ module test {
         }
         private completeHandler(e: any): void {
             console.log("completeHandler: " + e);
+        }
+        private jsonpCallbackFunction(data1: any, data2: any) {
+            console.log("jsonpCallbackFunction data1: " + data1 + "  \ndata2:" + data2);
         }
         //test websocket, websocketServer.js is in ../websocketServer/websocketServer.js
         private socket: Laya.Socket;
@@ -389,6 +394,16 @@ module test {
             console.log(Laya.Byte.getSystemEndian());//打印系统的字节顺序
             byte.pos = 6
             console.log("byte.bytesAvailable: " + byte.bytesAvailable)//可从字节流的当前位置到末尾读取的数据的字节数。
+        }
+        //test jsonp
+        //由于同源策略，一般来说位于xxx.com的网页无法与非xxx.com的服务器沟通，而HTML的DOM元素是一个例外，一般来讲凡是带有src属性的DOM元素不受跨域的限制
+        private testJsonp() {
+            var script: any = Laya.Browser.createElement("script");
+            Laya.Browser.document.body.appendChild(script);
+            script.src = "http://localhost:9090/?a=1";
+        }
+        public static testJsonpComplete() {
+            console.log("testJsonpComplete JSONP执行到这里");
         }
     }
     new test.GameMain();
