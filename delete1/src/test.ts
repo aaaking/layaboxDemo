@@ -68,6 +68,7 @@ module test {
             this.testWebcocket()
             this.testByte()
             this.testJsonp()
+            this.testWebStorage()
         }
         private onLoaded(): void {
             this.mCircle = new CircleUI();
@@ -404,6 +405,29 @@ module test {
         }
         public static testJsonpComplete() {
             console.log("testJsonpComplete JSONP执行到这里");
+        }
+        //test Web Storage数据存储
+        //HTML5提供了两种在客户端存储数据的新方法：
+        // 1 localStorage - 没有时间限制的数据存储
+        // 2 sessionStorage - 针对一个session的数据存储, 存储在sessionStorage里边的数据会在浏览器会话（browsing session）结束时被清除，即浏览器关闭时。
+        private testWebStorage() {
+            // 1 localStorage
+            Laya.LocalStorage.setItem("key", "hello");
+            var data: any = { "index": 0, "index1": 1 };
+            var str: string = JSON.stringify(data);
+            Laya.LocalStorage.setItem("data", "hello");
+            Laya.LocalStorage.setItem("item", str);
+            Laya.LocalStorage.removeItem("data");//清除数据
+            // Laya.LocalStorage.clear();//如果要把所有的数据都清理掉
+            // 2 sessionStorage
+            var sessionStorage: any = Laya.Browser.window.sessionStorage;
+            if (sessionStorage.pagecount) {
+                sessionStorage.pagecount = parseInt(sessionStorage.pagecount) + 1;
+            }
+            else {
+                sessionStorage.pagecount = 1;
+            }
+            sessionStorage.name = "zzh"
         }
     }
     new test.GameMain();
