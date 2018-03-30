@@ -395,7 +395,7 @@ module test {
             byte.pos = 6
             console.log("byte.bytesAvailable: " + byte.bytesAvailable)//可从字节流的当前位置到末尾读取的数据的字节数。
         }
-        //test jsonp
+        //test jsonp, server code is in ../websocketServer/server2.js
         //由于同源策略，一般来说位于xxx.com的网页无法与非xxx.com的服务器沟通，而HTML的DOM元素是一个例外，一般来讲凡是带有src属性的DOM元素不受跨域的限制
         private testJsonp() {
             var script: any = Laya.Browser.createElement("script");
