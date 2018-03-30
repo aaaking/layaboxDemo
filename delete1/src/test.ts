@@ -58,12 +58,13 @@ module test {
                 Laya.stage.addChild(skeleton);
                 skeleton.pos(800, 1000);
                 skeleton.scale(0.4, 0.4)
-                skeleton.load("res/spine/raptor.sk", new Laya.Handler(this, function() { console.log("load spine complete width: " + skeleton.width + " " + skeleton.height); }));//通过加载直接创建动画
+                skeleton.load("res/spine/raptor.sk", new Laya.Handler(this, function () { }));//通过加载直接创建动画
                 //effect animation demo
                 var effectAnimUI = new EffectAnimUI()
                 effectAnimUI.pos(300, 300)
                 Laya.stage.addChild(effectAnimUI)
             }))
+            this.testHttpRequest()
         }
         private onLoaded(): void {
             this.mCircle = new CircleUI();
@@ -289,8 +290,52 @@ module test {
             Laya.stage.addChild(letter);
             return letter;
         }
+        // test httprequest
+        private testHttpRequest() {
+            var xhr: Laya.HttpRequest = new Laya.HttpRequest()
+            xhr.http.timeout = 10000;//设置超时时间；
+            xhr.once(Laya.Event.COMPLETE, this, this.completeHandler);
+            xhr.once(Laya.Event.ERROR, this, this.errorHandler);
+            xhr.on(Laya.Event.PROGRESS, this, this.processHandler);
+            //free weather: https://www.sojson.com/blog/234.html
+            //知乎的「知」字，可以知道它的 unicode 为 0x77e5，
+            //encodeURI对它进行 UTF-8 编码，变成了三个字节：0xe7, 0x9f, 0xa5因此，encodeURI 得到的结果则是 「%E7%9F%A5」
+            //如果是使用 escape 编码「知」,得到的结果就是 「%u77E5」；
+            var city = "%E5%8C%97%E4%BA%AC"//java code: String city = java.net.URLEncoder.encode("北京", "utf-8");
+            xhr.send("https://www.sojson.com/open/api/weather/json.shtml?city=" + city, "", "get", "text");
+        }
+        private processHandler(data: any): void {
+            console.log("processHandler: " + data);
+        }
+        private errorHandler(data: any): void {
+            console.log("errorHandler: " + data);
+        }
+        private completeHandler(e: any): void {
+            console.log("completeHandler: " + e);
+        }
     }
     new test.GameMain();
+    // extended httprequest
+    export class MyHttpRequest extends Laya.HttpRequest {
+        constructor() {
+            super();
+        }
+        send(url: string, data: any = null, method: string = "get", responseType: string = "text", headers: any = null) {
+            super.send(url, data, method, responseType, headers);
+            this._http.upload.onprogress = function (e: any): void {
+                console.log("this._http.upload.onprogress: " + e);
+            }
+            this._http.upload.onload = function (e: any): void {
+                console.log("this._http.upload.onload: " + e);
+            }
+            this._http.upload.onerror = function (e: any): void {
+                console.log("this._http.upload.onerror: " + e);
+            }
+            this._http.upload.onabort = function (e: any): void {
+                console.log("this._http.upload.onabort: " + e);
+            }
+        }
+    }
 }
 // 1   .laya 文件夹下存放的是项目在开发运行中的一些配置信息。
 // 2   项目的输出目录（bin）
