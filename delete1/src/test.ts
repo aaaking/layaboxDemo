@@ -325,10 +325,10 @@ module test {
             //建立连接
             // this.socket.connectByUrl("ws://localhost:8000");
             this.socket.connect("localhost", 8000)
-            this.socket.on(Laya.Event.OPEN, this, this.openHandler);
-            this.socket.on(Laya.Event.MESSAGE, this, this.receiveHandler);
-            this.socket.on(Laya.Event.CLOSE, this, this.closeHandler);
-            this.socket.on(Laya.Event.ERROR, this, this.errorHandlerWebsocket);
+            this.socket.on(Laya.Event.OPEN, this, this.openHandler);//open
+            this.socket.on(Laya.Event.MESSAGE, this, this.receiveHandler);//message
+            this.socket.on(Laya.Event.CLOSE, this, this.closeHandler);//close
+            this.socket.on(Laya.Event.ERROR, this, this.errorHandlerWebsocket);//error
         }
         private openHandler(event: any = null): void {//正确建立连接；
             console.log("websocket openHandler " + event)
