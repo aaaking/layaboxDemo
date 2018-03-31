@@ -69,6 +69,7 @@ module test {
             this.testByte()
             this.testJsonp()
             this.testWebStorage()
+            this.testPlayAudio()
         }
         private onLoaded(): void {
             this.mCircle = new CircleUI();
@@ -230,6 +231,7 @@ module test {
             //glow filter
             var glowImg = new Laya.Sprite()
             glowImg.loadImage(this.monkeyRemote, 20, 295, 100, 100)
+            glowImg.on(Laya.Event.CLICK, this, this.onPlayMuisic)
             var glowFilter: Laya.GlowFilter = new Laya.GlowFilter("#ff0000", 15, 0, 0)
             glowImg.filters = [glowFilter]
             //shadow filter
@@ -428,6 +430,16 @@ module test {
                 sessionStorage.pagecount = 1;
             }
             sessionStorage.name = "zzh"
+        }
+        //test play audio
+        private testPlayAudio() {
+            // Laya.SoundManager.playMusic("http://layaair.ldc.layabox.com/demo/h5/res/sounds/bgm.mp3")
+            // Laya.SoundManager.setMusicVolume(1)
+            // Laya.SoundManager.playSound("res/sounds/dealcard.mp3")
+        }
+        private onPlayMuisic() {
+            Laya.SoundManager.playMusic("res/sounds/ls.mp3", 1)
+            console.log("onPlayMuisic")
         }
     }
     new test.GameMain();
