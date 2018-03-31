@@ -70,6 +70,7 @@ module test {
             this.testJsonp()
             this.testWebStorage()
             this.testPlayAudio()
+            this.testGeolocation()
             this.testDevice()
         }
         private onLoaded(): void {
@@ -442,6 +443,32 @@ module test {
             Laya.SoundManager.playMusic("res/sounds/ls.mp3", 1)
             // Laya.SoundManager.playMusic("http://layaair.ldc.layabox.com/demo/h5/res/sounds/bgm.mp3", 1)
             console.log("onPlayMuisic")
+        }
+        //test Geolocation
+        private testGeolocation() {
+            Laya.Geolocation.getCurrentPosition(
+                Laya.Handler.create(this, this.geolocationSuccess),
+                Laya.Handler.create(this, this.geolocationError)
+            );
+        }
+        private geolocationSuccess(info: Laya.GeolocationInfo) {
+            console.log('经纬度: (' + info.longitude + '°, ' + info.latitude + '°)，精确度：' + info.accuracy + 'm');
+            if (info.altitude != null)
+                console.log('海拔：' + info.altitude + 'm' + (info.altitudeAccuracy != null ? ('，精确度：' + info.altitudeAccuracy + 'm') : ''));
+            if (info.heading != null && !isNaN(info.heading))
+                console.log('方向：' + info.heading + "°");
+            if (info.speed != null && !isNaN(info.speed))
+                console.log('速度：' + info.speed + "m/s");
+        }
+        private geolocationError(err: any) {
+            var errType: String;
+            if (err.code = Laya.Geolocation.PERMISSION_DENIED)
+                errType = "Permission Denied";
+            else if (err.code == Laya.Geolocation.POSITION_UNAVAILABLE)
+                errType = "Position Unavailable";
+            else if (err.code == Laya.Geolocation.TIMEOUT)
+                errType = "Time Out";
+            console.log('ERROR(' + errType + '): ' + err.message);
         }
         //test device including gyroscope and accerelator
         //laya.device.motion中共有四个类，1加速信息AccelerationInfo、2加速计Accelerator、3陀螺仪Gyroscope、4保存旋转信息RotationInfo
