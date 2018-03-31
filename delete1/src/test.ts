@@ -70,6 +70,7 @@ module test {
             this.testJsonp()
             this.testWebStorage()
             this.testPlayAudio()
+            this.testDevice()
         }
         private onLoaded(): void {
             this.mCircle = new CircleUI();
@@ -439,7 +440,28 @@ module test {
         }
         private onPlayMuisic() {
             Laya.SoundManager.playMusic("res/sounds/ls.mp3", 1)
+            // Laya.SoundManager.playMusic("http://layaair.ldc.layabox.com/demo/h5/res/sounds/bgm.mp3", 1)
             console.log("onPlayMuisic")
+        }
+        //test device including gyroscope and accerelator
+        //laya.device.motion中共有四个类，1加速信息AccelerationInfo、2加速计Accelerator、3陀螺仪Gyroscope、4保存旋转信息RotationInfo
+        private testDevice() {
+            // laya.device.motion.Gyroscope.instance.on
+            Laya.Gyroscope.instance.on(Laya.Event.CHANGE, this, function (absolute: Boolean, rotationInfo: Laya.RotationInfo) {
+                console.log("alpha:" + Math.floor(rotationInfo.alpha) + '\n' +
+                    "beta :" + Math.floor(rotationInfo.beta) + '\n' +
+                    "gamma:" + Math.floor(rotationInfo.gamma))
+            })
+            Laya.Accelerator.instance.on(Laya.Event.CHANGE, this, function (acceleration: Laya.AccelerationInfo, accelerationIncludingGravity: Laya.AccelerationInfo, rotationRate: Laya.RotationInfo, interval: number) {
+                console.log('acceleration:(' + acceleration.x.toFixed(3) + ', ' + acceleration.y.toFixed(3) + ', ' + acceleration.z.toFixed(3) + ')\n' +
+                    'accelerationIncludingGravity:(' + accelerationIncludingGravity.x.toFixed(3) + ', ' + accelerationIncludingGravity.y.toFixed(3) + ', ' + accelerationIncludingGravity.z.toFixed(3) + ')\n' +
+                    'rotationRate: alpha ' + Math.floor(rotationRate.alpha) + ', beta ' + Math.floor(rotationRate.beta) + ', gamma ' + Math.floor(rotationRate.gamma) + '\n' +
+                    'interval: ' + interval)
+                //由于我们可能需要显示方向上的运行信息，这表示即使旋转了设备，加速计轴不随之改变，如y轴 始终保持着垂直。使用Accelerator.getTransformedAcceleration()即可获取到显示方向上的运行信息。
+                //使用AccelerationInfo前先使用Accelerator.getTransformedAcceleration()转换信息：
+                // acceleration = Laya.Accelerator.getTransformedAcceleration(acceleration);
+                // accelerationIncludingGravity = Laya.Accelerator.getTransformedAcceleration(accelerationIncludingGravity);
+            });
         }
     }
     new test.GameMain();
