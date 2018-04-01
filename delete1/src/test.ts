@@ -30,6 +30,7 @@ module test {
         private mPie: PieUI;
         constructor() {
             Laya.init(1920, 1080, Laya.WebGL);//Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);1069 522
+            // Laya.init(0, 0, Laya.WebGL);
             Laya.stage.bgColor = '#23238E';//设置舞台背景色
             Laya.stage.addChild(this.testText())
             Laya.stage.addChild(this.testTextInput())
@@ -72,6 +73,10 @@ module test {
             this.testPlayAudio()
             this.testGeolocation()
             this.testDevice()
+            //  Laya.stage.alignH = "center"
+            //  Laya.stage.alignV = "middle"
+            Laya.stage.screenMode = "horizontal";//自动横屏，游戏的水平方向始终与浏览器屏幕较短边保持垂直
+            this.testScreen();
         }
         private onLoaded(): void {
             this.mCircle = new CircleUI();
@@ -446,10 +451,10 @@ module test {
         }
         //test Geolocation
         private testGeolocation() {
-            Laya.Geolocation.getCurrentPosition(
-                Laya.Handler.create(this, this.geolocationSuccess),
-                Laya.Handler.create(this, this.geolocationError)
-            );
+            // Laya.Geolocation.getCurrentPosition(
+            //     Laya.Handler.create(this, this.geolocationSuccess),
+            //     Laya.Handler.create(this, this.geolocationError)
+            // );
         }
         private geolocationSuccess(info: Laya.GeolocationInfo) {
             console.log('经纬度: (' + info.longitude + '°, ' + info.latitude + '°)，精确度：' + info.accuracy + 'm');
@@ -473,6 +478,9 @@ module test {
         //test device including gyroscope and accerelator
         //laya.device.motion中共有四个类，1加速信息AccelerationInfo、2加速计Accelerator、3陀螺仪Gyroscope、4保存旋转信息RotationInfo
         private testDevice() {
+            if (1) {
+                return;
+            }
             // laya.device.motion.Gyroscope.instance.on
             Laya.Gyroscope.instance.on(Laya.Event.CHANGE, this, function (absolute: Boolean, rotationInfo: Laya.RotationInfo) {
                 console.log("alpha:" + Math.floor(rotationInfo.alpha) + '\n' +
@@ -489,6 +497,15 @@ module test {
                 // acceleration = Laya.Accelerator.getTransformedAcceleration(acceleration);
                 // accelerationIncludingGravity = Laya.Accelerator.getTransformedAcceleration(accelerationIncludingGravity);
             });
+        }
+        //test screen
+        private testScreen() {
+            // 所以我们得出一个公式： 物理分辨率 = 像素分辨率 * devicePixelRatio;
+            // 　　设备像素分辨率: Laya.Browser.clientWidth，Laya.Browser.clientHeight; iphone6 375*667
+            // 　　设备物理分辨率：Laya.Browser.width，Laya.Browser.height;iphone6 750*1334
+            // 　　像素比：Laya.Browser.pixelRatio;
+            // console.log("Laya.Browser.clientWidth: " + Laya.Browser.clientWidth + "  Laya.Browser.width: " + Laya.Browser.width + "  Laya.Browser.pixelRatio: " + Laya.Browser.pixelRatio)
+            // console.log("Laya.stage.scaleMode: " + Laya.stage.scaleMode)
         }
     }
     new test.GameMain();
