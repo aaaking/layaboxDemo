@@ -512,7 +512,8 @@ module test {
         //test change page
         private testChangePage() {
             //blurImg.loadImage(this.resChip, 115, 405, 100, 100)
-            var changeBtn = new pageTestComponent.ScaleButton("res/img/chip.png", "clickToChangePage")
+            var changeBtn = new pageTestComponent.ScaleButton()
+            changeBtn.label = "clickToChangePage"
             changeBtn.pos(220, 405)
             changeBtn.size(100, 100)
             changeBtn.on(Laya.Event.CLICK, this, function () {

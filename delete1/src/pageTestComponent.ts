@@ -3,7 +3,9 @@ module pageTestComponent {
         private page: Laya.Box;
         private resourcesStr = ["res/img/chip.png"
             , "comp/button.png"
-            , "comp/combobox.png"]
+            , "comp/combobox.png"
+            , "comp/vscroll.png"
+            , "res/atlas/number.atlas"]
         constructor() {
             //容器组件（Box、 List、 Tab、RadioGroup、ViewStack、 Panel、HBox、VBox、Tree）默认无需对应资源，可以通过快捷键Ctrl+B进行转换而来
             this.page = new Laya.Box()
@@ -28,6 +30,7 @@ module pageTestComponent {
             this.page.addChild(scaleBtn)
             Laya.stage.addChild(this.page)
             this.testComboBox()
+            this.testList()
         }
         private testButton() {
             /* 设置按钮为单态按钮
@@ -53,6 +56,42 @@ module pageTestComponent {
             comboBox.labelSize = 24;
             comboBox.itemSize = 12;
             this.page.addChild(comboBox)
+        }
+        private testList() {
+            var list: Laya.List = new Laya.List()
+            list.pos(5, 55)
+            list.itemRender = Item;
+            list.repeatX = 1;
+            list.repeatY = 10
+            list.vScrollBarSkin = "comp/vscroll.png"
+            list.selectEnable = true;
+            list.selectHandler = null//new Handler(this, this.onSelect);
+            list.renderHandler = new Laya.Handler(this, function (cell: Item, index: number) {
+                 cell.setImg(cell.dataSource);
+            });
+            // 设置数据项为对应图片的路径
+            var data: Array<string> = [];
+            for (var i: number = 0; i < 40; ++i) {
+                data.push("" + i);
+            }
+            list.array = data;
+            this.page.addChild(list)
+        }
+    }
+    export class Item extends Laya.Box {
+        public static WID: number = 373;
+        public static HEI: number = 85;
+        private img: Laya.Text;
+        constructor() {
+            super();
+            this.size(Item.WID, Item.HEI);
+            this.img = new Laya.Text();
+            this.img.color = "#ff0000"
+            this.img.fontSize = 20
+            this.addChild(this.img);
+        }
+        public setImg(src: string): void {
+            this.img.text = src;
         }
     }
     export class ScaleButton extends Laya.Button {
