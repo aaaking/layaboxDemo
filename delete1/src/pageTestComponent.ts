@@ -5,6 +5,7 @@ module pageTestComponent {
             , "comp/button.png"
             , "comp/combobox.png"
             , "comp/vscroll.png"
+            , "comp/hscroll.png"
             , "res/atlas/number.atlas"]
         constructor() {
             //容器组件（Box、 List、 Tab、RadioGroup、ViewStack、 Panel、HBox、VBox、Tree）默认无需对应资源，可以通过快捷键Ctrl+B进行转换而来
@@ -31,6 +32,7 @@ module pageTestComponent {
             Laya.stage.addChild(this.page)
             this.testComboBox()
             this.testList()
+            this.testLabel()
         }
         private testButton() {
             /* 设置按钮为单态按钮
@@ -76,6 +78,18 @@ module pageTestComponent {
             }
             list.array = data;
             this.page.addChild(list)
+        }
+        private testLabel() {
+            var panel: Laya.Panel = new Laya.Panel()
+            panel.size(250, 250)
+            panel.pos(500 + 17, 0)
+            // panel.graphics.drawRect(0, 0, 250,  250, "#ffcccc");
+            Laya.stage.addChild(panel)
+            var mImg: Laya.Image = new Laya.Image("comp/image.png")
+            panel.vScrollBarSkin = "comp/vscroll.png";
+            panel.hScrollBarSkin = "comp/hscroll.png";
+            mImg.size(mImg.width * 2, mImg.height * 2)
+            panel.addChild(mImg)
         }
     }
     export class Item extends Laya.Box {
