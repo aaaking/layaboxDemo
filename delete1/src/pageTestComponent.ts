@@ -1,7 +1,8 @@
 module pageTestComponent {
     export class ThisScene {
         private page: Laya.Box;
-        private resourcesStr = ["res/img/chip.png", "comp/button.png"]
+        private resourcesStr = ["res/img/chip.png"
+            , "comp/button.png"]
         constructor() {
             //容器组件（Box、 List、 Tab、RadioGroup、ViewStack、 Panel、HBox、VBox、Tree）默认无需对应资源，可以通过快捷键Ctrl+B进行转换而来
             this.page = new Laya.Box()
@@ -27,6 +28,12 @@ module pageTestComponent {
             Laya.stage.addChild(this.page)
         }
         private testButton() {
+            /* 设置按钮为单态按钮
+            ** 取值：
+            ** 1：单态。图片不做切割，按钮的皮肤状态只有一种。
+            ** 2：两态。图片将以竖直方向被等比切割为2部分，从上向下，依次为弹起状态皮肤、按下和经过及选中状态皮肤。
+            ** 3：三态。图片将以竖直方向被等比切割为2部分，从上向下，依次为弹起状态皮肤、经过状态皮肤、按下和选中状态皮肤
+            */
             var btn1: Laya.Button = new ScaleButton("comp/button.png", "btn1")
             btn1.size(50, 50)
             btn1.pos(55, 0)
