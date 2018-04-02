@@ -75,7 +75,7 @@ module test {
             this.testDevice()
             //  Laya.stage.alignH = "center"
             //  Laya.stage.alignV = "middle"
-            Laya.stage.screenMode = "horizontal";//自动横屏，游戏的水平方向始终与浏览器屏幕较短边保持垂直
+            // Laya.stage.screenMode = "horizontal";//自动横屏，游戏的水平方向始终与浏览器屏幕较短边保持垂直
             this.testScreen();
             this.testChangePage();
         }

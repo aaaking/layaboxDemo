@@ -2,7 +2,8 @@ module pageTestComponent {
     export class ThisScene {
         private page: Laya.Box;
         private resourcesStr = ["res/img/chip.png"
-            , "comp/button.png"]
+            , "comp/button.png"
+            , "comp/combobox.png"]
         constructor() {
             //容器组件（Box、 List、 Tab、RadioGroup、ViewStack、 Panel、HBox、VBox、Tree）默认无需对应资源，可以通过快捷键Ctrl+B进行转换而来
             this.page = new Laya.Box()
@@ -26,6 +27,7 @@ module pageTestComponent {
             })
             this.page.addChild(scaleBtn)
             Laya.stage.addChild(this.page)
+            this.testComboBox()
         }
         private testButton() {
             /* 设置按钮为单态按钮
@@ -42,6 +44,15 @@ module pageTestComponent {
             //StrokeColor颜色的先后设置顺序为格式: upColor（弹起或离开状态状态的颜色）,overColor（经过状态的颜色）,downColor（按下和选中状态的颜色）,disableColor（被禁止使用时的颜色）
             btn1.labelStrokeColor = "#ff0000#ff0000#ff0000#ff0000"
             this.page.addChild(btn1)
+        }
+        private testComboBox() {
+            var comboBox: Laya.ComboBox = new Laya.ComboBox("comp/combobox.png", "item0, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item5, item1, item2, item3, item4, item225")
+            comboBox.pos(110, 10)
+            comboBox.selectHandler = null//Handler
+            comboBox.visibleNum = 30
+            comboBox.labelSize = 24;
+            comboBox.itemSize = 12;
+            this.page.addChild(comboBox)
         }
     }
     export class ScaleButton extends Laya.Button {
