@@ -77,6 +77,7 @@ module test {
             //  Laya.stage.alignV = "middle"
             Laya.stage.screenMode = "horizontal";//自动横屏，游戏的水平方向始终与浏览器屏幕较短边保持垂直
             this.testScreen();
+            this.testChangePage();
         }
         private onLoaded(): void {
             this.mCircle = new CircleUI();
@@ -506,6 +507,17 @@ module test {
             // 　　像素比：Laya.Browser.pixelRatio;
             // console.log("Laya.Browser.clientWidth: " + Laya.Browser.clientWidth + "  Laya.Browser.width: " + Laya.Browser.width + "  Laya.Browser.pixelRatio: " + Laya.Browser.pixelRatio)
             // console.log("Laya.stage.scaleMode: " + Laya.stage.scaleMode)
+        }
+        
+        //test change page
+        private testChangePage() {
+            //blurImg.loadImage(this.resChip, 115, 405, 100, 100)
+            var changeBtn = new pageTestComponent.ScaleButton("res/img/chip.png", "clickToChangePage")
+            changeBtn.pos(220, 405)
+            changeBtn.size(100, 100)
+            changeBtn.on(Laya.Event.CLICK, this, function() {
+            })
+            Laya.stage.addChild(changeBtn)
         }
     }
     new test.GameMain();
