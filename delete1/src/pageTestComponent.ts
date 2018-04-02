@@ -2,6 +2,7 @@ module pageTestComponent {
     export class ThisScene {
         private page: Laya.Box;
         constructor() {
+            //容器组件（Box、 List、 Tab、RadioGroup、ViewStack、 Panel、HBox、VBox、Tree）默认无需对应资源，可以通过快捷键Ctrl+B进行转换而来
             this.page = new Laya.Box()
             var bg: Laya.Text = new Laya.Text()
             bg.bgColor = "#000000"
