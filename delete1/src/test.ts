@@ -508,14 +508,15 @@ module test {
             // console.log("Laya.Browser.clientWidth: " + Laya.Browser.clientWidth + "  Laya.Browser.width: " + Laya.Browser.width + "  Laya.Browser.pixelRatio: " + Laya.Browser.pixelRatio)
             // console.log("Laya.stage.scaleMode: " + Laya.stage.scaleMode)
         }
-        
+
         //test change page
         private testChangePage() {
             //blurImg.loadImage(this.resChip, 115, 405, 100, 100)
             var changeBtn = new pageTestComponent.ScaleButton("res/img/chip.png", "clickToChangePage")
             changeBtn.pos(220, 405)
             changeBtn.size(100, 100)
-            changeBtn.on(Laya.Event.CLICK, this, function() {
+            changeBtn.on(Laya.Event.CLICK, this, function () {
+                new pageTestComponent.ThisScene()
             })
             Laya.stage.addChild(changeBtn)
         }
