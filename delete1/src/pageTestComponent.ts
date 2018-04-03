@@ -68,7 +68,7 @@ module pageTestComponent {
             list.itemRender = Item;
             list.repeatX = 1;
             list.repeatY = 5
-            list.vScrollBarSkin = "comp/vscroll.png"
+            list.vScrollBarSkin = ""//comp/vscroll.png
             list.selectEnable = true;
             list.selectHandler = null//new Handler(this, this.onSelect);
             list.renderHandler = new Laya.Handler(this, function (cell: Item, index: number) {
