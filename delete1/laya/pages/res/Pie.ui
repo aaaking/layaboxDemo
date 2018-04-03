@@ -28,7 +28,7 @@
         {
             "x":15,
             "type":"Animation",
-            "props":{"y":119,"x":59,"var":"myanim","source":"TimeLine.ani","interval":100},
+            "props":{"y":139,"x":105,"width":0,"var":"myanim","source":"TimeLine.ani","interval":100,"height":0},
             "nodeParent":1,
             "label":"Animation(myanim)",
             "isDirectory":false,
