@@ -29,9 +29,14 @@ module test {
         private mCircle: CircleUI;
         private mPie: PieUI;
         constructor() {
-            Laya.init(1920, 1080, Laya.WebGL);//Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);1069 522
+            Laya.init(1920, 1080, Laya.WebGL);
+            console.log("Laya.Browser.clientWidth: " + Laya.Browser.clientWidth + "  Laya.Browser.clientHeight: " + Laya.Browser.clientHeight)
+            console.log("Laya.Browser.width: " + Laya.Browser.width + "  Laya.Browser.height: " + Laya.Browser.height)
             // Laya.DebugPanel.init();
             //  Laya.DebugTool.init();
+            //调用性能统计面板方法，(0,0)为面板位置坐标
+            // Canvas有三个数值,\只有设置CacheAs后才会有值，默认为0/0/0。从左至右数值的意义分别为：每帧重绘的画布数量 / 缓存类型为“normal”类型的画布数量 / 缓存类型为“bitmap”类型的画布数量。
+            Laya.Stat.show(400, 0);
             // Laya.init(0, 0, Laya.WebGL);
             Laya.stage.bgColor = '#23238E';//设置舞台背景色
             Laya.stage.addChild(this.testText())
