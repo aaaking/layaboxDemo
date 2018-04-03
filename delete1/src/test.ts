@@ -29,7 +29,7 @@ module test {
         private mCircle: CircleUI;
         private mPie: PieUI;
         constructor() {
-            Laya.init(1920, 1080, Laya.WebGL);
+            Laya.init(Laya.Browser.width, Laya.Browser.height, Laya.WebGL);
             console.log("Laya.Browser.clientWidth: " + Laya.Browser.clientWidth + "  Laya.Browser.clientHeight: " + Laya.Browser.clientHeight)
             console.log("Laya.Browser.width: " + Laya.Browser.width + "  Laya.Browser.height: " + Laya.Browser.height)
             // Laya.DebugPanel.init();
