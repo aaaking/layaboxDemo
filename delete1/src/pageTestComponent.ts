@@ -67,7 +67,7 @@ module pageTestComponent {
             list.pos(5, 55)
             list.itemRender = Item;
             list.repeatX = 1;
-            list.repeatY = 10
+            list.repeatY = 5
             list.vScrollBarSkin = "comp/vscroll.png"
             list.selectEnable = true;
             list.selectHandler = null//new Handler(this, this.onSelect);
