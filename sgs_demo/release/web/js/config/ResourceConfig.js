@@ -1,0 +1,1 @@
+var ResourceConfig=function(){function a(){}return a.login="res/atlas/login.atlas",a.comp="res/atlas/comp.atlas",a.cards="res/atlas/cards.atlas",a.cardsname="res/atlas/cardsname.atlas",a.menu="res/atlas/menu.atlas",a.showcards="res/atlas/showcards.atlas",a}();
