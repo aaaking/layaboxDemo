@@ -13,7 +13,7 @@ var GameMain = /** @class */ (function () {
             { url: ResourceConfig.cards, type: Laya.Loader.ATLAS },
             { url: ResourceConfig.login, type: Laya.Loader.ATLAS },
             { url: ResourceConfig.cardsname, type: Laya.Loader.ATLAS },
-            { url: ResourceConfig.showcards, type: Laya.Loader.ATLAS }], Laya.Handler.create(this, this.onLoadCfgComplete), new Laya.Handler(this, this.onLoadCfgProgress, null, false));
+            { url: ResourceConfig.showcards, type: Laya.Loader.ATLAS }], Laya.Handler.create(this, this.onLoadCfgComplete));
         //test code
         // Laya.stage.on(Laya.Event.RESIZE, this, function () {
         //     console.log("browser width: " + Laya.Browser.width + " browser height" + Laya.Browser.height)
