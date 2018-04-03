@@ -58,6 +58,7 @@ module pageTestComponent {
             comboBox.labelSize = 24;
             comboBox.itemSize = 12;
             this.page.addChild(comboBox)
+            // Laya.timer.loop(100, this, function () { })
         }
         private testList() {
             var list: Laya.List = new Laya.List()
@@ -69,7 +70,7 @@ module pageTestComponent {
             list.selectEnable = true;
             list.selectHandler = null//new Handler(this, this.onSelect);
             list.renderHandler = new Laya.Handler(this, function (cell: Item, index: number) {
-                 cell.setImg(cell.dataSource);
+                cell.setImg(cell.dataSource);
             });
             // 设置数据项为对应图片的路径
             var data: Array<string> = [];
@@ -114,6 +115,8 @@ module pageTestComponent {
             this.on(Laya.Event.MOUSE_DOWN, this, this.small)
             this.on(Laya.Event.MOUSE_UP, this, this.big)
             this.on(Laya.Event.MOUSE_OUT, this, this.big)
+            // this.frameOnce(2, this, function () { })
+            // this.frameLoop(2, this, function () {})
         }
         private small() {
             Laya.Tween.to(this, { scaleX: 0.8, scaleY: 0.8 }, 300)
