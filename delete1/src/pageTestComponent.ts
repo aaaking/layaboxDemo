@@ -32,7 +32,8 @@ module pageTestComponent {
             Laya.stage.addChild(this.page)
             this.testComboBox()
             this.testList()
-            this.testLabel()
+            // this.testPanel()
+            this.testBinaryPicture()
         }
         private testButton() {
             /* 设置按钮为单态按钮
@@ -60,6 +61,7 @@ module pageTestComponent {
             this.page.addChild(comboBox)
             // Laya.timer.loop(100, this, function () { })
         }
+        //test List
         private testList() {
             var list: Laya.List = new Laya.List()
             list.pos(5, 55)
@@ -80,7 +82,8 @@ module pageTestComponent {
             list.array = data;
             this.page.addChild(list)
         }
-        private testLabel() {
+        //test Panel
+        private testPanel() {
             var panel: Laya.Panel = new Laya.Panel()
             panel.size(250, 250)
             panel.pos(500 + 17, 0)
@@ -91,6 +94,61 @@ module pageTestComponent {
             panel.hScrollBarSkin = "comp/hscroll.png";
             mImg.size(mImg.width * 2, mImg.height * 2)
             panel.addChild(mImg)
+        }
+        //test BinaryPicture
+        private testBinaryPicture() {
+            var xhr = new Laya.HttpRequest();
+            xhr.once(Laya.Event.COMPLETE, this, this.binaryPictureComplete3);
+            xhr.once(Laya.Event.ERROR, this, this.binaryPictureError);
+            xhr.send("res/img/chip.png", "", "get", "arraybuffer");
+        }
+        private binaryPictureComplete(data: Object) {
+            //加载完成返回的data是arraybuffer；
+            //......这里处理我们加密的图片数据，假设我们的图片加密数据是在图片的前面写入了四个字节的数据
+            //......解密逻辑开始处理数据
+            var byte: Laya.Byte = new Laya.Byte(data);//Byte数组接收arraybuffer
+            // byte.writeArrayBuffer(data,4);//从第四个字节开始读取数据
+            var blob: Object = new Laya.Browser.window.Blob([byte.buffer], { type: "image/png" });
+            var url = Laya.Browser.window.URL.createObjectURL(blob);//创建一个url对象；
+            //我们先用第一种方式显示图片到舞台
+            var sp: Laya.Sprite = new Laya.Sprite();
+            sp.loadImage(url, 400, 0, 50, 50);
+            this.page.addChild(sp);//添加到舞台
+        }
+        // 第二种我们可以绘制一个纹理来显示：
+        private binaryPictureComplete2(data: Object) {
+            var byte: Laya.Byte = new Laya.Byte(data);//Byte数组接收arraybuffer
+            // byte.writeArrayBuffer(data, 4);//从第四个字节开始读取数据
+            var blob: Object = new Laya.Browser.window.Blob([byte.buffer], { type: "image/png" });
+            var url = Laya.Browser.window.URL.createObjectURL(blob);//创建一个url对象；
+            //用loader来加载url
+            Laya.loader.load(url, Laya.Handler.create(this, this.showImg, [url]), null, Laya.Loader.IMAGE);
+        }
+        private showImg(url: string): void {
+            var t: Laya.Texture = Laya.loader.getRes(url);
+            var ape: Laya.Sprite = new Laya.Sprite();
+            ape.graphics.drawTexture(t, 400, 0, 50, 50);
+            Laya.stage.addChild(ape);
+        }
+        // 第三种我们直接创建一个纹理来
+        private binaryPictureComplete3(data: Object) {
+            //加载完成返回的data是arraybuffer；
+            //......这里处理我们加密的图片数据，假设我们的图片加密数据是在图片的前面写入了四个字节的数据
+            //......解密逻辑开始处理数据
+            var byte: Laya.Byte = new Laya.Byte(data);//Byte数组接收arraybuffer
+            // byte.writeArrayBuffer(data, 4);//从第四个字节开始读取数据
+            var blob: Object = new Laya.Browser.window.Blob([byte.buffer], { type: "image/png" });
+            var url = Laya.Browser.window.URL.createObjectURL(blob);//创建一个url对象；
+            var htmlImg: Laya.HTMLImage = Laya.HTMLImage.create(url);//这里创建HTMLImage 这里要用HTMLImage.create
+            htmlImg.onload = function (): void {
+                var t: Laya.Texture = new Laya.Texture(htmlImg);
+                var ape: Laya.Sprite = new Laya.Sprite();
+                ape.graphics.drawTexture(t, 400, 0, 50, 50);
+                Laya.stage.addChild(ape);
+            }
+        }
+        private binaryPictureError(error: Object) {
+
         }
     }
     export class Item extends Laya.Box {
