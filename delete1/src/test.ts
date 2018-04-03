@@ -30,6 +30,7 @@ module test {
         private mPie: PieUI;
         constructor() {
             Laya.init(1920, 1080, Laya.WebGL);//Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);1069 522
+            Laya.DebugPanel.init();
             // Laya.init(0, 0, Laya.WebGL);
             Laya.stage.bgColor = '#23238E';//设置舞台背景色
             Laya.stage.addChild(this.testText())
