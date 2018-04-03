@@ -1,19 +1,25 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var test = ui.test.TestPageUI;
-var Label = laya.ui.Label;
-var Handler = laya.utils.Handler;
-var Loader = laya.net.Loader;
-var TestUI = (function (_super) {
+var Label = Laya.Label;
+var Handler = Laya.Handler;
+var Loader = Laya.Loader;
+var TestUI = /** @class */ (function (_super) {
     __extends(TestUI, _super);
     function TestUI() {
-        _super.call(this);
+        var _this = _super.call(this) || this;
         //btn是编辑器界面设定的，代码里面能直接使用，并且有代码提示
-        this.btn.on(laya.events.Event.CLICK, this, this.onBtnClick);
-        this.btn2.on(laya.events.Event.CLICK, this, this.onBtn2Click);
+        _this.btn.on(Laya.Event.CLICK, _this, _this.onBtnClick);
+        _this.btn2.on(Laya.Event.CLICK, _this, _this.onBtn2Click);
+        return _this;
     }
     TestUI.prototype.onBtnClick = function () {
         //手动控制组件属性
@@ -51,9 +57,15 @@ var TestUI = (function (_super) {
     };
     return TestUI;
 }(ui.test.TestPageUI));
-// 程序入口
+//初始化微信小游戏
+Laya.MiniAdpter.init();
+//程序入口
 Laya.init(600, 400);
-Laya.loader.load([{ url: "res/atlas/comp.json", type: Loader.ATLAS }], Handler.create(this, this.onLoaded));
+//激活资源版本控制
+Laya.ResourceVersion.enable("version.json", Handler.create(null, beginLoad), Laya.ResourceVersion.FILENAME_VERSION);
+function beginLoad() {
+    Laya.loader.load("res/atlas/comp.atlas", Handler.create(null, onLoaded));
+}
 function onLoaded() {
     //实例UI界面
     var testUI = new TestUI();
