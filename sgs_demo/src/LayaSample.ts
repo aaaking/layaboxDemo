@@ -16,7 +16,7 @@ class GameMain {
         { url: ResourceConfig.cardsname, type: Laya.Loader.ATLAS },
         { url: ResourceConfig.showcards, type: Laya.Loader.ATLAS }],
             Laya.Handler.create(this, this.onLoadCfgComplete),
-            new Laya.Handler(this, this.onLoadCfgProgress, null, false));
+            /*new Laya.Handler(this, this.onLoadCfgProgress, null, false)*/);
         //test code
         // Laya.stage.on(Laya.Event.RESIZE, this, function () {
         //     console.log("browser width: " + Laya.Browser.width + " browser height" + Laya.Browser.height)
