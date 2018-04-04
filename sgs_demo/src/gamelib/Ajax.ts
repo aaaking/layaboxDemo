@@ -28,10 +28,9 @@ class Ajax {
 				url += "?" + data;
 			request.send(url, null, method, responseType, header);
 			console.log(method + " " + url);
-		}
-		else {
+		} else {
 			if (params)
-				data=JSON.stringify(params);
+				data = JSON.stringify(params);
 			header.push("Content-Type", "application/json");
 			request.send(url, data, method, responseType, header);
 			console.log(method + " " + url + "?" + data);
