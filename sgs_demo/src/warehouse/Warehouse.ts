@@ -10,7 +10,6 @@ class Warehouse extends ui.warehouse.WarehouseUI {
         this._btnBack.on(Laya.Event.CLICK, this, this.onTouch);
        
         Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
-
         this._tab.removeChildren();
         this._tab.initItems();
         for (var i: number = 0; i < 5; i++) {

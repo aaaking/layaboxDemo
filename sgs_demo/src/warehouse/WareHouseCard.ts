@@ -16,6 +16,10 @@ class WareHouseCard extends Card {
         this._labCount.stroke = 5;
         this._labCount.strokeColor = "0000000";
         this.addChild(this._labCount);
+        this.on(Laya.Event.MOUSE_DOWN, this, runtime.RuntimeClickBtn.normalSmall, [this]);
+        this.on(Laya.Event.MOUSE_UP, this, runtime.RuntimeClickBtn.normalBig, [this]);
+        this.on(Laya.Event.MOUSE_OUT, this, runtime.RuntimeClickBtn.normalBig, [this]);
+        this.on(Laya.Event.CLICK, this, this.clickCard);
     }
     private _imgName: Laya.Image;
     private _labCount: Laya.Label;
@@ -25,13 +29,17 @@ class WareHouseCard extends Card {
         this._icon.skin = "cards/" + this.dataSource.cfg.icon + ".png";
         this._imgName.skin = "cardsname/" + this.dataSource.cfg.icon + ".png";
         if (this.dataSource.isHave) {
-            
+
             this._mask.visible = false;
         }
         else {
             this._mask.visible = true;
-            
+
         }
         this._labCount.text = this.dataSource.count;
+    }
+
+    private clickCard() {
+
     }
 }

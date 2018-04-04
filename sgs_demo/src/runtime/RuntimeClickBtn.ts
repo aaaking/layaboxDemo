@@ -3,7 +3,7 @@ module runtime {
     ImageRunTime逻辑类 
     */
     export class RuntimeClickBtn extends Laya.Button {
-        public scaleTime: number = 100;
+        static scaleTime: number = 100;
         constructor() {
             super();
             //设置组件的中心点
@@ -20,11 +20,17 @@ module runtime {
         }
         private scaleBig(): void {
             //变大还原的缓动效果
-            Laya.Tween.to(this, { scaleX: 1, scaleY: 1 }, this.scaleTime);
+            Laya.Tween.to(this, { scaleX: 1, scaleY: 1 }, RuntimeClickBtn.scaleTime);
         }
         private scaleSmal(): void {
             //缩小至0.8的缓动效果
-            Laya.Tween.to(this, { scaleX: 0.8, scaleY: 0.8 }, this.scaleTime);
+            Laya.Tween.to(this, { scaleX: 0.8, scaleY: 0.8 }, RuntimeClickBtn.scaleTime);
+        }
+        static normalBig(target: any) {
+            Laya.Tween.to(target, { scaleX: 1, scaleY: 1 }, RuntimeClickBtn.scaleTime);
+        }
+        static normalSmall(target: any) {
+            Laya.Tween.to(target, { scaleX: 0.8, scaleY: 0.8 }, RuntimeClickBtn.scaleTime);
         }
     }
 }
