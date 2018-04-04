@@ -41,7 +41,6 @@ class WareHouseCard extends Card {
         if (!this.adjustPos) {
             // this.pos(this.x + (this.width / 2), this.y + (this.height / 2))
         }
-        console.log("updata:" + this.dataSource.cfg.icon)
     }
 
     private clickCard(e: Laya.Event) {
