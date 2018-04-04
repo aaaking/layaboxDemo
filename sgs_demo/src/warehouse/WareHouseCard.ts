@@ -39,7 +39,7 @@ class WareHouseCard extends Card {
         this._labCount.text = this.dataSource.count;
     }
 
-    private clickCard() {
-
+    private clickCard(e: Laya.Event) {
+        new HeroDetail(this, e.stageX, e.stageY)
     }
 }
