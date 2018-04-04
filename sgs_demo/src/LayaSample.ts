@@ -27,6 +27,7 @@ class GameMain {
     private onLoadCfgComplete(): void {
         GameConfig.getCfg();
         SceneLogin.instance.show();
+        DebugTool.instance;
     }
     private onLoadCfgProgress(progress: any) {
         console.log("onLoadCfgProgress progress: " + progress)
