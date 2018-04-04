@@ -143,12 +143,11 @@ module ui.showcard {
 
 module ui.warehouse {
     export class WarehouseUI extends View {
-		public _mask:Laya.Image;
 		public _btnBack:Laya.Button;
 		public _list:Laya.List;
 		public _tab:Laya.Tab;
 
-        public static  uiView:any ={"type":"View","props":{"width":1280,"visible":true,"height":720},"child":[{"type":"Image","props":{"var":"_mask","top":0,"skin":"comp/blank.png","right":0,"mouseThrough":false,"mouseEnabled":true,"left":0,"bottom":0}},{"type":"Image","props":{"y":0,"x":0,"skin":"menu/bg.jpg"}},{"type":"Button","props":{"y":1,"x":7,"visible":true,"var":"_btnBack","stateNum":1,"skin":"menu/btn_back.png"}},{"type":"Image","props":{"y":9,"x":134,"skin":"menu/img_title_1.png"}},{"type":"List","props":{"y":95,"x":0,"width":1142,"var":"_list","vScrollBarSkin":"comp/blank.png","spaceY":28,"spaceX":28,"height":545}},{"type":"Image","props":{"y":558,"skin":"menu/img_5.png","right":0}},{"type":"Tab","props":{"y":63,"width":87,"var":"_tab","right":0}}]};
+        public static  uiView:any ={"type":"View","props":{"width":1280,"visible":true,"height":720},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"menu/bg.jpg"}},{"type":"Button","props":{"y":1,"x":7,"visible":true,"var":"_btnBack","stateNum":1,"skin":"menu/btn_back.png"}},{"type":"Image","props":{"y":9,"x":134,"skin":"menu/img_title_1.png"}},{"type":"List","props":{"y":95,"x":0,"width":1142,"var":"_list","vScrollBarSkin":"comp/blank.png","spaceY":28,"spaceX":28,"height":545}},{"type":"Tab","props":{"y":63,"width":87,"var":"_tab","right":0}}]};
         constructor(){ super()}
         createChildren():void {
         

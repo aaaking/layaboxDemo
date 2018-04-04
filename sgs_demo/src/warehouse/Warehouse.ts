@@ -4,9 +4,9 @@
 class Warehouse extends ui.warehouse.WarehouseUI {
     constructor() {
         super();
-        this._mask.width = Laya.stage.width;
-        this._mask.height = Laya.stage.height;
-        this._mask.on(Laya.Event.CLICK, this, this.onTouch);
+        // this._mask.width = Laya.stage.width;
+        // this._mask.height = Laya.stage.height;
+        // this._mask.on(Laya.Event.CLICK, this, this.onTouch);
         this._btnBack.on(Laya.Event.CLICK, this, this.onTouch);
        
         Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
