@@ -2,7 +2,6 @@
 * name;
 */
 class WareHouseCard extends Card {
-    adjustPos = false
     constructor() {
         super();
         this._imgName = new Laya.Image();
@@ -38,9 +37,6 @@ class WareHouseCard extends Card {
             this._mask.visible = true;
         }
         this._labCount.text = this.dataSource.count;
-        if (!this.adjustPos) {
-            // this.pos(this.x + (this.width / 2), this.y + (this.height / 2))
-        }
     }
 
     private clickCard(e: Laya.Event) {
