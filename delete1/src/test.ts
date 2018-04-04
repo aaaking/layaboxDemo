@@ -99,6 +99,7 @@ module test {
             // Laya.stage.screenMode = "horizontal";//自动横屏，游戏的水平方向始终与浏览器屏幕较短边保持垂直
             this.testScreen();
             this.testChangePage();
+            this.testPartice()
         }
         private onLoaded(): void {
             this.mCircle = new CircleUI();
@@ -541,6 +542,18 @@ module test {
                 new pageTestComponent.ThisScene()
             })
             Laya.stage.addChild(changeBtn)
+        }
+        // test partice
+        private testPartice() {
+            var textPartice: Laya.Text = new Laya.Text()
+            textPartice.text = "textPartice"
+            textPartice.color = "#ff0000"
+            textPartice.fontSize = 30
+            textPartice.pos(5, 520)
+            textPartice.on(Laya.Event.CLICK, this, function () {
+                new ScenePartice()
+            })
+            Laya.stage.addChild(textPartice)
         }
     }
     new test.GameMain();
