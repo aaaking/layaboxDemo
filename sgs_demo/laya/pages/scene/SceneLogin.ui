@@ -28,7 +28,7 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"var":"_btnLogin","stateNum":"1","skin":"login/btn_guest.png","centerX":0,"bottom":100},
+            "props":{"var":"_btnLogin","stateNum":"1","skin":"login/btn_guest.png","runtime":"runtime.RuntimeClickBtn","centerX":0,"bottom":100},
             "nodeParent":1,
             "label":"Button(_btnLogin)",
             "isDirectory":false,
