@@ -23,7 +23,7 @@ class SceneLogin extends ui.scene.SceneLoginUI {
     private onTouch(e: Laya.Event): void {
         switch (e.currentTarget) {
             case this._btnLogin:
-                Laya.stage.removeChildren();
+                this.removeSelf()
                 var uuid: string = localStorage.getItem('uuid');
                 if (!uuid) {
                     Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": "personal_newAccount", "params": [""], "id": 67 }, "POST", null, function (data) {
