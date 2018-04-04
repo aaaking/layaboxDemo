@@ -5,10 +5,6 @@ class SceneMenu extends ui.scene.SceneMenuUI {
     constructor() {
         super();
         Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
-        this._btnWarehouse.on(Laya.Event.CLICK, this, this.onTouch);
-        this._btnCardPackage.on(Laya.Event.CLICK, this, this.onTouch);
-        this._btnShowcard.on(Laya.Event.CLICK, this, this.onTouch);
-        this._btnBankExchange.on(Laya.Event.CLICK, this, this.onTouch);
     }
 
     private static _instance: SceneMenu;
@@ -21,8 +17,8 @@ class SceneMenu extends ui.scene.SceneMenuUI {
     public show(): void {
         this.onResize();
         Laya.stage.addChild(SceneMenu.instance);
-        CardPackageManager.instance.testInitCards(function(){
-            
+        CardPackageManager.instance.testInitCards(function () {
+
         })
     }
 
@@ -31,11 +27,9 @@ class SceneMenu extends ui.scene.SceneMenuUI {
             case this._btnWarehouse:
                 Warehouse.instance.show(this);
                 break;
-
             case this._btnCardPackage:
                 CardPackage.instance.show(this);
                 break;
-
             case this._btnShowcard:
                 ShowCard.instance.show(this);
                 break;
@@ -48,5 +42,9 @@ class SceneMenu extends ui.scene.SceneMenuUI {
     private onResize(e: Laya.Event = null): void {
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
+        this._btnWarehouse.on(Laya.Event.CLICK, this, this.onTouch);
+        this._btnCardPackage.on(Laya.Event.CLICK, this, this.onTouch);
+        this._btnShowcard.on(Laya.Event.CLICK, this, this.onTouch);
+        this._btnBankExchange.on(Laya.Event.CLICK, this, this.onTouch);
     }
 }

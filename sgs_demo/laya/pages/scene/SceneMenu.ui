@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":7,
+    "selecteID":5,
     "props":{"width":600,"sceneColor":"#000000","height":720},
     "nodeParent":-1,
     "label":"View",
@@ -28,7 +28,7 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"y":100,"var":"_btnWarehouse","stateNum":"1","skin":"menu/btn_2.png","centerX":-526},
+            "props":{"y":100,"var":"_btnWarehouse","stateNum":"1","skin":"menu/btn_2.png","runtime":"runtime.RuntimeClickBtn","centerX":-526},
             "nodeParent":1,
             "label":"Button(_btnWarehouse)",
             "isDirectory":false,
@@ -41,7 +41,7 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"y":100,"var":"_btnCardPackage","stateNum":"1","skin":"menu/btn_3.png","centerX":499},
+            "props":{"y":100,"var":"_btnCardPackage","stateNum":"1","skin":"menu/btn_3.png","runtime":"runtime.RuntimeClickBtn","centerX":499},
             "nodeParent":1,
             "label":"Button(_btnCardPackage)",
             "isDirectory":false,
@@ -54,7 +54,7 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"y":200,"var":"_btnShowcard","stateNum":"1","skin":"menu/btn_1.png","centerX":-172},
+            "props":{"y":200,"var":"_btnShowcard","stateNum":"1","skin":"menu/btn_1.png","runtime":"runtime.RuntimeClickBtn","centerX":-172},
             "nodeParent":1,
             "label":"Button(_btnShowcard)",
             "isDirectory":false,
@@ -62,12 +62,13 @@
             "hasChild":false,
             "compId":5,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
             "type":"Button",
-            "props":{"y":200,"var":"_btnBankExchange","stateNum":"1","skin":"menu/btn_5.png","centerX":177},
+            "props":{"y":200,"var":"_btnBankExchange","stateNum":"1","skin":"menu/btn_5.png","runtime":"runtime.RuntimeClickBtn","centerX":177},
             "nodeParent":1,
             "label":"Button(_btnBankExchange)",
             "isDirectory":false,
