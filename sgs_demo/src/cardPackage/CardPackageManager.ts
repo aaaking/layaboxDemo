@@ -56,8 +56,8 @@ class CardPackageManager {
             var info = JSON.parse(data)
             let result = info.result.substring(130)
             result = "0x" + result
-            let result1 = this.toAscii(result)
-            let cards = result1.split(",")
+            let result1: string = this.toAscii(result)
+            let cards: any[] = result1.split(",")
             cards.pop()
             for (var k in cards) {
                 let v = cards[k]
