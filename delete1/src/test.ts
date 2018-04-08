@@ -551,7 +551,7 @@ module test {
             textPartice.fontSize = 30
             textPartice.pos(5, 520)
             textPartice.on(Laya.Event.CLICK, this, function () {
-                new ScenePartice()
+                new SceneParticle()
             })
             Laya.stage.addChild(textPartice)
         }

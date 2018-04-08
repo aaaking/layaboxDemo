@@ -1,4 +1,4 @@
-class ScenePartice extends Laya.View {
+class SceneParticle extends Laya.View {
     constructor() {
         super()
         var bg: Laya.Text = new Laya.Text()
