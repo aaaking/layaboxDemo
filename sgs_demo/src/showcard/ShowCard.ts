@@ -72,11 +72,11 @@ class ShowCard extends ui.showcard.ShowCardUI {
 
                 })
                 e.stopPropagation();
-                Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": "personal_unlockAccount", "params": [localStorage.getItem('uuid'), "", null
+                Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [localStorage.getItem('uuid'), "", null
                 ], "id": 67 }, "POST", null, function (data) {
                     console.info(data)
                     if(JSON.parse(data).result){
-                    Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": "eth_sendTransaction", "params": [{"from":localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0x62158099", "value":"0x20" }], "id": 67 }, "POST", null, function (data) {
+                    Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_sendTransaction, "params": [{"from":localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0x62158099", "value":"0x20" }], "id": 67 }, "POST", null, function (data) {
                         console.info(data)
                         let info  = JSON.parse(data)
                         if(info.error){
@@ -90,7 +90,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
                         }else{
                             this._wait.text = "正在开卡中请等待..."
                         Laya.timer.loop(10000,this,function(){
-                            Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": "eth_getTransactionReceipt", "params": [info.result], "id": 67 }, "POST", null, function (data) {
+                            Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getTransactionReceipt, "params": [info.result], "id": 67 }, "POST", null, function (data) {
                             console.info(data)
                                 let cardsinfo = JSON.parse(data)
                                 if(cardsinfo.result){
@@ -98,7 +98,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
                                         this.mouseEnabled = true;
                                         // this.showCard(id);
                                         this._boxWaiting.visible = false;
-                                        Ajax.callNet(GameConfig.RPC_URL,{"jsonrpc":"2.0","method":"eth_call","params":[{"from":localStorage.getItem('uuid'),"to":GameConfig.RPC_ADDRESS, "data":"0x179a074f"}, "latest"],"id":67},"POST",null,function(data){
+                                        Ajax.callNet(GameConfig.RPC_URL,{"jsonrpc":"2.0","method":Urls.eth_call,"params":[{"from":localStorage.getItem('uuid'),"to":GameConfig.RPC_ADDRESS, "data":"0x179a074f"}, "latest"],"id":67},"POST",null,function(data){
                                             console.info(data)
                                             var info = JSON.parse(data)
                                             let result = info.result.substring(130)

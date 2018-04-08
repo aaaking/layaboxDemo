@@ -26,20 +26,20 @@ class SceneLogin extends ui.scene.SceneLoginUI {
                 this.removeSelf()
                 var uuid: string = localStorage.getItem('uuid');
                 if (!uuid) {
-                    Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": "personal_newAccount", "params": [""], "id": 67 }, "POST", null, function (data) {
+                    Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_newAccount, "params": [""], "id": 67 }, "POST", null, function (data) {
                         //POST http://10.225.20.161:8118?{"jsonrpc":"2.0","method":"personal_newAccount","params":[""],"id":67}
                         //{"jsonrpc":"2.0","id":67,"result":"0x24479b7f771d6d0d6d4003257ca1043661af7bd7"}
                         console.info(data)
                         var info = JSON.parse(data)
                         localStorage.setItem('uuid', info.result);
                         SceneMenu.instance.show();
-                        Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": "personal_unlockAccount", "params": [GameConfig.BASE_COIN, GameConfig.BASE_PASS, null], "id": 67 }, "POST", null, function (data) {
+                        Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [GameConfig.BASE_COIN, GameConfig.BASE_PASS, null], "id": 67 }, "POST", null, function (data) {
                             //POST http://10.225.20.161:8118?{"jsonrpc":"2.0","method":"personal_unlockAccount","params":["0xb398fd7be01eb6b9aca4288a8675be80568f9c4a","00",null],"id":67}
                             //{"jsonrpc":"2.0","id":67,"result":true}
                             console.info(data)
                             let info = JSON.parse(data)
                             if (info.result) {
-                                Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": "eth_sendTransaction", "params": [{ "from": GameConfig.BASE_COIN, "to": localStorage.getItem('uuid'), "value": "0x4563918244F40000" }], "id": 67 }, "POST", null, function (data) {
+                                Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_sendTransaction, "params": [{ "from": GameConfig.BASE_COIN, "to": localStorage.getItem('uuid'), "value": "0x4563918244F40000" }], "id": 67 }, "POST", null, function (data) {
                                     //POST http://10.225.20.161:8118?{"jsonrpc":"2.0","method":"eth_sendTransaction","params":[{"from":"0xb398fd7be01eb6b9aca4288a8675be80568f9c4a","to":"0x24479b7f771d6d0d6d4003257ca1043661af7bd7","value":"0x4563918244F40000"}],"id":67}
                                     //{"jsonrpc":"2.0","id":67,"result":"0x6703694f6263004fa905a0470685ea41e7c77c7bc4f8cc5276d550220de9a250"}
                                     console.info(data)
