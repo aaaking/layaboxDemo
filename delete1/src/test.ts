@@ -542,6 +542,15 @@ module test {
                 new pageTestComponent.ThisScene()
             })
             Laya.stage.addChild(changeBtn)
+            //test viewpager
+            var toViewpagerBtn: Laya.Button = new pageTestComponent.ScaleButton()
+            toViewpagerBtn.label = "toViewpagerBtn"
+            toViewpagerBtn.pos(220, 445)
+            toViewpagerBtn.size(100, 100)
+            toViewpagerBtn.on(Laya.Event.CLICK, this, function () {
+                new SceneViewPager()
+            })
+            Laya.stage.addChild(toViewpagerBtn)
         }
         // test partice
         private testPartice() {
