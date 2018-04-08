@@ -7,9 +7,6 @@ class HeroDetail extends Laya.View {
         bg.alpha = 0.6
         bg.size(Laya.stage.width, Laya.stage.height)
         bg.bgColor = "#000000"
-        bg.on(Laya.Event.CLICK, this, function () {
-            console.log("bg.on(Laya.Event.CLICK,")
-        })
         this.addChild(bg)
         Laya.stage.addChild(this)
         this.templet = new Laya.Templet();
