@@ -9,7 +9,7 @@ class HeroDetail extends Laya.View {
         bg.bgColor = "#000000"
         bg.on(Laya.Event.CLICK, this, function () {
             console.log("bg.on(Laya.Event.CLICK,")
-         })
+        })
         this.addChild(bg)
         Laya.stage.addChild(this)
         this.templet = new Laya.Templet();
@@ -60,9 +60,10 @@ class HeroDetail extends Laya.View {
         // skeleton1.play("skill2", true);
         // Laya.stage.addChild(skeleton1);
         // this.addChild(skeleton1);
+
         var backBtn: Laya.Text = new Laya.Text()
         backBtn.fontSize = 30
-        backBtn.text = "返回"
+        backBtn.text = LangMgr.back
         backBtn.bold = true
         backBtn.color = "#ff0000"
         backBtn.pos(Laya.stage.width - 180, 10)
