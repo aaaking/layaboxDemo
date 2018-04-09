@@ -26,7 +26,13 @@ class SceneLogin extends ui.scene.SceneLoginUI {
         switch (e.currentTarget) {
             case this._btnLogin:
                 this.showLoading(false)
-                Laya.loader.load([menu.SceneMenu.bgMenu, menu.SceneMenu._skinWareHouse, menu.SceneMenu._skinOpenCard, menu.SceneMenu._skinMyCard, menu.SceneMenu._skinExchange], Laya.Handler.create(this, function () {
+                Laya.loader.load([menu.SceneMenu.bgMenu, 
+                                  menu.SceneMenu._skinWareHouse, 
+                                  menu.SceneMenu._skinOpenCard, 
+                                  menu.SceneMenu._skinMyCard, 
+                                  menu.SceneMenu.MENU_AVATOR, 
+                                  menu.SceneMenu.MENU_ICON_BALANCE, 
+                                  menu.SceneMenu._skinExchange], Laya.Handler.create(this, function () {
                     this.resLoaded = true
                     this.gotoMenuScene()
                 }))

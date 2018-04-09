@@ -13,9 +13,13 @@ module menu {
         _btnBankExchange: Laya.Button
         static _skinExchange: string = "menu/menu_exchange.png"
         static bgMenu: string = "menu/img_bg.jpg"
+        static MENU_AVATOR: string = "menu/menu_avator.png"
+        static MENU_ICON_BALANCE: string = "menu/menu_icon_balance.png"
         private constructor() {
             super()
             Laya.stage.addChild(this);
+            this.initAvator()
+            this.initBalance()
             this.initOpenCard()
             this.initExchangeCard()
             this.initMyCard()
@@ -103,6 +107,34 @@ module menu {
             this._btnWarehouse.x = Laya.stage.width - circleToRight
             this._btnWarehouse.y = Laya.stage.height - circleToBottom
             this.addChild(this._btnWarehouse)
+        }
+        private initAvator() {
+            var box: Laya.Box = new Laya.Box()
+            box.pos(15, 15)
+            this.addChild(box)
+            var image: Laya.Image = new Laya.Image(menu.SceneMenu.MENU_AVATOR)
+            box.addChild(image)
+            var label: Laya.Label = new Laya.Label(localStorage.getItem('uuid'))
+            label.fontSize = 20
+            label.color = "#ffffff"
+            label.pos(103, 20)
+            box.addChild(label)
+        }
+        private initBalance() {
+            var image: Laya.Image = new Laya.Image(menu.SceneMenu.MENU_ICON_BALANCE)
+            var box: Laya.Box = new Laya.Box()
+            box.pos(Laya.stage.width - image.width - 16, 40)
+            box.size(image.width, image.height)
+            box.addChild(image)
+            this.addChild(box)
+            var label: Laya.Label = new Laya.Label(Utils.toNumberUnit(menu.SceneMenu.BALANCE))
+            label.fontSize = 18
+            label.color = "#ffffff"
+            label.centerY = label.centerX = 0
+            box.addChild(label)
+            console.log("3333333333333333333333333333333:" + Utils.toNumberUnit(3333333333333333333333333333333))
+            console.log("782863673654673265:" + Utils.toNumberUnit(782863673654673265))
+            console.log("Number.MAX_VALUE:" + Utils.toNumberUnit(Number.MAX_VALUE))
         }
     }
 }

@@ -122,16 +122,21 @@ class Utils {
 	}
 
 	static toAscii(hex): string {
-        // Find termination
-        var str = "";
-        var i = 0, l = hex.length;
-        if (hex.substring(0, 2) === '0x') {
-            i = 2;
-        }
-        for (; i < l; i += 2) {
-            var code = parseInt(hex.substr(i, 2), 16);
-            str += String.fromCharCode(code);
-        }
-        return str;
-    };
+		// Find termination
+		var str = "";
+		var i = 0, l = hex.length;
+		if (hex.substring(0, 2) === '0x') {
+			i = 2;
+		}
+		for (; i < l; i += 2) {
+			var code = parseInt(hex.substr(i, 2), 16);
+			str += String.fromCharCode(code);
+		}
+		return str;
+	};
+
+	static toNumberUnit(size: number): string {
+		var i = Math.floor(Math.log(size) / Math.log(1000));
+		return (size / Math.pow(1000, i)).toFixed(2) + ' ' + ['', 'k', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'][i];
+	}
 }
