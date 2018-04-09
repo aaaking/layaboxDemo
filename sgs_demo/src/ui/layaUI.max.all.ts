@@ -82,9 +82,10 @@ module ui.exchange {
 
 module ui.scene {
     export class SceneLoginUI extends View {
+		public _bgLogin:Laya.Image;
 		public _btnLogin:runtime.RuntimeClickBtn;
 
-        public static  uiView:any ={"type":"View","props":{"width":600,"height":720},"child":[{"type":"Image","props":{"skin":"login/img_bg.jpg","centerY":0,"centerX":0}},{"type":"Button","props":{"var":"_btnLogin","stateNum":1,"skin":"login/btn_guest.png","runtime":"runtime.RuntimeClickBtn","centerX":0,"bottom":100}}]};
+        public static  uiView:any ={"type":"View","props":{"width":600,"height":720},"child":[{"type":"Image","props":{"var":"_bgLogin","skin":"login/bg_login.jpg","centerY":0,"centerX":0}},{"type":"Button","props":{"var":"_btnLogin","stateNum":1,"skin":"login/btn_guest.png","runtime":"runtime.RuntimeClickBtn","centerX":0,"bottom":100}}]};
         constructor(){ super()}
         createChildren():void {
         			View.regComponent("runtime.RuntimeClickBtn",runtime.RuntimeClickBtn);

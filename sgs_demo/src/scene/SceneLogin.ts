@@ -20,10 +20,17 @@ class SceneLogin extends ui.scene.SceneLoginUI {
         Laya.stage.addChild(SceneLogin.instance);
     }
 
+    resLoaded: boolean = false
+    netCompleted: boolean = false
     private onTouch(e: Laya.Event): void {
         switch (e.currentTarget) {
             case this._btnLogin:
-                this.removeSelf()
+                Laya.loader.load([menu.SceneMenu.bgMenu, menu.SceneMenu._skinWareHouse, menu.SceneMenu._skinOpenCard, menu.SceneMenu._skinMyCard, menu.SceneMenu._skinExchange], Laya.Handler.create(this, function () {
+                    this.resLoaded = true
+                    this.gotoMenuScene()
+                }))
+                this._btnLogin.mouseEnabled = false
+                UITools.changeGray(this._btnLogin)
                 var uuid: string = localStorage.getItem('uuid');
                 if (!uuid) {
                     Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_newAccount, "params": [""], "id": 67 }, "POST", null, function (data) {
@@ -32,7 +39,8 @@ class SceneLogin extends ui.scene.SceneLoginUI {
                         console.info(data)
                         var info = JSON.parse(data)
                         localStorage.setItem('uuid', info.result);
-                        SceneMenu.instance.show();
+                        this.netCompleted = true
+                        this.gotoMenuScene()
                         Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [GameConfig.BASE_COIN, GameConfig.BASE_PASS, null], "id": 67 }, "POST", null, function (data) {
                             //POST http://10.225.20.161:8118?{"jsonrpc":"2.0","method":"personal_unlockAccount","params":["0xb398fd7be01eb6b9aca4288a8675be80568f9c4a","00",null],"id":67}
                             //{"jsonrpc":"2.0","id":67,"result":true}
@@ -46,11 +54,24 @@ class SceneLogin extends ui.scene.SceneLoginUI {
                                 })
                             }
                         })
-                    }.bind(this))
+                    }.bind(this),
+                        function () {
+                            this._btnLogin.mouseEnabled = true
+                            UITools.resetGray(this._btnLogin)
+                        }.bind(this))
                 } else {
                     SceneMenu.instance.show();
                 }
                 break;
+        }
+    }
+
+    private gotoMenuScene() {
+        if (this.resLoaded && this.netCompleted) {
+            this._bgLogin.skin = menu.SceneMenu.bgMenu
+            this.removeChild(this._btnLogin)
+            // SceneMenu.instance.show();
+            menu.SceneMenu.instance
         }
     }
 
