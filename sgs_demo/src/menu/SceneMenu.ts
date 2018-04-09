@@ -1,6 +1,5 @@
 module menu {
     export class SceneMenu extends Laya.View {
-        static BALANCE: number = 0//余额
         _preWidth = UITools.canvasWidth
         _yPos = 335//卡片中心距离顶部的距离
         _circleDis = 435//相邻卡片的中心距离
@@ -127,7 +126,7 @@ module menu {
             box.size(image.width, image.height)
             box.addChild(image)
             this.addChild(box)
-            var label: Laya.Label = new Laya.Label(Utils.toNumberUnit(menu.SceneMenu.BALANCE))
+            var label: Laya.Label = new Laya.Label(Utils.toNumberUnit(parseInt(localStorage.getItem('balance'))))
             label.fontSize = 18
             label.color = "#ffffff"
             label.centerY = label.centerX = 0

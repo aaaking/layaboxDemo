@@ -136,6 +136,9 @@ class Utils {
 	};
 
 	static toNumberUnit(size: number): string {
+		if (size <= 0) {
+			return "0"
+		}
 		var i = Math.floor(Math.log(size) / Math.log(1000));
 		var fractionDigits = 2
 		if (i == 0) {

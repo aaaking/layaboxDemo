@@ -9,7 +9,7 @@ class SceneLogin extends ui.scene.SceneLoginUI {
 
     private static _instance: SceneLogin;
     public static get instance(): SceneLogin {
-        localStorage.removeItem("uuid")
+        // localStorage.removeItem("uuid")
         if (!this._instance)
             this._instance = new SceneLogin();
         return this._instance;
@@ -39,7 +39,8 @@ class SceneLogin extends ui.scene.SceneLoginUI {
                 this._btnLogin.mouseEnabled = false
                 UITools.changeGray(this._btnLogin)
                 var uuid: string = localStorage.getItem('uuid');
-                if (!uuid) {
+                var balance: number = parseInt(localStorage.getItem('balance'))
+                if (!uuid || !balance) {
                     Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_newAccount, "params": [""], "id": 67 }, "POST", null, function (data) {
                         //POST http://10.225.20.161:8118?{"jsonrpc":"2.0","method":"personal_newAccount","params":[""],"id":67}
                         //{"jsonrpc":"2.0","id":67,"result":"0x24479b7f771d6d0d6d4003257ca1043661af7bd7"}
@@ -103,7 +104,7 @@ class SceneLogin extends ui.scene.SceneLoginUI {
                 var info = JSON.parse(data)
                 var balance = parseInt(parseInt(info.result, 16).toString(10))
                 if (balance > 0) {
-                    menu.SceneMenu.BALANCE = balance
+                    localStorage.setItem('balance', balance + "");
                     Laya.timer.clearAll(this)
                     this.showLoading(true)
                     this.netCompleted = true
