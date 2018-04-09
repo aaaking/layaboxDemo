@@ -29,7 +29,6 @@ class GameMain {
     private onLoadCfgComplete(): void {
         GameConfig.getCfg();
         SceneLogin.instance.show();
-        DebugTool.debugMode =  Utils.getParam("release") ? false : true
         DebugTool.instance;
         LangMgr.instance
     }
