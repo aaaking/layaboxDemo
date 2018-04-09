@@ -51,19 +51,24 @@ class SceneLogin extends ui.scene.SceneLoginUI {
                                     //POST http://10.225.20.161:8118?{"jsonrpc":"2.0","method":"eth_sendTransaction","params":[{"from":"0xb398fd7be01eb6b9aca4288a8675be80568f9c4a","to":"0x24479b7f771d6d0d6d4003257ca1043661af7bd7","value":"0x4563918244F40000"}],"id":67}
                                     //{"jsonrpc":"2.0","id":67,"result":"0x6703694f6263004fa905a0470685ea41e7c77c7bc4f8cc5276d550220de9a250"}
                                     console.info(data)
-                                })
+                                },
+                                    this.onerror.bind(this))
                             }
-                        })
+                        },
+                            this.onerror.bind(this))
                     }.bind(this),
-                        function () {
-                            this._btnLogin.mouseEnabled = true
-                            UITools.resetGray(this._btnLogin)
-                        }.bind(this))
+                        this.onerror.bind(this))
                 } else {
-                    SceneMenu.instance.show();
+                    this.netCompleted = true
+                    this.gotoMenuScene()
                 }
                 break;
         }
+    }
+
+    private onerror() {
+        this._btnLogin.mouseEnabled = true
+        UITools.resetGray(this._btnLogin)
     }
 
     private gotoMenuScene() {
