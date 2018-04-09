@@ -85,6 +85,8 @@ module test {
                 var effectAnimUI = new EffectAnimUI()
                 effectAnimUI.pos(300, 300)
                 Laya.stage.addChild(effectAnimUI)
+                Laya.DebugPanel.init();
+                // Laya.DebugTool.init();
             }))
             this.testHttpRequest()
             this.testWebcocket()

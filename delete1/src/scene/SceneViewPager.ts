@@ -100,7 +100,7 @@ class SceneViewPager extends Laya.View {
         this.scrollView.itemRender = Item;
         this.scrollView.height = 1280;
         this.scrollView.anchorY = 0.5;
-        this.scrollView.pos(0, 600);
+        this.scrollView.pos(0, 400);
     }
     private onScrollRender(cell: Laya.Box, index: number) {
         if (index > this.roleInfos.length) {
