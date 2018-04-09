@@ -24,7 +24,6 @@ class Utils {
 		if (!data) {
 			return false;
 		}
-
 		let result = true;
 		for (let key in data) {
 			let value: any = data[key];
@@ -37,7 +36,7 @@ class Utils {
 			}
 		}
 		return result;
-	}	
+	}
 
 	static getCharCodeLength(str: string): number {
 		let length = str.length
@@ -48,7 +47,6 @@ class Utils {
 		let newstr = []
 		for (var i = 0; i < length; i++) {
 			charCode = str.charCodeAt(i);
-
 			if (charCode >= 0 && charCode <= 128) charCodelength = 1;
 			else charCodelength = 2;
 			realLength = realLength + charCodelength;
@@ -72,7 +70,7 @@ class Utils {
 		return c;
 	}
 
-	static removeHeadAndEndSpace(str:string): string {
+	static removeHeadAndEndSpace(str: string): string {
 		while (str.length) {
 			if (str.substr(0, 1) == " ")
 				str = str.substring(1, str.length);
