@@ -35,7 +35,7 @@ module menu {
 
         private onResize(e: Laya.Event = null): void {
             var scale = Laya.stage.width / this._preWidth
-            this._circleDis = this._circleDis + (Laya.stage.width - this._preWidth >> 1)
+            this._circleDis = this._circleDis + (Laya.stage.width - this._preWidth >> 2)
             this.width = Laya.stage.width;
             this.height = Laya.stage.height;
             this._btnWarehouse.on(Laya.Event.CLICK, this, this.onTouch);
