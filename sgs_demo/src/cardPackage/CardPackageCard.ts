@@ -4,13 +4,6 @@
 class CardPackageCard extends Card {
     constructor() {
         super();
-
-        this._labTest = new Laya.Label();
-        this._labTest.centerX = 0;
-        this._labTest.color = "#ff0000"
-        this._labTest.y = 100;
-        this.addChild(this._labTest);
-
         this._btnSell = new Laya.Button("menu/btn_sell.png");
         this._btnSell.stateNum = 1;
         this._btnSell.centerX = 0;
@@ -26,26 +19,22 @@ class CardPackageCard extends Card {
         this._labCount.strokeColor = "0000000";
         this.addChild(this._labCount);
     }
-     private _labCount: Laya.Label;
-    private _labTest: Laya.Label;
+    private _labCount: Laya.Label;
     private _btnSell: Laya.Button;
 
     public updata(): void {
         super.updata();
         this._mask.visible = false
         if (this.dataSource) {
-            this._labTest.text = this.dataSource.cfg.name;
             this._btnSell.visible = true;
-        }
-        else {
-            this._labTest.text = "";
+        } else {
             this._btnSell.visible = false;
         }
         this._labCount.text = this.dataSource.count;
     }
 
-    private onTouch(e:Laya.Event):void{
-       Dispatcher.dispatch("showSellCards",this.dataSource);
+    private onTouch(e: Laya.Event): void {
+        Dispatcher.dispatch("showSellCards", this.dataSource);
     }
 
     // public updata(): void {

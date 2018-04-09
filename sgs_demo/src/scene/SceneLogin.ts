@@ -91,14 +91,21 @@ class SceneLogin extends ui.scene.SceneLoginUI {
         }
     }
 
+    requestNum = 0
     requestBalance: boolean = false
     private userBalance(uuid: any) {//查询余额,余额小于等于0禁止进入menu页
         Laya.timer.loop(1000, this, function () {
+            if (this.requestNum > 300) {
+                this.onerror()
+                this.requestNum = 0
+                return
+            }
             if (this.requestBalance) {
                 return
             }
+            this.requestNum++
             this.requestBalance = true
-            Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getBalance, "params": [uuid, "latest"], "id": 67 }, "POST", null, function (data) {
+            Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getBalance, "params": [uuid, "latest"], "id": this.requestNum }, "POST", null, function (data) {
                 // {"id":67,"jsonrpc": "2.0","result": "0x0234c8a3397aab58" }// 158972490234375000
                 console.info(data)
                 var info = JSON.parse(data)
