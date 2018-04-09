@@ -132,9 +132,6 @@ module menu {
             label.color = "#ffffff"
             label.centerY = label.centerX = 0
             box.addChild(label)
-            console.log("3333333333333333333333333333333:" + Utils.toNumberUnit(3333333333333333333333333333333))
-            console.log("782863673654673265:" + Utils.toNumberUnit(782863673654673265))
-            console.log("Number.MAX_VALUE:" + Utils.toNumberUnit(Number.MAX_VALUE))
         }
     }
 }

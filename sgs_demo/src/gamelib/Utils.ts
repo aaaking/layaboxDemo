@@ -137,6 +137,14 @@ class Utils {
 
 	static toNumberUnit(size: number): string {
 		var i = Math.floor(Math.log(size) / Math.log(1000));
-		return (size / Math.pow(1000, i)).toFixed(2) + ' ' + ['', 'k', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'][i];
+		var fractionDigits = 2
+		if (i == 0) {
+			fractionDigits = 0
+		}
+		var valueStr = (size / Math.pow(1000, i)).toFixed(fractionDigits);
+		if (valueStr.substr(valueStr.length - fractionDigits - 1) == ".00") {
+			fractionDigits = 0
+		}
+		return (size / Math.pow(1000, i)).toFixed(fractionDigits) + ' ' + ['', 'k', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y', 'KY', 'KKY', 'KKKY', 'KKKKY', 'KKKKKY', 'KKKKKKY', 'KKKKKKKY', 'KKKKKKKKY', 'KKKKKKKKKY'][i];
 	}
 }
