@@ -58,6 +58,8 @@ class SceneLogin extends ui.scene.SceneLoginUI {
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
         this._btnLogin.on(Laya.Event.CLICK, this, this.onTouch);
+        // console.log("browser width: " + Laya.Browser.width + " browser height" + Laya.Browser.height)
+        // console.log("stage width: " + Laya.stage.width + " stage height" + Laya.stage.height)
     }
 
     /**
