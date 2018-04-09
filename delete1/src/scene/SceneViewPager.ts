@@ -34,11 +34,9 @@ class SceneViewPager extends Laya.View {
     private roleInfos: Array<RoleInfo>;
     private roleInfosHas: Array<RoleInfo>;//roles that I have
     private _mouseX: number = 0;
-
     // 商店角色图缩放大小。
     private itemMaxScale: number = 0.7;
     private itemMinScale: number = 0.4;
-
     // ScrollView操作 
     // 鼠标按下
     private _mouseDown: boolean = false;
@@ -46,9 +44,6 @@ class SceneViewPager extends Laya.View {
     private _mouseSpeed: number = 0;
     private _mouseStartPosX: number = 0;
     private _curMoveFrame: number = 0;
-
-    private forkMoveSpeed: number = 1;
-    private forkGroup: Array<Laya.Sprite> = new Array<Laya.Sprite>();
 
     constructor() {
         super()
@@ -66,7 +61,6 @@ class SceneViewPager extends Laya.View {
         backBtn.on("click", this, function () { this.removeSelf() })
         this.addChild(backBtn)
         Laya.stage.addChild(this)
-        //
         this.initRoles()
         Laya.timer.frameLoop(1, this, this.onUpdate);
         this.setScrollView();
@@ -85,8 +79,7 @@ class SceneViewPager extends Laya.View {
             if (absSpeed < 1) {
                 absSpeed = 0;
                 this._mouseSpeed = 0;
-                // 居中显示 
-                this.centeringControl();
+                this.centeringControl();// 居中显示 
             } else {
                 this._mouseSpeed = absSpeed * absSpeed * direction;
             }
@@ -126,9 +119,7 @@ class SceneViewPager extends Laya.View {
         var roleImg: Laya.Image = item.role;
         var skinStr: string = data.role.skin;
         roleImg.skin = skinStr;
-
-        // 设置灰色角色
-        if (!this.getHadRole(index)) {
+        if (!this.getHadRole(index)) {// 设置灰色角色
             this.grayingRole(roleImg);
         }
     }
@@ -154,7 +145,6 @@ class SceneViewPager extends Laya.View {
         if (!this._mouseDown) {
             return;
         }
-
         var stableFrame = Laya.timer.currFrame - this._curMoveFrame;
         // 滑动
         if (stableFrame > 2) {
