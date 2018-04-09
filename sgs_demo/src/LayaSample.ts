@@ -4,7 +4,7 @@ class GameMain {
         //初始化引擎
         Laya.init(1280, 720, Laya.WebGL);
         Laya.stage.bgColor = "#ffffff";
-        Laya.stage.scaleMode = Laya.Stage.SCALE_EXACTFIT;
+        Laya.stage.scaleMode = Laya.Stage.SCALE_FIXED_HEIGHT;
         Laya.stage.screenMode = Laya.Stage.SCREEN_HORIZONTAL;
         Dispatcher.init();
         LangMgr.changeLang(LangMgr.LANG_ZH_TW)
