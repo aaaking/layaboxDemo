@@ -1,4 +1,5 @@
-// https://blog.csdn.net/honey199396/article/details/79716679
+// https://blog.csdn.net/honey199396/article/details/79716679 这是这个demo的方案
+// https://blog.csdn.net/wuqilianga/article/details/52583988 这是第二个方案
 
 class ScrollView extends Laya.Box implements Laya.IRender, Laya.IItem {
     private _array: Array<any>;// 数据源
