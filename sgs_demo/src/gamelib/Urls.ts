@@ -4,4 +4,5 @@ class Urls {
     static eth_sendTransaction = "eth_sendTransaction"
     static eth_call = "eth_call"
     static eth_getTransactionReceipt = "eth_getTransactionReceipt"
+    static eth_getBalance = "eth_getBalance"
 }

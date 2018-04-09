@@ -1,5 +1,6 @@
 module menu {
     export class SceneMenu extends Laya.View {
+        static BALANCE: number = 0//余额
         _preWidth = UITools.canvasWidth
         _yPos = 335//卡片中心距离顶部的距离
         _circleDis = 435//相邻卡片的中心距离

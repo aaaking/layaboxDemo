@@ -25,6 +25,7 @@ class SceneLogin extends ui.scene.SceneLoginUI {
     private onTouch(e: Laya.Event): void {
         switch (e.currentTarget) {
             case this._btnLogin:
+                this.showLoading(false)
                 Laya.loader.load([menu.SceneMenu.bgMenu, menu.SceneMenu._skinWareHouse, menu.SceneMenu._skinOpenCard, menu.SceneMenu._skinMyCard, menu.SceneMenu._skinExchange], Laya.Handler.create(this, function () {
                     this.resLoaded = true
                     this.gotoMenuScene()
@@ -38,9 +39,8 @@ class SceneLogin extends ui.scene.SceneLoginUI {
                         //{"jsonrpc":"2.0","id":67,"result":"0x24479b7f771d6d0d6d4003257ca1043661af7bd7"}
                         console.info(data)
                         var info = JSON.parse(data)
-                        localStorage.setItem('uuid', info.result);
-                        this.netCompleted = true
-                        this.gotoMenuScene()
+                        var uuid = info.result
+                        localStorage.setItem('uuid', uuid);
                         Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [GameConfig.BASE_COIN, GameConfig.BASE_PASS, null], "id": 67 }, "POST", null, function (data) {
                             //POST http://10.225.20.161:8118?{"jsonrpc":"2.0","method":"personal_unlockAccount","params":["0xb398fd7be01eb6b9aca4288a8675be80568f9c4a","00",null],"id":67}
                             //{"jsonrpc":"2.0","id":67,"result":true}
@@ -51,10 +51,11 @@ class SceneLogin extends ui.scene.SceneLoginUI {
                                     //POST http://10.225.20.161:8118?{"jsonrpc":"2.0","method":"eth_sendTransaction","params":[{"from":"0xb398fd7be01eb6b9aca4288a8675be80568f9c4a","to":"0x24479b7f771d6d0d6d4003257ca1043661af7bd7","value":"0x4563918244F40000"}],"id":67}
                                     //{"jsonrpc":"2.0","id":67,"result":"0x6703694f6263004fa905a0470685ea41e7c77c7bc4f8cc5276d550220de9a250"}
                                     console.info(data)
-                                },
+                                    this.userBalance(uuid)
+                                }.bind(this),
                                     this.onerror.bind(this))
                             }
-                        },
+                        }.bind(this),
                             this.onerror.bind(this))
                     }.bind(this),
                         this.onerror.bind(this))
@@ -67,6 +68,8 @@ class SceneLogin extends ui.scene.SceneLoginUI {
     }
 
     private onerror() {
+        this.loadingBox.visible = false
+        Laya.timer.clearAll(this)
         this._btnLogin.mouseEnabled = true
         UITools.resetGray(this._btnLogin)
     }
@@ -75,9 +78,64 @@ class SceneLogin extends ui.scene.SceneLoginUI {
         if (this.resLoaded && this.netCompleted) {
             this._bgLogin.skin = menu.SceneMenu.bgMenu
             this.removeChild(this._btnLogin)
+            this.removeChild(this.loadingBox)
             // SceneMenu.instance.show();
             menu.SceneMenu.instance
         }
+    }
+
+    requestBalance: boolean = false
+    private userBalance(uuid: any) {//查询余额,余额小于等于0禁止进入menu页
+        Laya.timer.loop(1000, this, function () {
+            if (this.requestBalance) {
+                return
+            }
+            this.requestBalance = true
+            Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getBalance, "params": [uuid, "latest"], "id": 67 }, "POST", null, function (data) {
+                // {"id":67,"jsonrpc": "2.0","result": "0x0234c8a3397aab58" }// 158972490234375000
+                console.info(data)
+                var info = JSON.parse(data)
+                var balance = parseInt(parseInt(info.result, 16).toString(10))
+                if (balance > 0) {
+                    menu.SceneMenu.BALANCE = balance
+                    Laya.timer.clearAll(this)
+                    this.showLoading(true)
+                    this.netCompleted = true
+                    this.gotoMenuScene()
+                } else {
+                    this.requestBalance = false
+                }
+            }.bind(this),
+                this.onerror.bind(this))
+        })
+    }
+
+    loadingBox: Laya.Box;
+    loadingBg: Laya.Image;
+    loadingLabel: Laya.Label;
+    private showLoading(success: boolean) {
+        if (!this.loadingBox) {
+            this.initLoading()
+        }
+        if (success) {
+            this.loadingBox.removeSelf()
+        } else {
+            this.loadingBox.visible = true
+            this.loadingLabel.text = "正在登录中..."
+        }
+    }
+    private initLoading() {
+        this.loadingBox = new Laya.Box()
+        this.loadingBox.centerX = this.loadingBox.centerY = 0
+        this.loadingBg = new Laya.Image("menu/img_3.png")
+        this.loadingBg.centerX = this.loadingBox.centerY = 0
+        this.loadingLabel = new Laya.Label("")
+        this.loadingLabel.fontSize = 30
+        this.loadingLabel.color = "#Ceb589"
+        this.loadingLabel.centerX = this.loadingLabel.centerY = 0
+        this.loadingBox.addChild(this.loadingBg)
+        this.loadingBox.addChild(this.loadingLabel)
+        this.addChild(this.loadingBox)
     }
 
     private onResize(e: Laya.Event = null): void {
