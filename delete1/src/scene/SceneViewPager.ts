@@ -92,8 +92,7 @@ class SceneViewPager extends Laya.View {
         var array = [];
         for (var i = 0; i < this.roleInfos.length; i++) {
             var roleInfo: RoleInfo = this.roleInfos[i];
-            var skinStr: string = roleInfo.skin
-            array.push({ role: { skin: skinStr } });
+            array.push({ role: { skin: roleInfo.skin } });
         }
         this.scrollView.array = array;
         this.scrollView.renderHandler = new Laya.Handler(this, this.onScrollRender);
