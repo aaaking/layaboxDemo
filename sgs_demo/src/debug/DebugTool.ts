@@ -11,7 +11,7 @@ class DebugTool {
         if (Utils.getParam("debug")) {
             release = false
         }
-        DebugTool.debugMode =  !release
+        DebugTool.debugMode = !release
         if (!this._instance)
             this._instance = new DebugTool();
         return this._instance;
@@ -28,5 +28,9 @@ class DebugTool {
             Laya.DebugPanel.init();
             Laya.DebugTool.init();
         }
+        Laya.stage.on(Laya.Event.RESIZE, this, function () {
+            console.log("browser width: " + Laya.Browser.width + " browser height" + Laya.Browser.height)
+            console.log("stage width: " + Laya.stage.width + " stage height" + Laya.stage.height)
+        });
     }
 }
