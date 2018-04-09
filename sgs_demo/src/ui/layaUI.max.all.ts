@@ -98,26 +98,6 @@ module ui.scene {
     }
 }
 
-module ui.scene {
-    export class SceneMenuUI extends View {
-		public _btnWarehouse:runtime.RuntimeClickBtn;
-		public _btnCardPackage:runtime.RuntimeClickBtn;
-		public _btnShowcard:runtime.RuntimeClickBtn;
-		public _btnBankExchange:runtime.RuntimeClickBtn;
-
-        public static  uiView:any ={"type":"View","props":{"width":600,"height":720},"child":[{"type":"Image","props":{"y":-160,"x":-480,"skin":"login/img_bg.jpg","centerY":0,"centerX":0}},{"type":"Button","props":{"y":100,"var":"_btnWarehouse","stateNum":1,"skin":"menu/btn_2.png","runtime":"runtime.RuntimeClickBtn","centerX":-526}},{"type":"Button","props":{"y":100,"var":"_btnCardPackage","stateNum":1,"skin":"menu/btn_3.png","runtime":"runtime.RuntimeClickBtn","centerX":499}},{"type":"Button","props":{"y":200,"var":"_btnShowcard","stateNum":1,"skin":"menu/btn_1.png","runtime":"runtime.RuntimeClickBtn","centerX":-172}},{"type":"Button","props":{"y":200,"var":"_btnBankExchange","stateNum":1,"skin":"menu/btn_5.png","runtime":"runtime.RuntimeClickBtn","centerX":177}}]};
-        constructor(){ super()}
-        createChildren():void {
-        			View.regComponent("runtime.RuntimeClickBtn",runtime.RuntimeClickBtn);
-
-            super.createChildren();
-            this.createView(ui.scene.SceneMenuUI.uiView);
-
-        }
-
-    }
-}
-
 module ui.showcard {
     export class ShowCardUI extends View {
 		public _mask:Laya.Image;

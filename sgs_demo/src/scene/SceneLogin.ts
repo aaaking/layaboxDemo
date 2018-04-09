@@ -86,7 +86,6 @@ class SceneLogin extends ui.scene.SceneLoginUI {
             this._bgLogin.skin = menu.SceneMenu.bgMenu
             this.removeChild(this._btnLogin)
             this.removeChild(this.loadingBox)
-            // SceneMenu.instance.show();
             menu.SceneMenu.instance
         }
     }
