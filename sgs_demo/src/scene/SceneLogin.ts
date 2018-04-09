@@ -1,10 +1,14 @@
 /*
 * name;
 */
-class SceneLogin extends ui.scene.SceneLoginUI {
+class SceneLogin extends Laya.View {
+    public _bgLogin: Laya.Image;
+	public _btnLogin: runtime.RuntimeClickBtn;
     constructor() {
         super();
-        Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
+        this.initBg()
+        this.initLoginBtn()
+        Laya.stage.on(Laya.Event.RESIZE, this, this.onResize)
     }
 
     private static _instance: SceneLogin;
@@ -155,6 +159,21 @@ class SceneLogin extends ui.scene.SceneLoginUI {
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
         this._btnLogin.on(Laya.Event.CLICK, this, this.onTouch);
+    }
+
+    private initBg() {
+        this._bgLogin = new Laya.Image("login/bg_login.jpg")
+        this._bgLogin.centerX = this._bgLogin.centerY = 0
+        this.addChild(this._bgLogin)
+    }
+    private initLoginBtn() {
+        this._btnLogin = new runtime.RuntimeClickBtn()
+        this._btnLogin.skin = "login/btn_guest.png"
+        this._btnLogin.anchorX = this._btnLogin.anchorY = 0.5
+        this._btnLogin.stateNum = 1
+        this._btnLogin.centerX = 0
+        this._btnLogin.y = Laya.stage.height - 100 - (this._btnLogin.height >> 1)
+        this.addChild(this._btnLogin)
     }
 
     /**
