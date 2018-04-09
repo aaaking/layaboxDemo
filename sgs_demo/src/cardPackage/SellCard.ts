@@ -66,6 +66,7 @@ class SellCard extends ui.cardPackage.SellCardUI {
             this._boxWaiting.visible = true;
             this._boxWaiting.alpha = 0;
              let count = parseInt(this._input.text)
+             console.log("count: " + count)
             console.log(this._data.id.toString(16))
             console.log(count.toString(16).length)
             console.log(baseCount.substring(0,64-this._data.id.toString(16).length)+this._data.id.toString(16))
@@ -74,7 +75,8 @@ class SellCard extends ui.cardPackage.SellCardUI {
             console.log(count.toString(16).length)
             console.log(baseCount.substring(0,64-count.toString(16).length)+count.toString(16))
             let countstr = baseCount.substring(0,64-count.toString(16).length)+count.toString(16)
-            let param = String(idstr) + String(countstr)
+            console.log("countstr: " + countstr)
+            let param = String(idstr) + String(countstr)//param参数是0x+8位的方法名+价格的十六进制
             console.log(param)
             Laya.Tween.to(this._boxWaiting, { alpha: 1 }, 500, null);
             // Laya.timer.once(5000, this, () => {
