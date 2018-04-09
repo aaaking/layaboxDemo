@@ -85,4 +85,23 @@ class Utils {
 		}
 		return str;
 	}
+
+	static getParam(name: string): string {
+		var url = window.location.search
+		if (url.indexOf("?") != -1) {
+			var str = url.substr(1);
+			var strs = str.split("&");
+			for (var i = 0; i < strs.length; i++) {
+				var items = strs[i].split("=")
+				if (items.length > 1) {
+					var key = strs[i].split("=")[0]
+					var value = decodeURI(strs[i].split("=")[1])
+					if (key.toLowerCase() == name.toLowerCase()) {
+						return value
+					}
+				}
+			}
+		}
+		return ""
+	}
 }
