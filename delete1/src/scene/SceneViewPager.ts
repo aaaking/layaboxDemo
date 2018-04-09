@@ -52,18 +52,11 @@ class SceneViewPager extends Laya.View {
         bg.size(Laya.stage.width, Laya.stage.height)
         bg.bgColor = "#000000"
         this.addChild(bg)
-        var backBtn: Laya.Text = new Laya.Text()
-        backBtn.fontSize = 30
-        backBtn.text = "Back"
-        backBtn.bold = true
-        backBtn.color = "#ff0000"
-        backBtn.pos(Laya.stage.width - 180, 10)
-        backBtn.on("click", this, function () { this.removeSelf() })
-        this.addChild(backBtn)
         Laya.stage.addChild(this)
         this.initRoles()
         Laya.timer.frameLoop(1, this, this.onUpdate);
         this.setScrollView();
+        this.addBackBtn()
     }
     private onUpdate() {
         if (!this.visible) {
@@ -233,5 +226,15 @@ class SceneViewPager extends Laya.View {
                 this.roleInfosHas.push(role)
             }
         }
+    }
+    private addBackBtn() {
+        var backBtn: Laya.Text = new Laya.Text()
+        backBtn.fontSize = 30
+        backBtn.text = "Back"
+        backBtn.bold = true
+        backBtn.color = "#ff0000"
+        backBtn.pos(Laya.stage.width - 180, 10)
+        backBtn.on("click", this, function () { this.removeSelf() })
+        this.addChild(backBtn)
     }
 }
