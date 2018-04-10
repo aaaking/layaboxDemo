@@ -8,7 +8,6 @@ class ExchangeCard extends Card {
         this._imgName = new Laya.Image();
         this._imgName.pos(14, 70);
         this.addChild(this._imgName);
-
         this._labCount = new Laya.Label();
         this._labCount.right = 20;
         this._labCount.bottom = 20;
@@ -52,10 +51,7 @@ class ExchangeCard extends Card {
     public buyCard() {
         let baseID = "0000000000000000000000000000000000000000000000000000000000000000"
         let param = baseID.substring(0, 64 - this.dataSource.id.toString(16).length) + this.dataSource.id.toString(16)
-        Ajax.callNet(GameConfig.RPC_URL, {
-            "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [localStorage.getItem('uuid'), "", null
-            ], "id": 67
-        }, "POST", null, function (data) {
+        Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [localStorage.getItem('uuid'), "", null], "id": 67 }, "POST", null, function (data) {
             console.info(data)
             Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_sendTransaction, "params": [{ "from": localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0xc70f5eaa" + param, "value": "0x" + parseInt(this.dataSource.price).toString(16) }], "id": 67 }, "POST", null, function (data) {
                 console.info(data)
