@@ -74,49 +74,11 @@ class ShowCard extends ui.showcard.ShowCardUI {
                             let info = JSON.parse(data)
                             if (info.error) {
                                 this._wait.text = "交易失败"
-                                Laya.timer.once(1500, this, function () {
+                                Laya.timer.once(1000, this, function () {
                                     this.onNetError(info)
                                 })
                             } else {
-                                this._wait.text = "正在开卡中请等待..."
-                                Laya.timer.loop(10000, this, function () {
-                                    Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getTransactionReceipt, "params": [info.result], "id": 67 }, "POST", null, function (data) {
-                                        console.info(data)
-                                        let cardsinfo = JSON.parse(data)
-                                        if (cardsinfo.result) {
-                                            Laya.timer.clearAll(this)
-                                            Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_call, "params": [{ "from": localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0x179a074f" }, "latest"], "id": 67 }, "POST", null, function (data) {
-                                                console.info(data)
-                                                var info = JSON.parse(data)
-                                                let result = info.result.substring(130)
-                                                result = "0x" + result
-                                                let result1 = this.toAscii(result)
-                                                let cards = result1.split(",")
-                                                cards.pop()
-                                                for (var k in cards) {
-                                                    let v = cards[k]
-                                                    let arr = v.split(":")
-                                                    var id: number = parseInt(arr[0]);
-                                                    var cfg: any = GameConfig.getCfgHeroById(id);
-                                                    var count = arr[1]
-                                                    if (parseInt(count) > 0) {
-                                                        if (CardPackageManager.instance.getCountByID(id) >= 0) {
-                                                            if (parseInt(count) - CardPackageManager.instance.getCountByID(id) == 1) {//新开的比原有的多一张的话就是开的这张卡
-                                                                this.showLoading(true);
-                                                                this.showCard(id);
-                                                                CardPackageManager.instance.addCountByID(id)
-                                                                break
-                                                            }
-                                                        } else {
-                                                            this.onNetError()
-                                                            break
-                                                        }
-                                                    }
-                                                }
-                                            }.bind(this), this.onNetError.bind(this))
-                                        }
-                                    }.bind(this), this.onNetError.bind(this))
-                                })
+                                this.getReceiptByLoop(info)// looper search receipt
                             }
                         }.bind(this), this.onNetError.bind(this))
                     } else {
@@ -145,6 +107,8 @@ class ShowCard extends ui.showcard.ShowCardUI {
 
     private showLoading(success: boolean) {
         if (success) {
+            this.requestNum = 0
+            this.requestIng = false
             UITools.resetGray(this._btnOpen)
             this.mouseEnabled = true;
             this._boxWaiting.visible = false;
@@ -158,7 +122,64 @@ class ShowCard extends ui.showcard.ShowCardUI {
         }
     }
 
+    requestNum = 0
+    requestIng: boolean = false
+    private getReceiptByLoop(info: any) {//轮询查询收据
+        Laya.timer.loop(1000, this, function () {
+            if (this.requestNum > 180) {
+                this.onerror()
+                this.requestNum = 0
+                return
+            }
+            if (this.requestIng) {
+                return
+            }
+            this.requestNum++
+            this.requestIng = true
+            Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getTransactionReceipt, "params": [info.result], "id": this.requestNum }, "POST", null, function (data) {
+                console.info(data)
+                let cardsinfo = JSON.parse(data)
+                if (cardsinfo.result) {
+                    Laya.timer.clearAll(this)
+                    Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_call, "params": [{ "from": localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0x179a074f" }, "latest"], "id": 67 }, "POST", null, function (data) {
+                        console.info(data)
+                        var info = JSON.parse(data)
+                        let result = info.result.substring(130)
+                        result = "0x" + result
+                        let result1 = this.toAscii(result)
+                        let cards = result1.split(",")
+                        cards.pop()
+                        for (var k in cards) {
+                            let v = cards[k]
+                            let arr = v.split(":")
+                            var id: number = parseInt(arr[0]);
+                            var cfg: any = GameConfig.getCfgHeroById(id);
+                            var count = arr[1]
+                            if (parseInt(count) > 0) {
+                                if (CardPackageManager.instance.getCountByID(id) >= 0) {
+                                    if (parseInt(count) - CardPackageManager.instance.getCountByID(id) == 1) {//新开的比原有的多一张的话就是开的这张卡
+                                        this.showLoading(true);
+                                        this.showCard(id);
+                                        CardPackageManager.instance.addCountByID(id)
+                                        break
+                                    }
+                                } else {
+                                    this.onNetError()
+                                    break
+                                }
+                            }
+                        }
+                    }.bind(this), this.onNetError.bind(this))
+                } else {
+                    this.requestIng = false
+                }
+            }.bind(this), this.onNetError.bind(this))
+        })
+    }
+
     private onNetError(error?: any) {
+        this.requestNum = 0
+        this.requestIng = false
         this.mouseEnabled = true;
         this._boxWaiting.visible = false;
         UITools.resetGray(this._btnOpen)

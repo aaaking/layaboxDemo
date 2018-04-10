@@ -11,8 +11,9 @@ class CardPackage extends ui.cardPackage.CardPackageUI {
         this._btnSortNormal.on(Laya.Event.CLICK, this, this.onTouch);
         this._btnSortCamp.on(Laya.Event.CLICK, this, this.onTouch);
         Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
-        Dispatcher.on("showSellCards",this,this.onShowSellCards);
-        Dispatcher.on("updateBag",this,this.updateBag);
+        Dispatcher.on("showSellCards", this, this.onShowSellCards);
+        Dispatcher.on("updateBag", this, this.updateBag);
+        this.initBalance()
     }
 
     private static _instance: CardPackage;
@@ -40,10 +41,10 @@ class CardPackage extends ui.cardPackage.CardPackageUI {
             this.onResize(null);
         });
 
-        
+
     }
 
-    public updateBag(): void{
+    public updateBag(): void {
         CardPackageManager.instance.testInitCards(() => {
             this._list.array = CardPackageManager.instance.cards;
         });
@@ -74,11 +75,10 @@ class CardPackage extends ui.cardPackage.CardPackageUI {
             case 1:
                 this.setCamp();
                 break;
-
         }
     }
 
-    private setCamp(): void {       
+    private setCamp(): void {
         var camp: Array<any> = CardPackageManager.instance.sortOnCampCards;
         var currCamp: number = 1;
         var count: number = 0;
@@ -102,21 +102,34 @@ class CardPackage extends ui.cardPackage.CardPackageUI {
         this._list.array = camp;
     }
 
-
     /***渲染单元格时的回调方法***/
     protected updateList(cell: CardPackageCard, index: number): void {
         cell.updata();
     }
 
-    private onShowSellCards(data:any):void{
-        SellCard.instance.show(this,data);
+    private onShowSellCards(data: any): void {
+        SellCard.instance.show(this, data);
+    }
+
+    private initBalance() {
+        var image: Laya.Image = new Laya.Image(menu.SceneMenu.MENU_ICON_BALANCE)
+        var box: Laya.Box = new Laya.Box()
+        box.pos(Laya.stage.width - image.width - 16, 16)
+        box.size(image.width, image.height)
+        box.addChild(image)
+        this.addChild(box)
+        var label: Laya.Label = new Laya.Label(Utils.toNumberUnit(parseInt(localStorage.getItem('balance'))))
+        label.fontSize = 18
+        label.color = "#ffffff"
+        label.centerY = label.centerX = 0
+        box.addChild(label)
     }
 
     private onResize(e: Laya.Event = null): void {
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
         this._columeCount = Math.floor((this.width - 190 - 196) / (196 + 28));
-        this._list.scrollBar.value=0;
+        this._list.scrollBar.value = 0;
         this._list.width = (196 + 28) * this._columeCount + 196;
         this._list.x = this.width - this._list.width >> 1;
         this.setList(this._sortType);

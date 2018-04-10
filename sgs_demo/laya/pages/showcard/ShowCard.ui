@@ -146,7 +146,7 @@
                 {
                     "x":30,
                     "type":"Label",
-                    "props":{"var":"_wait","text":"正在开卡中请等待","fontSize":30,"color":"#Ceb589","centerY":0,"centerX":0},
+                    "props":{"var":"_wait","text":"正在开卡中请等待...","fontSize":30,"color":"#Ceb589","centerY":0,"centerX":0},
                     "nodeParent":11,
                     "label":"Label(_wait)",
                     "isDirectory":false,

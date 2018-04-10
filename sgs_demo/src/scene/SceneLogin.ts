@@ -96,19 +96,19 @@ class SceneLogin extends Laya.View {
     }
 
     requestNum = 0
-    requestBalance: boolean = false
+    requestIng: boolean = false
     private userBalance(uuid: any) {//查询余额,余额小于等于0禁止进入menu页
         Laya.timer.loop(1000, this, function () {
-            if (this.requestNum > 300) {
+            if (this.requestNum > 180) {
                 this.onerror()
                 this.requestNum = 0
                 return
             }
-            if (this.requestBalance) {
+            if (this.requestIng) {
                 return
             }
             this.requestNum++
-            this.requestBalance = true
+            this.requestIng = true
             Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getBalance, "params": [uuid, "latest"], "id": this.requestNum }, "POST", null, function (data) {
                 // {"id":67,"jsonrpc": "2.0","result": "0x0234c8a3397aab58" }// 158972490234375000
                 console.info(data)
@@ -121,7 +121,7 @@ class SceneLogin extends Laya.View {
                     this.netCompleted = true
                     this.gotoMenuScene()
                 } else {
-                    this.requestBalance = false
+                    this.requestIng = false
                 }
             }.bind(this),
                 this.onerror.bind(this))

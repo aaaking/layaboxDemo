@@ -75,7 +75,8 @@
             "hasChild":false,
             "compId":6,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
