@@ -2,7 +2,7 @@
 * name;
 */
 class ExchangeCard extends Card {
-    private _btnBuy:Laya.Button
+    private _btnBuy: Laya.Button
     constructor() {
         super();
         this._imgName = new Laya.Image();
@@ -29,47 +29,48 @@ class ExchangeCard extends Card {
         this._labPrice.fontSize = 20
         this._labPrice.stroke = 2
         this._labPrice.strokeColor = "#000000"
-        this._labPrice.pos(80,30)
-        this._btnBuy.on(Laya.Event.CLICK,this, this.buyCard)
+        this._labPrice.pos(80, 30)
+        this._btnBuy.on(Laya.Event.CLICK, this, this.buyCard)
     }
     private _imgName: Laya.Image;
     private _labCount: Laya.Label;
     private _labPrice: Laya.Label;
     public updata(): void {
         super.updata();
-            this._icon.skin = "cards/" + this.dataSource.cfg.icon + ".png";
-            this._imgName.visible = true;
-            this._imgName.skin = "cardsname/" + this.dataSource.cfg.icon + ".png";
+        this._icon.skin = "cards/" + this.dataSource.cfg.icon + ".png";
+        this._imgName.visible = true;
+        this._imgName.skin = "cardsname/" + this.dataSource.cfg.icon + ".png";
         this._labPrice.text = this.dataSource.price;
-        if(this.dataSource.isself){
+        if (this.dataSource.isself) {
             this._btnBuy.skin = "menu/btn_cancel.png"
             this._labPrice.visible = false
-        }else{
+        } else {
             this._btnBuy.skin = "menu/btn_buy.png"
         }
     }
 
-    public buyCard(){
+    public buyCard() {
         let baseID = "0000000000000000000000000000000000000000000000000000000000000000"
-        let param = baseID.substring(0,64-this.dataSource.id.toString(16).length)+this.dataSource.id.toString(16)
-        Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [localStorage.getItem('uuid'), "", null
-                ], "id": 67 }, "POST", null, function (data) {
-                    console.info(data)
-                    Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_sendTransaction, "params": [{"from":localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0xc70f5eaa"+param, "value":"0x"+parseInt(this.dataSource.price).toString(16) }], "id": 67 }, "POST", null, function (data) {
+        let param = baseID.substring(0, 64 - this.dataSource.id.toString(16).length) + this.dataSource.id.toString(16)
+        Ajax.callNet(GameConfig.RPC_URL, {
+            "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [localStorage.getItem('uuid'), "", null
+            ], "id": 67
+        }, "POST", null, function (data) {
+            console.info(data)
+            Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_sendTransaction, "params": [{ "from": localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0xc70f5eaa" + param, "value": "0x" + parseInt(this.dataSource.price).toString(16) }], "id": 67 }, "POST", null, function (data) {
+                console.info(data)
+                var info = JSON.parse(data)
+                Laya.timer.loop(10000, this, function () {
+                    Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getTransactionReceipt, "params": [info.result], "id": 67 }, "POST", null, function (data) {
                         console.info(data)
-                        var info = JSON.parse(data)
-                        Laya.timer.loop(10000,this,function(){
-                            Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getTransactionReceipt, "params": [info.result], "id": 67 }, "POST", null, function (data) {
-                            console.info(data)
-                                let cardsinfo = JSON.parse(data)
-                                if(cardsinfo.result){
-                                    Laya.timer.clearAll(this)
-                                    Dispatcher.dispatch("updateInfo");  
-
-                                }
-                            }.bind(this))
-                        })
+                        let cardsinfo = JSON.parse(data)
+                        if (cardsinfo.result) {
+                            Laya.timer.clearAll(this)
+                            Dispatcher.dispatch("updateInfo");
+                        }
                     }.bind(this))
-                }.bind(this))
+                })
+            }.bind(this))
+        }.bind(this))
     }
 }
