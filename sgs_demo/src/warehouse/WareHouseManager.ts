@@ -42,6 +42,11 @@ class WareHouseManager {
             let result1 = this.toAscii(result)
             let cards = result1.split(",")
             cards.pop()
+            cards = cards.concat(cards)//测试代码 50
+            cards = cards.concat(cards)//100
+            cards = cards.concat(cards)//200
+            cards = cards.concat(cards)//400
+            cards = cards.concat(cards)//800
             for (var k in cards) {
                 let v = cards[k]
                 let arr = v.split(":")
@@ -49,12 +54,13 @@ class WareHouseManager {
                 var cfg: any = GameConfig.getCfgHeroById(id);
                 var count = arr[1]
                 var isHave = false
+                var star = Math.floor(Math.random() * 10 + 1)
                 if (CardPackageManager.instance.cards) {
                     if (CardPackageManager.instance.judgeHaveById(id))
                         isHave = true
                 }
                 var t: any = {
-                    id, count, cfg, isHave
+                    id, count, cfg, star, isHave
                 }
                 this._cards.push(t);
             }
