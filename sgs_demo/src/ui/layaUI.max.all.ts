@@ -3,7 +3,6 @@ import View=laya.ui.View;
 import Dialog=laya.ui.Dialog;
 module ui.cardPackage {
     export class SellCardUI extends View {
-		public _mask:Laya.Image;
 		public _boxNormal:Laya.Box;
 		public _btnClose:runtime.RuntimeClickBtn;
 		public _btnConfirm:Laya.Button;
@@ -12,7 +11,7 @@ module ui.cardPackage {
 		public _imgIcon:Laya.Image;
 		public _boxWaiting:Laya.Box;
 
-        public static  uiView:any ={"type":"View","props":{"width":1044,"height":512},"child":[{"type":"Image","props":{"y":0,"x":0,"var":"_mask","top":0,"skin":"comp/blank.png","mouseThrough":false,"mouseEnabled":true,"left":0,"bottom":0}},{"type":"Box","props":{"var":"_boxNormal","centerY":0,"centerX":0},"child":[{"type":"Image","props":{"y":0,"skin":"menu/img_2.png","centerX":0}},{"type":"Button","props":{"y":13,"x":945,"var":"_btnClose","stateNum":2,"skin":"menu/btn_close.png","runtime":"runtime.RuntimeClickBtn"}},{"type":"Button","props":{"y":318,"x":578,"var":"_btnConfirm","stateNum":1,"skin":"menu/btn_confirm.png"}},{"type":"Image","props":{"y":153,"x":463,"skin":"menu/img_1.png"}},{"type":"TextInput","props":{"y":213,"x":463,"width":385,"var":"_input","text":"TextInput","skin":"menu/img_input.png","restrict":"0-9","padding":"0,10,0,10","height":58,"fontSize":26,"color":"#ffffff"}},{"type":"Label","props":{"y":286,"x":463,"var":"_labTip","text":"请输入金额","fontSize":16,"color":"#ff0400"}},{"type":"Image","props":{"y":28,"skin":"menu/img_title_2.png","centerX":0}},{"type":"Image","props":{"y":127,"x":139,"var":"_imgIcon","skin":"cards/1.png"}}]},{"type":"Box","props":{"var":"_boxWaiting","centerY":0,"centerX":0},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"menu/img_3.png"}},{"type":"Label","props":{"text":"正在交易中请等待","fontSize":30,"color":"#Ceb589","centerY":0,"centerX":0}}]}]};
+        public static  uiView:any ={"type":"View","props":{"width":966,"height":458},"child":[{"type":"Image","props":{"top":0,"skin":"comp/blank.png","right":0,"left":0,"bottom":0}},{"type":"Box","props":{"var":"_boxNormal","centerY":0,"centerX":0},"child":[{"type":"Box","props":{"y":0,"x":0},"child":[{"type":"Image","props":{"y":0,"skin":"menu/img_2.png","centerX":0}},{"type":"Image","props":{"y":10,"skin":"menu/img_title_2.png","centerX":0}}]},{"type":"Button","props":{"y":41,"x":925,"var":"_btnClose","stateNum":2,"skin":"menu/btn_close.png","runtime":"runtime.RuntimeClickBtn","anchorY":0.5,"anchorX":0.5}},{"type":"Button","props":{"y":318,"x":578,"var":"_btnConfirm","stateNum":1,"skin":"menu/btn_confirm.png"}},{"type":"Image","props":{"y":153,"x":463,"skin":"menu/img_1.png"}},{"type":"TextInput","props":{"y":213,"x":463,"width":385,"var":"_input","text":"TextInput","skin":"menu/img_input.png","restrict":"0-9","padding":"0,10,0,10","height":58,"fontSize":26,"color":"#ffffff"}},{"type":"Label","props":{"y":286,"x":463,"var":"_labTip","text":"请输入金额","fontSize":16,"color":"#ff0400"}},{"type":"Image","props":{"y":127,"x":139,"var":"_imgIcon","skin":"cards/1.png"}}]},{"type":"Box","props":{"var":"_boxWaiting","centerY":0,"centerX":0},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"menu/img_3.png"}},{"type":"Label","props":{"text":"正在交易中请等待","fontSize":30,"color":"#Ceb589","centerY":0,"centerX":0}}]}]};
         constructor(){ super()}
         createChildren():void {
         			View.regComponent("runtime.RuntimeClickBtn",runtime.RuntimeClickBtn);

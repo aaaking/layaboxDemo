@@ -4,9 +4,9 @@
 class SellCard extends ui.cardPackage.SellCardUI {
     constructor() {
         super();
-        this._btnClose.anchorX = this._btnClose.anchorY = 0.5
-        this._btnClose.x = this._btnClose.x + (this._btnClose.width >> 1)
-        this._btnClose.y = this._btnClose.y + (this._btnClose.height >> 1)
+        // this._btnClose.anchorX = this._btnClose.anchorY = 0.5
+        // this._btnClose.x = this._btnClose.x + (this._btnClose.width >> 1)
+        // this._btnClose.y = this._btnClose.y + (this._btnClose.height >> 1)
         Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
     }
 
@@ -47,7 +47,6 @@ class SellCard extends ui.cardPackage.SellCardUI {
     private onResize(e: Laya.Event = null): void {
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
-        this._mask.on(Laya.Event.CLICK, this, this.onTouch);
         this._btnClose.on(Laya.Event.CLICK, this, this.onTouch);
         this._btnConfirm.on(Laya.Event.CLICK, this, this.onTouch);
     }

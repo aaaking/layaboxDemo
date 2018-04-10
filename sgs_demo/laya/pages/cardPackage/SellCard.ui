@@ -1,9 +1,9 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":10,
-    "selecteID":2,
-    "props":{"width":1044,"sceneColor":"#000000","height":512},
+    "selectedBox":1,
+    "selecteID":17,
+    "props":{"width":966,"sceneColor":"#000000","height":458},
     "nodeParent":-1,
     "label":"View",
     "isOpen":true,
@@ -15,13 +15,13 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":0,"x":0,"var":"_mask","top":0,"skin":"comp/blank.png","mouseThrough":false,"mouseEnabled":true,"left":0,"bottom":0},
+            "props":{"top":0,"skin":"comp/blank.png","right":0,"left":0,"bottom":0},
             "nodeParent":1,
-            "label":"Image(_mask)",
+            "label":"Image",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
-            "compId":8,
+            "compId":17,
             "child":[
                 ]
         },
@@ -39,21 +39,47 @@
             "child":[
                 {
                     "x":30,
-                    "type":"Image",
-                    "props":{"y":0,"skin":"menu/img_2.png","centerX":0},
+                    "type":"Box",
+                    "props":{"y":0,"x":0},
                     "nodeParent":10,
-                    "label":"Image",
-                    "isDirectory":false,
+                    "label":"Box",
+                    "isOpen":true,
+                    "isDirectory":true,
                     "isAniNode":true,
-                    "hasChild":false,
-                    "compId":5,
+                    "hasChild":true,
+                    "compId":16,
                     "child":[
-                        ]
+                        {
+                            "x":45,
+                            "type":"Image",
+                            "props":{"y":0,"skin":"menu/img_2.png","centerX":0},
+                            "nodeParent":16,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":5,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
+                            "type":"Image",
+                            "props":{"y":10,"skin":"menu/img_title_2.png","centerX":0},
+                            "nodeParent":16,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":7,
+                            "child":[
+                                ]
+                        }]
                 },
                 {
                     "x":30,
                     "type":"Button",
-                    "props":{"y":13,"x":945,"var":"_btnClose","stateNum":"2","skin":"menu/btn_close.png","runtime":"runtime.RuntimeClickBtn"},
+                    "props":{"y":41,"x":925,"var":"_btnClose","stateNum":"2","skin":"menu/btn_close.png","runtime":"runtime.RuntimeClickBtn","anchorY":0.5,"anchorX":0.5},
                     "nodeParent":10,
                     "label":"Button(_btnClose)",
                     "isDirectory":false,
@@ -112,19 +138,6 @@
                     "isAniNode":true,
                     "hasChild":false,
                     "compId":12,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Image",
-                    "props":{"y":28,"skin":"menu/img_title_2.png","centerX":0},
-                    "nodeParent":10,
-                    "label":"Image",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":7,
                     "child":[
                         ]
                 },
