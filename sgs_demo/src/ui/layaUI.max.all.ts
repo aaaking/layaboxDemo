@@ -51,7 +51,7 @@ module ui.cards {
 		public _list:Laya.List;
 		public _tab:Laya.Tab;
 
-        public static  uiView:any ={"type":"View","props":{"width":1280,"height":720},"child":[{"type":"Image","props":{"skin":"menu/bg.jpg","centerY":0,"centerX":0}},{"type":"Button","props":{"x":7,"var":"_btnBack","stateNum":2,"skin":"menu/btn_back.png","runtime":"runtime.RuntimeClickBtn"}},{"type":"Image","props":{"x":134,"var":"_pageName","skin":"menu/logo_cards_my.png"}},{"type":"List","props":{"y":95,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":25,"spaceX":25,"left":10,"height":570}},{"type":"Tab","props":{"y":75,"width":102,"var":"_tab","right":10}}]};
+        public static  uiView:any ={"type":"View","props":{"width":1280,"height":720},"child":[{"type":"Image","props":{"skin":"menu/bg.jpg","centerY":0,"centerX":0}},{"type":"Button","props":{"x":7,"var":"_btnBack","stateNum":2,"skin":"menu/btn_back.png","runtime":"runtime.RuntimeClickBtn"}},{"type":"Image","props":{"x":134,"var":"_pageName","skin":"menu/logo_cards_my.png"}},{"type":"List","props":{"y":95,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":25,"spaceX":25,"left":10,"height":570}},{"type":"Tab","props":{"y":75,"width":102,"var":"_tab","right":10}},{"type":"Image","props":{"skin":"menu/cards_bottom.png","centerX":0,"bottom":0}}]};
         constructor(){ super()}
         createChildren():void {
         			View.regComponent("runtime.RuntimeClickBtn",runtime.RuntimeClickBtn);
