@@ -104,17 +104,18 @@ module ui.showcard {
 		public _mask:Laya.Image;
 		public _imgBg:Laya.Image;
 		public _imgIcon:Laya.Image;
-		public _btnOpen:Laya.Button;
+		public _btnOpen:runtime.RuntimeClickBtn;
 		public _labCost:Laya.Label;
 		public _btnBack:Laya.Button;
 		public _labTip:Laya.Label;
 		public _boxWaiting:Laya.Box;
 		public _wait:Laya.Label;
 
-        public static  uiView:any ={"type":"View","props":{"width":600,"height":720},"child":[{"type":"Image","props":{"y":0,"x":0,"var":"_mask","top":0,"skin":"comp/blank.png","right":0,"mouseThrough":false,"mouseEnabled":true,"left":0,"bottom":0}},{"type":"Image","props":{"skin":"menu/bg_2.jpg","centerY":0,"centerX":0}},{"type":"Image","props":{"y":20,"var":"_imgBg","skin":"menu/img_4.png","centerX":0}},{"type":"Image","props":{"y":30,"x":90,"var":"_imgIcon","skin":"showcards/1.png","centerX":0}},{"type":"Button","props":{"var":"_btnOpen","stateNum":1,"skin":"menu/btn_showcard.png","centerX":0,"bottom":30},"child":[{"type":"Label","props":{"y":30,"x":79,"width":35,"var":"_labCost","text":"20","height":20,"fontSize":20,"color":"#ffffff","align":"center"}}]},{"type":"Button","props":{"y":20,"x":20,"var":"_btnBack","stateNum":2,"skin":"menu/btn_back.png"}},{"type":"Label","props":{"var":"_labTip","text":"点击屏幕继续","fontSize":30,"color":"#Ceb589","centerY":280,"centerX":0}},{"type":"Box","props":{"y":10,"x":10,"var":"_boxWaiting","centerY":0,"centerX":0},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"menu/img_3.png"}},{"type":"Label","props":{"var":"_wait","text":"正在开卡中请等待...","fontSize":30,"color":"#Ceb589","centerY":0,"centerX":0}}]}]};
+        public static  uiView:any ={"type":"View","props":{"width":600,"height":720},"child":[{"type":"Image","props":{"y":0,"x":0,"var":"_mask","top":0,"skin":"comp/blank.png","right":0,"mouseThrough":false,"mouseEnabled":true,"left":0,"bottom":0}},{"type":"Image","props":{"skin":"menu/bg_2.jpg","centerY":0,"centerX":0}},{"type":"Image","props":{"y":20,"var":"_imgBg","skin":"menu/img_4.png","centerX":0}},{"type":"Image","props":{"y":30,"x":90,"var":"_imgIcon","skin":"showcards/1.png","centerX":0}},{"type":"Button","props":{"var":"_btnOpen","stateNum":2,"skin":"menu/btn_showcard.png","runtime":"runtime.RuntimeClickBtn","labelAlign":"center","centerX":0,"bottom":30},"child":[{"type":"Label","props":{"y":41,"x":110,"width":45,"var":"_labCost","text":"20","strokeColor":"#8b2303","stroke":2,"fontSize":32,"color":"#ffffff","align":"center"}}]},{"type":"Button","props":{"y":20,"x":20,"var":"_btnBack","stateNum":2,"skin":"menu/btn_back.png"}},{"type":"Label","props":{"var":"_labTip","text":"点击屏幕继续","fontSize":30,"color":"#Ceb589","centerY":280,"centerX":0}},{"type":"Box","props":{"y":10,"x":10,"var":"_boxWaiting","centerY":0,"centerX":0},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"menu/img_3.png"}},{"type":"Label","props":{"var":"_wait","text":"正在开卡中请等待...","fontSize":30,"color":"#Ceb589","centerY":0,"centerX":0}}]}]};
         constructor(){ super()}
         createChildren():void {
-        
+        			View.regComponent("runtime.RuntimeClickBtn",runtime.RuntimeClickBtn);
+
             super.createChildren();
             this.createView(ui.showcard.ShowCardUI.uiView);
 

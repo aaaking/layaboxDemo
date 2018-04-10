@@ -4,6 +4,7 @@
 class ShowCard extends ui.showcard.ShowCardUI {
     constructor() {
         super();
+        this.initBalance()
         this._mask.width = Laya.stage.width;
         this._mask.height = Laya.stage.height;
         this._mask.on(Laya.Event.CLICK, this, this.onTouch);
@@ -194,5 +195,19 @@ class ShowCard extends ui.showcard.ShowCardUI {
             this._labTip.visible = true;
             this.on(Laya.Event.CLICK, this, this.onTouch);
         })
+    }
+
+    private initBalance() {
+        var image: Laya.Image = new Laya.Image("menu/menu_icon_balance.png")
+        var box: Laya.Box = new Laya.Box()
+        box.pos(Laya.stage.width - image.width - 16, 40)
+        box.size(image.width, image.height)
+        box.addChild(image)
+        this.addChild(box)
+        var label: Laya.Label = new Laya.Label(Utils.toNumberUnit(parseInt(localStorage.getItem('balance'))))
+        label.fontSize = 18
+        label.color = "#ffffff"
+        label.centerY = label.centerX = 0
+        box.addChild(label)
     }
 }
