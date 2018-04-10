@@ -52,9 +52,6 @@ class SellCard extends ui.cardPackage.SellCardUI {
         let count = parseInt(this._input.text)
         let baseID = "0000000000000000000000000000000000000000000000000000000000000000"
         let baseCount = "0000000000000000000000000000000000000000000000000000000000000000"
-        this._boxNormal.mouseEnabled = false;
-        this._boxWaiting.visible = true;
-        this._boxWaiting.alpha = 0;
         console.log("count: " + count)
         console.log(this._data.id.toString(16))
         console.log(count.toString(16).length)
@@ -76,35 +73,25 @@ class SellCard extends ui.cardPackage.SellCardUI {
             }));
             return
         }
-        Laya.Tween.to(this._boxWaiting, { alpha: 1 }, 500, null);
-        Ajax.callNet(GameConfig.RPC_URL, {
-            "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [localStorage.getItem('uuid'), "", null], "id": 67
-        }, "POST", null, function (data) {
+        this.showLoading(false)
+        Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [localStorage.getItem('uuid'), "", null], "id": 67 }, "POST", null, function (data) {
             console.info(data)
             Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_sendTransaction, "params": [{ "from": localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0x95bf05a4" + param }], "id": 67 }, "POST", null, function (data) {
                 console.info(data)
-                var info = JSON.parse(data)
-                Laya.timer.loop(10000, this, function () {
-                    Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getTransactionReceipt, "params": [info.result], "id": 67 }, "POST", null, function (data) {
-                        console.info(data)
-                        let cardsinfo = JSON.parse(data)
-                        if (cardsinfo.result) {
-                            Laya.timer.clearAll(this)
-                            this._boxNormal.mouseEnabled = true;
-                            this._boxWaiting.visible = false;
-                            this.removeSelf();
-                            Dispatcher.dispatch("updateBag");
-                        }
-                    }.bind(this))
-                })
-            }.bind(this))
-        }.bind(this))
+                this.getReceiptByLoop(JSON.parse(data))// looper search receipt
+            }.bind(this), this.onNetError.bind(this))
+        }.bind(this), this.onNetError.bind(this))
     }
 
     private showLoading(success: boolean) {
         if (success) {
+            Dispatcher.dispatch("updateBag")
             this.requestNum = 0
             this.requestIng = false
+            this.mouseEnabled = true;
+            this._boxWaiting.visible = false;
+            Laya.timer.clearAll(this)
+            this.removeSelf()
         } else {
             if (!this._boxWaiting.visible) {
                 this.mouseEnabled = false;
@@ -116,6 +103,7 @@ class SellCard extends ui.cardPackage.SellCardUI {
     }
 
     private onNetError(error?: any) {
+        Laya.timer.clearAll(this)
         this.requestNum = 0
         this.requestIng = false
         this.mouseEnabled = true;
@@ -125,5 +113,26 @@ class SellCard extends ui.cardPackage.SellCardUI {
     requestNum = 0
     requestIng: boolean = false
     private getReceiptByLoop(info: any) {//轮询查询收据
+        Laya.timer.loop(1000, this, function () {
+            if (this.requestNum > 180) {
+                this.onNetError()
+                this.requestNum = 0
+                return
+            }
+            if (this.requestIng) {
+                return
+            }
+            this.requestNum++
+            this.requestIng = true
+            Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getTransactionReceipt, "params": [info.result], "id": this.requestNum }, "POST", null, function (data) {
+                console.info(data)
+                let cardsinfo = JSON.parse(data)
+                if (cardsinfo.result) {
+                    this.showLoading(true)
+                } else {
+                    this.requestIng = false
+                }
+            }.bind(this), this.onNetError.bind(this))
+        })
     }
 }

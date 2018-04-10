@@ -60,12 +60,6 @@ class ShowCard extends ui.showcard.ShowCardUI {
             case this._btnOpen:
                 this.showLoading(false)
                 UITools.changeGray(this._btnOpen)
-                // Laya.timer.once(5000, this, () => {
-                //     this.mouseEnabled = true;
-                //     var id: number = this.testOpenCard();
-                //     this.showCard(id);
-                //     this._boxWaiting.visible = false;
-                // })
                 e.stopPropagation();
                 Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [localStorage.getItem('uuid'), "", null], "id": 67 }, "POST", null, function (data) {
                     console.info(data)
@@ -113,6 +107,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
             UITools.resetGray(this._btnOpen)
             this.mouseEnabled = true;
             this._boxWaiting.visible = false;
+            Laya.timer.clearAll(this)
         } else {
             if (!this._boxWaiting.visible) {
                 this.mouseEnabled = false;
@@ -128,7 +123,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
     private getReceiptByLoop(info: any) {//轮询查询收据
         Laya.timer.loop(1000, this, function () {
             if (this.requestNum > 180) {
-                this.onerror()
+                this.onNetError()
                 this.requestNum = 0
                 return
             }
@@ -184,6 +179,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
         this.mouseEnabled = true;
         this._boxWaiting.visible = false;
         UITools.resetGray(this._btnOpen)
+        Laya.timer.clearAll(this)
     }
 
     private showCard(id: number): void {

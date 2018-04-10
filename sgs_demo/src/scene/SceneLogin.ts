@@ -136,6 +136,7 @@ class SceneLogin extends Laya.View {
             this.initLoading()
         }
         if (success) {
+            Laya.timer.clearAll(this)
             this.loadingBox.removeSelf()
         } else {
             this.loadingBox.visible = true
@@ -184,7 +185,6 @@ class SceneLogin extends Laya.View {
 * @param makeNew
 */
     getDeviceUUID(): string {
-
         var uuid: string = localStorage.getItem('uuid');
         if (!uuid) {
             uuid = StringUtils.makeRandomString(32);
