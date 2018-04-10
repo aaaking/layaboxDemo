@@ -101,16 +101,16 @@ class MyCard extends ui.cards.BaseCardListUI {
         this.checkTab();
     }
     private checkTab(): void {
-         this.setList(this._tab.selectedIndex+1);
+        this.setList(this._tab.selectedIndex + 1);
     }
 
     private onResize(e: Laya.Event = null): void {
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
-        this._columeCount = Math.floor((this.width - 190 - MyCard.CARD_WIDTH) / (MyCard.CARD_WIDTH + MyCard.LIST_SPACE));
+        this._list.width = this.width - 10 - 10 - 20 - this._tab.width - 100
+        this._columeCount = Math.floor((this._list.width - 190 - MyCard.CARD_WIDTH) / (MyCard.CARD_WIDTH + MyCard.LIST_SPACE));
         this._list.scrollBar.value = 0;
-        this._list.width = (MyCard.CARD_WIDTH + MyCard.LIST_SPACE) * this._columeCount + MyCard.CARD_WIDTH;
-        this._list.x = this.width - this._list.width >> 1;
+        this._list.x = (this.width - this._tab.width - 10) - this._list.width + MyCard.LIST_SPACE >> 1;
         this.setList(this._tab.selectedIndex + 1);
         this._btnBack.on(Laya.Event.CLICK, this, this.onTouch);
     }

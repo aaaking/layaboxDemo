@@ -59,6 +59,10 @@ class CardPackageManager {
             let result1: string = this.toAscii(result)
             let cards: any[] = result1.split(",")
             cards.pop()
+            // cards = cards.concat(cards)//测试代码
+            // cards = cards.concat(cards)
+            // cards = cards.concat(cards)
+            // cards = cards.concat(cards)
             for (var k in cards) {
                 let v = cards[k]
                 let arr = v.split(":")

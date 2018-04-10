@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":7,
+    "selecteID":5,
     "props":{"width":1280,"sceneColor":"#000000","height":720},
     "nodeParent":-1,
     "label":"View",
@@ -54,7 +54,7 @@
         {
             "x":15,
             "type":"List",
-            "props":{"y":95,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":25,"spaceX":25,"left":10,"height":570},
+            "props":{"y":95,"x":10,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":25,"spaceX":25,"height":570},
             "nodeParent":1,
             "label":"List(_list)",
             "isDirectory":false,
