@@ -38,7 +38,6 @@ class ExchangeCard extends Card {
     public updata(): void {
         super.updata();
             this._icon.skin = "cards/" + this.dataSource.cfg.icon + ".png";
-        
             this._imgName.visible = true;
             this._imgName.skin = "cardsname/" + this.dataSource.cfg.icon + ".png";
         this._labPrice.text = this.dataSource.price;
