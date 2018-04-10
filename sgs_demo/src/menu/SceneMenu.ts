@@ -71,7 +71,7 @@ module menu {
                     Warehouse.instance.show(this);
                     break;
                 case this._btnCardPackage:
-                    CardPackage.instance.show(this);
+                    MyCard.instance.show(this);
                     break;
                 case this._btnShowcard:
                     ShowCard.instance.show(this);

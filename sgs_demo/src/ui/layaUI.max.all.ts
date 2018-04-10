@@ -9,7 +9,7 @@ module ui.cardPackage {
 		public _btnSortNormal:Laya.Button;
 		public _btnSortCamp:Laya.Button;
 
-        public static  uiView:any ={"type":"View","props":{"width":1280,"height":400},"child":[{"type":"Image","props":{"var":"bg","skin":"menu/bg.jpg","centerY":0,"centerX":0}},{"type":"Button","props":{"y":0,"x":7,"var":"_btnBack","stateNum":2,"skin":"menu/btn_back.png"}},{"type":"Image","props":{"y":0,"x":134,"skin":"menu/logo_cards_my.png"}},{"type":"List","props":{"y":95,"x":10,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":28,"spaceX":28,"height":545}},{"type":"Button","props":{"y":110,"x":10,"var":"_btnSortNormal","skin":"comp/button.png","scaleY":2,"scaleX":2,"right":20,"label":"全"}},{"type":"Button","props":{"y":190,"x":10,"var":"_btnSortCamp","skin":"comp/button.png","scaleY":2,"scaleX":2,"right":20,"label":"阵营"}}]};
+        public static  uiView:any ={"type":"View","props":{"width":1280,"height":720},"child":[{"type":"Image","props":{"var":"bg","skin":"menu/bg.jpg","centerY":0,"centerX":0}},{"type":"Button","props":{"y":0,"x":7,"var":"_btnBack","stateNum":2,"skin":"menu/btn_back.png"}},{"type":"Image","props":{"y":0,"x":134,"skin":"menu/logo_cards_my.png"}},{"type":"List","props":{"y":95,"x":10,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":28,"spaceX":28,"height":545}},{"type":"Button","props":{"y":110,"x":10,"var":"_btnSortNormal","skin":"comp/button.png","scaleY":2,"scaleX":2,"right":20,"label":"全"}},{"type":"Button","props":{"y":190,"x":10,"var":"_btnSortCamp","skin":"comp/button.png","scaleY":2,"scaleX":2,"right":20,"label":"阵营"}}]};
         constructor(){ super()}
         createChildren():void {
         
@@ -38,6 +38,26 @@ module ui.cardPackage {
         
             super.createChildren();
             this.createView(ui.cardPackage.SellCardUI.uiView);
+
+        }
+
+    }
+}
+
+module ui.cards {
+    export class BaseCardListUI extends View {
+		public _btnBack:runtime.RuntimeClickBtn;
+		public _pageName:Laya.Image;
+		public _list:Laya.List;
+		public _tab:Laya.Tab;
+
+        public static  uiView:any ={"type":"View","props":{"width":1280,"height":720},"child":[{"type":"Image","props":{"skin":"menu/bg.jpg","centerY":0,"centerX":0}},{"type":"Button","props":{"x":7,"var":"_btnBack","stateNum":2,"skin":"menu/btn_back.png","runtime":"runtime.RuntimeClickBtn"}},{"type":"Image","props":{"x":134,"var":"_pageName","skin":"menu/logo_cards_my.png"}},{"type":"List","props":{"y":95,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":25,"spaceX":25,"left":10,"height":570}},{"type":"Tab","props":{"y":75,"width":102,"var":"_tab","right":10}}]};
+        constructor(){ super()}
+        createChildren():void {
+        			View.regComponent("runtime.RuntimeClickBtn",runtime.RuntimeClickBtn);
+
+            super.createChildren();
+            this.createView(ui.cards.BaseCardListUI.uiView);
 
         }
 

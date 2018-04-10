@@ -124,5 +124,14 @@ class CardPackageManager {
             return 1;
     }
 
+    public getCardsByCamp(camp: number): Array<any> {
+        if (camp == 5)
+            return this.cards;
+        else
+            return this._cards.filter((item) => {
+                var cfg: any = GameConfig.getCfgHeroById(item.id);
+                return cfg.camp == camp;
+            })
+    }
 
 }
