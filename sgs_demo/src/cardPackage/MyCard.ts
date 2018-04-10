@@ -10,8 +10,8 @@ class MyCard extends ui.cards.BaseCardListUI {
         this.initBalance()
         this.initTab()
         Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
-        // Dispatcher.on("showSellCards", this, this.onShowSellCards);
-        // Dispatcher.on("updateBag", this, this.updateBag);
+        Dispatcher.on("showSellCards", this, this.onShowSellCards);
+        Dispatcher.on("updateBag", this, this.updateBag);
     }
 
     private static _instance: MyCard;
@@ -32,6 +32,16 @@ class MyCard extends ui.cards.BaseCardListUI {
             // this._ui._list.array = ClubManager.myClubs;
             // this._list.mouseHandler = new Laya.Handler(this, this.selectList);
             this.onResize(null);
+        });
+    }
+
+    private onShowSellCards(data: any): void {
+        SellCard.instance.show(this, data);
+    }
+
+    public updateBag(): void {
+        CardPackageManager.instance.testInitCards(() => {
+            this._list.array = CardPackageManager.instance.cards;
         });
     }
 
