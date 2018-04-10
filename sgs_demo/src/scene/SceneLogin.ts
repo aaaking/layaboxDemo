@@ -87,6 +87,7 @@ class SceneLogin extends Laya.View {
 
     private gotoMenuScene() {
         if (this.resLoaded && this.netCompleted) {
+            Laya.Tween.clearAll(this._btnLogin)
             this._bgLogin.skin = menu.SceneMenu.bgMenu
             this.removeChild(this._btnLogin)
             this.removeChild(this.loadingBox)

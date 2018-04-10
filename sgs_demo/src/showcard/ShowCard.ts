@@ -57,10 +57,8 @@ class ShowCard extends ui.showcard.ShowCardUI {
                 e.stopPropagation();
                 break;
             case this._btnOpen:
-                this.mouseEnabled = false;
-                this._boxWaiting.visible = true;
-                this._boxWaiting.alpha = 0;
-                Laya.Tween.to(this._boxWaiting, { alpha: 1 }, 500, null);
+                this.showLoading(false)
+                UITools.changeGray(this._btnOpen)
                 // Laya.timer.once(5000, this, () => {
                 //     this.mouseEnabled = true;
                 //     var id: number = this.testOpenCard();
@@ -76,10 +74,8 @@ class ShowCard extends ui.showcard.ShowCardUI {
                             let info = JSON.parse(data)
                             if (info.error) {
                                 this._wait.text = "交易失败"
-                                Laya.timer.once(2000, this, function () {
-                                    this.mouseEnabled = true;
-                                    // this.showCard(id);
-                                    this._boxWaiting.visible = false;
+                                Laya.timer.once(1500, this, function () {
+                                    this.onNetError(info)
                                 })
                             } else {
                                 this._wait.text = "正在开卡中请等待..."
@@ -89,9 +85,6 @@ class ShowCard extends ui.showcard.ShowCardUI {
                                         let cardsinfo = JSON.parse(data)
                                         if (cardsinfo.result) {
                                             Laya.timer.clearAll(this)
-                                            this.mouseEnabled = true;
-                                            // this.showCard(id);
-                                            this._boxWaiting.visible = false;
                                             Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_call, "params": [{ "from": localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0x179a074f" }, "latest"], "id": 67 }, "POST", null, function (data) {
                                                 console.info(data)
                                                 var info = JSON.parse(data)
@@ -108,27 +101,28 @@ class ShowCard extends ui.showcard.ShowCardUI {
                                                     var count = arr[1]
                                                     if (parseInt(count) > 0) {
                                                         if (CardPackageManager.instance.getCountByID(id) >= 0) {
-                                                            if (parseInt(count) - CardPackageManager.instance.getCountByID(id) == 1) {
+                                                            if (parseInt(count) - CardPackageManager.instance.getCountByID(id) == 1) {//新开的比原有的多一张的话就是开的这张卡
+                                                                this.showLoading(true);
                                                                 this.showCard(id);
                                                                 CardPackageManager.instance.addCountByID(id)
                                                                 break
                                                             }
+                                                        } else {
+                                                            this.onNetError()
+                                                            break
                                                         }
-                                                        // }else{
-                                                        //     this.showCard(id);
-                                                        //     break
-                                                        // } 
                                                     }
                                                 }
-
-                                            }.bind(this))
+                                            }.bind(this), this.onNetError.bind(this))
                                         }
-                                    }.bind(this))
+                                    }.bind(this), this.onNetError.bind(this))
                                 })
                             }
-                        }.bind(this))
+                        }.bind(this), this.onNetError.bind(this))
+                    } else {
+                        this.onNetError(data)
                     }
-                }.bind(this))
+                }.bind(this), this.onNetError.bind(this))
                 break;
 
             case this:
@@ -147,6 +141,27 @@ class ShowCard extends ui.showcard.ShowCardUI {
 
     private testOpenCard(): number {
         return Math.floor(Math.random() * 25) + 0;
+    }
+
+    private showLoading(success: boolean) {
+        if (success) {
+            UITools.resetGray(this._btnOpen)
+            this.mouseEnabled = true;
+            this._boxWaiting.visible = false;
+        } else {
+            if (!this._boxWaiting.visible) {
+                this.mouseEnabled = false;
+                this._boxWaiting.visible = true;
+                this._boxWaiting.alpha = 0;
+                Laya.Tween.to(this._boxWaiting, { alpha: 1 }, 500, null);
+            }
+        }
+    }
+
+    private onNetError(error?: any) {
+        this.mouseEnabled = true;
+        this._boxWaiting.visible = false;
+        UITools.resetGray(this._btnOpen)
     }
 
     private showCard(id: number): void {
