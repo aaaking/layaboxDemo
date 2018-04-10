@@ -4,11 +4,6 @@
 class Warehouse extends ui.warehouse.WarehouseUI {
     constructor() {
         super();
-        // this._mask.width = Laya.stage.width;
-        // this._mask.height = Laya.stage.height;
-        // this._mask.on(Laya.Event.CLICK, this, this.onTouch);
-        this._btnBack.on(Laya.Event.CLICK, this, this.onTouch);
-       
         Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
         this._tab.removeChildren();
         this._tab.initItems();
@@ -93,6 +88,7 @@ class Warehouse extends ui.warehouse.WarehouseUI {
     private onResize(e: Laya.Event = null): void {
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
+        this._btnBack.on(Laya.Event.CLICK, this, this.onTouch);
         var tmp: number = Math.floor((this.width - 190 - 196) / (196 + 28));
         this._list.width = (196 + 28) * tmp + 196;
         this._list.x = this.width - this._list.width >> 1;

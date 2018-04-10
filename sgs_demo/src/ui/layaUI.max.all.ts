@@ -3,13 +3,12 @@ import View=laya.ui.View;
 import Dialog=laya.ui.Dialog;
 module ui.cardPackage {
     export class CardPackageUI extends View {
-		public _mask:Laya.Image;
 		public _btnBack:Laya.Button;
 		public _list:Laya.List;
 		public _btnSortNormal:Laya.Button;
 		public _btnSortCamp:Laya.Button;
 
-        public static  uiView:any ={"type":"View","props":{"width":1280,"height":400},"child":[{"type":"Image","props":{"y":10,"x":10,"var":"_mask","top":0,"skin":"comp/blank.png","right":0,"mouseThrough":false,"mouseEnabled":true,"left":0,"bottom":0}},{"type":"Image","props":{"skin":"menu/bg.jpg"}},{"type":"Button","props":{"y":1,"x":7,"var":"_btnBack","stateNum":1,"skin":"menu/btn_back.png"}},{"type":"Image","props":{"y":9,"x":134,"skin":"menu/img_title_1.png"}},{"type":"List","props":{"y":95,"x":10,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":28,"spaceX":28,"height":545}},{"type":"Button","props":{"y":110,"x":10,"var":"_btnSortNormal","skin":"comp/button.png","scaleY":2,"scaleX":2,"right":20,"label":"全"}},{"type":"Button","props":{"y":190,"x":10,"var":"_btnSortCamp","skin":"comp/button.png","scaleY":2,"scaleX":2,"right":20,"label":"阵营"}}]};
+        public static  uiView:any ={"type":"View","props":{"width":1280,"height":400},"child":[{"type":"Image","props":{"skin":"menu/bg.jpg"}},{"type":"Button","props":{"y":1,"x":7,"var":"_btnBack","stateNum":1,"skin":"menu/btn_back.png"}},{"type":"Image","props":{"y":9,"x":134,"skin":"menu/img_title_1.png"}},{"type":"List","props":{"y":95,"x":10,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":28,"spaceX":28,"height":545}},{"type":"Button","props":{"y":110,"x":10,"var":"_btnSortNormal","skin":"comp/button.png","scaleY":2,"scaleX":2,"right":20,"label":"全"}},{"type":"Button","props":{"y":190,"x":10,"var":"_btnSortCamp","skin":"comp/button.png","scaleY":2,"scaleX":2,"right":20,"label":"阵营"}}]};
         constructor(){ super()}
         createChildren():void {
         

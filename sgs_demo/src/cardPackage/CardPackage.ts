@@ -4,9 +4,6 @@
 class CardPackage extends ui.cardPackage.CardPackageUI {
     constructor() {
         super();
-        this._mask.width = Laya.stage.width;
-        this._mask.height = Laya.stage.height;
-        this._mask.on(Laya.Event.CLICK, this, this.onTouch);
         this._btnBack.on(Laya.Event.CLICK, this, this.onTouch);
         this._btnSortNormal.on(Laya.Event.CLICK, this, this.onTouch);
         this._btnSortCamp.on(Laya.Event.CLICK, this, this.onTouch);
