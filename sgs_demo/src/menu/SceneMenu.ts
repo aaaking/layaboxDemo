@@ -4,26 +4,15 @@ module menu {
         _yPos = 335//卡片中心距离顶部的距离
         _circleDis = 435//相邻卡片的中心距离
         _btnShowcard: Laya.Button
-        static _skinOpenCard: string = "menu/menu_openCard.png"
         _btnWarehouse: Laya.Button
-        static _skinWareHouse: string = "menu/menu_wareHouse.png"
         _btnCardPackage: Laya.Button
-        static _skinMyCard: string = "menu/menu_myCard.png"
         _btnBankExchange: Laya.Button
+        static _skinOpenCard: string = "menu/menu_openCard.png"
+        static _skinMyCard: string = "menu/menu_myCard.png"
         static _skinExchange: string = "menu/menu_exchange.png"
         static bgMenu: string = "menu/img_bg.jpg"
-        static MENU_AVATOR: string = "menu/menu_avator.png"
-        static MENU_ICON_BALANCE: string = "menu/menu_icon_balance.png"
-        static BTN_BACK: string = "menu/btn_back.png"
         static BG: string = "menu/bg.jpg"
-        static icon_camp_1: string = "menu/icon_camp_1.png"
-        static icon_camp_2: string = "menu/icon_camp_2.png"
-        static icon_camp_3: string = "menu/icon_camp_3.png"
-        static icon_camp_4: string = "menu/icon_camp_4.png"
-        static icon_camp_5: string = "menu/icon_camp_5.png"
-        static logo_cards_exchange: string = "menu/logo_cards_exchange.png"
-        static logo_cards_my: string = "menu/logo_cards_my.png"
-        static logo_cards_warehouse: string = "menu/logo_cards_warehouse.png"
+        static BG2: string = "menu/bg_2.jpg"
         static cards_bottom: string = "menu/cards_bottom.png"
         private constructor() {
             super()
@@ -113,7 +102,7 @@ module menu {
         private initWareHouseCard() {
             var circleToBottom = 88
             var circleToRight = 98
-            this._btnWarehouse = new menu.MenuCard(menu.SceneMenu._skinWareHouse)
+            this._btnWarehouse = new menu.MenuCard("menu/menu_wareHouse.png")
             this._btnWarehouse.x = Laya.stage.width - circleToRight
             this._btnWarehouse.y = Laya.stage.height - circleToBottom
             this.addChild(this._btnWarehouse)
@@ -122,7 +111,7 @@ module menu {
             var box: Laya.Box = new Laya.Box()
             box.pos(15, 15)
             this.addChild(box)
-            var image: Laya.Image = new Laya.Image(menu.SceneMenu.MENU_AVATOR)
+            var image: Laya.Image = new Laya.Image("menu/menu_avator.png")
             box.addChild(image)
             var label: Laya.Label = new Laya.Label(localStorage.getItem('uuid'))
             label.fontSize = 20
@@ -131,7 +120,7 @@ module menu {
             box.addChild(label)
         }
         private initBalance() {
-            var image: Laya.Image = new Laya.Image(menu.SceneMenu.MENU_ICON_BALANCE)
+            var image: Laya.Image = new Laya.Image("menu/menu_icon_balance.png")
             var box: Laya.Box = new Laya.Box()
             box.pos(Laya.stage.width - image.width - 16, 40)
             box.size(image.width, image.height)

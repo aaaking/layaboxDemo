@@ -31,21 +31,10 @@ class SceneLogin extends Laya.View {
             case this._btnLogin:
                 this.showLoading(false)
                 Laya.loader.load([menu.SceneMenu.bgMenu,
-                menu.SceneMenu._skinWareHouse,
                 menu.SceneMenu._skinOpenCard,
                 menu.SceneMenu._skinMyCard,
-                menu.SceneMenu.MENU_AVATOR,
-                menu.SceneMenu.MENU_ICON_BALANCE,
-                menu.SceneMenu.BTN_BACK,
                 menu.SceneMenu.BG,
-                menu.SceneMenu.icon_camp_1,
-                menu.SceneMenu.icon_camp_2,
-                menu.SceneMenu.icon_camp_3,
-                menu.SceneMenu.icon_camp_4,
-                menu.SceneMenu.icon_camp_5,
-                menu.SceneMenu.logo_cards_exchange,
-                menu.SceneMenu.logo_cards_my,
-                menu.SceneMenu.logo_cards_warehouse,
+                menu.SceneMenu.BG2,
                 menu.SceneMenu.cards_bottom,
                 menu.SceneMenu._skinExchange], Laya.Handler.create(this, function () {
                     this.resLoaded = true

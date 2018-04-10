@@ -105,7 +105,7 @@ class CardPackage extends ui.cardPackage.CardPackageUI {
     }
 
     private initBalance() {
-        var image: Laya.Image = new Laya.Image(menu.SceneMenu.MENU_ICON_BALANCE)
+        var image: Laya.Image = new Laya.Image("menu/menu_icon_balance.png")
         var box: Laya.Box = new Laya.Box()
         box.pos(Laya.stage.width - image.width - 16, 16)
         box.size(image.width, image.height)
