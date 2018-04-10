@@ -77,6 +77,7 @@ class SellCard extends ui.cardPackage.SellCardUI {
             return
         }
         this.showLoading(false)
+        UITools.changeGray(this._btnConfirm)
         Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [localStorage.getItem('uuid'), "", null], "id": 67 }, "POST", null, function (data) {
             console.info(data)
             Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_sendTransaction, "params": [{ "from": localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0x95bf05a4" + param }], "id": 67 }, "POST", null, function (data) {
@@ -88,6 +89,7 @@ class SellCard extends ui.cardPackage.SellCardUI {
 
     private showLoading(success: boolean) {
         if (success) {
+            UITools.resetGray(this._btnConfirm)
             Dispatcher.dispatch("updateBag")
             this.requestNum = 0
             this.requestIng = false
@@ -106,6 +108,7 @@ class SellCard extends ui.cardPackage.SellCardUI {
     }
 
     private onNetError(error?: any) {
+        UITools.resetGray(this._btnConfirm)
         Laya.timer.clearAll(this)
         this.requestNum = 0
         this.requestIng = false
