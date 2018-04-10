@@ -87,8 +87,7 @@ class CardPackage extends ui.cardPackage.CardPackageUI {
             if (camp[i].cfg.camp == currCamp) {
                 count++;
                 i++;
-            }
-            else {
+            } else {
                 currCamp++;
                 tmp = count % (this._columeCount + 1);
                 if (tmp != 0)

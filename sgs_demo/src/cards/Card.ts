@@ -10,8 +10,7 @@ class Card extends ui.cards.CardUI {
         if (this.dataSource) {
             this._icon.visible = true;
             this._icon.skin = "cards/" + this.dataSource.cfg.icon + ".png";
-        }
-        else
+        } else
             this._icon.visible = false;
     }
 }
