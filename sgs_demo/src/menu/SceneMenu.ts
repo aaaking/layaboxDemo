@@ -26,7 +26,6 @@ module menu {
             this.onResize();
             Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
             CardPackageManager.instance.testInitCards(function () {
-
             })
         }
 

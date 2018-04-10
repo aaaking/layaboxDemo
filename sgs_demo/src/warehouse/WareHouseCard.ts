@@ -32,8 +32,7 @@ class WareHouseCard extends Card {
         this._imgName.skin = "cardsname/" + this.dataSource.cfg.icon + ".png";
         if (this.dataSource.isHave) {
             this._mask.visible = false;
-        }
-        else {
+        } else {
             this._mask.visible = true;
         }
         this._labCount.text = this.dataSource.count;

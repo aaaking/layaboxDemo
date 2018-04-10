@@ -47,7 +47,6 @@ class CardPackageManager {
     };
 
     public testInitCards(callback): void {
-
         this._cards = [];
         Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_call, "params": [{ "from": localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0x179a074f" }, "latest"], "id": 67 }, "POST", null, function (data) {
             //POST http://10.225.20.161:8118?{"jsonrpc":"2.0","method":"eth_call","params":[{"from":"0x24479b7f771d6d0d6d4003257ca1043661af7bd7","to":"0xbbf97981efee7214874c304d7fed9788203cfa33","data":"0x179a074f"},"latest"],"id":67}
@@ -136,6 +135,15 @@ class CardPackageManager {
                 var cfg: any = GameConfig.getCfgHeroById(item.id);
                 return cfg.camp == camp;
             })
+    }
+
+    judgeHaveById(id: number): boolean {
+        for (var i = 0; i < this.cards.length; i++) {
+            if (this.cards[i].id == id) {
+                return true
+            }
+        }
+        return false
     }
 
 }
