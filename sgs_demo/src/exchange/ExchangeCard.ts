@@ -40,7 +40,7 @@ class ExchangeCard extends Card {
         this._imgName.visible = true;
         this._imgName.skin = "cardsname/" + this.dataSource.cfg.icon + ".png";
         this._labPrice.text = this.dataSource.price;
-        if (this.dataSource.isself) {
+        if (this.dataSource && this.dataSource.isself) {
             this._btnBuy.skin = "menu/btn_cancel.png"
             this._labPrice.visible = false
         } else {
@@ -51,22 +51,89 @@ class ExchangeCard extends Card {
     public buyCard() {
         let baseID = "0000000000000000000000000000000000000000000000000000000000000000"
         let param = baseID.substring(0, 64 - this.dataSource.id.toString(16).length) + this.dataSource.id.toString(16)
+        this.showLoading(false)
+        UITools.changeGray(this._btnBuy)
         Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [localStorage.getItem('uuid'), "", null], "id": 67 }, "POST", null, function (data) {
             console.info(data)
             Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_sendTransaction, "params": [{ "from": localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0xc70f5eaa" + param, "value": "0x" + parseInt(this.dataSource.price).toString(16) }], "id": 67 }, "POST", null, function (data) {
                 console.info(data)
-                var info = JSON.parse(data)
-                Laya.timer.loop(10000, this, function () {
-                    Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getTransactionReceipt, "params": [info.result], "id": 67 }, "POST", null, function (data) {
-                        console.info(data)
-                        let cardsinfo = JSON.parse(data)
-                        if (cardsinfo.result) {
-                            Laya.timer.clearAll(this)
-                            Dispatcher.dispatch("updateInfo");
-                        }
-                    }.bind(this))
-                })
-            }.bind(this))
-        }.bind(this))
+                this.getReceiptByLoop(JSON.parse(data))
+            }.bind(this), this.onNetError.bind(this))
+        }.bind(this), this.onNetError.bind(this))
+    }
+
+    static cancelIng = "正在撤销中..."
+    static buyIng = "正在购买中..."
+    _boxWaiting: Laya.Box
+    _wait: Laya.Label
+    private initBoxWaiting() {
+        this._boxWaiting = new Laya.Box()
+        this._boxWaiting.centerX = this._boxWaiting.centerY = 0
+        var img = new Laya.Image("menu/img_3.png")
+        this._boxWaiting.addChild(img)
+        this._wait = new Laya.Label(ExchangeCard.buyIng)
+        this._wait.centerX = this._wait.centerY = 0
+        this._wait.color = "#Ceb589"
+        this._wait.fontSize = 30
+        this._boxWaiting.addChild(this._wait)
+    }
+
+    private showLoading(success: boolean) {
+        if (!this._boxWaiting) {
+            this.initBoxWaiting()
+        }
+        if (success) {
+            UITools.resetGray(this._btnBuy)
+            this.requestNum = 0
+            this.requestIng = false
+            Exchange.instance.mouseEnabled = true;
+            this._boxWaiting.removeSelf()
+            Laya.timer.clearAll(this)
+            this.removeSelf()
+        } else {
+            if (!this._boxWaiting.parent) {
+                Exchange.instance.mouseEnabled = false;
+                this._wait.text = (this.dataSource && this.dataSource.isself) ? ExchangeCard.cancelIng : ExchangeCard.buyIng
+                Laya.stage.addChild(this._boxWaiting)
+            }
+        }
+    }
+
+    private onNetError(error?: any) {
+        UITools.resetGray(this._btnBuy)
+        Laya.timer.clearAll(this)
+        this.requestNum = 0
+        this.requestIng = false
+        Exchange.instance.mouseEnabled = true;
+        if (this._boxWaiting) {
+            this._boxWaiting.removeSelf()
+        }
+    }
+
+    requestNum = 0
+    requestIng: boolean = false
+    private getReceiptByLoop(info: any) {//轮询查询收据
+        Laya.timer.loop(1000, this, function () {
+            if (this.requestNum > 180) {
+                this.onNetError()
+                this.requestNum = 0
+                return
+            }
+            if (this.requestIng) {
+                return
+            }
+            this.requestNum++
+            this.requestIng = true
+            Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getTransactionReceipt, "params": [info.result], "id": this.requestNum }, "POST", null, function (data) {
+                console.info(data)
+                let cardsinfo = JSON.parse(data)
+                if (cardsinfo.result) {
+                    this.showLoading(true)
+                    Dispatcher.dispatch("updateInfo");
+                } else {
+                    this.requestIng = false
+                }
+            }.bind(this), this.onNetError.bind(this))
+        })
     }
 }
