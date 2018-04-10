@@ -67,7 +67,7 @@
         {
             "x":15,
             "type":"List",
-            "props":{"y":95,"x":10,"width":1142,"var":"_list","vScrollBarSkin":"comp/blank.png","spaceY":28,"spaceX":28,"height":545},
+            "props":{"y":95,"x":10,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":28,"spaceX":28,"height":545},
             "nodeParent":1,
             "label":"List(_list)",
             "isDirectory":false,
