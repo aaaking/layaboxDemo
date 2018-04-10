@@ -56,7 +56,6 @@ class ShowCard extends ui.showcard.ShowCardUI {
                 this.removeSelf();
                 e.stopPropagation();
                 break;
-
             case this._btnOpen:
                 this.mouseEnabled = false;
                 this._boxWaiting.visible = true;
@@ -68,77 +67,68 @@ class ShowCard extends ui.showcard.ShowCardUI {
                 //     this.showCard(id);
                 //     this._boxWaiting.visible = false;
                 // })
-                Laya.timer.loop(5000,this, () =>{
-
-                })
                 e.stopPropagation();
-                Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [localStorage.getItem('uuid'), "", null
-                ], "id": 67 }, "POST", null, function (data) {
+                Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [localStorage.getItem('uuid'), "", null], "id": 67 }, "POST", null, function (data) {
                     console.info(data)
-                    if(JSON.parse(data).result){
-                    Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_sendTransaction, "params": [{"from":localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0x62158099", "value":"0x20" }], "id": 67 }, "POST", null, function (data) {
-                        console.info(data)
-                        let info  = JSON.parse(data)
-                        if(info.error){
-                            this._wait.text = "交易失败"
-                            Laya.timer.once(2000,this,function(){
-                                this.mouseEnabled = true;
-                                        // this.showCard(id);
-                                this._boxWaiting.visible = false;
-                            })
-                            
-                        }else{
-                            this._wait.text = "正在开卡中请等待..."
-                        Laya.timer.loop(10000,this,function(){
-                            Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getTransactionReceipt, "params": [info.result], "id": 67 }, "POST", null, function (data) {
+                    if (JSON.parse(data).result) {
+                        Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_sendTransaction, "params": [{ "from": localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0x62158099", "value": "0x20" }], "id": 67 }, "POST", null, function (data) {
                             console.info(data)
-                                let cardsinfo = JSON.parse(data)
-                                if(cardsinfo.result){
-                                    Laya.timer.clearAll(this)
-                                        this.mouseEnabled = true;
-                                        // this.showCard(id);
-                                        this._boxWaiting.visible = false;
-                                        Ajax.callNet(GameConfig.RPC_URL,{"jsonrpc":"2.0","method":Urls.eth_call,"params":[{"from":localStorage.getItem('uuid'),"to":GameConfig.RPC_ADDRESS, "data":"0x179a074f"}, "latest"],"id":67},"POST",null,function(data){
-                                            console.info(data)
-                                            var info = JSON.parse(data)
-                                            let result = info.result.substring(130)
-                                            result = "0x"+ result 
-                                            let result1 = this.toAscii(result)
-                                            let cards = result1.split(",")
-                                            cards.pop()
-                                            for(var k in cards){
-                                                let v = cards[k]
-                                                let arr = v.split(":")
-                                                var id: number = parseInt(arr[0]);
-                                                var cfg: any = GameConfig.getCfgHeroById(id);
-                                                var count = arr[1]
-                                                if(parseInt(count) > 0 ){
-                                                    if(CardPackageManager.instance.getCountByID(id) >= 0){
-                                                        if(parseInt(count) - CardPackageManager.instance.getCountByID(id) == 1){
-                                                            this.showCard(id);
-                                                            CardPackageManager.instance.addCountByID(id)
-                                                            break
+                            let info = JSON.parse(data)
+                            if (info.error) {
+                                this._wait.text = "交易失败"
+                                Laya.timer.once(2000, this, function () {
+                                    this.mouseEnabled = true;
+                                    // this.showCard(id);
+                                    this._boxWaiting.visible = false;
+                                })
+                            } else {
+                                this._wait.text = "正在开卡中请等待..."
+                                Laya.timer.loop(10000, this, function () {
+                                    Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getTransactionReceipt, "params": [info.result], "id": 67 }, "POST", null, function (data) {
+                                        console.info(data)
+                                        let cardsinfo = JSON.parse(data)
+                                        if (cardsinfo.result) {
+                                            Laya.timer.clearAll(this)
+                                            this.mouseEnabled = true;
+                                            // this.showCard(id);
+                                            this._boxWaiting.visible = false;
+                                            Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_call, "params": [{ "from": localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0x179a074f" }, "latest"], "id": 67 }, "POST", null, function (data) {
+                                                console.info(data)
+                                                var info = JSON.parse(data)
+                                                let result = info.result.substring(130)
+                                                result = "0x" + result
+                                                let result1 = this.toAscii(result)
+                                                let cards = result1.split(",")
+                                                cards.pop()
+                                                for (var k in cards) {
+                                                    let v = cards[k]
+                                                    let arr = v.split(":")
+                                                    var id: number = parseInt(arr[0]);
+                                                    var cfg: any = GameConfig.getCfgHeroById(id);
+                                                    var count = arr[1]
+                                                    if (parseInt(count) > 0) {
+                                                        if (CardPackageManager.instance.getCountByID(id) >= 0) {
+                                                            if (parseInt(count) - CardPackageManager.instance.getCountByID(id) == 1) {
+                                                                this.showCard(id);
+                                                                CardPackageManager.instance.addCountByID(id)
+                                                                break
+                                                            }
                                                         }
+                                                        // }else{
+                                                        //     this.showCard(id);
+                                                        //     break
+                                                        // } 
                                                     }
-                                                    // }else{
-                                                    //     this.showCard(id);
-                                                    //     break
-                                                    // }
-                                                    
                                                 }
-                                                
-                                            }
-                                            
-                                        }.bind(this))
 
-                                }
-                            }.bind(this))
-                        })
-                        }
-                    }.bind(this))
-                    } 
+                                            }.bind(this))
+                                        }
+                                    }.bind(this))
+                                })
+                            }
+                        }.bind(this))
+                    }
                 }.bind(this))
-                
                 break;
 
             case this:
