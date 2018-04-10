@@ -87,6 +87,8 @@ P 7E990267 vscroll.png
 P E466EB1C vslider$bar.png
 P 2BFF7046 vslider.png
 D menu
+R 0860FF13 bg.jpg
+R C56AB1A1 bg_2.jpg
 P F0057E4C btn_4.png
 P 271F1539 btn_back.png
 P 0A35C9C2 btn_buy.png
@@ -108,14 +110,15 @@ P 129A6B8F img_4.png
 P 650C7DBE img_5.png
 R 18C3EDFD img_bg.jpg
 P 1F19226A img_input.png
-P 39DA8364 img_title_1.png
 P 31FBA1E4 img_title_2.png
-P 3C4D6382 img_title_4.png
 P D6B9BFEA logo_cards_exchange.png
 P 3A46DDB3 logo_cards_my.png
 P 4BBB527C logo_cards_warehouse.png
 P 96161170 menu_avator.png
+R CAE0C227 menu_exchange.png
 P 0BCC3DB4 menu_icon_balance.png
+R E231AB5E menu_myCard.png
+R 165854EA menu_openCard.png
 P C71BE830 menu_wareHouse.png
 D showcards
 P C7735067 0.png

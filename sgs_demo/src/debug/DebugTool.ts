@@ -25,6 +25,7 @@ class DebugTool {
         scriptDebug.src = "libs/laya.debugtool.js"
         Laya.Browser.document.body.appendChild(scriptDebug)
         scriptDebug.onload = function () {
+            Laya.Stat.show(500, 0)
             Laya.DebugPanel.init();
             Laya.DebugTool.init();
         }

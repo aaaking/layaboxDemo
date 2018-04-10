@@ -15,7 +15,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":0,"x":0,"skin":"menu/bg.jpg"},
+            "props":{"skin":"menu/bg.jpg","centerY":0,"centerX":0},
             "nodeParent":1,
             "label":"Image",
             "isDirectory":false,
@@ -29,7 +29,7 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"y":1,"x":7,"visible":true,"var":"_btnBack","stateNum":"2","skin":"menu/btn_back.png"},
+            "props":{"y":0,"x":7,"visible":true,"var":"_btnBack","stateNum":"2","skin":"menu/btn_back.png"},
             "nodeParent":1,
             "label":"Button(_btnBack)",
             "isDirectory":false,
@@ -42,7 +42,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":9,"x":134,"skin":"menu/img_title_1.png"},
+            "props":{"y":0,"x":134,"skin":"menu/logo_cards_warehouse.png"},
             "nodeParent":1,
             "label":"Image",
             "isDirectory":false,
