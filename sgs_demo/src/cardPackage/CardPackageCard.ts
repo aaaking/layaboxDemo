@@ -26,11 +26,11 @@ class CardPackageCard extends Card {
         super.updata();
         this._mask.visible = false
         if (this.dataSource) {
-            this._btnSell.visible = true;
+            this._btnSell.visible = true
+            this._labCount.text = this.dataSource.count
         } else {
-            this._btnSell.visible = false;
+            this._btnSell.visible = false
         }
-        this._labCount.text = this.dataSource.count;
     }
 
     private onTouch(e: Laya.Event): void {
