@@ -99,6 +99,10 @@ class CardPackage extends ui.cardPackage.CardPackageUI {
             }
         }
         this._list.array = camp;
+        //
+        camp.forEach((it) => {
+            console.log(it)
+        }) 
     }
 
     /***渲染单元格时的回调方法***/

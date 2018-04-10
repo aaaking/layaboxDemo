@@ -30,6 +30,7 @@ class CardPackageCard extends Card {
             this._labCount.text = this.dataSource.count
         } else {
             this._btnSell.visible = false
+            this._labCount.visible = false
         }
     }
 
