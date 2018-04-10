@@ -14,6 +14,17 @@ module menu {
         static bgMenu: string = "menu/img_bg.jpg"
         static MENU_AVATOR: string = "menu/menu_avator.png"
         static MENU_ICON_BALANCE: string = "menu/menu_icon_balance.png"
+        static BTN_BACK: string = "menu/btn_back.png"
+        static BG: string = "menu/bg.jpg"
+        static icon_camp_1: string = "menu/icon_camp_1.png"
+        static icon_camp_2: string = "menu/icon_camp_2.png"
+        static icon_camp_3: string = "menu/icon_camp_3.png"
+        static icon_camp_4: string = "menu/icon_camp_4.png"
+        static icon_camp_5: string = "menu/icon_camp_5.png"
+        static logo_cards_exchange: string = "menu/logo_cards_exchange.png"
+        static logo_cards_my: string = "menu/logo_cards_my.png"
+        static logo_cards_warehouse: string = "menu/logo_cards_warehouse.png"
+        static cards_bottom: string = "menu/cards_bottom.png"
         private constructor() {
             super()
             Laya.stage.addChild(this);

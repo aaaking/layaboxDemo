@@ -4,9 +4,6 @@
 class CardPackage extends ui.cardPackage.CardPackageUI {
     constructor() {
         super();
-        this._btnBack.on(Laya.Event.CLICK, this, this.onTouch);
-        this._btnSortNormal.on(Laya.Event.CLICK, this, this.onTouch);
-        this._btnSortCamp.on(Laya.Event.CLICK, this, this.onTouch);
         Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
         Dispatcher.on("showSellCards", this, this.onShowSellCards);
         Dispatcher.on("updateBag", this, this.updateBag);
@@ -129,5 +126,9 @@ class CardPackage extends ui.cardPackage.CardPackageUI {
         this._list.width = (196 + 28) * this._columeCount + 196;
         this._list.x = this.width - this._list.width >> 1;
         this.setList(this._sortType);
+        this._btnBack.on(Laya.Event.CLICK, this, this.onTouch);
+        this._btnSortNormal.on(Laya.Event.CLICK, this, this.onTouch);
+        this._btnSortCamp.on(Laya.Event.CLICK, this, this.onTouch);
+        this.bg.centerX = this.bg.centerY = 0
     }
 }

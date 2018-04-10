@@ -3,12 +3,13 @@ import View=laya.ui.View;
 import Dialog=laya.ui.Dialog;
 module ui.cardPackage {
     export class CardPackageUI extends View {
+		public bg:Laya.Image;
 		public _btnBack:Laya.Button;
 		public _list:Laya.List;
 		public _btnSortNormal:Laya.Button;
 		public _btnSortCamp:Laya.Button;
 
-        public static  uiView:any ={"type":"View","props":{"width":1280,"height":400},"child":[{"type":"Image","props":{"skin":"menu/bg.jpg"}},{"type":"Button","props":{"y":1,"x":7,"var":"_btnBack","stateNum":1,"skin":"menu/btn_back.png"}},{"type":"Image","props":{"y":9,"x":134,"skin":"menu/img_title_1.png"}},{"type":"List","props":{"y":95,"x":10,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":28,"spaceX":28,"height":545}},{"type":"Button","props":{"y":110,"x":10,"var":"_btnSortNormal","skin":"comp/button.png","scaleY":2,"scaleX":2,"right":20,"label":"全"}},{"type":"Button","props":{"y":190,"x":10,"var":"_btnSortCamp","skin":"comp/button.png","scaleY":2,"scaleX":2,"right":20,"label":"阵营"}}]};
+        public static  uiView:any ={"type":"View","props":{"width":1280,"height":400},"child":[{"type":"Image","props":{"var":"bg","skin":"menu/bg.jpg"}},{"type":"Button","props":{"y":1,"x":7,"var":"_btnBack","stateNum":2,"skin":"menu/btn_back.png"}},{"type":"Image","props":{"y":9,"x":134,"skin":"menu/img_title_1.png"}},{"type":"List","props":{"y":95,"x":10,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":28,"spaceX":28,"height":545}},{"type":"Button","props":{"y":110,"x":10,"var":"_btnSortNormal","skin":"comp/button.png","scaleY":2,"scaleX":2,"right":20,"label":"全"}},{"type":"Button","props":{"y":190,"x":10,"var":"_btnSortCamp","skin":"comp/button.png","scaleY":2,"scaleX":2,"right":20,"label":"阵营"}}]};
         constructor(){ super()}
         createChildren():void {
         
@@ -67,7 +68,7 @@ module ui.exchange {
 		public _list:Laya.List;
 		public _tab:Laya.Tab;
 
-        public static  uiView:any ={"type":"View","props":{"width":1280,"visible":true,"height":720},"child":[{"type":"Image","props":{"y":20,"x":20,"var":"_mask","top":0,"skin":"comp/blank.png","right":0,"mouseThrough":false,"mouseEnabled":true,"left":0,"bottom":0}},{"type":"Image","props":{"y":0,"x":0,"skin":"menu/bg.jpg"}},{"type":"Button","props":{"y":1,"x":7,"var":"_btnBack","stateNum":1,"skin":"menu/btn_back.png"}},{"type":"Image","props":{"y":2,"x":124,"skin":"menu/img_title_4.png"}},{"type":"List","props":{"y":95,"x":0,"width":1142,"var":"_list","vScrollBarSkin":"comp/blank.png","spaceY":28,"spaceX":28,"height":545}},{"type":"Tab","props":{"y":63,"width":87,"var":"_tab","right":0}}]};
+        public static  uiView:any ={"type":"View","props":{"width":1280,"visible":true,"height":720},"child":[{"type":"Image","props":{"y":20,"x":20,"var":"_mask","top":0,"skin":"comp/blank.png","right":0,"mouseThrough":false,"mouseEnabled":true,"left":0,"bottom":0}},{"type":"Image","props":{"y":0,"x":0,"skin":"menu/bg.jpg"}},{"type":"Button","props":{"y":1,"x":7,"var":"_btnBack","stateNum":2,"skin":"menu/btn_back.png"}},{"type":"Image","props":{"y":2,"x":124,"skin":"menu/img_title_4.png"}},{"type":"List","props":{"y":95,"x":0,"width":1142,"var":"_list","vScrollBarSkin":"comp/blank.png","spaceY":28,"spaceX":28,"height":545}},{"type":"Tab","props":{"y":63,"width":87,"var":"_tab","right":0}}]};
         constructor(){ super()}
         createChildren():void {
         
@@ -91,7 +92,7 @@ module ui.showcard {
 		public _boxWaiting:Laya.Box;
 		public _wait:Laya.Label;
 
-        public static  uiView:any ={"type":"View","props":{"width":600,"height":720},"child":[{"type":"Image","props":{"y":0,"x":0,"var":"_mask","top":0,"skin":"comp/blank.png","right":0,"mouseThrough":false,"mouseEnabled":true,"left":0,"bottom":0}},{"type":"Image","props":{"skin":"menu/bg_2.jpg","centerY":0,"centerX":0}},{"type":"Image","props":{"y":20,"var":"_imgBg","skin":"menu/img_4.png","centerX":0}},{"type":"Image","props":{"y":30,"x":90,"var":"_imgIcon","skin":"showcards/1.png","centerX":0}},{"type":"Button","props":{"var":"_btnOpen","stateNum":1,"skin":"menu/btn_showcard.png","centerX":0,"bottom":30},"child":[{"type":"Label","props":{"y":30,"x":79,"width":35,"var":"_labCost","text":"20","height":20,"fontSize":20,"color":"#ffffff","align":"center"}}]},{"type":"Button","props":{"y":20,"x":20,"var":"_btnBack","stateNum":1,"skin":"menu/btn_back.png"}},{"type":"Label","props":{"var":"_labTip","text":"点击屏幕继续","fontSize":30,"color":"#Ceb589","centerY":280,"centerX":0}},{"type":"Box","props":{"y":10,"x":10,"var":"_boxWaiting","centerY":0,"centerX":0},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"menu/img_3.png"}},{"type":"Label","props":{"var":"_wait","text":"正在开卡中请等待...","fontSize":30,"color":"#Ceb589","centerY":0,"centerX":0}}]}]};
+        public static  uiView:any ={"type":"View","props":{"width":600,"height":720},"child":[{"type":"Image","props":{"y":0,"x":0,"var":"_mask","top":0,"skin":"comp/blank.png","right":0,"mouseThrough":false,"mouseEnabled":true,"left":0,"bottom":0}},{"type":"Image","props":{"skin":"menu/bg_2.jpg","centerY":0,"centerX":0}},{"type":"Image","props":{"y":20,"var":"_imgBg","skin":"menu/img_4.png","centerX":0}},{"type":"Image","props":{"y":30,"x":90,"var":"_imgIcon","skin":"showcards/1.png","centerX":0}},{"type":"Button","props":{"var":"_btnOpen","stateNum":1,"skin":"menu/btn_showcard.png","centerX":0,"bottom":30},"child":[{"type":"Label","props":{"y":30,"x":79,"width":35,"var":"_labCost","text":"20","height":20,"fontSize":20,"color":"#ffffff","align":"center"}}]},{"type":"Button","props":{"y":20,"x":20,"var":"_btnBack","stateNum":2,"skin":"menu/btn_back.png"}},{"type":"Label","props":{"var":"_labTip","text":"点击屏幕继续","fontSize":30,"color":"#Ceb589","centerY":280,"centerX":0}},{"type":"Box","props":{"y":10,"x":10,"var":"_boxWaiting","centerY":0,"centerX":0},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"menu/img_3.png"}},{"type":"Label","props":{"var":"_wait","text":"正在开卡中请等待...","fontSize":30,"color":"#Ceb589","centerY":0,"centerX":0}}]}]};
         constructor(){ super()}
         createChildren():void {
         
@@ -109,7 +110,7 @@ module ui.warehouse {
 		public _list:Laya.List;
 		public _tab:Laya.Tab;
 
-        public static  uiView:any ={"type":"View","props":{"width":1280,"visible":true,"height":720},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"menu/bg.jpg"}},{"type":"Button","props":{"y":1,"x":7,"visible":true,"var":"_btnBack","stateNum":1,"skin":"menu/btn_back.png"}},{"type":"Image","props":{"y":9,"x":134,"skin":"menu/img_title_1.png"}},{"type":"List","props":{"y":95,"x":0,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":28,"spaceX":28,"height":545}},{"type":"Tab","props":{"y":63,"width":87,"var":"_tab","right":0}}]};
+        public static  uiView:any ={"type":"View","props":{"width":1280,"visible":true,"height":720},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"menu/bg.jpg"}},{"type":"Button","props":{"y":1,"x":7,"visible":true,"var":"_btnBack","stateNum":2,"skin":"menu/btn_back.png"}},{"type":"Image","props":{"y":9,"x":134,"skin":"menu/img_title_1.png"}},{"type":"List","props":{"y":95,"x":0,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":28,"spaceX":28,"height":545}},{"type":"Tab","props":{"y":63,"width":87,"var":"_tab","right":0}}]};
         constructor(){ super()}
         createChildren():void {
         
