@@ -41,7 +41,7 @@ class ExchangeCard extends Card {
         this._imgName.skin = "cardsname/" + this.dataSource.cfg.icon + ".png";
         this._labPrice.text = this.dataSource.price;
         if (this.dataSource && this.dataSource.isself) {
-            this._btnBuy.skin = "menu/btn_cancel.png"
+            this._btnBuy.skin = "menu/btn_undo.png"
             this._labPrice.visible = false
         } else {
             this._btnBuy.skin = "menu/btn_buy.png"
