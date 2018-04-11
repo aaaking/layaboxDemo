@@ -53,7 +53,7 @@ class WareHouseManager {
                 var cfg: any = GameConfig.getCfgHeroById(id);
                 var count = arr[1]
                 var isHave = false
-                var star: number = Math.floor(Math.random() * 10 + 1)
+                var star: number = Math.floor(Math.random() * 8 + 3)
                 if (CardPackageManager.instance.cards) {
                     if (CardPackageManager.instance.judgeHaveById(id))
                         isHave = true
