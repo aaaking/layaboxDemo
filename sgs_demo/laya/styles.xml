@@ -1,12 +1,12 @@
 <res>
-   <item name="menu/bg.jpg" type="Image" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
-   <item name="menu/img_2.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="menu/bg.jpg" type="Image" compress="0" pack="0" quality="80" props="" picType="0" scale="0"/>
+   <item name="menu/img_2.png" type="Image" compress="0" pack="0" quality="80" props="" picType="0" scale="0"/>
    <item name="menu/img_3.png" type="Image" compress="0" pack="0" quality="80" props="" picType="0" scale="0"/>
-   <item name="menu/bg_2.jpg" type="Image" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="menu/bg_2.jpg" type="Image" compress="0" pack="0" quality="80" props="" picType="0" scale="0"/>
    <item name="showcards" type="" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
    <item name="showcards/1.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
    <item name="showcards/2.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
-   <item name="menu/img_4.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="menu/img_4.png" type="Image" compress="0" pack="0" quality="80" props="" picType="0" scale="0"/>
    <item name="login/img_bg.jpg" type="Image" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
    <item name="showcards/0.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
    <item name="showcards/10.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
