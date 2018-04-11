@@ -78,14 +78,6 @@ class CardPackageManager {
             console.info(this._cards)//[]
             callback();
         }.bind(this))
-        // for (var i: number = 0; i < 20; i++) {
-        //     var id: number = Math.floor(Math.random() * 25) + 0;
-        //     var cfg: any = GameConfig.getCfgHeroById(id);
-        //     var t: any = {
-        //         id, cfg
-        //     }
-        //     this._cards.push(t);
-        // }
     }
 
     public get cards(): Array<any> {

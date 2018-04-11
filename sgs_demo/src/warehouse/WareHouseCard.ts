@@ -2,6 +2,8 @@
 * name;
 */
 class WareHouseCard extends Card {
+    _canSee = false
+    _originalY = 0
     constructor() {
         super();
         this._imgName = new Laya.Image();
@@ -20,7 +22,9 @@ class WareHouseCard extends Card {
         this.on(Laya.Event.MOUSE_UP, this, runtime.RuntimeClickBtn.normalBig, [this]);
         this.on(Laya.Event.MOUSE_OUT, this, runtime.RuntimeClickBtn.normalBig, [this]);
         this.on(Laya.Event.CLICK, this, this.clickCard)
-        this.pos(this.x + (this.width / 2), this.y + (this.height / 2))
+        this.x = this.x + (this.width / 2)
+        this.y = this.y + (this.height / 2)
+        console.log("constructor data:" + this.y) // data is null
         this.anchorX = this.anchorY = 0.5
     }
     private _imgName: Laya.Image;
@@ -28,14 +32,24 @@ class WareHouseCard extends Card {
 
     public updata(): void {
         super.updata();
-        this._icon.skin = "cards/" + this.dataSource.cfg.icon + ".png";
-        this._imgName.skin = "cardsname/" + this.dataSource.cfg.icon + ".png";
-        if (this.dataSource.isHave) {
-            this._mask.visible = false;
+        if (this.dataSource) {
+            this._mask.visible = !this.dataSource.isHave
+            this._labCount.text = this.dataSource.count
+            this._icon.skin = "cards/" + this.dataSource.cfg.icon + ".png";
+            this._imgName.skin = "cardsname/" + this.dataSource.cfg.icon + ".png"
+            if (!this.dataSource.hasRendered) {
+                this._originalY = this.y
+                this.dataSource.originalY = this.y
+                this.dataSource.hasRendered = true
+            }
+            // this.y = this.dataSource.originalY + (1 + 10 - this.dataSource.star) * Warehouse.STAR_TITLE_HEIGHT
+            console.log(this.dataSource + "   y:" + this.y + " this.dataSource.originalY:" + this.dataSource.originalY)
+            if (!this._canSee) {
+                this._canSee = true
+            }
         } else {
-            this._mask.visible = true;
+
         }
-        this._labCount.text = this.dataSource.count;
     }
 
     private clickCard(e: Laya.Event) {

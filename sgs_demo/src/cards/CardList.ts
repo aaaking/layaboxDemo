@@ -2,10 +2,11 @@ class CardList extends ui.cards.BaseCardListUI {
     static LIST_SPACE = 25
     static CARD_WIDTH = 196
     static CARD_HEIGHT = 274
-    _columeCount: number;
+    static _columeCount: number;
     constructor() {
         super()
         this._list.scrollBar.visible = false;
+        this._list.repeatY = 8
         this.initBackBtn()
         this.initBalance()
         this.initTab()
@@ -36,11 +37,30 @@ class CardList extends ui.cards.BaseCardListUI {
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
         this._list.width = this.width - 10 - 10 - 20 - this._tab.width - 100
-        this._columeCount = Math.floor((this._list.width - 190 - MyCard.CARD_WIDTH) / (MyCard.CARD_WIDTH + MyCard.LIST_SPACE));
+        CardList._columeCount = Math.floor(this._list.width / (MyCard.CARD_WIDTH + MyCard.LIST_SPACE));
         this._list.scrollBar.value = 0;
-        this._list.x = (this.width - this._tab.width - 10) - this._list.width + MyCard.LIST_SPACE >> 1;
-        this.setList(this._tab.selectedIndex + 1);
+        var oneRowCardWidth = (MyCard.CARD_WIDTH + MyCard.LIST_SPACE) * CardList._columeCount
+        var remain = this._list.width - oneRowCardWidth
+        console.log("this._list.width:" + this._list.width + "  oneRowCardWidth:" + oneRowCardWidth + "  this._list.repeatX:" + this._list.repeatX)
+        this._list.x = (this.width - this._tab.width - 10) - this._list.width + remain >> 1;
         this._btnBack.on(Laya.Event.CLICK, this, this.onTouch);
+
+        if (this instanceof Warehouse  && this._list.repeatX != CardList._columeCount || !this._list.array || this._list.array.length <= 0) {//只针对“图鉴”页
+            this._list.repeatX = CardList._columeCount
+            WareHouseManager.instance._originalCards = (Constants.concatListBeforeFill())//原始数据
+            Constants.fillUp()
+            WareHouseManager.instance._cards = Constants.concatListAfterFill()//补充空数据后的集合
+            console.info(WareHouseManager.instance._originalCards)
+            console.info(WareHouseManager.instance._cards);
+            // this._list.y = this._list.y - 800;
+            // (this._list.getChildAt(0) as Laya.Box).y = (this._list.getChildAt(0) as Laya.Box).y + 800
+            // console.log("list height: " + this._list.height + "   this._list.box height:" + (this._list.getChildAt(0) as Laya.Box).height)
+            // this._list.setContentSize(this._list.width, this._list.height * 2.5 + 800)
+            this._list.array = WareHouseManager.instance._cards;
+        } else {
+            this._list.repeatX = CardList._columeCount
+        }
+        this.setList(this._tab.selectedIndex + 1);
     }
 
     private initTab() {
