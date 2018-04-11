@@ -92,4 +92,8 @@ class StringUtils {
 		name = "props/" + name + ".png";
 		return name
 	}
+
+	static isEmptyOrSpace(str: string) {
+		return !str || str.trim().length <= 0
+	}
 }

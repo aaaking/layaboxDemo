@@ -5,9 +5,6 @@ class ShowCard extends ui.showcard.ShowCardUI {
     constructor() {
         super();
         this.initBalance()
-        this._mask.width = Laya.stage.width;
-        this._mask.height = Laya.stage.height;
-        this._mask.on(Laya.Event.CLICK, this, this.onTouch);
         this._btnOpen.on(Laya.Event.CLICK, this, this.onTouch);
         this._btnBack.on(Laya.Event.CLICK, this, this.onTouch);
         Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
@@ -28,11 +25,11 @@ class ShowCard extends ui.showcard.ShowCardUI {
             parent.addChild(ShowCard.instance);
 
         this.mouseEnabled = true;
-        Laya.Tween.clearAll(this._boxWaiting);
+        // Laya.Tween.clearAll(this._boxWaiting);
         Laya.Tween.clearAll(this._labTip);
         Laya.timer.clearAll(this);
         this._btnOpen.visible = this._imgBg.visible = true;
-        this._imgIcon.visible = this._labTip.visible = this._boxWaiting.visible = false;
+        this._imgIcon.visible = this._labTip.visible = false//this._boxWaiting.visible = false;
         this.off(Laya.Event.CLICK, this, this.onTouch);
         this.onResize(null);
     }
@@ -60,7 +57,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
             case this._btnOpen:
                 this.showLoading(false)
                 UITools.changeGray(this._btnOpen)
-                e.stopPropagation();
+                e.stopPropagation()
                 Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [localStorage.getItem('uuid'), "", null], "id": 67 }, "POST", null, function (data) {
                     console.info(data)
                     if (JSON.parse(data).result) {
@@ -106,14 +103,19 @@ class ShowCard extends ui.showcard.ShowCardUI {
             this.requestIng = false
             UITools.resetGray(this._btnOpen)
             this.mouseEnabled = true;
-            this._boxWaiting.visible = false;
+            // this._boxWaiting.visible = false;
             Laya.timer.clearAll(this)
+            Loading.instance.hide()
         } else {
-            if (!this._boxWaiting.visible) {
+            // if (!this._boxWaiting.visible) {
+            //     this.mouseEnabled = false;
+            //     this._boxWaiting.visible = true;
+            //     this._boxWaiting.alpha = 0;
+            //     Laya.Tween.to(this._boxWaiting, { alpha: 1 }, 500, null);
+            // }
+            if (!Loading.instance.parent) {
                 this.mouseEnabled = false;
-                this._boxWaiting.visible = true;
-                this._boxWaiting.alpha = 0;
-                Laya.Tween.to(this._boxWaiting, { alpha: 1 }, 500, null);
+                Loading.instance.show()
             }
         }
     }
@@ -177,8 +179,9 @@ class ShowCard extends ui.showcard.ShowCardUI {
         this.requestNum = 0
         this.requestIng = false
         this.mouseEnabled = true;
-        this._boxWaiting.visible = false;
+        // this._boxWaiting.visible = false;
         UITools.resetGray(this._btnOpen)
+        Loading.instance.hide()
         Laya.timer.clearAll(this)
     }
 
