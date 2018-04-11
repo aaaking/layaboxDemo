@@ -36,6 +36,14 @@ class SceneLogin extends Laya.View {
                 menu.SceneMenu.BG,
                 menu.SceneMenu.BG2,
                 menu.SceneMenu.cards_bottom,
+                "star/title_3.png",
+                "star/title_4.png",
+                "star/title_5.png",
+                "star/title_6.png",
+                "star/title_7.png",
+                "star/title_8.png",
+                "star/title_9.png",
+                "star/title_10.png",
                 menu.SceneMenu._skinExchange], Laya.Handler.create(this, function () {
                     this.resLoaded = true
                     this.gotoMenuScene()
