@@ -169,8 +169,7 @@ class SceneLogin extends Laya.View {
         this.addChild(this._bgLogin)
     }
     private initLoginBtn() {
-        this._btnLogin = new runtime.RuntimeClickBtn()
-        this._btnLogin.skin = "login/btn_guest.png"
+        this._btnLogin = new runtime.RuntimeClickBtn("login/btn_guest.png")
         this._btnLogin.anchorX = this._btnLogin.anchorY = 0.5
         this._btnLogin.stateNum = 2
         this._btnLogin.centerX = 0

@@ -4,8 +4,8 @@ module runtime {
     */
     export class RuntimeClickBtn extends Laya.Button {
         static scaleTime: number = 100;
-        constructor() {
-            super();
+        constructor(skin: string) {
+            super(skin)
             //设置组件的中心点
             // this.stateNum = 3
             // this.anchorX = this.anchorY = 0.5;

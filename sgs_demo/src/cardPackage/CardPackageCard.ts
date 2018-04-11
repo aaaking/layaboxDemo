@@ -4,19 +4,22 @@
 class CardPackageCard extends Card {
     constructor() {
         super();
-        this._btnSell = new Laya.Button("menu/btn_sell.png");
-        this._btnSell.stateNum = 1;
+        this._btnSell = new Laya.Button("menu/btn_sell.png")
+        this._btnSell.stateNum = 2
+        // this._btnSell.anchorX = this._btnSell.anchorY = 0.5
         this._btnSell.centerX = 0;
         this._btnSell.bottom = 0;
         this._btnSell.on(Laya.Event.CLICK, this, this.onTouch);
         this.addChild(this._btnSell);
-        this._labCount = new Laya.Label();
+        this._labCount = new Laya.Label(" ");
         this._labCount.right = 20;
-        this._labCount.bottom = 20;
-        this._labCount.fontSize = 30;
+        this._labCount.valign = "middle"
+        this._labCount.fontSize = 25;
         this._labCount.color = "#ffffff";
         this._labCount.stroke = 5;
         this._labCount.strokeColor = "0000000";
+        console.log("this._labCount.height:" + this._labCount.height)
+        this._labCount.bottom = this._btnSell.height - this._labCount.height >> 1
         this.addChild(this._labCount);
     }
     private _labCount: Laya.Label;
