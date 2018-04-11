@@ -2,22 +2,13 @@
 class GameMain {
     constructor() {
         //初始化引擎
-        Laya.init(UITools.canvasWidth,UITools.canvasHeight, Laya.WebGL);
+        Laya.init(UITools.canvasWidth, UITools.canvasHeight, Laya.WebGL);
         Laya.stage.bgColor = "#ffffff";
         Laya.stage.scaleMode = Laya.Stage.SCALE_FIXED_HEIGHT;
         Laya.stage.screenMode = Laya.Stage.SCREEN_HORIZONTAL;
         Dispatcher.init();
         LangMgr.changeLang(LangMgr.LANG_ZH_TW)
-        Laya.loader.load([{ url: "config/hero.json", type: Laya.Loader.JSON },
-        { url: ResourceConfig.comp, type: Laya.Loader.ATLAS },
-        { url: ResourceConfig.star, type: Laya.Loader.ATLAS },
-        { url: ResourceConfig.menu, type: Laya.Loader.ATLAS },
-        { url: ResourceConfig.cards, type: Laya.Loader.ATLAS },
-        { url: ResourceConfig.login, type: Laya.Loader.ATLAS },
-        { url: ResourceConfig.cardsname, type: Laya.Loader.ATLAS },
-        { url: LangMgr.mLang, type: Laya.Loader.JSON },
-        { url: ResourceConfig.showcards, type: Laya.Loader.ATLAS }
-        ],
+        Laya.loader.load([{ url: ResourceConfig.login, type: Laya.Loader.ATLAS }, "menu/img_3.png"],
             Laya.Handler.create(this, this.onLoadCfgComplete),
             /*new Laya.Handler(this, this.onLoadCfgProgress, null, false)*/);
         //test code
@@ -28,10 +19,8 @@ class GameMain {
     }
 
     private onLoadCfgComplete(): void {
-        GameConfig.getCfg();
         SceneLogin.instance.show();
         DebugTool.instance;
-        LangMgr.instance
     }
     private onLoadCfgProgress(progress: any) {
         console.log("onLoadCfgProgress progress: " + progress)

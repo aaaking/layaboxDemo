@@ -30,24 +30,10 @@ class SceneLogin extends Laya.View {
         switch (e.currentTarget) {
             case this._btnLogin:
                 this.showLoading(false)
-                Laya.loader.load([menu.SceneMenu.bgMenu,
-                menu.SceneMenu._skinOpenCard,
-                menu.SceneMenu._skinMyCard,
-                menu.SceneMenu.BG,
-                menu.SceneMenu.BG2,
-                menu.SceneMenu.cards_bottom,
-                "star/title_3.png",
-                "star/title_4.png",
-                "star/title_5.png",
-                "star/title_6.png",
-                "star/title_7.png",
-                "star/title_8.png",
-                "star/title_9.png",
-                "star/title_10.png",
-                menu.SceneMenu._skinExchange], Laya.Handler.create(this, function () {
+                UITools.loadResources(() => {
                     this.resLoaded = true
                     this.gotoMenuScene()
-                }))
+                }, this)
                 this._btnLogin.mouseEnabled = false
                 UITools.changeGray(this._btnLogin)
                 var uuid: string = localStorage.getItem('uuid');
