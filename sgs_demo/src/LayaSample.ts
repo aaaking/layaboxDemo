@@ -10,6 +10,7 @@ class GameMain {
         LangMgr.changeLang(LangMgr.LANG_ZH_TW)
         Laya.loader.load([{ url: "config/hero.json", type: Laya.Loader.JSON },
         { url: ResourceConfig.comp, type: Laya.Loader.ATLAS },
+        { url: ResourceConfig.star, type: Laya.Loader.ATLAS },
         { url: ResourceConfig.menu, type: Laya.Loader.ATLAS },
         { url: ResourceConfig.cards, type: Laya.Loader.ATLAS },
         { url: ResourceConfig.login, type: Laya.Loader.ATLAS },

@@ -2,12 +2,8 @@
 * name;
 */
 class Card extends ui.cards.CardUI {
-    _imgName: Laya.Image;
     constructor() {
         super();
-        this._imgName = new Laya.Image();
-        this._imgName.pos(0, 0);
-        this.addChild(this._imgName);
     }
 
     public updata(): void {
