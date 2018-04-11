@@ -19,7 +19,7 @@ class WareHouseCard extends Card {
         this.on(Laya.Event.MOUSE_OUT, this, runtime.RuntimeClickBtn.normalBig, [this]);
         this.on(Laya.Event.CLICK, this, this.clickCard)
         this.x = this.x + (this.width / 2)
-        this.y = this.y + (this.height / 2)
+        this.y = this.y + (this.height / 2) + Warehouse.STAR_TITLE_HEIGHT
         console.log("constructor data:" + this.y) // data is null
         this.anchorX = this.anchorY = 0.5
     }

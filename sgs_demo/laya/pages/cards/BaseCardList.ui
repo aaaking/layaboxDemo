@@ -28,7 +28,7 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"x":7,"var":"_btnBack","stateNum":"2","skin":"menu/btn_back.png","runtime":"runtime.RuntimeClickBtn"},
+            "props":{"x":6,"var":"_btnBack","stateNum":"2","skin":"menu/btn_back.png","runtime":"runtime.RuntimeClickBtn"},
             "nodeParent":1,
             "label":"Button(_btnBack)",
             "isDirectory":false,
@@ -54,7 +54,7 @@
         {
             "x":15,
             "type":"List",
-            "props":{"y":95,"x":10,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":25,"spaceX":25,"height":570},
+            "props":{"y":88,"x":10,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":25,"spaceX":25,"height":570},
             "nodeParent":1,
             "label":"List(_list)",
             "isDirectory":false,

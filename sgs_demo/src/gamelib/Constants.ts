@@ -78,16 +78,19 @@ class Constants {
         Constants.CARD_STAR_SIX = Constants.fillUpImplement(Constants.CARD_STAR_SIX)
         Constants.CARD_STAR_FIVE = Constants.fillUpImplement(Constants.CARD_STAR_FIVE)
         Constants.CARD_STAR_FOUR = Constants.fillUpImplement(Constants.CARD_STAR_FOUR)
-        Constants.CARD_STAR_THREE = Constants.fillUpImplement(Constants.CARD_STAR_THREE)
+        Constants.CARD_STAR_THREE = Constants.fillUpImplement(Constants.CARD_STAR_THREE, true)
         Constants.CARD_STAR_TWO = Constants.fillUpImplement(Constants.CARD_STAR_TWO)
         Constants.CARD_STAR_ONE = Constants.fillUpImplement(Constants.CARD_STAR_ONE)
     }
-    private static fillUpImplement(originalData: Array<any>) {
+    private static fillUpImplement(originalData: Array<any>, end = false) {
         var data = originalData.filter(t => t != undefined && t != null)
         var length = data.length
         var remainder = length % CardList._columeCount
         var fillNum = (remainder == 0) ? 0 : CardList._columeCount - remainder
-        console.log("originalData:" + originalData.length + "    remainder:" + remainder + "  fillNum:" + fillNum + "  data length:" + length)
+        if (end) {
+            fillNum += CardList._columeCount//最后一个集合多加一行null数据
+        }
+        console.log("originalData:" + originalData.length + "    remainder:" + remainder + "  fillNum:" + fillNum + "  data length:" + length + "  finalLengWithNil:" + (fillNum + length))
         for (var i = 0; i < fillNum; i++) {
             data[length + i] = null
         }

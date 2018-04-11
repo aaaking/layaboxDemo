@@ -2,11 +2,13 @@
 * name;
 */
 class Warehouse extends CardList {
-    static STAR_TITLE_HEIGHT = 60
+    static TITLE_Y_OFFSET = 0
+    static STAR_TITLE_HEIGHT = 51 + Warehouse.TITLE_Y_OFFSET
     constructor() {
         super();
         this._pageName.skin = "menu/logo_cards_warehouse.png"
-        this.initStarTitle()
+        // this.initStarTitle()
+        this.listMouseAction()
     }
 
     private static _instance: Warehouse;
@@ -30,7 +32,7 @@ class Warehouse extends CardList {
             // this._ui._list.array = ClubManager.myClubs;
             this._list.mouseHandler = new Laya.Handler(this, this.listMouseAction);
             this.onResize(null)
-            this.changeStarTitlePos()
+            // this.changeStarTitlePos()
         });
     }
     setList(camp: number): void {
@@ -42,34 +44,44 @@ class Warehouse extends CardList {
         cell.updata();
     }
 
-    public _starTitles = []
-    private initStarTitle() {
-        for (var i = 0; i < 10; i++) {
-            var title: Laya.Text = new Laya.Text()
-            title.text = (10 - i) + "星"
-            title.fontSize = 30
-            title.height = Warehouse.STAR_TITLE_HEIGHT
-            title.valign = "middle"
-            title.x = -(CardList.CARD_WIDTH >> 1)
-            title.color = "#ff0000"
-            title.zOrder = 1000
-            this._starTitles.push(title)
-            // this._list.addChild(title)
-            this._list.getChildAt(0).addChild(title)
-        }
-    }
-    private changeStarTitlePos() {
-        var cardWithFillUp = Constants.getCardGroupByStar()
-        var rows = 0
-        var itemHeight = CardList.CARD_HEIGHT + CardList.LIST_SPACE
-        for (var i = 0; i < this._starTitles.length; i++) {
-            this._starTitles[i].y = rows * itemHeight - (CardList.CARD_HEIGHT >> 1)// + i * Warehouse.STAR_TITLE_HEIGHT
-            rows += Math.ceil(cardWithFillUp[i].star.length / CardList._columeCount)
-            // console.log("cardWithFillUp[i].star: " + cardWithFillUp[i].star.length + "  rows:" + rows)
-        }
-    }
+    // public _starTitles = []
+    // private initStarTitle() {
+    //     for (var i = 0; i < 10; i++) {
+    //         var title: Laya.Text = new Laya.Text()
+    //         title.text = (10 - i) + "星"
+    //         title.fontSize = 30
+    //         title.height = Warehouse.STAR_TITLE_HEIGHT
+    //         title.valign = "middle"
+    //         title.x = -(CardList.CARD_WIDTH >> 1)
+    //         title.color = "#ff0000"
+    //         title.zOrder = 1000
+    //         this._starTitles.push(title)
+    //         // this._list.addChild(title)
+    //         this._list.getChildAt(0).addChild(title)
+    //     }
+    // }
+    // private changeStarTitlePos() {
+    //     var cardWithFillUp = Constants.getCardGroupByStar()
+    //     var rows = 0
+    //     var itemHeight = CardList.CARD_HEIGHT + CardList.LIST_SPACE
+    //     for (var i = 0; i < this._starTitles.length; i++) {
+    //         this._starTitles[i].y = rows * itemHeight - (CardList.CARD_HEIGHT >> 1)// + i * Warehouse.STAR_TITLE_HEIGHT
+    //         rows += Math.ceil(cardWithFillUp[i].star.length / CardList._columeCount)
+    //         // console.log("cardWithFillUp[i].star: " + cardWithFillUp[i].star.length + "  rows:" + rows)
+    //     }
+    // }
 
-    private listMouseAction(p: any) {
-        
+    _starTitle: Laya.Image
+    private listMouseAction(p?: any) {
+        if (!this._starTitle) {
+            this._starTitle = new Laya.Image("star/title_10.png")
+            this._starTitle.y = Warehouse.TITLE_Y_OFFSET
+            this._list.addChild(this._starTitle)
+        }
+        if (!this._list.array || this._list.array.length <= 0) {
+            return
+        }
+        var firstVisibleItem = (this._list.array[this._list.startIndex])
+        this._starTitle.skin = "star/title_" + firstVisibleItem.star + ".png"
     }
 }
