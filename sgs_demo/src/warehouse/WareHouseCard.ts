@@ -37,7 +37,7 @@ class WareHouseCard extends Card {
                 this.dataSource.hasRendered = true
             }
             // this.y = this.dataSource.originalY + (1 + 10 - this.dataSource.star) * Warehouse.STAR_TITLE_HEIGHT
-            console.log(this.dataSource + "   y:" + this.y + " this.dataSource.originalY:" + this.dataSource.originalY)
+            // console.log(this.dataSource + "   y:" + this.y + " this.dataSource.originalY:" + this.dataSource.originalY)
             if (!this._canSee) {
                 this._canSee = true
             }
