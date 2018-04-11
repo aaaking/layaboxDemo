@@ -78,24 +78,18 @@ class Constants {
         Constants.CARD_STAR_SIX = Constants.fillUpImplement(Constants.CARD_STAR_SIX)
         Constants.CARD_STAR_FIVE = Constants.fillUpImplement(Constants.CARD_STAR_FIVE)
         Constants.CARD_STAR_FOUR = Constants.fillUpImplement(Constants.CARD_STAR_FOUR)
-        Constants.CARD_STAR_FOUR = Constants.fillUpImplement(Constants.CARD_STAR_FOUR)
+        Constants.CARD_STAR_THREE = Constants.fillUpImplement(Constants.CARD_STAR_THREE)
         Constants.CARD_STAR_TWO = Constants.fillUpImplement(Constants.CARD_STAR_TWO)
         Constants.CARD_STAR_ONE = Constants.fillUpImplement(Constants.CARD_STAR_ONE)
     }
     private static fillUpImplement(originalData: Array<any>) {
         var data = originalData.filter(t => t != undefined && t != null)
-        var remainder = data.length % CardList._columeCount
-        var fillNum = CardList._columeCount - remainder
-        console.log("originalData:" + originalData.length + "    remainder:" + remainder + "  fillNum:" + fillNum + "  data length:" + data.length)
-        if (remainder == 0) {
-            fillNum = 0
-            return data
-        }
-        // for (var i = originalData.length; i < originalData.length + remainder; i++) {
-        //     originalData.splice(i, 0, null)//补空数据
-        // }
+        var length = data.length
+        var remainder = length % CardList._columeCount
+        var fillNum = (remainder == 0) ? 0 : CardList._columeCount - remainder
+        console.log("originalData:" + originalData.length + "    remainder:" + remainder + "  fillNum:" + fillNum + "  data length:" + length)
         for (var i = 0; i < fillNum; i++) {
-            data.push(null)
+            data[length + i] = null
         }
         return data
     }
