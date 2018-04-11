@@ -80,7 +80,7 @@ class CardList extends ui.cards.BaseCardListUI {
         this.checkTab();
     }
 
-    private checkTab(): void {
+    private checkTab(p?: any): void {//p == this._tab.selectedIndex
         this.setList(this._tab.selectedIndex + 1);
     }
 
