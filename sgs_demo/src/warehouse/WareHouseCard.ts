@@ -6,10 +6,6 @@ class WareHouseCard extends Card {
     _originalY = 0
     constructor() {
         super();
-        this._imgName = new Laya.Image();
-        this._imgName.pos(14, 70);
-        this.addChild(this._imgName);
-
         this._labCount = new Laya.Label();
         this._labCount.right = 20;
         this._labCount.bottom = 20;
@@ -27,7 +23,6 @@ class WareHouseCard extends Card {
         console.log("constructor data:" + this.y) // data is null
         this.anchorX = this.anchorY = 0.5
     }
-    private _imgName: Laya.Image;
     private _labCount: Laya.Label;
 
     public updata(): void {
@@ -36,7 +31,6 @@ class WareHouseCard extends Card {
             this._mask.visible = !this.dataSource.isHave
             this._labCount.text = this.dataSource.count
             this._icon.skin = "cards/" + this.dataSource.cfg.icon + ".png";
-            this._imgName.skin = "cardsname/" + this.dataSource.cfg.icon + ".png"
             if (!this.dataSource.hasRendered) {
                 this._originalY = this.y
                 this.dataSource.originalY = this.y

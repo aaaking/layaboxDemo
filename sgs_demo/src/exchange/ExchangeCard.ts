@@ -5,9 +5,6 @@ class ExchangeCard extends Card {
     private _btnBuy: Laya.Button
     constructor() {
         super();
-        this._imgName = new Laya.Image();
-        this._imgName.pos(14, 70);
-        this.addChild(this._imgName);
         this._labCount = new Laya.Label();
         this._labCount.right = 20;
         this._labCount.bottom = 20;
@@ -31,14 +28,11 @@ class ExchangeCard extends Card {
         this._labPrice.pos(80, 30)
         this._btnBuy.on(Laya.Event.CLICK, this, this.buyCard)
     }
-    private _imgName: Laya.Image;
     private _labCount: Laya.Label;
     private _labPrice: Laya.Label;
     public updata(): void {
         super.updata();
         this._icon.skin = "cards/" + this.dataSource.cfg.icon + ".png";
-        this._imgName.visible = true;
-        this._imgName.skin = "cardsname/" + this.dataSource.cfg.icon + ".png";
         this._labPrice.text = this.dataSource.price;
         if (this.dataSource && this.dataSource.isself) {
             this._btnBuy.skin = "menu/btn_undo.png"
