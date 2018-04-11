@@ -54,6 +54,7 @@ class WareHouseManager {
                 var count = arr[1]
                 var isHave = false
                 var star: number = Math.floor(Math.random() * 8 + 3)
+                cfg.star = star
                 if (CardPackageManager.instance.cards) {
                     if (CardPackageManager.instance.judgeHaveById(id))
                         isHave = true
@@ -81,12 +82,23 @@ class WareHouseManager {
     }
 
     public getCardsByCamp(camp: number): Array<any> {
-        if (camp == 5)
-            return this.cards;
-        else
-            return this._originalCards.filter((item) => {
-                var cfg: any = GameConfig.getCfgHeroById(item.id);
-                return cfg.camp == camp;
+        if (camp == Constants.CAMP_ALL) {//5
+            return this._cards;
+        } else {
+            var datas = this._cards.filter((item) => {
+                var cfg: any = GameConfig.getCfgHeroById(item ? item.id : -16913);
+                return cfg && cfg.camp == camp;
             })
+            return Constants.fillUpImplement(datas.filter(t => t.star == 10))
+                .concat(Constants.fillUpImplement(datas.filter(t => t.star == 9)))
+                .concat(Constants.fillUpImplement(datas.filter(t => t.star == 8)))
+                .concat(Constants.fillUpImplement(datas.filter(t => t.star == 7)))
+                .concat(Constants.fillUpImplement(datas.filter(t => t.star == 6)))
+                .concat(Constants.fillUpImplement(datas.filter(t => t.star == 5)))
+                .concat(Constants.fillUpImplement(datas.filter(t => t.star == 4)))
+                .concat(Constants.fillUpImplement(datas.filter(t => t.star == 3), true))
+                .concat(Constants.fillUpImplement(datas.filter(t => t.star == 2)))
+                .concat(Constants.fillUpImplement(datas.filter(t => t.star == 1)))
+        }
     }
 }

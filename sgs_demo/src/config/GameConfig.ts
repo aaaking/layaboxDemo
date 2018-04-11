@@ -9,7 +9,7 @@ class GameConfig {
     private static cfgHero: any;
 
     public static getCfg(): void {
-        GameConfig.cfgHero = Laya.loader.getRes("config/hero.json");
+        GameConfig.cfgHero = Laya.loader.getRes("config/hero.json")
     }
 
     public static getCfgHeroById(id: number): any {
@@ -17,6 +17,7 @@ class GameConfig {
             if (GameConfig.cfgHero[item].id == id)
                 return GameConfig.cfgHero[item];
         }
+        return null
     }
     public static RPC_ADDRESS = "0xbbf97981efee7214874c304d7fed9788203cfa33"
     public static RPC_URL = "http://10.225.20.161:8118"

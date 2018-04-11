@@ -82,7 +82,7 @@ class Constants {
         Constants.CARD_STAR_TWO = Constants.fillUpImplement(Constants.CARD_STAR_TWO)
         Constants.CARD_STAR_ONE = Constants.fillUpImplement(Constants.CARD_STAR_ONE)
     }
-    private static fillUpImplement(originalData: Array<any>, end = false) {
+    static fillUpImplement(originalData: Array<any>, end = false) {
         var data = originalData.filter(t => t != undefined && t != null)
         var length = data.length
         var remainder = length % CardList._columeCount

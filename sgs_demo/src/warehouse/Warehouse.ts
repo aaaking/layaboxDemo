@@ -36,7 +36,8 @@ class Warehouse extends CardList {
         });
     }
     setList(camp: number): void {
-        this._list.array = WareHouseManager.instance.getCardsByCamp(camp);
+        this._list.array = WareHouseManager.instance.getCardsByCamp(camp)
+        this.listMouseAction()
     }
 
     /***渲染单元格时的回调方法***/
