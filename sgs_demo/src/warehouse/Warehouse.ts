@@ -28,7 +28,7 @@ class Warehouse extends CardList {
             // this._list.cacheContent = false
             // this._list.array = WareHouseManager.instance.cards;
             // this._ui._list.array = ClubManager.myClubs;
-            // this._list.mouseHandler = new Laya.Handler(this, this.selectList);
+            this._list.mouseHandler = new Laya.Handler(this, this.listMouseAction);
             this.onResize(null)
             this.changeStarTitlePos()
         });
@@ -67,5 +67,9 @@ class Warehouse extends CardList {
             rows += Math.ceil(cardWithFillUp[i].star.length / CardList._columeCount)
             // console.log("cardWithFillUp[i].star: " + cardWithFillUp[i].star.length + "  rows:" + rows)
         }
+    }
+
+    private listMouseAction(p: any) {
+        
     }
 }
