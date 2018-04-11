@@ -1,12 +1,11 @@
 class CardList extends ui.cards.BaseCardListUI {
     static LIST_SPACE = 25
-    static CARD_WIDTH = 196
-    static CARD_HEIGHT = 274
+    static CARD_WIDTH = 184//196
+    static CARD_HEIGHT = 243//274
     static _columeCount: number;
     constructor() {
         super()
         this._list.scrollBar.visible = false;
-        this._list.repeatY = 8
         this.initBackBtn()
         this.initBalance()
         this.initTab()
@@ -44,8 +43,7 @@ class CardList extends ui.cards.BaseCardListUI {
         console.log("this._list.width:" + this._list.width + "  oneRowCardWidth:" + oneRowCardWidth + "  this._list.repeatX:" + this._list.repeatX)
         this._list.x = (this.width - this._tab.width - 10) - this._list.width + remain >> 1;
         this._btnBack.on(Laya.Event.CLICK, this, this.onTouch);
-
-        if (this instanceof Warehouse  && this._list.repeatX != CardList._columeCount || !this._list.array || this._list.array.length <= 0) {//只针对“图鉴”页
+        if (!this._list.array || this._list.array.length <= 0 || this._list.repeatX != CardList._columeCount) {//只针对“图鉴”页
             this._list.repeatX = CardList._columeCount
             WareHouseManager.instance._originalCards = (Constants.concatListBeforeFill())//原始数据
             Constants.fillUp()
@@ -93,6 +91,8 @@ class CardList extends ui.cards.BaseCardListUI {
     private onTouch(e: Laya.Event): void {
         switch (e.currentTarget) {
             case this._btnBack:
+                Constants.clearCardStar()
+                this._list.array = null
                 this.removeSelf();
                 break;
         }
