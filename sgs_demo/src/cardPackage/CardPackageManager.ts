@@ -22,12 +22,15 @@ class CardPackageManager {
         return 0
     }
 
-    public addCountByID(cardid) {
+    public addCountByID(cardid, card) {
         for (var k in this._cards) {
             let v = this._cards[k]
             if (v.id == cardid) {
-                v.count = v.count + 1
+                v.count = card ? card.count : (v.count + 1)
             }
+        }
+        if (card) {
+            this._cards.push(card)
         }
     }
     private _cards: Array<any>;
@@ -65,10 +68,10 @@ class CardPackageManager {
                 var id: number = parseInt(arr[0]);
                 var cfg: any = GameConfig.getCfgHeroById(id);
                 var count = arr[1]
-                var t: any = {
-                    id, count, cfg, isHave: Math.random() > 0.5
-                }
                 for (var cardIndex = 0; cardIndex < count; cardIndex++) {
+                    var t: any = {
+                        id, count, cfg, isHave: Math.random() > 0.5
+                    }
                     this._cards.push(t)
                 }
             }
