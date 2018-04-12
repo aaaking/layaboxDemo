@@ -31,6 +31,7 @@ class ExchangeCard extends Card {
         // this._labPrice.y = this._btnBuy.height - this._labPrice.height >> 1
         // this._labPrice.anchorX = this._labPrice.anchorY = 0.5
         this._btnBuy.on(Laya.Event.CLICK, this, this.buyCard)
+        this._mask.visible = false
     }
     private _labCount: Laya.Label;
     private _labPrice: Laya.Label;
