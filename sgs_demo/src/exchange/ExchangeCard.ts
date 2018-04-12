@@ -38,7 +38,7 @@ class ExchangeCard extends Card {
     public updata(): void {
         super.updata()
         this._icon.skin = "cards/" + this.dataSource.cfg.icon + ".png";
-        this._labPrice.text = this.dataSource.price;
+        this._labPrice.text = Utils.toNumberUnit(this.dataSource.price)
         if (this.dataSource && this.dataSource.isself) {
             this._btnBuy.skin = "menu/btn_undo.png"
             this._labPrice.visible = false
