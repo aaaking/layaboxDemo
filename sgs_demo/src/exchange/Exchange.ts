@@ -33,7 +33,7 @@ class Exchange extends CardList {
 
     public updateInfo(){
          ExchangeManager.instance.testInitCards(() => {
-            this._list.array = ExchangeManager.instance.cards;         
+            this._list.array = ExchangeManager.instance._cards;         
         });
     }
 

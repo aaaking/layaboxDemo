@@ -13,7 +13,7 @@ class ExchangeManager {
         return this._instance;
     }
 
-    private _cards: Array<any>;
+    _cards: Array<any>;
     public toAscii(hex) {
         // Find termination
         var str = "";
@@ -29,11 +29,6 @@ class ExchangeManager {
         return str;
     };
     public testInitCards(callback): void {
-
-
-        // if (this._cards)
-        //     callback();
-        // else {
             this._cards = [];
             Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_call, "params": [{"from":localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0x3ded315b" }, "latest"], "id": 67 }, "POST", null, function (data) {
                 console.info(data)
