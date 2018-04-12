@@ -28,7 +28,7 @@ class Warehouse extends CardList {
             this._list.scrollBar.visible = false;
             this._list.renderHandler = new Laya.Handler(this, this.updateList);
             // this._list.cacheContent = false
-            // this._list.array = WareHouseManager.instance.cards;
+            this._list.array = WareHouseManager.instance._cards;
             // this._ui._list.array = ClubManager.myClubs;
             this._list.mouseHandler = new Laya.Handler(this, this.listMouseAction);
             this.onResize(null)

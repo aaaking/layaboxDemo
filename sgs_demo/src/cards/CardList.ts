@@ -92,7 +92,7 @@ class CardList extends ui.cards.BaseCardListUI {
     private onTouch(e: Laya.Event): void {
         switch (e.currentTarget) {
             case this._btnBack:
-                Constants.clearCardStar()
+                // Constants.clearCardStar()
                 this._list.array = null
                 this.removeSelf();
                 break;
