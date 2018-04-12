@@ -7,7 +7,11 @@ class Ajax {
 		var request: Laya.HttpRequest = new Laya.HttpRequest();
 		request.on(Laya.Event.COMPLETE, this, function (event: Laya.Event): void {
 			if (onSuccess) {
-				onSuccess(request.data);
+				if (JSON.parse(request.data).error) {
+					onError(request.data);
+				} else {
+					onSuccess(request.data);
+				}
 			}
 		});
 		request.on(Laya.Event.ERROR, this, function (event: Laya.Event): void {

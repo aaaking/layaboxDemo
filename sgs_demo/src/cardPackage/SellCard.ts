@@ -57,17 +57,14 @@ class SellCard extends ui.cardPackage.SellCardUI {
         let baseID = "0000000000000000000000000000000000000000000000000000000000000000"
         let baseCount = "0000000000000000000000000000000000000000000000000000000000000000"
         console.log("count: " + count)
-        console.log(this._data.id.toString(16))
-        console.log(count.toString(16).length)
-        console.log(baseCount.substring(0, 64 - this._data.id.toString(16).length) + this._data.id.toString(16))
+        console.log("this._data.id.toString(16): " + this._data.id.toString(16))
+        console.log("count.toString(16).length: " + count.toString(16).length)
         let idstr = baseCount.substring(0, 64 - this._data.id.toString(16).length) + this._data.id.toString(16)
-        console.log(count.toString(16))
-        console.log(count.toString(16).length)
-        console.log(baseCount.substring(0, 64 - count.toString(16).length) + count.toString(16))
+        console.log("idstr: " + idstr)
         let countstr = baseCount.substring(0, 64 - count.toString(16).length) + count.toString(16)
         console.log("countstr: " + countstr)
         let param = String(idstr) + String(countstr)//param参数是0x+8位的方法名+价格的十六进制
-        console.log(param)
+        console.log("param: " + param)
         if (!count) {//if放到这里只是为了看log // todo
             Laya.Tween.clearTween(this._labTip);
             this._labTip.visible = true;
