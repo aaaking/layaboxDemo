@@ -7,7 +7,6 @@ class Card extends ui.cards.CardUI {
     }
 
     public updata(): void {
-        console.log(this.dataSource)
         if (this.dataSource) {
             this.visible = true;
             this._icon.skin = "cards/" + this.dataSource.cfg.icon + ".png"
