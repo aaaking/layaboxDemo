@@ -159,20 +159,14 @@ class ShowCard extends ui.showcard.ShowCardUI {
                             var id: number = parseInt(arr[0]);
                             var cfg: any = GameConfig.getCfgHeroById(id);
                             var count = arr[1]
-                            if (parseInt(count) > 0) {
-                                if (CardPackageManager.instance.getCountByID(id) >= 0) {
-                                    if (parseInt(count) - CardPackageManager.instance.getCountByID(id) == 1) {//新开的比原有的多一张的话就是开的这张卡
-                                        this.showLoading(true);
-                                        this.showCard(id);
-                                        CardPackageManager.instance.addCountByID(id)
-                                        break
-                                    }
-                                } else {
-                                    this.onNetError()
-                                    break
-                                }
+                            if (parseInt("" + count) - CardPackageManager.instance.getCountByID(id) == 1) {//新开的比原有的多一张的话就是开的这张卡
+                                this.showLoading(true);
+                                this.showCard(id);
+                                CardPackageManager.instance.addCountByID(id)
+                                break
                             }
                         }
+                        console.log(cards)
                     }.bind(this), this.onNetError.bind(this))
                 } else {
                     this.requestIng = false

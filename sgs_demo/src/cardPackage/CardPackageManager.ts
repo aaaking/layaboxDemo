@@ -19,7 +19,7 @@ class CardPackageManager {
                 return parseInt(v.count)
             }
         }
-        return null
+        return 0
     }
 
     public addCountByID(cardid) {
