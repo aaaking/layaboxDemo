@@ -105,6 +105,14 @@ class Utils {
 		return ""
 	}
 
+	static isRelease(): boolean {
+		var release: boolean = (Utils.getParam("release") ? true : false) || Utils.isMobileDevice()
+		if (Utils.getParam("debug")) {
+			release = false
+		}
+		return release
+	}
+
 	static isMobileDevice(): boolean {
 		if (navigator.userAgent.match(/Android/i)
 			|| navigator.userAgent.match(/webOS/i)

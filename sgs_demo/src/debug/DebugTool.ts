@@ -7,11 +7,7 @@ class DebugTool {
     }
     private static _instance: DebugTool;
     public static get instance(): DebugTool {
-        var release: boolean = (Utils.getParam("release") ? true : false) || Utils.isMobileDevice()
-        if (Utils.getParam("debug")) {
-            release = false
-        }
-        DebugTool.debugMode = !release
+        DebugTool.debugMode = !Utils.isRelease()
         if (!this._instance)
             this._instance = new DebugTool();
         return this._instance;
