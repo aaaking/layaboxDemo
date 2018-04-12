@@ -40,6 +40,7 @@ class WareHouseManager {
             let result = info.result.substring(130)
             result = "0x" + result
             let result1 = this.toAscii(result)
+            console.log("result1: " + result1)
             let cards: Array<any> = result1.split(",")
             cards.pop()
             cards = cards.concat(cards)//测试代码 50

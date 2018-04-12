@@ -56,6 +56,7 @@ class CardPackageManager {
             let result = info.result.substring(130)
             result = "0x" + result
             let result1: string = this.toAscii(result)
+            console.log("result1: " + result1)
             let cards: any[] = result1.split(",")
             cards.pop()
             // cards = cards.concat(cards)//测试代码

@@ -36,6 +36,7 @@ class ExchangeManager {
                 let result = info.result.substring(130)
                 result = "0x" + result
                 let result1 = this.toAscii(result)
+                console.log("result1: " + result1)
                 let cards = result1.split(";")
                 cards.pop()
                 for (var k in cards) {
