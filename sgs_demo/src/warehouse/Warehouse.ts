@@ -79,10 +79,12 @@ class Warehouse extends CardList {
             this._starTitle.y = Warehouse.TITLE_Y_OFFSET
             this._list.addChild(this._starTitle)
         }
-        if (!this._list.array || this._list.array.length <= 0) {
+        if (!this._list.array || this._list.array.length <= this._list.startIndex) {
             return
         }
         var firstVisibleItem = (this._list.array[this._list.startIndex])
-        this._starTitle.skin = "star/title_" + firstVisibleItem.star + ".png"
+        if (firstVisibleItem) {
+            this._starTitle.skin = "star/title_" + firstVisibleItem.star + ".png"
+        }
     }
 }
