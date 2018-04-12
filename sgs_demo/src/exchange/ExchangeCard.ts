@@ -19,7 +19,7 @@ class ExchangeCard extends Card {
         this.addChild(this._btnBuy)
         this._btnBuy.centerX = 0
         this._btnBuy.y = 250 + (this._btnBuy.height >> 1)
-        this.height = 360
+        this.height = this._btnBuy.y + (this._btnBuy.height >> 1)//360
         this._labPrice = new Laya.Label("200")
         this._btnBuy.addChild(this._labPrice)
         this._labPrice.color = "#ffffff"

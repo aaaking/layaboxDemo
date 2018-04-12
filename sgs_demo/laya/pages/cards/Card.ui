@@ -53,19 +53,6 @@
         },
         {
             "x":15,
-            "type":"Button",
-            "props":{"y":250,"visible":false,"stateNum":"2","skin":"menu/btn_buy.png","labelStrokeColor":"#000000","labelStroke":2,"labelSize":20,"labelPadding":"-4,0,0,-20","labelColors":"#ffffff","label":"200","centerX":0},
-            "nodeParent":1,
-            "label":"Button",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":3,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
             "type":"Image",
             "props":{"y":30,"x":30,"var":"_mask","top":0,"skin":"comp/blank.png","right":0,"mouseThrough":false,"mouseEnabled":true,"left":0,"bottom":0},
             "nodeParent":1,
