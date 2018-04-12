@@ -5,8 +5,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
     constructor() {
         super();
         this.initBalance()
-        this._btnOpen.on(Laya.Event.CLICK, this, this.onTouch);
-        this._btnBack.on(Laya.Event.CLICK, this, this.onTouch);
+        this.initBackBtn()
         Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
     }
 
@@ -15,6 +14,12 @@ class ShowCard extends ui.showcard.ShowCardUI {
         if (!this._instance)
             this._instance = new ShowCard();
         return this._instance;
+    }
+
+    private initBackBtn() {
+        this._btnBack.anchorX = this._btnBack.anchorY = 0.5
+        this._btnBack.x = this._btnBack.x + (this._btnBack.width >> 1)
+        this._btnBack.y = this._btnBack.y + (this._btnBack.height >> 1)
     }
 
     private _sortType: number;
@@ -91,6 +96,8 @@ class ShowCard extends ui.showcard.ShowCardUI {
     private onResize(e: Laya.Event = null): void {
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
+        this._btnOpen.on(Laya.Event.CLICK, this, this.onTouch);
+        this._btnBack.on(Laya.Event.CLICK, this, this.onTouch)
     }
 
     private testOpenCard(): number {
@@ -114,7 +121,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
             //     Laya.Tween.to(this._boxWaiting, { alpha: 1 }, 500, null);
             // }
             if (!Loading.instance.parent) {
-                this.mouseEnabled = false;
+                // this.mouseEnabled = false
                 Loading.instance.show()
             }
         }

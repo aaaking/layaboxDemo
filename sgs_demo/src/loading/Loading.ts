@@ -28,6 +28,10 @@ class Loading extends ui.loading.LoadingUI {
     private onResize(e: Laya.Event = null): void {
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
+        this._mask.on(Laya.Event.CLICK, this, this.onTouch)
+    }
+
+    private onTouch(e: Laya.Event): void {
     }
 
     showAnim(show: boolean) {
