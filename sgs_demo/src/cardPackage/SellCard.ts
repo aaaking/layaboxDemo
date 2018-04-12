@@ -2,6 +2,7 @@
 * name;
 */
 class SellCard extends ui.cardPackage.SellCardUI {
+    static UINT32_MAX: number = 4294967295//Math.pow( 2, 32 ) - 1  SellCard.UINT32_MAX
     constructor() {
         super();
         // this._btnClose.anchorX = this._btnClose.anchorY = 0.5
@@ -25,6 +26,7 @@ class SellCard extends ui.cardPackage.SellCardUI {
         this._data = data;
         this._imgIcon.skin = "cards/" + this._data.cfg.icon + ".png";
         this._input.text = "";
+        this._input.maxChars = ("" + SellCard.UINT32_MAX).length
         this._labTip.visible = this._boxWaiting.visible = false;
         this._boxNormal.mouseEnabled = true;
         Laya.Tween.clearTween(this._labTip);
@@ -56,16 +58,16 @@ class SellCard extends ui.cardPackage.SellCardUI {
         let count = parseInt(this._input.text)
         let baseID = "0000000000000000000000000000000000000000000000000000000000000000"
         let baseCount = "0000000000000000000000000000000000000000000000000000000000000000"
-        console.log("count: " + count)
-        console.log("this._data.id.toString(16): " + this._data.id.toString(16))
-        console.log("count.toString(16).length: " + count.toString(16).length)
+        console.log(this._data)
+        console.log("this._data.id: " + this._data.id + "   十六进制: " + this._data.id.toString(16))
+        console.log("count: " + count + "   十六进制: " + count.toString(16))
         let idstr = baseCount.substring(0, 64 - this._data.id.toString(16).length) + this._data.id.toString(16)
         console.log("idstr: " + idstr)
         let countstr = baseCount.substring(0, 64 - count.toString(16).length) + count.toString(16)
         console.log("countstr: " + countstr)
         let param = String(idstr) + String(countstr)//param参数是0x+8位的方法名+价格的十六进制
         console.log("param: " + param)
-        if (!count) {//if放到这里只是为了看log // todo
+        if (!count || count > SellCard.UINT32_MAX) {//if放到这里只是为了看log // todo
             Laya.Tween.clearTween(this._labTip);
             this._labTip.visible = true;
             this._labTip.alpha = 0;
