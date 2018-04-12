@@ -65,7 +65,7 @@ class SellCard extends ui.cardPackage.SellCardUI {
         console.log("idstr: " + idstr)
         let countstr = baseCount.substring(0, 64 - count.toString(16).length) + count.toString(16)
         console.log("countstr: " + countstr)
-        let param = String(idstr) + String(countstr)//param参数是0x+8位的方法名+价格的十六进制
+        let param = String(idstr) + String(countstr)//param参数是0x+8位的方法名+价格的十六进制，而且param长度必须是偶数位
         console.log("param: " + param)
         if (!count || count > SellCard.UINT32_MAX) {//if放到这里只是为了看log // todo
             Laya.Tween.clearTween(this._labTip);
