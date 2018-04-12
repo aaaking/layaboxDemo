@@ -135,7 +135,8 @@ class Utils {
 		return str;
 	};
 
-	static toNumberUnit(size: number): string {
+	static toNumberUnit(p: any): string {
+		var size = parseInt(p)
 		if (size <= 0) {
 			return "0"
 		}
