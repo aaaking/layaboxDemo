@@ -11,18 +11,7 @@ class CardPackageCard extends Card {
         this._btnSell.bottom = 0;
         this._btnSell.on(Laya.Event.CLICK, this, this.onTouch);
         this.addChild(this._btnSell);
-        this._labCount = new Laya.Label(" ");
-        this._labCount.right = 20;
-        this._labCount.valign = "middle"
-        this._labCount.fontSize = 25;
-        this._labCount.color = "#ffffff";
-        this._labCount.stroke = 5;
-        this._labCount.strokeColor = "0000000";
-        console.log("this._labCount.height:" + this._labCount.height)
-        this._labCount.bottom = this._btnSell.height - this._labCount.height >> 1
-        this.addChild(this._labCount);
     }
-    private _labCount: Laya.Label;
     private _btnSell: Laya.Button;
 
     public updata(): void {
@@ -30,10 +19,8 @@ class CardPackageCard extends Card {
         this._mask.visible = false
         if (this.dataSource) {
             this._btnSell.visible = true
-            this._labCount.text = this.dataSource.count
         } else {
             this._btnSell.visible = false
-            this._labCount.visible = false
         }
     }
 

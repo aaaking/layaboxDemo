@@ -49,7 +49,6 @@ class ShowCard extends ui.showcard.ShowCardUI {
             var code = parseInt(hex.substr(i, 2), 16);
             str += String.fromCharCode(code);
         }
-
         return str;
     };
 

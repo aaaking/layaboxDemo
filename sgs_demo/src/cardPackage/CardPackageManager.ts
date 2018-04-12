@@ -59,10 +59,6 @@ class CardPackageManager {
             console.log("result1: " + result1)
             let cards: any[] = result1.split(",")
             cards.pop()
-            // cards = cards.concat(cards)//测试代码
-            // cards = cards.concat(cards)
-            // cards = cards.concat(cards)
-            // cards = cards.concat(cards)
             for (var k in cards) {
                 let v = cards[k]
                 let arr = v.split(":")
@@ -72,8 +68,8 @@ class CardPackageManager {
                 var t: any = {
                     id, count, cfg, isHave: Math.random() > 0.5
                 }
-                if (count > 0) {
-                    this._cards.push(t);
+                for (var cardIndex = 0; cardIndex < count; cardIndex++) {
+                    this._cards.push(t)
                 }
             }
             console.info(this._cards)//[]
@@ -84,11 +80,10 @@ class CardPackageManager {
     public get cards(): Array<any> {
         if (!this._cards) return [];
         this.deleteNull();
-        return this._cards.sort(this.sortOnNormal);
+        return this._cards.sort(this.sortOnReduce);
     }
 
     private deleteNull(): void {
-
         for (var i: number = 0; i < this._cards.length;) {
             if (!this._cards[i])
                 this._cards.splice(i, 1);
@@ -103,12 +98,10 @@ class CardPackageManager {
     }
 
     private sortOnNormal(a: any, b: any): number {
-        if (a.cfg.id < b.cfg.id)
-            return -1;
-        else if (a.cfg.id == b.cfg.id)
-            return 0;
-        else
-            return 1;
+        return a.cfg.id - b.cfg.id
+    }
+    private sortOnReduce(a: any, b: any): number {
+        return b.cfg.id - a.cfg.id
     }
 
     private sortOnCamp(a: any, b: any): number {
