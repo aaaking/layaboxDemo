@@ -49,6 +49,7 @@ class SellCard extends ui.cardPackage.SellCardUI {
         this.height = Laya.stage.height;
         this._btnClose.on(Laya.Event.CLICK, this, this.onTouch);
         this._btnConfirm.on(Laya.Event.CLICK, this, this.onTouch);
+        this._mask.on(Laya.Event.CLICK, this, this.onTouch)
     }
 
     private sell(): void {
@@ -93,13 +94,13 @@ class SellCard extends ui.cardPackage.SellCardUI {
             Dispatcher.dispatch("updateBag")
             this.requestNum = 0
             this.requestIng = false
-            this.mouseEnabled = true;
+            this._boxNormal.mouseEnabled = true;
             this._boxWaiting.visible = false;
             Laya.timer.clearAll(this)
             this.removeSelf()
         } else {
             if (!this._boxWaiting.visible) {
-                this.mouseEnabled = false;
+                this._boxNormal.mouseEnabled = false;
                 this._boxWaiting.visible = true;
                 this._boxWaiting.alpha = 0;
                 Laya.Tween.to(this._boxWaiting, { alpha: 1 }, 500, null);
@@ -112,7 +113,7 @@ class SellCard extends ui.cardPackage.SellCardUI {
         Laya.timer.clearAll(this)
         this.requestNum = 0
         this.requestIng = false
-        this.mouseEnabled = true;
+        this._boxNormal.mouseEnabled = true;
         this._boxWaiting.visible = false
     }
 
