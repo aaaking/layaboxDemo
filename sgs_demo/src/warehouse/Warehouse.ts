@@ -9,6 +9,9 @@ class Warehouse extends CardList {
         this._pageName.skin = "menu/logo_cards_warehouse.png"
         // this.initStarTitle()
         this.listMouseAction()
+        this.on(Laya.Event.MOUSE_DOWN, this, this.listMouseAction)
+        this.on(Laya.Event.MOUSE_MOVE, this, this.listMouseAction)
+        this.on(Laya.Event.MOUSE_UP, this, this.listMouseAction)
     }
 
     private static _instance: Warehouse;

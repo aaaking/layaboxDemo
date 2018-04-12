@@ -43,9 +43,9 @@ class WareHouseManager {
             console.log("result1: " + result1)
             let cards: Array<any> = result1.split(",")
             cards.pop()
-            cards = cards.concat(cards)//测试代码 50
-            cards = cards.concat(cards)//100
-            cards = cards.concat(cards)//200
+            // cards = cards.concat(cards)//测试代码 50
+            // cards = cards.concat(cards)//100
+            // cards = cards.concat(cards)//200
             // cards = cards.concat(cards)//400
             // cards = cards.concat(cards)//800
             for (var k in cards) {
