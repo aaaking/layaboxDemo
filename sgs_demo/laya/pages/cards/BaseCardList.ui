@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":8,
+    "selecteID":4,
     "props":{"width":1280,"sceneColor":"#000000","height":720},
     "nodeParent":-1,
     "label":"View",
@@ -41,7 +41,7 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"x":6,"var":"_btnBack","stateNum":"2","skin":"menu/btn_back.png","runtime":"runtime.RuntimeClickBtn"},
+            "props":{"x":0,"var":"_btnBack","stateNum":"2","skin":"menu/btn_back.png","runtime":"runtime.RuntimeClickBtn"},
             "nodeParent":1,
             "label":"Button(_btnBack)",
             "isDirectory":false,
@@ -54,7 +54,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"x":134,"var":"_pageName","skin":"menu/logo_cards_my.png"},
+            "props":{"x":163,"var":"_pageName","skin":"menu/logo_cards_my.png"},
             "nodeParent":1,
             "label":"Image(_pageName)",
             "isDirectory":false,

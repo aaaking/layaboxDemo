@@ -81,7 +81,7 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"y":20,"x":20,"var":"_btnBack","stateNum":"2","skin":"menu/btn_back.png","runtime":"runtime.RuntimeClickBtn"},
+            "props":{"x":0,"var":"_btnBack","stateNum":"2","skin":"menu/btn_back.png","runtime":"runtime.RuntimeClickBtn"},
             "nodeParent":1,
             "label":"Button(_btnBack)",
             "isDirectory":false,
