@@ -13,19 +13,23 @@ class ExchangeCard extends Card {
         this._labCount.stroke = 5;
         this._labCount.strokeColor = "0000000";
         this.addChild(this._labCount);
-        this._btnBuy = new Laya.Button("menu/btn_buy.png")
-        this._btnBuy.stateNum = 1
+        this._btnBuy = new runtime.RuntimeClickBtn("menu/btn_buy.png")
+        this._btnBuy.stateNum = 2
+        this._btnBuy.anchorX = this._btnBuy.anchorY = 0.5
         this.addChild(this._btnBuy)
         this._btnBuy.centerX = 0
-        this._btnBuy.y = 282
+        this._btnBuy.y = 250 + (this._btnBuy.height >> 1)
         this.height = 360
         this._labPrice = new Laya.Label("200")
         this._btnBuy.addChild(this._labPrice)
         this._labPrice.color = "#ffffff"
+        this._labPrice.centerY = 0
         this._labPrice.fontSize = 20
         this._labPrice.stroke = 2
         this._labPrice.strokeColor = "#000000"
-        this._labPrice.pos(80, 30)
+        this._labPrice.x = 80
+        // this._labPrice.y = this._btnBuy.height - this._labPrice.height >> 1
+        // this._labPrice.anchorX = this._labPrice.anchorY = 0.5
         this._btnBuy.on(Laya.Event.CLICK, this, this.buyCard)
     }
     private _labCount: Laya.Label;

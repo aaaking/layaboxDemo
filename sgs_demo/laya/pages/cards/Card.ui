@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":5,
+    "selecteID":3,
     "props":{"width":184,"sceneColor":"#000000","height":243},
     "nodeParent":-1,
     "label":"View",
@@ -54,7 +54,7 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"y":250,"visible":false,"stateNum":"1","skin":"menu/btn_buy.png","labelStrokeColor":"#000000","labelStroke":2,"labelSize":20,"labelPadding":"-4,0,0,-20","labelColors":"#ffffff","label":"200","centerX":0},
+            "props":{"y":250,"visible":false,"stateNum":"2","skin":"menu/btn_buy.png","labelStrokeColor":"#000000","labelStroke":2,"labelSize":20,"labelPadding":"-4,0,0,-20","labelColors":"#ffffff","label":"200","centerX":0},
             "nodeParent":1,
             "label":"Button",
             "isDirectory":false,
