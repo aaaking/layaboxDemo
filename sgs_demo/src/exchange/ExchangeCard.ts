@@ -31,7 +31,7 @@ class ExchangeCard extends Card {
     private _labCount: Laya.Label;
     private _labPrice: Laya.Label;
     public updata(): void {
-        super.updata();
+        super.updata()
         this._icon.skin = "cards/" + this.dataSource.cfg.icon + ".png";
         this._labPrice.text = this.dataSource.price;
         if (this.dataSource && this.dataSource.isself) {
@@ -84,7 +84,7 @@ class ExchangeCard extends Card {
             // Exchange.instance.mouseEnabled = true;
             this._boxWaiting.removeSelf()
             Laya.timer.clearAll(this)
-            this.removeSelf()
+            // this.removeSelf()
         } else {
             if (!this._boxWaiting.parent) {
                 // Exchange.instance.mouseEnabled = false;
