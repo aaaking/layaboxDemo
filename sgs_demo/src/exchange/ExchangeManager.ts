@@ -83,8 +83,8 @@ class ExchangeManager {
             return this.cards;
         else
             return this._cards.filter((item) => {
-                var cfg: any = GameConfig.getCfgHeroById(item.id);
-                return cfg.camp == camp;
+                var cfg: any = GameConfig.getCfgHeroById(item ? item.id : -16913);
+                return cfg && cfg.camp == camp;
             })
     }
 }

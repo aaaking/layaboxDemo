@@ -73,6 +73,7 @@ class ExchangeCard extends Card {
     }
 
     private showLoading(success: boolean) {
+        Exchange.instance.loading(success)
         if (!this._boxWaiting) {
             this.initBoxWaiting()
         }
@@ -80,13 +81,13 @@ class ExchangeCard extends Card {
             UITools.resetGray(this._btnBuy)
             this.requestNum = 0
             this.requestIng = false
-            Exchange.instance.mouseEnabled = true;
+            // Exchange.instance.mouseEnabled = true;
             this._boxWaiting.removeSelf()
             Laya.timer.clearAll(this)
             this.removeSelf()
         } else {
             if (!this._boxWaiting.parent) {
-                Exchange.instance.mouseEnabled = false;
+                // Exchange.instance.mouseEnabled = false;
                 this._wait.text = (this.dataSource && this.dataSource.isself) ? ExchangeCard.cancelIng : ExchangeCard.buyIng
                 Laya.stage.addChild(this._boxWaiting)
             }
@@ -98,7 +99,8 @@ class ExchangeCard extends Card {
         Laya.timer.clearAll(this)
         this.requestNum = 0
         this.requestIng = false
-        Exchange.instance.mouseEnabled = true;
+        // Exchange.instance.mouseEnabled = true;
+        Exchange.instance.loading(true)
         if (this._boxWaiting) {
             this._boxWaiting.removeSelf()
         }

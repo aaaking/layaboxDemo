@@ -45,4 +45,8 @@ class Exchange extends CardList {
     protected updateList(cell: ExchangeCard, index: number): void {
         cell.updata();
     }
+
+    loading(success: boolean) {
+        this._mask.visible = !success
+    }
 }

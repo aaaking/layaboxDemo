@@ -35,6 +35,8 @@ class CardList extends ui.cards.BaseCardListUI {
     onResize(e: Laya.Event = null): void {
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
+        this._mask.on(Laya.Event.CLICK, this, this.onTouch)
+        this._mask.zOrder = 10
         this._list.width = this.width - 10 - 10 - 20 - this._tab.width - 100
         CardList._columeCount = Math.floor(this._list.width / (MyCard.CARD_WIDTH + MyCard.LIST_SPACE));
         this._list.scrollBar.value = 0;
