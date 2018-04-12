@@ -36,7 +36,7 @@ class ExchangeManager {
                 let result = info.result.substring(130)
                 result = "0x" + result
                 let result1 = this.toAscii(result)
-                console.log("result1: " + result1)
+                console.log("result1: " + result1)//交易ID、cardID、price、self
                 let cards = result1.split(";")
                 cards.pop()
                 for (var k in cards) {
@@ -79,7 +79,7 @@ class ExchangeManager {
             return this.cards;
         else
             return this._cards.filter((item) => {
-                var cfg: any = GameConfig.getCfgHeroById(item ? item.id : -16913);
+                var cfg: any = GameConfig.getCfgHeroById(item && item.cfg ? item.cfg.id : -16913);
                 return cfg && cfg.camp == camp;
             })
     }

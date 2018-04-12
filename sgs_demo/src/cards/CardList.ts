@@ -78,7 +78,7 @@ class CardList extends ui.cards.BaseCardListUI {
             btn.y = (btn.height) * i + (btn.height >> 1)
         }
         this._tab.selectHandler = new Laya.Handler(this, this.checkTab);
-        this._tab.selectedIndex = 4;
+        this._tab.selectedIndex = 4
         this.checkTab();
     }
 

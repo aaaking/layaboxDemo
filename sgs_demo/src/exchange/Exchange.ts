@@ -5,7 +5,7 @@ class Exchange extends CardList {
     constructor() {
         super();
         this._pageName.skin = "menu/logo_cards_exchange.png"
-        Dispatcher.on("updateInfo",this,this.updateInfo);
+        Dispatcher.on("updateInfo", this, this.updateInfo);
     }
 
     private static _instance: Exchange;
@@ -18,7 +18,7 @@ class Exchange extends CardList {
     public show(parent: Laya.Sprite): void {
         if (parent && !Exchange.instance.parent)
             parent.addChild(Exchange.instance);
-
+        this._tab.selectedIndex = 4
         ExchangeManager.instance.testInitCards(() => {
             this._list.itemRender = ExchangeCard;
             // this._list.scrollBar.elasticDistance = 20;
@@ -31,9 +31,9 @@ class Exchange extends CardList {
         });
     }
 
-    public updateInfo(){
-         ExchangeManager.instance.testInitCards(() => {
-            this._list.array = ExchangeManager.instance._cards;         
+    public updateInfo() {
+        ExchangeManager.instance.testInitCards(() => {
+            this._list.array = ExchangeManager.instance._cards;
         });
     }
 

@@ -15,6 +15,7 @@ class MyCard extends CardList {
         if (parent && !MyCard.instance.parent) {
             parent.addChild(MyCard.instance);
         }
+        this._tab.selectedIndex = 4
         CardPackageManager.instance.testInitCards(() => {
             this._list.itemRender = CardPackageCard;
             // this._list.scrollBar.elasticDistance = 20;
@@ -32,7 +33,7 @@ class MyCard extends CardList {
 
     public updateBag(): void {
         CardPackageManager.instance.testInitCards(() => {
-            this._list.array = CardPackageManager.instance.cards;
+            this._list.array = CardPackageManager.instance.getCardsByCamp(this._tab.selectedIndex + 1);
         });
     }
 

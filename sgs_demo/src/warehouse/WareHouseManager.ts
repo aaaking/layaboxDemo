@@ -88,7 +88,7 @@ class WareHouseManager {
             return this._cards;
         } else {
             var datas = this._cards.filter((item) => {
-                var cfg: any = GameConfig.getCfgHeroById(item ? item.id : -16913);
+                var cfg: any = GameConfig.getCfgHeroById(item && item.cfg ? item.cfg.id : -16913);
                 return cfg && cfg.camp == camp;
             })
             return Constants.fillUpImplement(datas.filter(t => t.star == 10))

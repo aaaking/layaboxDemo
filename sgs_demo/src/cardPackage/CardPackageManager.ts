@@ -75,6 +75,8 @@ class CardPackageManager {
                     this._cards.push(t)
                 }
             }
+            this.deleteNull()
+            this._cards.sort(this.sortOnReduce)
             console.info(this._cards)//[]
             callback();
         }.bind(this))
@@ -82,8 +84,7 @@ class CardPackageManager {
 
     public get cards(): Array<any> {
         if (!this._cards) return [];
-        this.deleteNull();
-        return this._cards.sort(this.sortOnReduce);
+        return this._cards
     }
 
     private deleteNull(): void {
@@ -118,21 +119,20 @@ class CardPackageManager {
 
     public getCardsByCamp(camp: number): Array<any> {
         if (camp == 5)
-            return this.cards;
+            return this._cards;
         else
             return this._cards.filter((item) => {
-                var cfg: any = GameConfig.getCfgHeroById(item ? item.id : -16913);
+                var cfg: any = GameConfig.getCfgHeroById(item && item.cfg ? item.cfg.id : -16913);
                 return cfg && cfg.camp == camp;
             })
     }
 
     judgeHaveById(id: number): boolean {
         for (var i = 0; i < this.cards.length; i++) {
-            if (this.cards[i].id == id) {
+            if (this._cards[i].id == id) {
                 return true
             }
         }
         return false
     }
-
 }
