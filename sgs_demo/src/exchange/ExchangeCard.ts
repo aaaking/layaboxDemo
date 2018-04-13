@@ -44,6 +44,7 @@ class ExchangeCard extends Card {
             this._labPrice.visible = false
         } else {
             this._btnBuy.skin = "menu/btn_buy.png"
+            this._labPrice.visible = true
         }
     }
 

@@ -22,7 +22,6 @@ class Exchange extends CardList {
         ExchangeManager.instance.testInitCards(() => {
             this._list.itemRender = ExchangeCard;
             // this._list.scrollBar.elasticDistance = 20;
-            this._list.scrollBar.visible = false;
             this._list.renderHandler = new Laya.Handler(this, this.updateList);
             this._list.array = ExchangeManager.instance.cards;
             // this._ui._list.array = ClubManager.myClubs;
