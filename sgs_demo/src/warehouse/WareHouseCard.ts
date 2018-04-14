@@ -46,10 +46,7 @@ class WareHouseCard extends Card {
     }
 
     private clickCard(e: Laya.Event) {
-        // console.log(DebugTool.debugMode)
-        // console.log(window.location)
-        // console.log(Utils.isRelease())
-        if (/*DebugTool.debugMode*/!Utils.isRelease()) {
+        if (DebugUtil.debugMode) {
             new HeroDetail(this, e.stageX, e.stageY)
         }
     }

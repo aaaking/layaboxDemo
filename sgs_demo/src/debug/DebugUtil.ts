@@ -1,19 +1,14 @@
-class DebugTool {
+class DebugUtil {
     static debugMode: boolean = true
     static log(message?: any, ...optionalParams: any[]) {
-        if (DebugTool.debugMode) {
+        if (DebugUtil.debugMode) {
             console.log(message, optionalParams)
         }
     }
-    private static _instance: DebugTool;
-    public static get instance(): DebugTool {
-        DebugTool.debugMode = !Utils.isRelease()
-        if (!this._instance)
-            this._instance = new DebugTool();
-        return this._instance;
-    }
-    constructor() {
-        if (!DebugTool.debugMode) {
+
+    static init() {
+        DebugUtil.debugMode = !Utils.isRelease()
+        if (!DebugUtil.debugMode) {
             return
         }
         // <script type="text/javascript" src= "libs/laya.debugtool.js" > </script>
