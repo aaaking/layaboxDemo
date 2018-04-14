@@ -1,4 +1,12 @@
+/**
+ * author: zhouzhihui
+ */
 class ParseData {
+    /**
+     * //解析图鉴数据
+     * @param caller 
+     * @param callback 
+     */
     static parseWareHouseData(caller: any, callback) {
         Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_call, "params": [{ "from": localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0x3c3830342cb00000000000000000000000000000" }, "latest"], "id": 67 }, "POST", null, function (data) {
             //POST http://10.225.20.161:8118?{"jsonrpc":"2.0","method":"eth_call","params":[{"from":"0x2ee0faf9997edfd8bdc5d16939d91d1e3674a59f","to":"0xbbf97981efee7214874c304d7fed9788203cfa33","data":"0x3c3830342cb00000000000000000000000000000"},"latest"],"id":67}
