@@ -16,7 +16,11 @@ class WareHouseManager {
     public testInitCards(callback): void {
         this._cards = []
         this._originalCards = []
-        ParseData.parseWareHouseData(this, callback)
+        Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_call, "params": [{ "from": localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0x3c3830342cb00000000000000000000000000000" }, "latest"], "id": 67 }, "POST", null, function (data) {
+            Constants.clearCardStar()
+            ParseData.parseWareHouseData(data)
+            callback()
+        }.bind(this), function () { }.bind(this))
     }
 
     public get cards(): Array<any> {
