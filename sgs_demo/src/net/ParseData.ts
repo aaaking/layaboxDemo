@@ -48,4 +48,32 @@ class ParseData {
             callback()
         }.bind(caller), function () { }.bind(caller))
     }
+
+    static parseExchangeData(data) {
+        console.info(data)
+        var info = JSON.parse(data)
+        let result = info.result.substring(130)
+        result = "0x" + result
+        let result1 = Utils.toAscii(result)
+        console.log("result1: " + result1)//交易ID、cardID、price、self
+        let cards = result1.split(";")
+        cards.pop()
+        var resultData = []
+        for (var k in cards) {
+            let v = cards[k]
+            let arr = v.split(",")
+            var id: number = parseInt(arr[0]);
+            var cfg: any = GameConfig.getCfgHeroById(parseInt(arr[1]));
+            var price = arr[2]
+            if (parseInt(price) <= 0)
+                continue
+            var isself = arr[3] == "1"
+            var t: any = {
+                id, price, cfg, isself
+            }
+            resultData.push(t);
+        }
+        console.info(resultData)
+        return resultData
+    }
 }
