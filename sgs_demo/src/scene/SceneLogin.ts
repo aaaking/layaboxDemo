@@ -64,7 +64,7 @@ class SceneLogin extends Laya.View {
                             this.onerror.bind(this))
                     }.bind(this),
                         this.onerror.bind(this))
-                } else if (!balance) {
+                } else {
                     this.userBalance(uuid)
                 }
                 break;

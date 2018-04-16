@@ -59,6 +59,10 @@ class ShowCard extends ui.showcard.ShowCardUI {
                 e.stopPropagation();
                 break;
             case this._btnOpen:
+                if (parseInt(localStorage.getItem("balance")) < Constants.PackagePrice) {
+                    new CommonDialog("余额不足!")
+                    return
+                }
                 this.showLoading(false)
                 UITools.changeGray(this._btnOpen)
                 e.stopPropagation()
