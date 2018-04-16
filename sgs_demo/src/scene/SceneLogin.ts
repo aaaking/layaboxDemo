@@ -38,7 +38,7 @@ class SceneLogin extends Laya.View {
                 UITools.changeGray(this._btnLogin)
                 var uuid: string = localStorage.getItem('uuid');
                 var balance: number = parseInt(localStorage.getItem('balance'))
-                if (!uuid || !balance) {
+                if (!uuid) {
                     Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_newAccount, "params": [""], "id": 67 }, "POST", null, function (data) {
                         //POST http://10.225.20.161:8118?{"jsonrpc":"2.0","method":"personal_newAccount","params":[""],"id":67}
                         //{"jsonrpc":"2.0","id":67,"result":"0x24479b7f771d6d0d6d4003257ca1043661af7bd7"}
@@ -64,7 +64,7 @@ class SceneLogin extends Laya.View {
                             this.onerror.bind(this))
                     }.bind(this),
                         this.onerror.bind(this))
-                } else {
+                } else if (!balance) {
                     this.userBalance(uuid)
                 }
                 break;
@@ -114,10 +114,15 @@ class SceneLogin extends Laya.View {
                     this.netCompleted = true
                     this.gotoMenuScene()
                 } else if (balance <= 0) {
-                    
+                    Laya.timer.clearAll(this)
+                    localStorage.setItem('balance', balance + "");
+                    this.showLoading(true)
+                    this._btnLogin.mouseEnabled = true
+                    UITools.resetGray(this._btnLogin)
+                    new CommonDialog("余额不足，无法进入！")
                 } else {//NAN
-                    this.requestIng = false
                 }
+                this.requestIng = false
             }.bind(this),
                 this.onerror.bind(this))
         })
