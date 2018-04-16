@@ -56,7 +56,7 @@ class SceneLogin extends Laya.View {
                                     //POST http://10.225.20.161:8118?{"jsonrpc":"2.0","method":"eth_sendTransaction","params":[{"from":"0xb398fd7be01eb6b9aca4288a8675be80568f9c4a","to":"0x24479b7f771d6d0d6d4003257ca1043661af7bd7","value":"0x4563918244F40000"}],"id":67}
                                     //{"jsonrpc":"2.0","id":67,"result":"0x6703694f6263004fa905a0470685ea41e7c77c7bc4f8cc5276d550220de9a250"}
                                     console.info(data)
-                                    this.userBalance(uuid)
+                                    this.userBalance(uuid, true)
                                 }.bind(this),
                                     this.onerror.bind(this))
                             }
@@ -90,7 +90,7 @@ class SceneLogin extends Laya.View {
 
     requestNum = 0
     requestIng: boolean = false
-    private userBalance(uuid: any) {//查询余额,余额小于等于0禁止进入menu页
+    private userBalance(uuid: any, uuidNull: boolean =  false) {//查询余额,余额小于等于0禁止进入menu页
         Laya.timer.loop(1000, this, function () {
             if (this.requestNum > 180) {
                 this.onerror()
@@ -107,13 +107,14 @@ class SceneLogin extends Laya.View {
                 console.info(data)
                 var info = JSON.parse(data)
                 var balance = parseInt(parseInt(info.result, 16).toString(10))
+                console.info("balance: " + balance)
                 if (balance > 0) {
-                    localStorage.setItem('balance', balance + "");
+                    localStorage.setItem('balance', balance + "")
                     Laya.timer.clearAll(this)
                     this.showLoading(true)
                     this.netCompleted = true
                     this.gotoMenuScene()
-                } else if (balance <= 0) {
+                } else if (balance <= 0 && !uuidNull) {
                     Laya.timer.clearAll(this)
                     localStorage.setItem('balance', balance + "");
                     this.showLoading(true)

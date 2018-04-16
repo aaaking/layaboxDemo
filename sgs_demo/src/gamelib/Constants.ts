@@ -1,5 +1,5 @@
 class Constants {
-    static PackagePrice = 256
+    static PackagePrice = 32//0x20
     static CAMP_WEI = 1
     static CAMP_SHU = 2
     static CAMP_WU = 3

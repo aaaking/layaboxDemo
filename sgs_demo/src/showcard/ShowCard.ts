@@ -170,6 +170,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
                                 this.showLoading(true);
                                 this.showCard(id);
                                 CardPackageManager.instance.addCountByID(id, t)
+                                Dispatcher.dispatch("userBalance", [-Constants.PackagePrice])
                                 break
                             }
                         }

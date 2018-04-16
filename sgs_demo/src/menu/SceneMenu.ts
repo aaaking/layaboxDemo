@@ -29,6 +29,21 @@ module menu {
             Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
             CardPackageManager.instance.testInitCards(function () {
             })
+            Dispatcher.on("userBalance", this, this.userBalance);
+        }
+
+        private userBalance(changeCount, callNet: boolean = true) {
+            var balance = parseInt(localStorage.getItem("balance"))
+            balance += changeCount
+            localStorage.setItem("balance", balance + "")
+            this._label.text = Utils.toNumberUnit(balance)
+            if (callNet) {
+                Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getBalance, "params": [localStorage.getItem("uuid"), "latest"], "id": 67 }, "POST", null, function (data) {
+                    var balance = parseInt(parseInt(JSON.parse(data).result, 16).toString(10))
+                    localStorage.setItem('balance', balance + "")
+                    this._label.text = Utils.toNumberUnit(balance)
+                })
+            }
         }
 
         private static _instance: menu.SceneMenu;
@@ -45,7 +60,7 @@ module menu {
             this.height = Laya.stage.height;
             this._btnWarehouse.on(Laya.Event.CLICK, this, this.onTouch);
             var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
-            whiteSpace = whiteSpace <= 0 ? 0  : whiteSpace
+            whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
             this._btnWarehouse.x = (Laya.stage.width) - this.circleToRight - whiteSpace
 
             this._btnCardPackage.on(Laya.Event.CLICK, this, this.onTouch);
@@ -108,7 +123,7 @@ module menu {
         private initWareHouseCard() {
             this._btnWarehouse = new menu.MenuCard("menu/menu_wareHouse.png")
             var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
-            whiteSpace = whiteSpace <= 0 ? 0  : whiteSpace
+            whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
             this._btnWarehouse.x = (Laya.stage.width) - this.circleToRight - whiteSpace
             this._btnWarehouse.y = Laya.stage.height - this.circleToBottom
             this.addChild(this._btnWarehouse)
@@ -127,6 +142,7 @@ module menu {
             label.pos(103, 20)
             this.box.addChild(label)
         }
+        _label: Laya.Label
         private initBalance() {
             var image: Laya.Image = new Laya.Image("menu/menu_icon_balance.png")
             var box: Laya.Box = new Laya.Box()
@@ -134,11 +150,11 @@ module menu {
             box.size(image.width, image.height)
             box.addChild(image)
             this.addChild(box)
-            var label: Laya.Label = new Laya.Label(Utils.toNumberUnit(parseInt(localStorage.getItem('balance'))))
-            label.fontSize = 18
-            label.color = "#ffffff"
-            label.centerY = label.centerX = 0
-            box.addChild(label)
+            this._label = new Laya.Label(Utils.toNumberUnit(parseInt(localStorage.getItem('balance'))))
+            this._label.fontSize = 18
+            this._label.color = "#ffffff"
+            this._label.centerY = this._label.centerX = 0
+            box.addChild(this._label)
         }
     }
 }
