@@ -13,32 +13,41 @@ class CardList extends ui.cards.BaseCardListUI {
     }
 
     private initBackBtn() {
+        var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
+        whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
+        this._pageName.x = 163 + whiteSpace
         this._btnBack.anchorX = this._btnBack.anchorY = 0.5
-        this._btnBack.x = this._btnBack.x + (this._btnBack.width >> 1)
+        this._btnBack.x = (this._btnBack.width >> 1) + whiteSpace
         this._btnBack.y = this._btnBack.y + (this._btnBack.height >> 1)
     }
 
+    _balanceBox: Laya.Box
+    _balanceImg: Laya.Image
     _label: Laya.Label
     private initBalance() {
-        var image: Laya.Image = new Laya.Image("menu/menu_icon_balance.png")
-        var box: Laya.Box = new Laya.Box()
-        box.pos(Laya.stage.width - image.width - 16, 16)
-        box.size(image.width, image.height)
-        box.addChild(image)
-        this.addChild(box)
+        var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
+        whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
+        this._balanceImg = new Laya.Image("menu/menu_icon_balance.png")
+        this._balanceBox = new Laya.Box()
+        this._balanceBox.pos(Laya.stage.width - this._balanceImg.width - 16 - whiteSpace, 16)
+        this._balanceBox.size(this._balanceImg.width, this._balanceImg.height)
+        this._balanceBox.addChild(this._balanceImg)
+        this.addChild(this._balanceBox)
         this._label = new Laya.Label(Utils.toNumberUnit(parseInt(localStorage.getItem('balance'))))
         this._label.fontSize = 18
         this._label.color = "#ffffff"
         this._label.centerY = this._label.centerX = 0
-        box.addChild(this._label)
+        this._balanceBox.addChild(this._label)
     }
 
     onResize(e: Laya.Event = null): void {
+        var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
+        whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
         this._mask.on(Laya.Event.CLICK, this, this.onTouch)
         this._mask.zOrder = 10
-        this._list.width = this.width - 10 - 10 - 20 - this._tab.width - 100
+        this._list.width = this.width - 10 - 10 - 20 - this._tab.width - 100 - (whiteSpace << 1)
         CardList._columeCount = Math.floor(this._list.width / (MyCard.CARD_WIDTH + MyCard.LIST_SPACE));
         this._list.scrollBar.value = 0;
         var oneRowCardWidth = (MyCard.CARD_WIDTH + MyCard.LIST_SPACE) * CardList._columeCount
@@ -61,12 +70,21 @@ class CardList extends ui.cards.BaseCardListUI {
         } else {
             this._list.repeatX = CardList._columeCount
         }
-        this.setList(this._tab.selectedIndex + 1);
+        this.setList(this._tab.selectedIndex + 1)
+        
+        //update x pos
+        this._btnBack.x = (this._btnBack.width >> 1) + whiteSpace
+        this._pageName.x = 163 + whiteSpace
+        this._balanceBox.x = Laya.stage.width - this._balanceImg.width - 16 - whiteSpace
+        this._tab.right = 10 + whiteSpace
     }
 
     private initTab() {
+        var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
+        whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
         this._tab.removeChildren();
         this._tab.initItems();
+        this._tab.right = 10 + whiteSpace
         for (var i: number = 0; i < 5; i++) {
             var btn: Laya.Button = new runtime.RuntimeClickBtn("menu/icon_camp_" + (i + 1) + ".png");
             btn.anchorX = btn.anchorY = 0.5
