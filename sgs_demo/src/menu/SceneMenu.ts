@@ -58,10 +58,10 @@ module menu {
             this._btnBankExchange.centerX = -this._circleDis
 
             if (scale < 1) {
-                this._btnCardPackage.size(scale * this._btnCardPackage.width, scale * this._btnCardPackage.height)
-                this._btnShowcard.size(scale * this._btnShowcard.width, scale * this._btnShowcard.height)
-                this._btnBankExchange.size(scale * this._btnBankExchange.width, scale * this._btnBankExchange.height)
-                this._btnWarehouse.size(scale * this._btnWarehouse.width, scale * this._btnWarehouse.height)
+                // this._btnCardPackage.size(scale * this._btnCardPackage.width, scale * this._btnCardPackage.height)
+                // this._btnShowcard.size(scale * this._btnShowcard.width, scale * this._btnShowcard.height)
+                // this._btnBankExchange.size(scale * this._btnBankExchange.width, scale * this._btnBankExchange.height)
+                // this._btnWarehouse.size(scale * this._btnWarehouse.width, scale * this._btnWarehouse.height)
             }
 
             //avator
