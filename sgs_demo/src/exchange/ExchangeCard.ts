@@ -136,7 +136,7 @@ class ExchangeCard extends Card {
                 if (cardsinfo.result) {
                     this.showLoading(true)
                     Dispatcher.dispatch("updateInfo")
-                    Dispatcher.dispatch("userBalance", [-this.dataSource.price])
+                    Dispatcher.dispatch("userBalance", [this.dataSource.isself ? 0 : -this.dataSource.price])
                 } else {
                     this.requestIng = false
                 }

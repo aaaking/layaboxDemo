@@ -5,7 +5,6 @@ class Exchange extends CardList {
     constructor() {
         super();
         this._pageName.skin = "menu/logo_cards_exchange.png"
-        Dispatcher.on("updateInfo", this, this.updateInfo);
     }
 
     private static _instance: Exchange;
@@ -16,8 +15,10 @@ class Exchange extends CardList {
     }
 
     public show(parent: Laya.Sprite): void {
-        if (parent && !Exchange.instance.parent)
+        if (parent && !Exchange.instance.parent) {
             parent.addChild(Exchange.instance);
+        }
+        Dispatcher.on("userBalance", this, this.userBalance);
         this._tab.selectedIndex = 4
         ExchangeManager.instance.testInitCards(() => {
             this._list.itemRender = ExchangeCard;

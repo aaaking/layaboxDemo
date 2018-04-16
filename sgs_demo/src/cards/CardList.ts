@@ -18,6 +18,7 @@ class CardList extends ui.cards.BaseCardListUI {
         this._btnBack.y = this._btnBack.y + (this._btnBack.height >> 1)
     }
 
+    _label: Laya.Label
     private initBalance() {
         var image: Laya.Image = new Laya.Image("menu/menu_icon_balance.png")
         var box: Laya.Box = new Laya.Box()
@@ -25,11 +26,11 @@ class CardList extends ui.cards.BaseCardListUI {
         box.size(image.width, image.height)
         box.addChild(image)
         this.addChild(box)
-        var label: Laya.Label = new Laya.Label(Utils.toNumberUnit(parseInt(localStorage.getItem('balance'))))
-        label.fontSize = 18
-        label.color = "#ffffff"
-        label.centerY = label.centerX = 0
-        box.addChild(label)
+        this._label = new Laya.Label(Utils.toNumberUnit(parseInt(localStorage.getItem('balance'))))
+        this._label.fontSize = 18
+        this._label.color = "#ffffff"
+        this._label.centerY = this._label.centerX = 0
+        box.addChild(this._label)
     }
 
     onResize(e: Laya.Event = null): void {
@@ -92,10 +93,18 @@ class CardList extends ui.cards.BaseCardListUI {
     private onTouch(e: Laya.Event): void {
         switch (e.currentTarget) {
             case this._btnBack:
-                // Constants.clearCardStar()
+                Dispatcher.off("userBalance", this, this.userBalance);
                 this._list.array = null
                 this.removeSelf();
                 break;
         }
+    }
+
+    userBalance(changeCount, callNet: boolean = true) {
+        console.log("changeCount: " + changeCount)
+        var balance = parseInt(localStorage.getItem("balance"))
+        balance += changeCount
+        localStorage.setItem("balance", balance + "")
+        this._label.text = Utils.toNumberUnit(balance)
     }
 }
