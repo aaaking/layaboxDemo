@@ -65,24 +65,6 @@ module ui.cards {
     }
 }
 
-module ui.exchange {
-    export class ExchangeViewUI extends View {
-		public _btnBack:Laya.Button;
-		public _list:Laya.List;
-		public _tab:Laya.Tab;
-
-        public static  uiView:any ={"type":"View","props":{"width":1280,"visible":true,"height":720},"child":[{"type":"Image","props":{"skin":"menu/bg.jpg","centerY":0,"centerX":0}},{"type":"Button","props":{"y":0,"x":7,"var":"_btnBack","stateNum":2,"skin":"menu/btn_back.png"}},{"type":"Image","props":{"y":0,"x":124,"skin":"menu/logo_cards_exchange.png"}},{"type":"List","props":{"y":95,"x":0,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":28,"spaceX":28,"height":545}},{"type":"Tab","props":{"y":63,"width":87,"var":"_tab","right":0}}]};
-        constructor(){ super()}
-        createChildren():void {
-        
-            super.createChildren();
-            this.createView(ui.exchange.ExchangeViewUI.uiView);
-
-        }
-
-    }
-}
-
 module ui.loading {
     export class LoadingUI extends View {
 		public _mask:Laya.Image;
@@ -119,24 +101,6 @@ module ui.showcard {
 
             super.createChildren();
             this.createView(ui.showcard.ShowCardUI.uiView);
-
-        }
-
-    }
-}
-
-module ui.warehouse {
-    export class WarehouseUI extends View {
-		public _btnBack:Laya.Button;
-		public _list:Laya.List;
-		public _tab:Laya.Tab;
-
-        public static  uiView:any ={"type":"View","props":{"width":1280,"visible":true,"height":720},"child":[{"type":"Image","props":{"skin":"menu/bg.jpg","centerY":0,"centerX":0}},{"type":"Button","props":{"y":0,"x":7,"visible":true,"var":"_btnBack","stateNum":2,"skin":"menu/btn_back.png"}},{"type":"Image","props":{"y":0,"x":134,"skin":"menu/logo_cards_warehouse.png"}},{"type":"List","props":{"y":95,"x":0,"width":1142,"var":"_list","vScrollBarSkin":"comp/vscroll.png","spaceY":28,"spaceX":28,"height":545}},{"type":"Tab","props":{"y":63,"width":87,"var":"_tab","right":0}}]};
-        constructor(){ super()}
-        createChildren():void {
-        
-            super.createChildren();
-            this.createView(ui.warehouse.WarehouseUI.uiView);
 
         }
 
