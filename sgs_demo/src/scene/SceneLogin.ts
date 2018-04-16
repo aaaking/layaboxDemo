@@ -65,8 +65,7 @@ class SceneLogin extends Laya.View {
                     }.bind(this),
                         this.onerror.bind(this))
                 } else {
-                    this.netCompleted = true
-                    this.gotoMenuScene()
+                    this.userBalance(uuid)
                 }
                 break;
         }

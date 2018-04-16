@@ -29,7 +29,6 @@ module menu {
             Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
             CardPackageManager.instance.testInitCards(function () {
             })
-            console.log(DebugUtil.debugMode)
         }
 
         private static _instance: menu.SceneMenu;
