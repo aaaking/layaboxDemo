@@ -29,7 +29,7 @@ module menu {
             Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
             CardPackageManager.instance.testInitCards(function () {
             })
-            Dispatcher.on("userBalance", this, this.userBalance);
+            Dispatcher.on("userBalance", this, this.userBalance)
         }
 
         private userBalance(changeCount, callNet: boolean = true) {
@@ -42,7 +42,7 @@ module menu {
                     var balance = parseInt(parseInt(JSON.parse(data).result, 16).toString(10))
                     localStorage.setItem('balance', balance + "")
                     this._label.text = Utils.toNumberUnit(balance)
-                })
+                }.bind(this))
             }
         }
 

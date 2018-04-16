@@ -135,6 +135,7 @@ class SellCard extends ui.cardPackage.SellCardUI {
                 let cardsinfo = JSON.parse(data)
                 if (cardsinfo.result) {
                     this.showLoading(true)
+                    Dispatcher.dispatch("userBalance", [0])
                 } else {
                     this.requestIng = false
                 }

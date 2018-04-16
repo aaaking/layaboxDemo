@@ -6,7 +6,14 @@ class ShowCard extends ui.showcard.ShowCardUI {
         super();
         this.initBalance()
         this.initBackBtn()
-        Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
+        Laya.stage.on(Laya.Event.RESIZE, this, this.onResize)
+    }
+
+    private userBalance(changeCount, callNet: boolean = true) {
+        var balance = parseInt(localStorage.getItem("balance"))
+        balance += changeCount
+        localStorage.setItem("balance", balance + "")
+        this._label.text = Utils.toNumberUnit(balance)
     }
 
     private static _instance: ShowCard;
@@ -26,9 +33,10 @@ class ShowCard extends ui.showcard.ShowCardUI {
     private _columeCount: number;
 
     public show(parent: Laya.Sprite): void {
-        if (parent && !ShowCard.instance.parent)
+        if (parent && !ShowCard.instance.parent) {
             parent.addChild(ShowCard.instance);
-
+        }
+        Dispatcher.on("userBalance", this, this.userBalance)
         this.mouseEnabled = true;
         // Laya.Tween.clearAll(this._boxWaiting);
         Laya.Tween.clearAll(this._labTip);
@@ -55,8 +63,9 @@ class ShowCard extends ui.showcard.ShowCardUI {
     private onTouch(e: Laya.Event): void {
         switch (e.currentTarget) {
             case this._btnBack:
+                Dispatcher.off("userBalance", this, this.userBalance)
                 this.removeSelf();
-                e.stopPropagation();
+                e.stopPropagation()
                 break;
             case this._btnOpen:
                 if (parseInt(localStorage.getItem("balance")) < Constants.PackagePrice) {
@@ -203,6 +212,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
         })
     }
 
+    _label: Laya.Label
     private initBalance() {
         var image: Laya.Image = new Laya.Image("menu/menu_icon_balance.png")
         var box: Laya.Box = new Laya.Box()
@@ -210,10 +220,10 @@ class ShowCard extends ui.showcard.ShowCardUI {
         box.size(image.width, image.height)
         box.addChild(image)
         this.addChild(box)
-        var label: Laya.Label = new Laya.Label(Utils.toNumberUnit(parseInt(localStorage.getItem('balance'))))
-        label.fontSize = 18
-        label.color = "#ffffff"
-        label.centerY = label.centerX = 0
-        box.addChild(label)
+        this._label = new Laya.Label(Utils.toNumberUnit(parseInt(localStorage.getItem('balance'))))
+        this._label.fontSize = 18
+        this._label.color = "#ffffff"
+        this._label.centerY = this._label.centerX = 0
+        box.addChild(this._label)
     }
 }

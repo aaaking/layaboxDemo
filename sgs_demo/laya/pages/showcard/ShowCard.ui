@@ -67,7 +67,7 @@
                 {
                     "x":30,
                     "type":"Label",
-                    "props":{"y":41,"x":110,"width":45,"var":"_labCost","text":"256","strokeColor":"#8b2303","stroke":2,"fontSize":32,"color":"#ffffff","align":"center"},
+                    "props":{"y":41,"x":110,"width":45,"var":"_labCost","text":"32","strokeColor":"#8b2303","stroke":2,"fontSize":32,"color":"#ffffff","align":"center"},
                     "nodeParent":3,
                     "label":"Label(_labCost)",
                     "isDirectory":false,

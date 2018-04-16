@@ -49,6 +49,10 @@ class ExchangeCard extends Card {
     }
 
     public buyCard() {
+        if (!this.dataSource.isself && parseInt(localStorage.getItem("balance")) < this.dataSource.price) {
+            new CommonDialog("余额不足!")
+            return
+        }
         let baseID = "0000000000000000000000000000000000000000000000000000000000000000"
         let param = baseID.substring(0, 64 - this.dataSource.id.toString(16).length) + this.dataSource.id.toString(16)
         this.showLoading(false)
@@ -131,7 +135,8 @@ class ExchangeCard extends Card {
                 let cardsinfo = JSON.parse(data)
                 if (cardsinfo.result) {
                     this.showLoading(true)
-                    Dispatcher.dispatch("updateInfo");
+                    Dispatcher.dispatch("updateInfo")
+                    Dispatcher.dispatch("userBalance", [-this.dataSource.price])
                 } else {
                     this.requestIng = false
                 }
