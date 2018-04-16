@@ -80,6 +80,7 @@ module menu {
 
             //avator
             this.box.x = 15 + whiteSpace
+            this._balanceBox.x = Laya.stage.width - this._balanceImg.width - 16 - whiteSpace
 
             this._preWidth = Laya.stage.width
             //resize的时候可以刷新view，不用像上面这么麻烦，但是刷新比较耗性能
@@ -142,19 +143,23 @@ module menu {
             label.pos(103, 20)
             this.box.addChild(label)
         }
+        _balanceBox: Laya.Box
+        _balanceImg: Laya.Image
         _label: Laya.Label
         private initBalance() {
-            var image: Laya.Image = new Laya.Image("menu/menu_icon_balance.png")
-            var box: Laya.Box = new Laya.Box()
-            box.pos(Laya.stage.width - image.width - 16, 40)
-            box.size(image.width, image.height)
-            box.addChild(image)
-            this.addChild(box)
+            this._btnWarehouse = new menu.MenuCard("menu/menu_wareHouse.png")
+            var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
+            this._balanceImg = new Laya.Image("menu/menu_icon_balance.png")
+            this._balanceBox = new Laya.Box()
+            this._balanceBox.pos(Laya.stage.width - this._balanceImg.width - 16 + whiteSpace, 40)
+            this._balanceBox.size(this._balanceImg.width, this._balanceImg.height)
+            this._balanceBox.addChild(this._balanceImg)
+            this.addChild(this._balanceBox)
             this._label = new Laya.Label(Utils.toNumberUnit(parseInt(localStorage.getItem('balance'))))
             this._label.fontSize = 18
             this._label.color = "#ffffff"
             this._label.centerY = this._label.centerX = 0
-            box.addChild(this._label)
+            this._balanceBox.addChild(this._label)
         }
     }
 }
