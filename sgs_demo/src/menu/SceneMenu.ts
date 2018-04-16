@@ -1,5 +1,7 @@
 module menu {
     export class SceneMenu extends Laya.View {
+        circleToBottom = 88
+        circleToRight = 98
         _preWidth = UITools.canvasWidth
         _yPos = 335//卡片中心距离顶部的距离
         _circleDis = 435//相邻卡片的中心距离
@@ -43,7 +45,9 @@ module menu {
             this.width = Laya.stage.width;
             this.height = Laya.stage.height;
             this._btnWarehouse.on(Laya.Event.CLICK, this, this.onTouch);
-            // this._btnWarehouse.x = this._btnWarehouse.x + Laya.stage.width - this._preWidth//(Laya.stage.width - this._preWidth >> 1)
+            var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
+            whiteSpace = whiteSpace <= 0 ? 0  : whiteSpace
+            this._btnWarehouse.x = (Laya.stage.width) - this.circleToRight - whiteSpace
 
             this._btnCardPackage.on(Laya.Event.CLICK, this, this.onTouch);
             this._btnCardPackage.centerX = this._circleDis
@@ -100,11 +104,11 @@ module menu {
             this.addChild(this._btnCardPackage)
         }
         private initWareHouseCard() {
-            var circleToBottom = 88
-            var circleToRight = 98
             this._btnWarehouse = new menu.MenuCard("menu/menu_wareHouse.png")
-            this._btnWarehouse.x = Laya.stage.width - circleToRight
-            this._btnWarehouse.y = Laya.stage.height - circleToBottom
+            var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
+            whiteSpace = whiteSpace <= 0 ? 0  : whiteSpace
+            this._btnWarehouse.x = (Laya.stage.width) - this.circleToRight - whiteSpace
+            this._btnWarehouse.y = Laya.stage.height - this.circleToBottom
             this.addChild(this._btnWarehouse)
         }
         private initAvator() {

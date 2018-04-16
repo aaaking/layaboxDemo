@@ -1,4 +1,5 @@
 class UITools {
+    static MAX_BG_WIDTH = 1560
     static canvasWidth = 1280
     static canvasHeight = 720
     private constructor() {
