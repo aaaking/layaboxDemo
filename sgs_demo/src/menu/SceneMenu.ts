@@ -64,6 +64,9 @@ module menu {
                 this._btnWarehouse.size(scale * this._btnWarehouse.width, scale * this._btnWarehouse.height)
             }
 
+            //avator
+            this.box.x = 15 + whiteSpace
+
             this._preWidth = Laya.stage.width
             //resize的时候可以刷新view，不用像上面这么麻烦，但是刷新比较耗性能
             // window.location.reload();
@@ -111,17 +114,19 @@ module menu {
             this._btnWarehouse.y = Laya.stage.height - this.circleToBottom
             this.addChild(this._btnWarehouse)
         }
+
+        box: Laya.Box
         private initAvator() {
-            var box: Laya.Box = new Laya.Box()
-            box.pos(15, 15)
-            this.addChild(box)
+            this.box = new Laya.Box()
+            this.box.pos(15, 15)
+            this.addChild(this.box)
             var image: Laya.Image = new Laya.Image("menu/menu_avator.png")
-            box.addChild(image)
+            this.box.addChild(image)
             var label: Laya.Label = new Laya.Label(localStorage.getItem('uuid'))
             label.fontSize = 20
             label.color = "#ffffff"
             label.pos(103, 20)
-            box.addChild(label)
+            this.box.addChild(label)
         }
         private initBalance() {
             var image: Laya.Image = new Laya.Image("menu/menu_icon_balance.png")
