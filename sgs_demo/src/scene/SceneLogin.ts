@@ -113,7 +113,9 @@ class SceneLogin extends Laya.View {
                     this.showLoading(true)
                     this.netCompleted = true
                     this.gotoMenuScene()
-                } else {
+                } else if (balance <= 0) {
+                    
+                } else {//NAN
                     this.requestIng = false
                 }
             }.bind(this),
