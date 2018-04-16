@@ -24,8 +24,10 @@ class ShowCard extends ui.showcard.ShowCardUI {
     }
 
     private initBackBtn() {
+        var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
+        whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
         this._btnBack.anchorX = this._btnBack.anchorY = 0.5
-        this._btnBack.x = this._btnBack.x + (this._btnBack.width >> 1)
+        this._btnBack.x = (this._btnBack.width >> 1) + whiteSpace
         this._btnBack.y = this._btnBack.y + (this._btnBack.height >> 1)
     }
 
@@ -106,10 +108,14 @@ class ShowCard extends ui.showcard.ShowCardUI {
     }
 
     private onResize(e: Laya.Event = null): void {
+        var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
+        whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
         this._btnOpen.on(Laya.Event.CLICK, this, this.onTouch);
         this._btnBack.on(Laya.Event.CLICK, this, this.onTouch)
+        this._balanceBox.x = Laya.stage.width - this._balanceImg.width - 16 - whiteSpace
+        this._btnBack.x = (this._btnBack.width >> 1) + whiteSpace
     }
 
     private testOpenCard(): number {
@@ -212,18 +218,22 @@ class ShowCard extends ui.showcard.ShowCardUI {
         })
     }
 
+    _balanceBox: Laya.Box
+    _balanceImg: Laya.Image
     _label: Laya.Label
     private initBalance() {
-        var image: Laya.Image = new Laya.Image("menu/menu_icon_balance.png")
-        var box: Laya.Box = new Laya.Box()
-        box.pos(Laya.stage.width - image.width - 16, 40)
-        box.size(image.width, image.height)
-        box.addChild(image)
-        this.addChild(box)
+        var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
+        whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
+        this._balanceImg = new Laya.Image("menu/menu_icon_balance.png")
+        this._balanceBox = new Laya.Box()
+        this._balanceBox.pos(Laya.stage.width - this._balanceImg.width - 16 - whiteSpace, 40)
+        this._balanceBox.size(this._balanceImg.width, this._balanceImg.height)
+        this._balanceBox.addChild(this._balanceImg)
+        this.addChild(this._balanceBox)
         this._label = new Laya.Label(Utils.toNumberUnit(parseInt(localStorage.getItem('balance'))))
         this._label.fontSize = 18
         this._label.color = "#ffffff"
         this._label.centerY = this._label.centerX = 0
-        box.addChild(this._label)
+        this._balanceBox.addChild(this._label)
     }
 }

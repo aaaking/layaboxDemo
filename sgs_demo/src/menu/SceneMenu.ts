@@ -151,7 +151,7 @@ module menu {
             var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
             this._balanceImg = new Laya.Image("menu/menu_icon_balance.png")
             this._balanceBox = new Laya.Box()
-            this._balanceBox.pos(Laya.stage.width - this._balanceImg.width - 16 + whiteSpace, 40)
+            this._balanceBox.pos(Laya.stage.width - this._balanceImg.width - 16 - whiteSpace, 40)
             this._balanceBox.size(this._balanceImg.width, this._balanceImg.height)
             this._balanceBox.addChild(this._balanceImg)
             this.addChild(this._balanceBox)
