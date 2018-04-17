@@ -13,7 +13,7 @@ class ExchangeCard extends Card {
         this._labCount.stroke = 5;
         this._labCount.strokeColor = "0000000";
         this.addChild(this._labCount);
-        this._btnBuy = new runtime.RuntimeClickBtn("menu/btn_buy.png")
+        this._btnBuy = new menu.MenuCard("menu/btn_buy.png")
         this._btnBuy.stateNum = 2
         this._btnBuy.anchorX = this._btnBuy.anchorY = 0.5
         this.addChild(this._btnBuy)

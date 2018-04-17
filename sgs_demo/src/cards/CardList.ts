@@ -89,7 +89,7 @@ class CardList extends ui.cards.BaseCardListUI {
         this._tab.initItems();
         this._tab.right = 10 + whiteSpace
         for (var i: number = 0; i < 5; i++) {
-            var btn: Laya.Button = new runtime.RuntimeClickBtn("menu/icon_camp_" + (i + 1) + ".png");
+            var btn: Laya.Button = new menu.MenuCard("menu/icon_camp_" + (i + 1) + ".png");
             btn.anchorX = btn.anchorY = 0.5
             btn.stateNum = 2;
             btn.labelColors = "#e2eff7,#e2eff7,#e2eff7,#e2eff7";
