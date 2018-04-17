@@ -3,7 +3,7 @@
 */
 class SceneLogin extends Laya.View {
     public _bgLogin: Laya.Image;
-	public _btnLogin: runtime.RuntimeClickBtn;
+	public _btnLogin: ClickBtn;
     constructor() {
         super();
         this.initBg()
@@ -170,7 +170,7 @@ class SceneLogin extends Laya.View {
         this.addChild(this._bgLogin)
     }
     private initLoginBtn() {
-        this._btnLogin = new runtime.RuntimeClickBtn("login/btn_guest.png")
+        this._btnLogin = new ClickBtn("login/btn_guest.png")
         this._btnLogin.anchorX = this._btnLogin.anchorY = 0.5
         this._btnLogin.stateNum = 2
         this._btnLogin.centerX = 0
