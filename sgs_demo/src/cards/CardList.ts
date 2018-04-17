@@ -55,6 +55,9 @@ class CardList extends ui.cards.BaseCardListUI {
         console.log("this._list.width:" + this._list.width + "  oneRowCardWidth:" + oneRowCardWidth + "  this._list.repeatX:" + this._list.repeatX)
         this._list.x = (this.width - this._tab.width - 10) - this._list.width + remain >> 1;
         this._btnBack.on(Laya.Event.CLICK, this, this.onTouch);
+        this._btnBack.on(Laya.Event.MOUSE_DOWN, this, menu.MenuCard.normalSmall, [this._btnBack]);
+        this._btnBack.on(Laya.Event.MOUSE_UP, this, menu.MenuCard.normalBig, [this._btnBack]);
+        this._btnBack.on(Laya.Event.MOUSE_OUT, this, menu.MenuCard.normalBig, [this._btnBack]);
         if (!this._list.array || this._list.array.length <= 0 || this._list.repeatX != CardList._columeCount) {//只针对“图鉴”页
             this._list.repeatX = CardList._columeCount
             WareHouseManager.instance._originalCards = (Constants.concatListBeforeFill())//原始数据

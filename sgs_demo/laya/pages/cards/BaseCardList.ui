@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":4,
+    "selecteID":3,
     "props":{"width":1280,"sceneColor":"#000000","height":720},
     "nodeParent":-1,
     "label":"View",
@@ -41,7 +41,7 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"x":0,"var":"_btnBack","stateNum":"2","skin":"menu/btn_back.png","runtime":"runtime.RuntimeClickBtn"},
+            "props":{"x":0,"var":"_btnBack","stateNum":"2","skin":"menu/btn_back.png"},
             "nodeParent":1,
             "label":"Button(_btnBack)",
             "isDirectory":false,
