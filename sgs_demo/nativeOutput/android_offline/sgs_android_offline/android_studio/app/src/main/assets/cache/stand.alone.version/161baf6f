@@ -1,0 +1,78 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+/*
+* name;
+*/
+var Warehouse = /** @class */ (function (_super) {
+    __extends(Warehouse, _super);
+    function Warehouse() {
+        var _this = _super.call(this) || this;
+        _this._pageName.skin = "menu/logo_cards_warehouse.png";
+        // this.initStarTitle()
+        _this.listMouseAction();
+        _this.on(Laya.Event.MOUSE_DOWN, _this, _this.listMouseAction);
+        _this.on(Laya.Event.MOUSE_MOVE, _this, _this.listMouseAction);
+        _this.on(Laya.Event.MOUSE_UP, _this, _this.listMouseAction);
+        return _this;
+    }
+    Object.defineProperty(Warehouse, "instance", {
+        get: function () {
+            if (!this._instance)
+                this._instance = new Warehouse();
+            return this._instance;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Warehouse.prototype.show = function (parent) {
+        var _this = this;
+        if (parent && !Warehouse.instance.parent)
+            parent.addChild(Warehouse.instance);
+        WareHouseManager.instance.testInitCards(function () {
+            _this._list.itemRender = WareHouseCard;
+            // this._list.scrollBar.elasticDistance = 20;
+            _this._list.scrollBar.visible = false;
+            _this._list.renderHandler = new Laya.Handler(_this, _this.updateList);
+            // this._list.cacheContent = false
+            _this._list.array = WareHouseManager.instance._cards;
+            // this._ui._list.array = ClubManager.myClubs;
+            _this._list.mouseHandler = new Laya.Handler(_this, _this.listMouseAction);
+            _this.onResize(null);
+            // this.changeStarTitlePos()
+        });
+    };
+    Warehouse.prototype.setList = function (camp) {
+        this._list.array = WareHouseManager.instance.getCardsByCamp(camp);
+        this.listMouseAction();
+    };
+    /***渲染单元格时的回调方法***/
+    Warehouse.prototype.updateList = function (cell, index) {
+        cell.updata();
+    };
+    Warehouse.prototype.listMouseAction = function (p) {
+        if (!this._starTitle) {
+            this._starTitle = new Laya.Image("star/title_10.png");
+            this._starTitle.y = Warehouse.TITLE_Y_OFFSET;
+            this._list.addChild(this._starTitle);
+        }
+        if (!this._list.array || this._list.array.length <= this._list.startIndex) {
+            return;
+        }
+        var firstVisibleItem = (this._list.array[this._list.startIndex]);
+        if (firstVisibleItem) {
+            this._starTitle.skin = "star/title_" + firstVisibleItem.star + ".png";
+        }
+    };
+    Warehouse.TITLE_Y_OFFSET = 0;
+    Warehouse.STAR_TITLE_HEIGHT = 51 + Warehouse.TITLE_Y_OFFSET;
+    return Warehouse;
+}(CardList));
+//# sourceMappingURL=Warehouse.js.map

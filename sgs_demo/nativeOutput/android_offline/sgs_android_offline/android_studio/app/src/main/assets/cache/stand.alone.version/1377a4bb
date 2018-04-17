@@ -1,0 +1,44 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var runtime;
+(function (runtime) {
+    /*
+    ImageRunTime逻辑类
+    */
+    var RuntimeClick = /** @class */ (function (_super) {
+        __extends(RuntimeClick, _super);
+        function RuntimeClick() {
+            var _this = _super.call(this) || this;
+            _this.scaleTime = 100;
+            //设置组件的中心点
+            // this.stateNum = 3
+            _this.anchorX = _this.anchorY = 0.5;
+            //添加鼠标按下事件侦听。按时时缩小按钮。
+            _this.on(Laya.Event.MOUSE_DOWN, _this, _this.scaleSmal);
+            //添加鼠标抬起事件侦听。抬起时还原按钮。
+            _this.on(Laya.Event.MOUSE_UP, _this, _this.scaleBig);
+            //添加鼠标离开事件侦听。离开时还原按钮。
+            _this.on(Laya.Event.MOUSE_OUT, _this, _this.scaleBig);
+            return _this;
+        }
+        RuntimeClick.prototype.scaleBig = function () {
+            //变大还原的缓动效果
+            Laya.Tween.to(this, { scaleX: 1, scaleY: 1 }, this.scaleTime);
+        };
+        RuntimeClick.prototype.scaleSmal = function () {
+            //缩小至0.8的缓动效果
+            Laya.Tween.to(this, { scaleX: 0.8, scaleY: 0.8 }, this.scaleTime);
+        };
+        return RuntimeClick;
+    }(Laya.Button));
+    runtime.RuntimeClick = RuntimeClick;
+})(runtime || (runtime = {}));
+//# sourceMappingURL=RuntimeClick.js.map

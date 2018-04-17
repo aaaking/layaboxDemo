@@ -1,0 +1,36 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var CommonDialog = /** @class */ (function (_super) {
+    __extends(CommonDialog, _super);
+    function CommonDialog(txt) {
+        var _this = _super.call(this) || this;
+        _this._bg = new Laya.Image("menu/img_3.png");
+        _this._bg.centerX = _this._bg.centerY = 0;
+        _this.addChild(_this._bg);
+        _this._txt = new Laya.Label(txt);
+        _this._txt.centerX = _this._txt.centerY = 0;
+        _this._txt.fontSize = 30;
+        _this._txt.color = "#Ceb589";
+        _this.addChild(_this._txt);
+        _this.centerX = _this.centerY = 0;
+        Laya.stage.addChild(_this);
+        _this.scale(0.2, 0.2);
+        _this.alpha = 0;
+        Laya.Tween.to(_this, { scaleX: 1, scaleY: 1, alpha: 1 }, 500, Laya.Ease.elasticOut, Laya.Handler.create(_this, function () {
+            Laya.timer.once(1000, this, function () {
+                this.removeSelf();
+            });
+        }));
+        return _this;
+    }
+    return CommonDialog;
+}(Laya.View));
+//# sourceMappingURL=Toast.js.map

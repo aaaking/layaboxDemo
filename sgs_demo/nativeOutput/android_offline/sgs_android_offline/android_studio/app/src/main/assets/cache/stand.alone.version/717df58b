@@ -1,0 +1,55 @@
+/*
+* name;
+*/
+var WareHouseManager = /** @class */ (function () {
+    function WareHouseManager() {
+    }
+    Object.defineProperty(WareHouseManager, "instance", {
+        get: function () {
+            if (!this._instance)
+                this._instance = new WareHouseManager();
+            return this._instance;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    WareHouseManager.prototype.testInitCards = function (callback) {
+        this._cards = [];
+        this._originalCards = [];
+        Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_call, "params": [{ "from": localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0x3c3830342cb00000000000000000000000000000" }, "latest"], "id": 67 }, "POST", null, function (data) {
+            Constants.clearCardStar();
+            ParseData.parseWareHouseData(data);
+            callback();
+        }.bind(this), function () { }.bind(this));
+    };
+    Object.defineProperty(WareHouseManager.prototype, "cards", {
+        get: function () {
+            return this._cards;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    WareHouseManager.prototype.getCardsByCamp = function (camp) {
+        if (camp == Constants.CAMP_ALL) {
+            return this._cards;
+        }
+        else {
+            var datas = this._cards.filter(function (item) {
+                var cfg = GameConfig.getCfgHeroById(item && item.cfg ? item.cfg.id : -16913);
+                return cfg && cfg.camp == camp;
+            });
+            return Constants.fillUpImplement(datas.filter(function (t) { return t.star == 10; }))
+                .concat(Constants.fillUpImplement(datas.filter(function (t) { return t.star == 9; })))
+                .concat(Constants.fillUpImplement(datas.filter(function (t) { return t.star == 8; })))
+                .concat(Constants.fillUpImplement(datas.filter(function (t) { return t.star == 7; })))
+                .concat(Constants.fillUpImplement(datas.filter(function (t) { return t.star == 6; })))
+                .concat(Constants.fillUpImplement(datas.filter(function (t) { return t.star == 5; })))
+                .concat(Constants.fillUpImplement(datas.filter(function (t) { return t.star == 4; })))
+                .concat(Constants.fillUpImplement(datas.filter(function (t) { return t.star == 3; }), true))
+                .concat(Constants.fillUpImplement(datas.filter(function (t) { return t.star == 2; })))
+                .concat(Constants.fillUpImplement(datas.filter(function (t) { return t.star == 1; })));
+        }
+    };
+    return WareHouseManager;
+}());
+//# sourceMappingURL=WareHouseManager.js.map

@@ -1,0 +1,159 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+/*
+* name;
+*/
+var SellCard = /** @class */ (function (_super) {
+    __extends(SellCard, _super);
+    function SellCard() {
+        var _this = _super.call(this) || this;
+        _this.requestNum = 0;
+        _this.requestIng = false;
+        // this._btnClose.anchorX = this._btnClose.anchorY = 0.5
+        // this._btnClose.x = this._btnClose.x + (this._btnClose.width >> 1)
+        // this._btnClose.y = this._btnClose.y + (this._btnClose.height >> 1)
+        Laya.stage.on(Laya.Event.RESIZE, _this, _this.onResize);
+        return _this;
+    }
+    Object.defineProperty(SellCard, "instance", {
+        get: function () {
+            if (!this._instance)
+                this._instance = new SellCard();
+            return this._instance;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SellCard.prototype.show = function (parent, data) {
+        if (parent && !SellCard.instance.parent)
+            parent.addChild(SellCard.instance);
+        this._data = data;
+        this._imgIcon.skin = "cards/" + this._data.cfg.icon + ".png";
+        this._input.text = "";
+        this._input.maxChars = ("" + SellCard.UINT32_MAX).length;
+        this._labTip.visible = this._boxWaiting.visible = false;
+        this._boxNormal.mouseEnabled = true;
+        Laya.Tween.clearTween(this._labTip);
+        Laya.Tween.clearTween(this._boxWaiting);
+        Laya.timer.clearAll(this);
+        this.onResize(null);
+    };
+    SellCard.prototype.onTouch = function (e) {
+        switch (e.currentTarget) {
+            case this._btnClose:
+                this.removeSelf();
+                break;
+            case this._btnConfirm:
+                this.sell();
+                break;
+        }
+    };
+    SellCard.prototype.onResize = function (e) {
+        if (e === void 0) { e = null; }
+        this.width = Laya.stage.width;
+        this.height = Laya.stage.height;
+        this._btnClose.on(Laya.Event.CLICK, this, this.onTouch);
+        this._btnClose.on(Laya.Event.MOUSE_DOWN, this, menu.MenuCard.normalSmall, [this._btnClose]);
+        this._btnClose.on(Laya.Event.MOUSE_UP, this, menu.MenuCard.normalBig, [this._btnClose]);
+        this._btnClose.on(Laya.Event.MOUSE_OUT, this, menu.MenuCard.normalBig, [this._btnClose]);
+        this._btnConfirm.on(Laya.Event.CLICK, this, this.onTouch);
+        this._mask.on(Laya.Event.CLICK, this, this.onTouch);
+    };
+    SellCard.prototype.sell = function () {
+        var _this = this;
+        var count = parseInt(this._input.text);
+        var baseID = "0000000000000000000000000000000000000000000000000000000000000000";
+        var baseCount = "0000000000000000000000000000000000000000000000000000000000000000";
+        console.log(this._data);
+        console.log("this._data.id: " + this._data.id + "   十六进制: " + this._data.id.toString(16));
+        console.log("count: " + count + "   十六进制: " + count.toString(16));
+        var idstr = baseCount.substring(0, 64 - this._data.id.toString(16).length) + this._data.id.toString(16);
+        console.log("idstr: " + idstr);
+        var countstr = baseCount.substring(0, 64 - count.toString(16).length) + count.toString(16);
+        console.log("countstr: " + countstr);
+        var param = String(idstr) + String(countstr); //param参数是0x+8位的方法名+价格的十六进制，而且param长度必须是偶数位
+        console.log("param: " + param);
+        if (!count || count > SellCard.UINT32_MAX) {
+            Laya.Tween.clearTween(this._labTip);
+            this._labTip.visible = true;
+            this._labTip.alpha = 0;
+            Laya.Tween.to(this._labTip, { alpha: 1 }, 500, null, Laya.Handler.create(this, function () {
+                Laya.Tween.to(_this._labTip, { alpha: 0 }, 500, null, null, 1000);
+            }));
+            return;
+        }
+        this.showLoading(false);
+        UITools.changeGray(this._btnConfirm);
+        Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.personal_unlockAccount, "params": [localStorage.getItem('uuid'), "", null], "id": 67 }, "POST", null, function (data) {
+            console.info(data);
+            Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_sendTransaction, "params": [{ "from": localStorage.getItem('uuid'), "to": GameConfig.RPC_ADDRESS, "data": "0x95bf05a4" + param }], "id": 67 }, "POST", null, function (data) {
+                console.info(data);
+                this.getReceiptByLoop(JSON.parse(data)); // looper search receipt
+            }.bind(this), this.onNetError.bind(this));
+        }.bind(this), this.onNetError.bind(this));
+    };
+    SellCard.prototype.showLoading = function (success) {
+        if (success) {
+            UITools.resetGray(this._btnConfirm);
+            Dispatcher.dispatch("updateBag");
+            this.requestNum = 0;
+            this.requestIng = false;
+            this._boxNormal.mouseEnabled = true;
+            this._boxWaiting.visible = false;
+            Laya.timer.clearAll(this);
+            this.removeSelf();
+        }
+        else {
+            if (!this._boxWaiting.visible) {
+                this._boxNormal.mouseEnabled = false;
+                this._boxWaiting.visible = true;
+                this._boxWaiting.alpha = 0;
+                Laya.Tween.to(this._boxWaiting, { alpha: 1 }, 500, null);
+            }
+        }
+    };
+    SellCard.prototype.onNetError = function (error) {
+        UITools.resetGray(this._btnConfirm);
+        Laya.timer.clearAll(this);
+        this.requestNum = 0;
+        this.requestIng = false;
+        this._boxNormal.mouseEnabled = true;
+        this._boxWaiting.visible = false;
+    };
+    SellCard.prototype.getReceiptByLoop = function (info) {
+        Laya.timer.loop(1000, this, function () {
+            if (this.requestNum > 180) {
+                this.onNetError();
+                this.requestNum = 0;
+                return;
+            }
+            if (this.requestIng) {
+                return;
+            }
+            this.requestNum++;
+            this.requestIng = true;
+            Ajax.callNet(GameConfig.RPC_URL, { "jsonrpc": "2.0", "method": Urls.eth_getTransactionReceipt, "params": [info.result], "id": this.requestNum }, "POST", null, function (data) {
+                console.info(data);
+                var cardsinfo = JSON.parse(data);
+                if (cardsinfo.result) {
+                    this.showLoading(true);
+                    Dispatcher.dispatch("userBalance", [0]);
+                }
+                else {
+                    this.requestIng = false;
+                }
+            }.bind(this), this.onNetError.bind(this));
+        });
+    };
+    SellCard.UINT32_MAX = 4294967295; //Math.pow( 2, 32 ) - 1  SellCard.UINT32_MAX
+    return SellCard;
+}(ui.cardPackage.SellCardUI));
+//# sourceMappingURL=SellCard.js.map

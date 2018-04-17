@@ -1,0 +1,84 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var HeroDetail = /** @class */ (function (_super) {
+    __extends(HeroDetail, _super);
+    function HeroDetail(sourceView, sourceX, sourceY) {
+        var _this = _super.call(this) || this;
+        var bg = new Laya.Text();
+        bg.alpha = 0.6;
+        bg.size(Laya.stage.width, Laya.stage.height);
+        bg.bgColor = "#000000";
+        _this.addChild(bg);
+        Laya.stage.addChild(_this);
+        _this.templet = new Laya.Templet();
+        _this.templet.on(Laya.Event.COMPLETE, _this, _this.parseComplete);
+        _this.templet.on(Laya.Event.ERROR, _this, _this.onError);
+        _this.templet.loadAni("res/spine/119.sk");
+        return _this;
+    }
+    HeroDetail.prototype.parseComplete = function () {
+        var x = 300;
+        var y = 250;
+        var skeletonI = this.templet.buildArmature(0);
+        for (var animIndex = 0; animIndex < 1; animIndex++) {
+            var row = Math.floor(animIndex / 6);
+            var column = Math.floor(animIndex % 6);
+            skeletonI.pos(x * 2, y * 2);
+            skeletonI.showSkinByIndex(1);
+            skeletonI.play("skill2", true);
+            this.addChild(skeletonI);
+        }
+        for (var animIndex = 0; animIndex < this.templet.getAnimationCount(); animIndex++) {
+            var txtView = new Laya.Text();
+            var txtStr = this.templet.getAniNameByIndex(animIndex);
+            txtView.text = animIndex + ":" + txtStr;
+            txtView.fontSize = 25;
+            txtView.pos(20, 15 + animIndex * 35);
+            txtView.color = "#ff0000";
+            txtView.on("click", this, function (txtStrP) {
+                skeletonI.stop();
+                skeletonI.play(txtStrP, true);
+            }, [txtStr]);
+            this.addChild(txtView);
+        }
+        // //创建第一个动画
+        // var skeleton0: Laya.Skeleton;
+        // //从动画模板创建动画播放对象
+        // skeleton0 = this.templet.buildArmature(0);
+        // skeleton0.pos(200, 700);
+        // this.addChild(skeleton0);
+        // //切换动画皮肤
+        // // skeleton0.showSkinByIndex(1);
+        // //播放
+        // skeleton0.play(0, true);
+        // //创建第二个动画
+        // var skeleton1: Laya.Skeleton;
+        // skeleton1 = this.templet.buildArmature(0);
+        // skeleton1.pos(300, 700);
+        // // skeleton1.showSkinByIndex(1);
+        // skeleton1.play("skill2", true);
+        // Laya.stage.addChild(skeleton1);
+        // this.addChild(skeleton1);
+        var backBtn = new Laya.Text();
+        backBtn.fontSize = 30;
+        backBtn.text = LangMgr.back;
+        backBtn.bold = true;
+        backBtn.color = "#ff0000";
+        backBtn.pos(Laya.stage.width - 180, 10);
+        backBtn.on("click", this, function () { this.removeSelf(); });
+        this.addChild(backBtn);
+    };
+    HeroDetail.prototype.onError = function () {
+        console.log("hero detail parse error");
+    };
+    return HeroDetail;
+}(Laya.View));
+//# sourceMappingURL=HeroDetail.js.map

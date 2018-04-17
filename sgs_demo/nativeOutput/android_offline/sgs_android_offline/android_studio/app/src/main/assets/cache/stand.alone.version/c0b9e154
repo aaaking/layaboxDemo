@@ -1,0 +1,41 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var menu;
+(function (menu) {
+    var MenuCard = /** @class */ (function (_super) {
+        __extends(MenuCard, _super);
+        function MenuCard(skin, label) {
+            var _this = _super.call(this, skin, label) || this;
+            _this.anchorX = _this.anchorY = 0.5;
+            _this.stateNum = 2;
+            _this.on(Laya.Event.MOUSE_DOWN, _this, _this.scaleSmal);
+            _this.on(Laya.Event.MOUSE_UP, _this, _this.scaleBig);
+            _this.on(Laya.Event.MOUSE_OUT, _this, _this.scaleBig);
+            return _this;
+        }
+        MenuCard.prototype.scaleBig = function () {
+            Laya.Tween.to(this, { scaleX: 1, scaleY: 1 }, menu.MenuCard.scaleTime);
+        };
+        MenuCard.prototype.scaleSmal = function () {
+            Laya.Tween.to(this, { scaleX: 0.83, scaleY: 0.83 }, menu.MenuCard.scaleTime);
+        };
+        MenuCard.normalBig = function (target) {
+            Laya.Tween.to(target, { scaleX: 1, scaleY: 1 }, menu.MenuCard.scaleTime);
+        };
+        MenuCard.normalSmall = function (target) {
+            Laya.Tween.to(target, { scaleX: 0.8, scaleY: 0.8 }, menu.MenuCard.scaleTime);
+        };
+        MenuCard.scaleTime = 100;
+        return MenuCard;
+    }(Laya.Button));
+    menu.MenuCard = MenuCard;
+})(menu || (menu = {}));
+//# sourceMappingURL=MenuCard.js.map
