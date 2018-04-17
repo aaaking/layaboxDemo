@@ -2,7 +2,7 @@ class CardList extends ui.cards.BaseCardListUI {
     static LIST_SPACE = 25
     static CARD_WIDTH = 184//196
     static CARD_HEIGHT = 243//274
-    static _columeCount: number;
+    static _columeCount: number = 5
     constructor() {
         super()
         this._list.scrollBar.visible = false;
@@ -48,7 +48,8 @@ class CardList extends ui.cards.BaseCardListUI {
         this._mask.on(Laya.Event.CLICK, this, this.onTouch)
         this._mask.zOrder = 10
         this._list.width = this.width - 10 - 10 - 20 - this._tab.width - 100 - (whiteSpace << 1)
-        CardList._columeCount = Math.floor(this._list.width / (MyCard.CARD_WIDTH + MyCard.LIST_SPACE));
+        CardList._columeCount = 5//Math.floor(this._list.width / (MyCard.CARD_WIDTH + MyCard.LIST_SPACE));
+        this._list.width = CardList._columeCount * (MyCard.CARD_WIDTH + MyCard.LIST_SPACE) - MyCard.LIST_SPACE
         this._list.scrollBar.value = 0;
         var oneRowCardWidth = (MyCard.CARD_WIDTH + MyCard.LIST_SPACE) * CardList._columeCount
         var remain = this._list.width - oneRowCardWidth
