@@ -19,6 +19,7 @@ class Exchange extends CardList {
             parent.addChild(Exchange.instance);
         }
         Dispatcher.on("userBalance", this, this.userBalance);
+        Dispatcher.on("updateInfo", this, this.updateInfo);
         this._tab.selectedIndex = 4
         ExchangeManager.instance.testInitCards(() => {
             this._list.itemRender = ExchangeCard;
@@ -33,12 +34,12 @@ class Exchange extends CardList {
 
     public updateInfo() {
         ExchangeManager.instance.testInitCards(() => {
-            this._list.array = ExchangeManager.instance._cards;
+            this._list.array = ExchangeManager.instance.getCardsByCamp(this._tab.selectedIndex + 1)
         });
     }
 
     setList(camp: number): void {
-        this._list.array = ExchangeManager.instance.getCardsByCamp(camp);
+        this._list.array = ExchangeManager.instance.getCardsByCamp(camp)
     }
 
     /***渲染单元格时的回调方法***/

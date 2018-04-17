@@ -108,14 +108,18 @@ class CardList extends ui.cards.BaseCardListUI {
     setList(camp: number): void {
     }
 
-    private onTouch(e: Laya.Event): void {
+    onTouch(e: Laya.Event): void {
         switch (e.currentTarget) {
             case this._btnBack:
-                Dispatcher.off("userBalance", this, this.userBalance);
+                Dispatcher.off("userBalance", this, this.userBalance)
+                Dispatcher.off("updateInfo", this, this.updateInfo)
                 this._list.array = null
                 this.removeSelf();
                 break;
         }
+    }
+
+    public updateInfo() {
     }
 
     userBalance(changeCount, callNet: boolean = true) {
