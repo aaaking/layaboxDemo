@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":10,
-    "selecteID":12,
+    "selectedBox":1,
+    "selecteID":2,
     "props":{"width":966,"sceneColor":"#000000","height":458},
     "nodeParent":-1,
     "label":"View",
@@ -79,7 +79,7 @@
                 {
                     "x":30,
                     "type":"Button",
-                    "props":{"y":41,"x":925,"var":"_btnClose","stateNum":"2","skin":"menu/btn_close.png","runtime":"runtime.RuntimeClickBtn","anchorY":0.5,"anchorX":0.5},
+                    "props":{"y":41,"x":925,"var":"_btnClose","stateNum":"2","skin":"menu/btn_close.png","anchorY":0.5,"anchorX":0.5},
                     "nodeParent":10,
                     "label":"Button(_btnClose)",
                     "isDirectory":false,
@@ -92,7 +92,7 @@
                 {
                     "x":30,
                     "type":"Button",
-                    "props":{"y":353,"x":671,"var":"_btnConfirm","stateNum":"2","skin":"menu/btn_confirm.png","runtime":"runtime.RuntimeClickBtn","anchorY":0.5,"anchorX":0.5},
+                    "props":{"y":353,"x":671,"var":"_btnConfirm","stateNum":"2","skin":"menu/btn_confirm.png","anchorY":0.5,"anchorX":0.5},
                     "nodeParent":10,
                     "label":"Button(_btnConfirm)",
                     "isDirectory":false,

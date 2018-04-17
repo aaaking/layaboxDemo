@@ -49,8 +49,14 @@ class SellCard extends ui.cardPackage.SellCardUI {
     private onResize(e: Laya.Event = null): void {
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
-        this._btnClose.on(Laya.Event.CLICK, this, this.onTouch);
+        this._btnClose.on(Laya.Event.CLICK, this, this.onTouch)
+        this._btnClose.on(Laya.Event.MOUSE_DOWN, this, menu.MenuCard.normalSmall, [this._btnClose]);
+        this._btnClose.on(Laya.Event.MOUSE_UP, this, menu.MenuCard.normalBig, [this._btnClose]);
+        this._btnClose.on(Laya.Event.MOUSE_OUT, this, menu.MenuCard.normalBig, [this._btnClose]);
         this._btnConfirm.on(Laya.Event.CLICK, this, this.onTouch);
+        this._btnConfirm.on(Laya.Event.MOUSE_DOWN, this, menu.MenuCard.normalSmall, [this._btnConfirm]);
+        this._btnConfirm.on(Laya.Event.MOUSE_UP, this, menu.MenuCard.normalBig, [this._btnConfirm]);
+        this._btnConfirm.on(Laya.Event.MOUSE_OUT, this, menu.MenuCard.normalBig, [this._btnConfirm]);
         this._mask.on(Laya.Event.CLICK, this, this.onTouch)
     }
 
