@@ -3,7 +3,7 @@
 */
 class SceneLogin extends Laya.View {
     public _bgLogin: Laya.Image;
-	public _btnLogin: ClickBtn;
+	public _btnLogin: menu.MenuCard;
     constructor() {
         super();
         this.initBg()
@@ -80,6 +80,7 @@ class SceneLogin extends Laya.View {
 
     private gotoMenuScene() {
         if (this.resLoaded && this.netCompleted) {
+            this.showLoading(true)
             Laya.Tween.clearAll(this._btnLogin)
             this._bgLogin.skin = menu.SceneMenu.bgMenu
             this.removeChild(this._btnLogin)
@@ -111,7 +112,6 @@ class SceneLogin extends Laya.View {
                 if (balance > 0) {
                     localStorage.setItem('balance', balance + "")
                     Laya.timer.clearAll(this)
-                    this.showLoading(true)
                     this.netCompleted = true
                     this.gotoMenuScene()
                 } else if (balance <= 0 && !uuidNull) {
@@ -170,7 +170,7 @@ class SceneLogin extends Laya.View {
         this.addChild(this._bgLogin)
     }
     private initLoginBtn() {
-        this._btnLogin = new ClickBtn("login/btn_guest.png")
+        this._btnLogin = new menu.MenuCard("login/btn_guest.png")
         this._btnLogin.anchorX = this._btnLogin.anchorY = 0.5
         this._btnLogin.stateNum = 2
         this._btnLogin.centerX = 0

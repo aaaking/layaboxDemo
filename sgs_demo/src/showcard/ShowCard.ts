@@ -112,10 +112,18 @@ class ShowCard extends ui.showcard.ShowCardUI {
         whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
-        this._btnOpen.on(Laya.Event.CLICK, this, this.onTouch);
-        this._btnBack.on(Laya.Event.CLICK, this, this.onTouch)
         this._balanceBox.x = Laya.stage.width - this._balanceImg.width - 16 - whiteSpace
         this._btnBack.x = (this._btnBack.width >> 1) + whiteSpace
+        //
+        this._btnBack.on(Laya.Event.CLICK, this, this.onTouch)
+        this._btnBack.on(Laya.Event.MOUSE_DOWN, this, menu.MenuCard.normalSmall, [this._btnBack]);
+        this._btnBack.on(Laya.Event.MOUSE_UP, this, menu.MenuCard.normalBig, [this._btnBack]);
+        this._btnBack.on(Laya.Event.MOUSE_OUT, this, menu.MenuCard.normalBig, [this._btnBack]);
+        this._btnOpen.anchorX = this._btnOpen.anchorY = 0.5
+        this._btnOpen.on(Laya.Event.CLICK, this, this.onTouch);
+        this._btnOpen.on(Laya.Event.MOUSE_DOWN, this, menu.MenuCard.normalSmall, [this._btnOpen]);
+        this._btnOpen.on(Laya.Event.MOUSE_UP, this, menu.MenuCard.normalBig, [this._btnOpen]);
+        this._btnOpen.on(Laya.Event.MOUSE_OUT, this, menu.MenuCard.normalBig, [this._btnOpen]);
     }
 
     private testOpenCard(): number {
