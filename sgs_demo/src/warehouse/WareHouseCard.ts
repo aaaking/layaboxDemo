@@ -14,9 +14,9 @@ class WareHouseCard extends Card {
         this._labCount.stroke = 5;
         this._labCount.strokeColor = "0000000";
         this.addChild(this._labCount);
-        this.on(Laya.Event.MOUSE_DOWN, this, runtime.RuntimeClickBtn.normalSmall, [this]);
-        this.on(Laya.Event.MOUSE_UP, this, runtime.RuntimeClickBtn.normalBig, [this]);
-        this.on(Laya.Event.MOUSE_OUT, this, runtime.RuntimeClickBtn.normalBig, [this]);
+        this.on(Laya.Event.MOUSE_DOWN, this, menu.MenuCard.normalSmall, [this]);
+        this.on(Laya.Event.MOUSE_UP, this, menu.MenuCard.normalBig, [this]);
+        this.on(Laya.Event.MOUSE_OUT, this, menu.MenuCard.normalBig, [this]);
         this.on(Laya.Event.CLICK, this, this.clickCard)
         this.x = this.x + (this.width / 2)
         this.y = this.y + (this.height / 2) + Warehouse.STAR_TITLE_HEIGHT
