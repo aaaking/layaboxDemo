@@ -1,4 +1,5 @@
 // 程序入口
+//构建项目下载的工具所在目录： /Users/zhouzhihui/Library/Application Support/Laya/NativeTools/template
 class GameMain {
     constructor() {
         //初始化引擎
