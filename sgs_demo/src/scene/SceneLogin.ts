@@ -3,13 +3,22 @@
 */
 class SceneLogin extends Laya.View {
     public _bgLogin: Laya.Image;
-	public _btnLogin: menu.MenuCard;
+    public _btnLogin: menu.MenuCard;
     constructor() {
         super();
         this.initBg()
         this.initLoginBtn()
         Laya.stage.on(Laya.Event.RESIZE, this, this.onResize)
     }
+
+    // public GetActor<T extends Actor>(t: new () => T, instanceID: number): T {
+    //     var actor: Actor = getActor(1)
+    //     if (!(actor instanceof t)) {
+    //         return null
+    //     }
+    //     var Ddd: T = actor as T;
+    //     return <T>actor
+    // }
 
     private static _instance: SceneLogin;
     public static get instance(): SceneLogin {
@@ -91,7 +100,7 @@ class SceneLogin extends Laya.View {
 
     requestNum = 0
     requestIng: boolean = false
-    private userBalance(uuid: any, uuidNull: boolean =  false) {//查询余额,余额小于等于0禁止进入menu页
+    private userBalance(uuid: any, uuidNull: boolean = false) {//查询余额,余额小于等于0禁止进入menu页
         Laya.timer.loop(1000, this, function () {
             if (this.requestNum > 180) {
                 this.onerror()
