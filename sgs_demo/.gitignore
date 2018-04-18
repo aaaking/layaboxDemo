@@ -1,2 +1,4 @@
 .laya/chrome/
 bin/js/
+.DS_Store
+./bin/.DS_Store
