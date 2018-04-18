@@ -65,11 +65,19 @@ module menu {
 
             this._btnCardPackage.on(Laya.Event.CLICK, this, this.onTouch);
             this._btnCardPackage.centerX = this._circleDis
+            var rightPackage = Laya.stage.width -  this._btnCardPackage.x - this._btnCardPackage.width / 2
+            if (rightPackage < whiteSpace) {
+                this._btnCardPackage.centerX = this._circleDis + rightPackage - whiteSpace - 10
+            }
 
             this._btnShowcard.on(Laya.Event.CLICK, this, this.onTouch);
 
             this._btnBankExchange.on(Laya.Event.CLICK, this, this.onTouch);
             this._btnBankExchange.centerX = -this._circleDis
+            var leftExchange = this._btnBankExchange.x - this._btnBankExchange.width / 2
+            if (leftExchange < whiteSpace) {
+                this._btnBankExchange.centerX = -this._circleDis + whiteSpace - leftExchange + 10
+            }
 
             if (scale < 1) {
                 // this._btnCardPackage.size(scale * this._btnCardPackage.width, scale * this._btnCardPackage.height)
