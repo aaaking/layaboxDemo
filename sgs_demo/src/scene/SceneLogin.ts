@@ -84,6 +84,7 @@ class SceneLogin extends Laya.View {
         this.loadingBox.visible = false
         Laya.timer.clearAll(this)
         this._btnLogin.mouseEnabled = true
+        this._loadingCircleImg.visible = false
         UITools.resetGray(this._btnLogin)
     }
 
@@ -141,6 +142,7 @@ class SceneLogin extends Laya.View {
     loadingBox: Laya.Box;
     loadingBg: Laya.Image;
     loadingLabel: Laya.Label;
+    _loadingCircleImg: Laya.Image
     private showLoading(success: boolean) {
         if (!this.loadingBox) {
             this.initLoading()
@@ -148,22 +150,39 @@ class SceneLogin extends Laya.View {
         if (success) {
             Laya.timer.clearAll(this)
             this.loadingBox.removeSelf()
+            this._loadingCircleImg.removeSelf()
         } else {
             this.loadingBox.visible = true
             this.loadingLabel.text = "正在登录中..."
+            this._loadingCircleImg.visible = true
+            Laya.timer.loop(70, this, () => {
+                this._loadingCircleImg.rotation += 10
+            })
         }
     }
     private initLoading() {
+        this._loadingCircleImg = new Laya.Image("menu/loading_circle.png")
+        // this._loadingCircleImg.height = this._loadingCircleImg.width = 80
+        // this._loadingCircleImg.y = this.loadingBg.height + this.loadingBox.y + topBottomSpace
+        this._loadingCircleImg.anchorX = this._loadingCircleImg.anchorY = 0.5
+        this._loadingCircleImg.centerX = this._loadingCircleImg.centerY = 0
+        this.addChild(this._loadingCircleImg)
+
         this.loadingBox = new Laya.Box()
-        this.loadingBox.centerX = this.loadingBox.centerY = 0
+        this.loadingBox.centerX = 0
+        console.log("this.loadingBox.y: " + this.loadingBox.y)
         this.loadingBg = new Laya.Image("menu/img_3.png")
-        this.loadingBg.centerX = this.loadingBox.centerY = 0
-        this.loadingLabel = new Laya.Label("")
+        this.loadingBg.centerX = 0
+        this.loadingBg.height = 82
+        this.loadingLabel = new Laya.Label("正在登录中...")
         this.loadingLabel.fontSize = 30
         this.loadingLabel.color = "#Ceb589"
-        this.loadingLabel.centerX = this.loadingLabel.centerY = 0
+        this.loadingLabel.centerX = 0
+        this.loadingLabel.y = this.loadingBg.height - this.loadingLabel.height >> 1
         this.loadingBox.addChild(this.loadingBg)
         this.loadingBox.addChild(this.loadingLabel)
+        var topBottomSpace = this._btnLogin.y - this._btnLogin.height / 2 - this._loadingCircleImg.height / 2 - this._loadingCircleImg.y - this.loadingBg.height >> 1
+        this.loadingBox.y = this._loadingCircleImg.height / 2 + this._loadingCircleImg.y + topBottomSpace
         this.addChild(this.loadingBox)
     }
 
@@ -183,7 +202,9 @@ class SceneLogin extends Laya.View {
         this._btnLogin.anchorX = this._btnLogin.anchorY = 0.5
         this._btnLogin.stateNum = 2
         this._btnLogin.centerX = 0
-        this._btnLogin.y = Laya.stage.height - 100 - (this._btnLogin.height >> 1)
+        // this._btnLogin.y = Laya.stage.height - 100 - (this._btnLogin.height >> 1)
+        // console.log("this._btnLogin bottom: " + this._btnLogin.bottom)
+        this._btnLogin.bottom = 70
         this.addChild(this._btnLogin)
     }
 

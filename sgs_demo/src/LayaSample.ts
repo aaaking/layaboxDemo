@@ -9,7 +9,7 @@ class GameMain {
         Laya.stage.screenMode = Laya.Stage.SCREEN_HORIZONTAL;
         Dispatcher.init();
         LangMgr.changeLang(LangMgr.LANG_ZH_TW)
-        Laya.loader.load([{ url: ResourceConfig.login, type: Laya.Loader.ATLAS }, "menu/img_3.png"],
+        Laya.loader.load([{ url: ResourceConfig.login, type: Laya.Loader.ATLAS }, "menu/img_3.png", "menu/loading_circle.png"],
             Laya.Handler.create(this, this.onLoadCfgComplete),
             /*new Laya.Handler(this, this.onLoadCfgProgress, null, false)*/);
         //test code
