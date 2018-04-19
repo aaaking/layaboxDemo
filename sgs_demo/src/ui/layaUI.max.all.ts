@@ -51,8 +51,12 @@ module ui.cards {
 		public _star:Laya.Image;
 		public _imgName:Laya.Image;
 		public _mask:Laya.Image;
+		public _bottomBox:Laya.Box;
+		public _left:Laya.Label;
+		public _middle:Laya.Label;
+		public _right:Laya.Label;
 
-        public static  uiView:any ={"type":"View","props":{"width":184,"height":243},"child":[{"type":"Image","props":{"y":0,"x":0,"var":"_icon","skin":"cards/1.png"}},{"type":"Image","props":{"y":3,"x":42,"var":"_star","top":3,"skin":"star/4.png","left":42}},{"type":"Image","props":{"y":0,"x":0,"var":"_imgName","skin":"cardsname/0.png"}},{"type":"Image","props":{"y":30,"x":30,"var":"_mask","top":0,"skin":"comp/blank.png","right":0,"mouseThrough":false,"mouseEnabled":true,"left":0,"bottom":0}}]};
+        public static  uiView:any ={"type":"View","props":{"width":184,"height":243},"child":[{"type":"Box","props":{"y":0,"x":0,"visible":true},"child":[{"type":"Image","props":{"y":0,"x":0,"var":"_icon","skin":"cards/1.png"}},{"type":"Image","props":{"y":3,"x":42,"var":"_star","top":3,"skin":"star/4.png","left":42}},{"type":"Image","props":{"y":0,"x":0,"var":"_imgName","skin":"cardsname/0.png"}},{"type":"Image","props":{"y":30,"x":30,"visible":false,"var":"_mask","top":0,"skin":"comp/blank.png","right":0,"mouseThrough":false,"mouseEnabled":true,"left":0,"bottom":0}}]},{"type":"Box","props":{"y":246,"visible":false,"var":"_bottomBox","height":30,"centerX":0},"child":[{"type":"Label","props":{"var":"_left","text":"剩余 ","fontSize":22,"color":"#d1b89d","centerY":0}},{"type":"Label","props":{"var":"_middle","text":"middle","fontSize":28,"color":"#ffcb3f","centerY":0}},{"type":"Label","props":{"x":35,"var":"_right","text":" 张","fontSize":22,"color":"#d1b89d","centerY":0}}]}]};
         constructor(){ super()}
         createChildren():void {
         

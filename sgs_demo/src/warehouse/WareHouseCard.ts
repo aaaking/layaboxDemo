@@ -6,29 +6,29 @@ class WareHouseCard extends Card {
     _originalY = 0
     constructor() {
         super();
-        this._labCount = new Laya.Label();
-        this._labCount.right = 20;
-        this._labCount.bottom = 20;
-        this._labCount.fontSize = 30;
-        this._labCount.color = "#ffffff";
-        this._labCount.stroke = 5;
-        this._labCount.strokeColor = "0000000";
-        this.addChild(this._labCount);
         this.on(Laya.Event.MOUSE_DOWN, this, menu.MenuCard.normalSmall, [this]);
         this.on(Laya.Event.MOUSE_UP, this, menu.MenuCard.normalBig, [this]);
         this.on(Laya.Event.MOUSE_OUT, this, menu.MenuCard.normalBig, [this]);
         this.on(Laya.Event.CLICK, this, this.clickCard)
+        this.anchorX = this.anchorY = 0.5
+        this.height = this._bottomBox.y + (this._bottomBox.height)//360
+        this._bottomBox.visible = true
         this.x = this.x + (this.width / 2)
         this.y = this.y + (this.height / 2) + Warehouse.STAR_TITLE_HEIGHT
-        this.anchorX = this.anchorY = 0.5
     }
-    private _labCount: Laya.Label;
+
+    private setCount() {
+        this._middle.text = this.dataSource.count
+        this._middle.x = this._left.x + this._left.width
+        this._right.x = this._middle.x + this._middle.width
+        this._bottomBox.centerX = 0
+    }
 
     public updata(): void {
         super.updata();
         if (this.dataSource) {
             this._mask.visible = !this.dataSource.isHave
-            this._labCount.text = this.dataSource.count
+            this.setCount()
             this._icon.skin = "cards/" + this.dataSource.cfg.icon + ".png";
             if (!this.dataSource.hasRendered) {
                 this._originalY = this.y

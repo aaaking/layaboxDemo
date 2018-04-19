@@ -4,6 +4,7 @@
 class Card extends ui.cards.CardUI {
     constructor() {
         super();
+        this._mask.size(CardList.CARD_WIDTH, CardList.CARD_HEIGHT)
     }
 
     public updata(): void {
