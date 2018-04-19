@@ -6,6 +6,7 @@ class Loading extends ui.loading.LoadingUI {
     // 	public _loadingTopLabel:Laya.Label;
     constructor() {
         super()
+        this._mask.width = UITools.MAX_BG_PIC_WIDTH
     }
 
     private static _instance: Loading;

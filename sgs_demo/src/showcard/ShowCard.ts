@@ -262,7 +262,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
         if (!this._dialogOpenCard) {
             this._dialogOpenCard = new ui.dialog.OpenCardRuleUI()
             this._dialogOpenCard.centerX = this._dialogOpenCard.centerY = 0
-            this._dialogOpenCard._mask.size(UITools.canvasWidth, UITools.canvasHeight)
+            this._dialogOpenCard._mask.size(UITools.MAX_BG_PIC_WIDTH, UITools.canvasHeight)
             this._dialogOpenCard._btnClose.on(Laya.Event.CLICK, this, function () { this._dialogOpenCard.removeSelf() })
             this._dialogOpenCard._mask.on(Laya.Event.CLICK, this, function () { })
             this.addChild(this._dialogOpenCard)
