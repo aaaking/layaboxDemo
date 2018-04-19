@@ -33,6 +33,7 @@ class UITools {
             { url: ResourceConfig.cardsname, type: Laya.Loader.ATLAS },
             { url: LangMgr.mLang, type: Laya.Loader.JSON },
             { url: ResourceConfig.showcards, type: Laya.Loader.ATLAS },
+            { url: "res/atlas/icons.atlas", type: Laya.Loader.ATLAS },
             "star/title_3.png",
             "star/title_4.png",
             "star/title_5.png",

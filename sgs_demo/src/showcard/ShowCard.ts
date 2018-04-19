@@ -112,7 +112,8 @@ class ShowCard extends ui.showcard.ShowCardUI {
         whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
-        this._balanceBox.x = Laya.stage.width - this._balanceImg.width - 16 - whiteSpace
+        this._balanceBox.x = Laya.stage.width - this._balanceImg.width - 117 - whiteSpace
+        this.ruleIcon.x = Laya.stage.width - this.ruleIcon.width / 2 - 38 - whiteSpace
         this._btnBack.x = (this._btnBack.width >> 1) + whiteSpace
         //
         this._btnBack.on(Laya.Event.CLICK, this, this.onTouch)
@@ -229,12 +230,13 @@ class ShowCard extends ui.showcard.ShowCardUI {
     _balanceBox: Laya.Box
     _balanceImg: Laya.Image
     _label: Laya.Label
+    ruleIcon: menu.MenuCard
     private initBalance() {
         var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
         whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
         this._balanceImg = new Laya.Image("menu/menu_icon_balance.png")
         this._balanceBox = new Laya.Box()
-        this._balanceBox.pos(Laya.stage.width - this._balanceImg.width - 16 - whiteSpace, 40)
+        this._balanceBox.y = 26
         this._balanceBox.size(this._balanceImg.width, this._balanceImg.height)
         this._balanceBox.addChild(this._balanceImg)
         this.addChild(this._balanceBox)
@@ -243,5 +245,15 @@ class ShowCard extends ui.showcard.ShowCardUI {
         this._label.color = "#ffffff"
         this._label.centerY = this._label.centerX = 0
         this._balanceBox.addChild(this._label)
+        //rule dialog
+        console.log("this._balanceBox:" + this._balanceBox.width)    
+        this.ruleIcon = new menu.MenuCard("icons/openCardRule.png")
+        this.ruleIcon.stateNum = 2
+        this.ruleIcon.anchorX = this.ruleIcon.anchorY = 0.5
+        this.ruleIcon.y = 22 + this.ruleIcon.height / 2
+        this.ruleIcon.on(Laya.Event.CLICK, this, this.showRuleDialog)
+        this.addChild(this.ruleIcon)
+    }
+    private showRuleDialog() {
     }
 }

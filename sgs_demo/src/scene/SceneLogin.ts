@@ -170,7 +170,6 @@ class SceneLogin extends Laya.View {
 
         this.loadingBox = new Laya.Box()
         this.loadingBox.centerX = 0
-        console.log("this.loadingBox.y: " + this.loadingBox.y)
         this.loadingBg = new Laya.Image("menu/img_3.png")
         this.loadingBg.centerX = 0
         this.loadingBg.height = 82
