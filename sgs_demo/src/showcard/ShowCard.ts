@@ -271,7 +271,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
             this.addChild(this._dialogOpenCard)
         }
         this._dialogOpenCard._fiveLabel.text = "五星卡牌 " + this.remainFiveStar + "张"
-        this._dialogOpenCard._fourLabel.text = "四星卡牌 " + this.remainFourStar + "张"
+        this._dialogOpenCard._fourLabel.text = "四星卡牌 " + this.remainFourStar + "张"
         this._dialogOpenCard._threeLabel.text = "三星卡牌 " + this.remainThreeStar + "张"
     }
 }
