@@ -32,4 +32,5 @@
    <item name="showcards/8.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
    <item name="showcards/9.png" type="Image" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
    <item name="menu/loading_circle.png" type="Image" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="big" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
 </res>

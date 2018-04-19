@@ -246,7 +246,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
         this._label.centerY = this._label.centerX = 0
         this._balanceBox.addChild(this._label)
         //rule dialog
-        console.log("this._balanceBox:" + this._balanceBox.width)    
+        console.log("this._balanceBox:" + this._balanceBox.width)
         this.ruleIcon = new menu.MenuCard("icons/openCardRule.png")
         this.ruleIcon.stateNum = 2
         this.ruleIcon.anchorX = this.ruleIcon.anchorY = 0.5
@@ -254,6 +254,24 @@ class ShowCard extends ui.showcard.ShowCardUI {
         this.ruleIcon.on(Laya.Event.CLICK, this, this.showRuleDialog)
         this.addChild(this.ruleIcon)
     }
+    _dialogOpenCard: ui.dialog.OpenCardRuleUI
+    remainFiveStar = 555
+    remainFourStar = 555
+    remainThreeStar = 555
     private showRuleDialog() {
+        if (!this._dialogOpenCard) {
+            this._dialogOpenCard = new ui.dialog.OpenCardRuleUI()
+            this._dialogOpenCard.centerX = this._dialogOpenCard.centerY = 0
+            this._dialogOpenCard._mask.size(UITools.canvasWidth, UITools.canvasHeight)
+            this._dialogOpenCard._btnClose.on(Laya.Event.CLICK, this, function () { this._dialogOpenCard.removeSelf() })
+            this._dialogOpenCard._mask.on(Laya.Event.CLICK, this, function () { })
+            this.addChild(this._dialogOpenCard)
+        }
+        if (!this._dialogOpenCard.parent) {
+            this.addChild(this._dialogOpenCard)
+        }
+        this._dialogOpenCard._fiveLabel.text = "五星卡牌 " + this.remainFiveStar + "张"
+        this._dialogOpenCard._fourLabel.text = "四星卡牌 " + this.remainFourStar + "张"
+        this._dialogOpenCard._threeLabel.text = "三星卡牌 " + this.remainThreeStar + "张"
     }
 }

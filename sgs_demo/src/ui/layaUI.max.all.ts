@@ -64,6 +64,27 @@ module ui.cards {
     }
 }
 
+module ui.dialog {
+    export class OpenCardRuleUI extends View {
+		public _mask:Laya.Image;
+		public _btnClose:menu.MenuCard;
+		public _fourLabel:Laya.Label;
+		public _fiveLabel:Laya.Label;
+		public _threeLabel:Laya.Label;
+
+        public static  uiView:any ={"type":"View","props":{"width":1280,"height":720},"child":[{"type":"Image","props":{"var":"_mask","skin":"comp/blank.png"}},{"type":"Image","props":{"y":129,"skin":"big/bgOpenRule.png","centerX":0}},{"type":"Button","props":{"y":147,"x":977,"var":"_btnClose","stateNum":2,"skin":"menu/btn_close.png","runtime":"menu.MenuCard","anchorY":0.5,"anchorX":0.5}},{"type":"Image","props":{"y":180,"x":520,"skin":"icons/openRuleTop.png"}},{"type":"Label","props":{"y":457,"text":"每次开卡都会从所有剩余卡牌中完全随机抽取一张!","fontSize":24,"color":"#ffffff","centerX":0}},{"type":"Label","props":{"var":"_fourLabel","text":"四星卡牌 66张","fontSize":24,"color":"#ffffff","centerY":-30,"centerX":0}},{"type":"Label","props":{"var":"_fiveLabel","text":"五星卡牌 66张","fontSize":24,"color":"#ffffff","centerY":-80,"centerX":0}},{"type":"Label","props":{"var":"_threeLabel","text":"三星卡牌 66张","fontSize":24,"color":"#ffffff","centerY":20,"centerX":0}}]};
+        constructor(){ super()}
+        createChildren():void {
+        			View.regComponent("menu.MenuCard",menu.MenuCard);
+
+            super.createChildren();
+            this.createView(ui.dialog.OpenCardRuleUI.uiView);
+
+        }
+
+    }
+}
+
 module ui.loading {
     export class LoadingUI extends View {
 		public _mask:Laya.Image;

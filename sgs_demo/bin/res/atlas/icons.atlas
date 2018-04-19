@@ -1,1 +1,1 @@
-{"frames":{"openCardRule.png":{"frame":{"h":100,"idx":0,"w":50,"x":0,"y":0},"sourceSize":{"h":100,"w":50},"spriteSourceSize":{"x":0,"y":0}}},"meta":{"image":"icons.png","prefix":"icons/"}}
+{"frames":{"openCardRule.png":{"frame":{"h":100,"idx":0,"w":50,"x":0,"y":42},"sourceSize":{"h":100,"w":50},"spriteSourceSize":{"x":0,"y":0}},"openRuleTop.png":{"frame":{"h":41,"idx":0,"w":327,"x":0,"y":0},"sourceSize":{"h":41,"w":327},"spriteSourceSize":{"x":0,"y":0}}},"meta":{"image":"icons.png","prefix":"icons/"}}

@@ -1,4 +1,5 @@
 D .
+D big
 D cards
 P 4520A29E 0.png
 P 921B29B1 1.png
@@ -87,6 +88,7 @@ P E466EB1C vslider$bar.png
 P 2BFF7046 vslider.png
 D icons
 P 76A76508 openCardRule.png
+P 2B37B469 openRuleTop.png
 D login
 R 11908EC1 bg_login.jpg
 P A0E416A0 btn_guest.png
