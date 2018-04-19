@@ -12,7 +12,7 @@ class HeroDetail extends Laya.View {
         this.templet = new Laya.Templet();
         this.templet.on(Laya.Event.COMPLETE, this, this.parseComplete);
         this.templet.on(Laya.Event.ERROR, this, this.onError);
-        this.templet.loadAni("res/spine/119.sk");
+        this.templet.loadAni("spine/119.sk");
     }
     parseComplete() {
         var x = 300
