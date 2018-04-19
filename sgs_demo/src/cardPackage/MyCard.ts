@@ -59,7 +59,7 @@ class MyCard extends CardList {
         }
         if (!this._emptyBox) {
             this._emptyBox = new Laya.Box()
-            this._emptyBox.size(UITools.canvasWidth, 500)
+            this._emptyBox.size(500, 500)
             this._emptyBox.centerX = -this._tab.width / 2
             this._emptyBox.centerY = -20
             this.addChild(this._emptyBox)
@@ -80,6 +80,7 @@ class MyCard extends CardList {
             emptyButton.centerX = 0
             emptyButton.centerY = emptyLabel.centerY + emptyLabel.height / 2 + emptyButton.height / 2 + 10
             emptyButton.on(Laya.Event.CLICK, this, function () {
+                ShowCard.instance.show(this)
             })
             this._emptyBox.addChild(emptyButton)
         }
