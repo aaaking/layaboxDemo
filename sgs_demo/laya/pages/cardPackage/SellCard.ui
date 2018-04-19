@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":3,
+    "selecteID":17,
     "props":{"width":966,"sceneColor":"#000000","height":458},
     "nodeParent":-1,
     "label":"View",
@@ -15,7 +15,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"var":"_mask","top":0,"skin":"comp/blank.png","right":0,"left":0,"bottom":0},
+            "props":{"var":"_mask","top":0,"skin":"comp/blank.png","centerX":0,"bottom":0},
             "nodeParent":1,
             "label":"Image(_mask)",
             "isDirectory":false,

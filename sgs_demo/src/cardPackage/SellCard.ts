@@ -9,6 +9,7 @@ class SellCard extends ui.cardPackage.SellCardUI {
         // this._btnClose.x = this._btnClose.x + (this._btnClose.width >> 1)
         // this._btnClose.y = this._btnClose.y + (this._btnClose.height >> 1)
         Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
+        this._mask.width = UITools.MAX_BG_PIC_WIDTH
     }
 
     private static _instance: SellCard;
