@@ -547,7 +547,7 @@ module test {
             Laya.stage.addChild(textPartice)
         }
     }
-    new test.GameMain();
+
     // extended httprequest
     export class MyHttpRequest extends Laya.HttpRequest {
         constructor() {
@@ -569,6 +569,7 @@ module test {
             }
         }
     }
+    new test.GameMain();
 }
 // 1   .laya 文件夹下存放的是项目在开发运行中的一些配置信息。
 // 2   项目的输出目录（bin）
