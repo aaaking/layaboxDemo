@@ -89,6 +89,7 @@ P 2BFF7046 vslider.png
 D icons
 P D7E1F0E9 emptyPackage.png
 P 652CB202 goOpenCard.png
+P B2A0116A mine.png
 P 76A76508 openCardRule.png
 P 2B37B469 openRuleTop.png
 D login
@@ -96,7 +97,7 @@ R 11908EC1 bg_login.jpg
 P A0E416A0 btn_guest.png
 D menu
 R 0860FF13 bg.jpg
-R C56AB1A1 bg_2.jpg
+R 941CC979 bg_2.jpg
 P F0057E4C btn_4.png
 P 271F1539 btn_back.png
 P FB069271 btn_buy.png

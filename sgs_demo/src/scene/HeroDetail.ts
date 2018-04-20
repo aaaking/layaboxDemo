@@ -58,6 +58,9 @@ class HeroDetail extends Laya.View {
         // Laya.stage.addChild(skeleton1);
         // this.addChild(skeleton1);
 
+        // this.skeletonI.on(Laya.Event.LABEL, this, this.onEvent);
+        // this.skeletonI.on(Laya.Event.STOPPED, this, this.completeHandler);
+
         var backBtn: Laya.Text = new Laya.Text()
         backBtn.fontSize = 30
         backBtn.text = LangMgr.back
@@ -67,6 +70,33 @@ class HeroDetail extends Laya.View {
         backBtn.on("click", this, function () { this.removeSelf() })
         this.addChild(backBtn)
     }
+
+    // private completeHandler(): void {
+    //     this.play();
+    // }
+    // private play(): void {
+    //     this.mCurrIndex++;
+    //     if (this.mCurrIndex >= this.skeletonI.getAnimNum()) {
+    //         return
+    //         // this.mCurrIndex = 0;
+    //     }
+    //     this.skeletonI.play(this.mCurrIndex, false);
+    // }
+    // private onEvent(e): void {
+    //     // var tEventData: EventData = e as EventData;
+    //     // Laya.stage.addChild(this.mLabelSprite);
+    //     // this.mLabelSprite.x = this.mStartX;
+    //     // this.mLabelSprite.y = this.mStartY;
+    //     // this.mLabelSprite.graphics.clear();
+    //     // this.mLabelSprite.graphics.fillText(tEventData.name, 0, 0, "20px Arial", "#ff0000", "center");
+    //     // Laya.Tween.to(this.mLabelSprite, { y: this.mStartY - 200 }, 1000, null, Handler.create(this, this.playEnd))
+    //     console.log(e)
+    //     alert(e)
+    // }
+
+    // private playEnd(): void {
+    // }
+
     onError() {
         console.log("hero detail parse error");
     }

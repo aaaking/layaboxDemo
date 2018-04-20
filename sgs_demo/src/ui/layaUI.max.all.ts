@@ -93,11 +93,10 @@ module ui.loading {
     export class LoadingUI extends View {
 		public _mask:Laya.Image;
 		public _loadingTopLabel:Laya.Label;
-		public _loadingImg:Laya.Image;
 		public _loadingLabel:Laya.Label;
 		public _loadingBottomLabel:Laya.Label;
 
-        public static  uiView:any ={"type":"View","props":{"width":1280,"height":720},"child":[{"type":"Image","props":{"var":"_mask","top":0,"skin":"comp/blank.png","centerX":0,"bottom":0}},{"type":"Box","props":{"width":400,"height":535,"centerY":0,"centerX":0},"child":[{"type":"Image","props":{"top":0,"skin":"menu/img_3.png","centerX":0,"bottom":0,"sizeGrid":"3,0,3,0"}},{"type":"Label","props":{"y":130,"x":-25,"var":"_loadingTopLabel","text":"矿工正在玩命为你挖掘新卡...","fontSize":35,"color":"#ffffff","centerY":-120,"centerX":0}},{"type":"Image","props":{"y":200,"x":200,"var":"_loadingImg","skin":"menu/loading_circle.png","centerY":0,"centerX":0,"anchorY":0.5,"anchorX":0.5}},{"type":"Label","props":{"var":"_loadingLabel","text":"00:00","fontSize":30,"color":"#ffffff","centerY":0,"centerX":0,"anchorY":0.5,"anchorX":0.5}},{"type":"Label","props":{"y":370,"x":76,"var":"_loadingBottomLabel","text":"平均用时：20秒","fontSize":35,"color":"#ffffff","centerY":120,"centerX":0}}]}]};
+        public static  uiView:any ={"type":"View","props":{"width":1280,"height":720},"child":[{"type":"Image","props":{"var":"_mask","top":0,"skin":"comp/blank.png","centerX":0,"bottom":0}},{"type":"Box","props":{"width":400,"height":535,"centerY":0,"centerX":0},"child":[{"type":"Image","props":{"top":0,"skin":"menu/img_3.png","centerX":0,"bottom":0,"sizeGrid":"3,0,3,0"}},{"type":"Label","props":{"x":-25,"var":"_loadingTopLabel","text":"矿工正在玩命为你挖掘新卡...","fontSize":35,"color":"#ffffff","centerY":-200,"centerX":0}},{"type":"Label","props":{"var":"_loadingLabel","text":"00:00","fontSize":30,"color":"#ffffff","centerY":-150,"centerX":0,"anchorY":0.5,"anchorX":0.5}},{"type":"Label","props":{"x":76,"var":"_loadingBottomLabel","text":"平均用时：20秒","fontSize":35,"color":"#ffffff","centerY":200,"centerX":0}}]}]};
         constructor(){ super()}
         createChildren():void {
         

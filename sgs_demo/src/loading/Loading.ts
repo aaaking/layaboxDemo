@@ -1,12 +1,44 @@
 class Loading extends ui.loading.LoadingUI {
-    // public _mask:Laya.Image;
-    // 	public _loadingImg:Laya.Image;
-    // 	public _loadingLabel:Laya.Label;
-    // 	public _loadingBottomLabel:Laya.Label;
-    // 	public _loadingTopLabel:Laya.Label;
+    templet: Laya.Templet
     constructor() {
         super()
+        this.visible = false
         this._mask.width = UITools.MAX_BG_PIC_WIDTH
+        this.templet = new Laya.Templet();
+        this.templet.on(Laya.Event.COMPLETE, this, this.parseComplete);
+        this.templet.on(Laya.Event.ERROR, this, this.onError);
+        this.templet.loadAni("spine/999.sk")
+    }
+    mCurrIndex = 0
+    skeletonI: Laya.Skeleton
+    skeletonContainer: Laya.View
+    parseComplete() {
+        var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
+        whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
+        this.skeletonI = this.templet.buildArmature(0)
+        // this.skeletonI.pos(510 + whiteSpace, 490);
+        this.skeletonI.showSkinByIndex(0);
+        this.skeletonI.play("wak", true);
+        this.skeletonI.scale(0.55, 0.55)
+        let bound: Laya.Rectangle = this.skeletonI.getBounds()
+        this.skeletonI.hitArea = bound
+        console.log(bound)
+        this.addChild(this.skeletonI)
+        //spine parent
+        this.skeletonContainer = new Laya.View()
+        this.skeletonContainer.centerX = -150
+        this.skeletonContainer.centerY = 120
+        this.skeletonContainer.addChild(this.skeletonI)
+        this.addChild(this.skeletonContainer)
+        //矿山
+        var mineImg: Laya.Image = new Laya.Image("icons/mine.png")
+        mineImg.centerX = 65
+        mineImg.centerY = 70
+        this.addChild(mineImg)
+        this.visible = true
+    }
+    onError() {
+        console.log("hero detail parse error")
     }
 
     private static _instance: Loading;
@@ -38,9 +70,6 @@ class Loading extends ui.loading.LoadingUI {
     showAnim(show: boolean) {
         if (show) {
             var costSeconds = 0
-            Laya.timer.loop(70, this, () => {
-                this._loadingImg.rotation += 10
-            })
             Laya.timer.loop(1000, this, () => {
                 costSeconds += 1
                 var minute = Math.floor(costSeconds / 60).toString()
