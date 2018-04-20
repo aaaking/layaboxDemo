@@ -5,6 +5,7 @@ class CardList extends ui.cards.BaseCardListUI {
     static _columeCount: number = 5
     static TAB_RIGHT = 36
     static BALANCE_RIGHT = 63
+    static PAGE_NAME_ORIGINAL_X = 163
     constructor() {
         super()
         this._list.scrollBar.visible = false;
@@ -17,7 +18,7 @@ class CardList extends ui.cards.BaseCardListUI {
     private initBackBtn() {
         var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
         whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
-        this._pageName.x = 163 + whiteSpace
+        this._pageName.x = CardList.PAGE_NAME_ORIGINAL_X + whiteSpace
         this._btnBack.anchorX = this._btnBack.anchorY = 0.5
         this._btnBack.x = (this._btnBack.width >> 1) + whiteSpace
         this._btnBack.y = this._btnBack.y + (this._btnBack.height >> 1)
@@ -56,7 +57,8 @@ class CardList extends ui.cards.BaseCardListUI {
         var oneRowCardWidth = (MyCard.CARD_WIDTH + MyCard.LIST_SPACE) * CardList._columeCount
         var remain = this._list.width - oneRowCardWidth
         console.log("this._list.width:" + this._list.width + "  oneRowCardWidth:" + oneRowCardWidth + "  this._list.repeatX:" + this._list.repeatX)
-        this._list.x = (this.width - this._tab.width - CardList.TAB_RIGHT) - this._list.width + remain >> 1;
+        this._list.x = (this.width - this._tab.width - CardList.TAB_RIGHT) - this._list.width >> 1;
+        // this._list.x = this.width - this._tab.width - CardList.TAB_RIGHT - (Laya.stage.width - UITools.MAX_BG_PIC_WIDTH <= 0 ? 0 : Laya.stage.width - UITools.MAX_BG_PIC_WIDTH) - this._list.width >> 1;
         this._btnBack.on(Laya.Event.CLICK, this, this.onTouch);
         this._btnBack.on(Laya.Event.MOUSE_DOWN, this, menu.MenuCard.normalSmall, [this._btnBack]);
         this._btnBack.on(Laya.Event.MOUSE_UP, this, menu.MenuCard.normalBig, [this._btnBack]);
@@ -80,7 +82,7 @@ class CardList extends ui.cards.BaseCardListUI {
         
         //update x pos
         this._btnBack.x = (this._btnBack.width >> 1) + whiteSpace
-        this._pageName.x = 163 + whiteSpace
+        this._pageName.x = CardList.PAGE_NAME_ORIGINAL_X + whiteSpace
         this._balanceBox.x = Laya.stage.width - this._balanceImg.width - CardList.BALANCE_RIGHT - whiteSpace
         this._tab.right = CardList.TAB_RIGHT + whiteSpace
     }
