@@ -1,6 +1,0 @@
-var DebugTool = /** @class */ (function () {
-    function DebugTool() {
-    }
-    return DebugTool;
-}());
-//# sourceMappingURL=DebugTool.js.map

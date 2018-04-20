@@ -1,1 +1,0 @@
-var Dispatcher=function(){function n(){}return n.init=function(){n.eventDispatcher=new Laya.EventDispatcher},n.dispatch=function(t,e){void 0===e&&(e=null),n.eventDispatcher.event(t,e)},n.on=function(t,e,i){n.eventDispatcher.on(t,e,i)},n.off=function(t,e,i){n.eventDispatcher.off(t,e,i)},n}();
