@@ -6,6 +6,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
         super();
         this.initBalance()
         this.initBackBtn()
+        this.initPageName()
         Laya.stage.on(Laya.Event.RESIZE, this, this.onResize)
     }
 
@@ -124,7 +125,8 @@ class ShowCard extends ui.showcard.ShowCardUI {
         this._btnOpen.on(Laya.Event.CLICK, this, this.onTouch);
         this._btnOpen.on(Laya.Event.MOUSE_DOWN, this, menu.MenuCard.normalSmall, [this._btnOpen]);
         this._btnOpen.on(Laya.Event.MOUSE_UP, this, menu.MenuCard.normalBig, [this._btnOpen]);
-        this._btnOpen.on(Laya.Event.MOUSE_OUT, this, menu.MenuCard.normalBig, [this._btnOpen]);
+        this._btnOpen.on(Laya.Event.MOUSE_OUT, this, menu.MenuCard.normalBig, [this._btnOpen])
+        this._pageName.x = CardList.PAGE_NAME_ORIGINAL_X + whiteSpace
     }
 
     private testOpenCard(): number {
@@ -273,5 +275,11 @@ class ShowCard extends ui.showcard.ShowCardUI {
         this._dialogOpenCard._fiveLabel.text = "五星卡牌 " + this.remainFiveStar + "张"
         this._dialogOpenCard._fourLabel.text = "四星卡牌 " + this.remainFourStar + "张"
         this._dialogOpenCard._threeLabel.text = "三星卡牌 " + this.remainThreeStar + "张"
+    }
+
+    _pageName: Laya.Image
+    private initPageName() {
+        this._pageName = new Laya.Image("icons/openCardPageName.png")
+        this.addChild(this._pageName)
     }
 }
