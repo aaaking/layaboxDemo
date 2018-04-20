@@ -93,7 +93,7 @@
         {
             "x":15,
             "type":"Box",
-            "props":{"y":30,"var":"_cardBox","centerX":0},
+            "props":{"y":88,"var":"_cardBox","centerX":0},
             "nodeParent":1,
             "label":"Box(_cardBox)",
             "isOpen":true,
@@ -119,7 +119,7 @@
                 {
                     "x":30,
                     "type":"Image",
-                    "props":{"y":30,"x":80,"var":"_star","skin":"star/4.png"},
+                    "props":{"var":"_star","skin":"showcards/star_4.png","right":0},
                     "nodeParent":16,
                     "label":"Image(_star)",
                     "isDirectory":false,

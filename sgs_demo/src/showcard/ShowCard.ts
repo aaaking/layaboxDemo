@@ -223,7 +223,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
         this._imgIcon.skin = "showcards/" + cfg.icon + ".png";
         this._btnOpen.visible = this._imgBg.visible = false;
         this._cardBox.visible = true;
-        this._star.skin = "star/" + cfg.star + ".png"
+        this._star.skin = "showcards/star_" + cfg.star + ".png"
         Laya.timer.once(1000, this, () => {
             this._labTip.visible = true;
             this.on(Laya.Event.CLICK, this, this.onTouch);
