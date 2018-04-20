@@ -23,18 +23,17 @@ class Loading extends ui.loading.LoadingUI {
         let bound: Laya.Rectangle = this.skeletonI.getBounds()
         this.skeletonI.hitArea = bound
         console.log(bound)
-        this.addChild(this.skeletonI)
         //spine parent
         this.skeletonContainer = new Laya.View()
-        this.skeletonContainer.centerX = -150
+        this.skeletonContainer.centerX = -145
         this.skeletonContainer.centerY = 120
-        this.skeletonContainer.addChild(this.skeletonI)
-        this.addChild(this.skeletonContainer)
         //矿山
         var mineImg: Laya.Image = new Laya.Image("icons/mine.png")
-        mineImg.centerX = 65
+        mineImg.centerX = 70
         mineImg.centerY = 70
         this.addChild(mineImg)
+        this.skeletonContainer.addChild(this.skeletonI)
+        this.addChild(this.skeletonContainer)
         this.visible = true
     }
     onError() {

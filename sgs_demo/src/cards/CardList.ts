@@ -3,6 +3,8 @@ class CardList extends ui.cards.BaseCardListUI {
     static CARD_WIDTH = 184//196
     static CARD_HEIGHT = 243//274
     static _columeCount: number = 5
+    static TAB_RIGHT = 36
+    static BALANCE_RIGHT = 63
     constructor() {
         super()
         this._list.scrollBar.visible = false;
@@ -29,7 +31,7 @@ class CardList extends ui.cards.BaseCardListUI {
         whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
         this._balanceImg = new Laya.Image("menu/menu_icon_balance.png")
         this._balanceBox = new Laya.Box()
-        this._balanceBox.pos(Laya.stage.width - this._balanceImg.width - 16 - whiteSpace, 16)
+        this._balanceBox.pos(Laya.stage.width - this._balanceImg.width - CardList.BALANCE_RIGHT - whiteSpace, 16)
         this._balanceBox.size(this._balanceImg.width, this._balanceImg.height)
         this._balanceBox.addChild(this._balanceImg)
         this.addChild(this._balanceBox)
@@ -54,7 +56,7 @@ class CardList extends ui.cards.BaseCardListUI {
         var oneRowCardWidth = (MyCard.CARD_WIDTH + MyCard.LIST_SPACE) * CardList._columeCount
         var remain = this._list.width - oneRowCardWidth
         console.log("this._list.width:" + this._list.width + "  oneRowCardWidth:" + oneRowCardWidth + "  this._list.repeatX:" + this._list.repeatX)
-        this._list.x = (this.width - this._tab.width - 10) - this._list.width + remain >> 1;
+        this._list.x = (this.width - this._tab.width - CardList.TAB_RIGHT) - this._list.width + remain >> 1;
         this._btnBack.on(Laya.Event.CLICK, this, this.onTouch);
         this._btnBack.on(Laya.Event.MOUSE_DOWN, this, menu.MenuCard.normalSmall, [this._btnBack]);
         this._btnBack.on(Laya.Event.MOUSE_UP, this, menu.MenuCard.normalBig, [this._btnBack]);
@@ -79,8 +81,8 @@ class CardList extends ui.cards.BaseCardListUI {
         //update x pos
         this._btnBack.x = (this._btnBack.width >> 1) + whiteSpace
         this._pageName.x = 163 + whiteSpace
-        this._balanceBox.x = Laya.stage.width - this._balanceImg.width - 16 - whiteSpace
-        this._tab.right = 10 + whiteSpace
+        this._balanceBox.x = Laya.stage.width - this._balanceImg.width - CardList.BALANCE_RIGHT - whiteSpace
+        this._tab.right = CardList.TAB_RIGHT + whiteSpace
     }
 
     private initTab() {
@@ -88,7 +90,7 @@ class CardList extends ui.cards.BaseCardListUI {
         whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
         this._tab.removeChildren();
         this._tab.initItems();
-        this._tab.right = 10 + whiteSpace
+        this._tab.right = CardList.TAB_RIGHT + whiteSpace
         for (var i: number = 0; i < 5; i++) {
             var btn: Laya.Button = new menu.MenuCard("menu/icon_camp_" + (i + 1) + ".png");
             btn.anchorX = btn.anchorY = 0.5
