@@ -45,7 +45,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
         Laya.Tween.clearAll(this._labTip);
         Laya.timer.clearAll(this);
         this._btnOpen.visible = this._imgBg.visible = true;
-        this._imgIcon.visible = this._labTip.visible = false//this._boxWaiting.visible = false;
+        this._cardBox.visible = this._labTip.visible = false//this._boxWaiting.visible = false;
         this.off(Laya.Event.CLICK, this, this.onTouch);
         this.onResize(null);
     }
@@ -103,7 +103,7 @@ class ShowCard extends ui.showcard.ShowCardUI {
                 Laya.Tween.clearAll(this._labTip);
                 this.off(Laya.Event.CLICK, this, this.onTouch);
                 this._btnOpen.visible = this._imgBg.visible = true;
-                this._imgIcon.visible = this._labTip.visible = false;
+                this._cardBox.visible = this._labTip.visible = false;
                 break;
         }
     }
@@ -222,7 +222,8 @@ class ShowCard extends ui.showcard.ShowCardUI {
         var cfg: any = GameConfig.getCfgHeroById(id);
         this._imgIcon.skin = "showcards/" + cfg.icon + ".png";
         this._btnOpen.visible = this._imgBg.visible = false;
-        this._imgIcon.visible = true;
+        this._cardBox.visible = true;
+        this._star.skin = "star/" + cfg.star + ".png"
         Laya.timer.once(1000, this, () => {
             this._labTip.visible = true;
             this.on(Laya.Event.CLICK, this, this.onTouch);

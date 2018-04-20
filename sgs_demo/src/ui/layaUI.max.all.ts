@@ -111,13 +111,15 @@ module ui.loading {
 module ui.showcard {
     export class ShowCardUI extends View {
 		public _imgBg:Laya.Image;
-		public _imgIcon:Laya.Image;
 		public _btnOpen:Laya.Button;
 		public _labCost:Laya.Label;
 		public _btnBack:Laya.Button;
 		public _labTip:Laya.Label;
+		public _cardBox:Laya.Box;
+		public _imgIcon:Laya.Image;
+		public _star:Laya.Image;
 
-        public static  uiView:any ={"type":"View","props":{"width":600,"height":720},"child":[{"type":"Image","props":{"skin":"menu/bg_2.jpg","centerY":0,"centerX":0}},{"type":"Image","props":{"y":20,"var":"_imgBg","skin":"menu/img_4.png","centerX":0}},{"type":"Image","props":{"y":30,"x":90,"var":"_imgIcon","skin":"cards/1.png","centerX":0}},{"type":"Button","props":{"var":"_btnOpen","stateNum":2,"skin":"menu/btn_showcard.png","labelAlign":"center","centerX":0,"bottom":30},"child":[{"type":"Label","props":{"y":41,"x":110,"width":45,"var":"_labCost","text":"32","strokeColor":"#8b2303","stroke":2,"fontSize":32,"color":"#ffffff","align":"center"}}]},{"type":"Button","props":{"x":0,"var":"_btnBack","stateNum":2,"skin":"menu/btn_back.png"}},{"type":"Label","props":{"var":"_labTip","text":"点击屏幕继续","fontSize":30,"color":"#Ceb589","centerY":280,"centerX":0}}]};
+        public static  uiView:any ={"type":"View","props":{"width":600,"height":720},"child":[{"type":"Image","props":{"skin":"menu/bg_2.jpg","centerY":0,"centerX":0}},{"type":"Image","props":{"y":20,"var":"_imgBg","skin":"menu/img_4.png","centerX":0}},{"type":"Button","props":{"var":"_btnOpen","stateNum":2,"skin":"menu/btn_showcard.png","labelAlign":"center","centerX":0,"bottom":30},"child":[{"type":"Label","props":{"y":41,"x":110,"width":45,"var":"_labCost","text":"32","strokeColor":"#8b2303","stroke":2,"fontSize":32,"color":"#ffffff","align":"center"}}]},{"type":"Button","props":{"x":0,"var":"_btnBack","stateNum":2,"skin":"menu/btn_back.png"}},{"type":"Label","props":{"var":"_labTip","text":"点击屏幕继续","fontSize":30,"color":"#Ceb589","centerY":280,"centerX":0}},{"type":"Box","props":{"y":30,"var":"_cardBox","centerX":0},"child":[{"type":"Image","props":{"var":"_imgIcon","skin":"showcards/1.png","centerX":0}},{"type":"Image","props":{"y":30,"x":80,"var":"_star","skin":"star/4.png"}}]}]};
         constructor(){ super()}
         createChildren():void {
         
