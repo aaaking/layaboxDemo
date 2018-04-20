@@ -25,11 +25,11 @@ class Loading extends ui.loading.LoadingUI {
         console.log(bound)
         //spine parent
         this.skeletonContainer = new Laya.View()
-        this.skeletonContainer.centerX = -145
+        this.skeletonContainer.centerX = -110
         this.skeletonContainer.centerY = 120
         //矿山
         var mineImg: Laya.Image = new Laya.Image("icons/mine.png")
-        mineImg.centerX = 70
+        mineImg.centerX = 105
         mineImg.centerY = 70
         this.addChild(mineImg)
         this.skeletonContainer.addChild(this.skeletonI)
