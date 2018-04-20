@@ -61,26 +61,6 @@ module test {
                 anim2.pos(400, 260)
                 Laya.stage.addChild(anim2)
                 anim2.play(0, true, "ani2")
-                //test spine
-                var skeleton: Laya.Skeleton = new Laya.Skeleton();
-                Laya.stage.addChild(skeleton);
-                skeleton.pos(800, 1000);
-                var index = 0
-                skeleton.load("res/spine/119.sk", new Laya.Handler(this, function () {
-                    // for (var index = 0; index < skeleton.getAnimNum(); index++) {
-                    // }
-                    skeleton.play("skill2", false, false, 0, 3000, true)
-                    skeleton.on(Laya.Event.COMPLETE, this, function () {
-                    index++
-                    if (index >= skeleton.getAnimNum()) {
-                        index = 0
-                    }
-                    console.log("skeleton.on(Laya.Event.COMPLETE")
-                    // skeleton.play(index, false, true)
-                })
-                    // skeleton.play(2, true, true)
-                    // console.log("skeleton.numChildren: " + skeleton.numChildren + "  skeleton.getAnimNum:" + skeleton.getAnimNum())
-                }));//通过加载直接创建动画
                 //effect animation demo
                 var effectAnimUI = new EffectAnimUI()
                 effectAnimUI.pos(300, 300)
