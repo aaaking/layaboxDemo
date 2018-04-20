@@ -41,7 +41,7 @@ class CardList extends ui.cards.BaseCardListUI {
     }
 
     onResize(e: Laya.Event = null): void {
-        var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
+        var whiteSpace = (Laya.stage.width - UITools.canvasWidth) >> 1
         whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
@@ -84,7 +84,7 @@ class CardList extends ui.cards.BaseCardListUI {
     }
 
     private initTab() {
-        var whiteSpace = (Laya.stage.width - UITools.MAX_BG_WIDTH) >> 1
+        var whiteSpace = (Laya.stage.width - UITools.canvasWidth) >> 1
         whiteSpace = whiteSpace <= 0 ? 0 : whiteSpace
         this._tab.removeChildren();
         this._tab.initItems();

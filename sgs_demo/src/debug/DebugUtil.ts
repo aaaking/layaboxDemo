@@ -23,6 +23,7 @@ class DebugUtil {
         Laya.stage.on(Laya.Event.RESIZE, this, function () {
             console.log("browser width: " + Laya.Browser.width + " browser height" + Laya.Browser.height)
             console.log("stage width: " + Laya.stage.width + " stage height" + Laya.stage.height)
+            console.log("Laya.Browser.clientWidth: " + Laya.Browser.clientWidth + "  Laya.Browser.clientHeight: " + Laya.Browser.clientHeight)
         });
     }
 }
