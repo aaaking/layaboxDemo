@@ -13,6 +13,7 @@ class CardList extends ui.cards.BaseCardListUI {
         this.initBalance()
         this.initTab()
         Laya.stage.on(Laya.Event.RESIZE, this, this.onResize);
+        this.onResize(null);
     }
 
     private initBackBtn() {
