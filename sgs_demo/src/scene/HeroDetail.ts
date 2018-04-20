@@ -100,4 +100,18 @@ class HeroDetail extends Laya.View {
     onError() {
         console.log("hero detail parse error");
     }
+    //销毁spine销毁骨骼动画
+    // public function destroy():void {
+    //     mArmature.stop();//停止龙骨动画播放
+    //     removeEvent();//移除事件
+    //     mArmature.removeSelf();//从显示列表移除龙骨动画本身
+    //     mArmature.removeChildren();//从显示列表移除龙骨动画子对象
+    //     mArmature.destroy(true);//从显存销毁龙骨动画及其子对象
+    //     mFactory.destroy();//释放动画模板类下的纹理数据
+    //     mFactory.releaseResource(true);//释放龙骨资源
+    // }
+    // public function removeEvent(): void {
+    //     mFactory.off(Event.COMPLETE, this, parseComplete);
+    //     mArmature.off(Event.STOPPED, this, completeHandler);
+    // }
 }
