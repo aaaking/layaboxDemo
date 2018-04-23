@@ -1,0 +1,15 @@
+{
+    "version": "1.0.1",
+    "RES_VER": "1.0.0",
+    "IS_TEST": "false",
+    "WEB_SERVICE_URL": "http://sq.dooyouxi.com/api/",
+    "GAME_URL": "http://sq.dooyouxi.com/",
+    "WX_URL": "http://sq.dooyouxi.com/wx/",
+    "WX_APPID": "wx714b77278220d3b8",
+    "WX_OPEN_APPID": "wx714b77278220d3b8",
+    "GAME":["shangqiu_mj", "guanpai"],
+    "SHOW_GAME":{"shangqiu_mj":["shangqiu_mj"],"guanpai":["guanpai"]},
+    "APPNAME":"多多商丘麻将",
+    "APPAREA":"shangqiu",
+    "APPDESC":"商丘麻将、大菠萝多种游戏任意选，专业打造商丘本土化休闲娱乐约局神器。"
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<uiComp>
+    <BaseButton className="component.BaseButton" inherit="Button" skinLabel="skin" 
+    defaultValue="label=''" resName="bButton" icon="Box" groups="公用,常用,宽高及位置,旋转及缩放">    
+    <prop name="soundType" tips="音效类型" type="number" default="1" group="常用" />    
+    </BaseButton>
+</uiComp>

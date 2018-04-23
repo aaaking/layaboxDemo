@@ -1,0 +1,15 @@
+{
+    "version": "1.0.2",
+    "RES_VER": "1.0.0",
+    "IS_TEST": "false",
+    "WEB_SERVICE_URL": "http://ls.dooyouxi.com/api/",
+    "GAME_URL": "http://ls.dooyouxi.com/",
+    "WX_URL": "http://ls.dooyouxi.com/wx/",
+    "WX_APPID": "wx006b1599f785406d",
+    "WX_OPEN_APPID": "wx410a15145447b982",
+    "GAME":["jinyun_mj", "guanpai"],
+    "SHOW_GAME":{"jinyun_mj":["jinyun_mj","jinyun_hz_mj","jinyun_gs_mj"],"guanpai":["guanpai"]},
+    "APPNAME":"多多丽水麻将",
+    "APPAREA":"lishui",
+    "APPDESC":"麻将、大菠萝多种游戏任意选，专业打造丽水本土化休闲娱乐约局神器。"
+}

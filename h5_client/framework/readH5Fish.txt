@@ -1,0 +1,8 @@
+demo使用说明 更多请联系zhanghaichuan
+
+用1.7.6引擎版本
+根目录的layaEditor  覆盖到引擎目录
+LayaAir.d.ts 2885行插入
+class ScaleButton extends laya.ui.Button {
+    }
+UI页面Ctrl+F12编译UI

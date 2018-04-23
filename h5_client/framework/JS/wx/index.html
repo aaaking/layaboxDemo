@@ -1,0 +1,92 @@
+﻿<html lang="en"><head>
+	<meta charset="UTF-8">
+	<title>微信授权</title>
+	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>	
+	<style>
+		body{
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+<div id="login_container"></div>
+	<script>
+		"use strict";
+
+		var redirect_uri = "http://db.pokerclans.cn/html/";
+		var appId = "wx49161b67dddb5090";	
+
+		function getUrlParams() {
+			var params = {};
+			var href = window.location.href;
+			var index = href.indexOf("?");
+			if (index < 0) {
+				return params;
+			}
+			var hashes = href.substr(index + 1).split('&');
+			for (var i = 0; i < hashes.length; i++) {
+				var arr = hashes[i].split('=');
+				params[arr[0]] = arr[1];
+			}
+			return params;
+		}		
+
+		function addScript(src, callback) {
+		    console.log("addScript:"+src);
+		    var head = document.getElementsByTagName('head')[0];
+		    var script = document.createElement('script');
+		    script.type = 'text/javascript';
+		    script.src = src;
+		    head.appendChild(script);
+		    script.onreadystatechange = function() {
+		        console.log("addScriptComplete:"+src);
+		        if (this.readyState == 'complete' && callback) 
+		            callback();
+		    }
+		    script.onload = function() {
+		        console.log("addScriptComplete:"+src);
+		        if (callback)
+		            callback();
+		    }
+		}
+
+		var params = getUrlParams();
+		console.log(params);	
+
+		addScript("../libs/min/laya.ani.min.js");
+		addScript("../libs/min/laya.core.min.js");
+		addScript("../libs/min/laya.filter.min.js");
+		addScript("../libs/min/laya.html.min.js");
+		addScript("../libs/min/laya.particle.min.js");
+		addScript("../libs/min/laya.tiledmap.min.js");
+		addScript("../libs/min/laya.ui.min.js");
+		addScript("../libs/min/laya.webgl.min.js");	
+		
+		var enURI = "";				
+		if (params.share_room)			
+			enURI = encodeURIComponent(redirect_uri+"?share_room="+params.share_room);	
+		else
+			enURI = encodeURIComponent(redirect_uri);
+		window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appId+"&redirect_uri="+enURI+"&response_type=code&scope=snsapi_userinfo&state=wx#wechat_redirect";	
+		// console.log("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appId+"&redirect_uri="+enURI+"&response_type=code&scope=snsapi_userinfo&state=wx#wechat_redirect");	
+			
+		/* wx.ready(function(){
+					wx.chooseWXPay({
+					    timestamp: params.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+					    nonceStr: params.nonceStr, // 支付签名随机串，不长于 32 位
+					    package: params.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+					    signType: params.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+					    paySign: params.paySign, // 支付签名
+					    success: function (res) {
+					    	console.log(res);
+					        // 支付成功后的回调函数
+					        alert("支付成功");
+					    }
+					});
+				 }
+			}*/
+		/* 公众号中进入游戏的链接 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9f94e92389bee54b&redirect_uri=http%3a%2f%2fwww.htgames.cn%2fzhanghaichuan&response_type=code&state=3&scope=snsapi_userinfo#wechat_redirect */
+	</script>
+</body></html>

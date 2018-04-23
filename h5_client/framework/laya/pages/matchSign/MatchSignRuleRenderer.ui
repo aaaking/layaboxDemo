@@ -1,0 +1,37 @@
+{
+    "x":0,
+    "type":"View",
+    "selectedBox":1,
+    "referenceLines":null,
+    "props":{"width":158,"sceneColor":"#000000","height":56},
+    "nodeParent":-1,
+    "label":"View",
+    "isOpen":true,
+    "isDirectory":true,
+    "isAniNode":true,
+    "hasChild":true,
+    "compId":1,
+    "child":[
+        {
+            "x":15,
+            "type":"BaseButton",
+            "props":{"y":0,"x":0,"width":158,"var":"_btn","stateNum":3,"skin":"createTable/bar.png","sizeGrid":"21,24,20,24","labelSize":20,"labelColors":"#9C573A,#705E40,#705E40,#705E40","label":"200钻石"},
+            "nodeParent":1,
+            "label":"BaseButton(_btn)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":2,
+            "child":[
+                ]
+        }],
+    "animations":[
+        {
+            "nodes":[
+                ],
+            "name":"ani1",
+            "id":1,
+            "frameRate":24,
+            "action":0
+        }]
+}

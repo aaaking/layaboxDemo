@@ -1,0 +1,44 @@
+{
+	"1001": {
+		"money":1,
+		"diamond":1,
+		"extra":0,
+		"name":"宝箱1001",
+		"icon":"0"
+	},
+	"1002": {
+		"money":30,
+		"diamond":300,
+		"extra":0,
+		"name":"宝箱1002",
+		"icon":"1"
+	},
+	"1003": {
+		"money":40,
+		"diamond":400,
+		"extra":0,
+		"name":"宝箱1003",
+		"icon":"2"
+	},
+	"1004": {
+		"money":50,
+		"diamond":500,
+		"extra":0,
+		"name":"宝箱1004",
+		"icon":"3"
+	},
+	"1005": {
+		"money":20,
+		"diamond":200,
+		"extra":0,
+		"name":"宝箱1005",
+		"icon":"0"
+	},
+	"1006": {
+		"money":30,
+		"diamond":300,
+		"extra":0,
+		"name":"宝箱1006",
+		"icon":"1"
+	}
+}

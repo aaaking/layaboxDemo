@@ -1,0 +1,38 @@
+{
+	"1": {
+		"game_id": 1,
+		"name": "商丘麻將",
+		"icon": 1,
+		"desc": "商丘麻將666"
+	},
+	"2": {
+		"game_id": 2,
+		"name": "A麻將",
+		"icon": 2,
+		"desc": "A麻將666"
+	},
+	"3": {
+		"game_id": 3,
+		"name": "B麻將",
+		"icon": 3,
+		"desc": "B麻將666"
+	},
+	"4": {
+		"game_id": 4,
+		"name": "C麻將",
+		"icon": 4,
+		"desc": "C麻將666"
+	},
+	"5": {
+		"game_id": 5,
+		"name": "D麻將",
+		"icon": 5,
+		"desc": "D麻將666"
+	},
+	"6": {
+		"game_id": 6,
+		"name": "E麻將",
+		"icon": 1,
+		"desc": "E麻將666"
+	}
+}

@@ -1,0 +1,89 @@
+﻿<html lang="en"><head>
+	<meta charset="UTF-8">
+	<title>微信授权</title>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>	
+	<style>
+		body{
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+</head>
+<body bgcolor="#386779">
+<div id="login_container"></div>
+	<script>
+		"use strict";
+
+        var appId = "wxfa39b2e5644cd33e";
+		
+		var href = window.location.href;
+		var redirect_uri = href.substring(0, href.lastIndexOf('/wx/')) + "/index.html";
+
+		function getUrlParams() {
+			var params = {};
+			var href = window.location.href;
+			var index = href.indexOf("?");
+			if (index < 0) {
+				return params;
+			}
+			var hashes = href.substr(index + 1).split('&');
+			for (var i = 0; i < hashes.length; i++) {
+				var arr = hashes[i].split('=');
+				params[arr[0]] = arr[1];
+			}
+			return params;
+		}		
+
+		function addScript(src, callback) {
+		    console.log("addScript:"+src);
+		    var head = document.getElementsByTagName('head')[0];
+		    var script = document.createElement('script');
+		    script.type = 'text/javascript';
+		    script.src = src;
+		    head.appendChild(script);
+		    script.onreadystatechange = function() {
+		        console.log("addScriptComplete:"+src);
+		        if (this.readyState == 'complete' && callback) 
+		            callback();
+		    }
+		    script.onload = function() {
+		        console.log("addScriptComplete:"+src);
+		        if (callback)
+		            callback();
+		    }
+		}
+
+		var params = getUrlParams();
+		console.log(params);	
+
+		addScript("../libs/min/laya.ani.min.js");
+		addScript("../libs/min/laya.core.min.js");
+		addScript("../libs/min/laya.filter.min.js");
+		addScript("../libs/min/laya.html.min.js");
+		addScript("../libs/min/laya.particle.min.js");
+		addScript("../libs/min/laya.tiledmap.min.js");
+		addScript("../libs/min/laya.ui.min.js");
+		addScript("../libs/min/laya.webgl.min.js");	
+
+		var tmp = localStorage.getItem("user");
+		var user;
+		try {
+			user=JSON.parse(tmp);
+		} catch (error) {
+			
+		}		
+		var enURI = "";
+		var url = "";
+		if(window.location.search == "")
+			url = redirect_uri + "?t=" + Math.random();
+		else
+			url = redirect_uri + window.location.search + "&t=" + Math.random();
+		
+		if (user && user.uid)
+			window.location.href=url;
+		else{
+			enURI = encodeURIComponent(url);
+			window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appId+"&redirect_uri="+enURI+"&response_type=code&scope=snsapi_userinfo&state=wx#wechat_redirect";
+		}
+	</script>
+</body></html>

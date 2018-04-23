@@ -1,0 +1,12 @@
+{"file":"font_num_wakeng2.png","frames":{
+"0":{"x":1,"y":1,"w":21,"h":28,"offX":2,"offY":0,"sourceW":25,"sourceH":28},
+"1":{"x":47,"y":1,"w":12,"h":27,"offX":2,"offY":0,"sourceW":16,"sourceH":28},
+"2":{"x":43,"y":89,"w":19,"h":27,"offX":2,"offY":0,"sourceW":23,"sourceH":28},
+"3":{"x":43,"y":59,"w":19,"h":28,"offX":2,"offY":0,"sourceW":23,"sourceH":28},
+"4":{"x":24,"y":1,"w":21,"h":27,"offX":2,"offY":0,"sourceW":25,"sourceH":28},
+"5":{"x":22,"y":59,"w":19,"h":28,"offX":2,"offY":0,"sourceW":23,"sourceH":28},
+"6":{"x":1,"y":61,"w":19,"h":28,"offX":2,"offY":0,"sourceW":23,"sourceH":28},
+"7":{"x":24,"y":30,"w":20,"h":27,"offX":2,"offY":0,"sourceW":24,"sourceH":28},
+"8":{"x":1,"y":31,"w":19,"h":28,"offX":2,"offY":0,"sourceW":23,"sourceH":28},
+"9":{"x":22,"y":89,"w":19,"h":28,"offX":2,"offY":0,"sourceW":23,"sourceH":28},
+" ":{"x":1,"y":91,"w":7,"h":28,"offX":0,"offY":0,"sourceW":7,"sourceH":28}}}

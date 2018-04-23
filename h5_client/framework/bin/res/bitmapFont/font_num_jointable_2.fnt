@@ -1,0 +1,17 @@
+{"file":"aa.png","frames":{
+"0":{"x":191,"y":1,"w":26,"h":34,"offX":2,"offY":2,"sourceW":30,"sourceH":39},
+"1":{"x":1,"y":42,"w":14,"h":33,"offX":2,"offY":2,"sourceW":18,"sourceH":39},
+"2":{"x":229,"y":37,"w":24,"h":33,"offX":2,"offY":2,"sourceW":28,"sourceH":39},
+"3":{"x":120,"y":33,"w":24,"h":34,"offX":2,"offY":2,"sourceW":28,"sourceH":39},
+"4":{"x":162,"y":1,"w":27,"h":33,"offX":2,"offY":2,"sourceW":31,"sourceH":39},
+"5":{"x":146,"y":36,"w":24,"h":34,"offX":2,"offY":2,"sourceW":28,"sourceH":39},
+"6":{"x":66,"y":33,"w":25,"h":34,"offX":2,"offY":2,"sourceW":29,"sourceH":39},
+"7":{"x":93,"y":33,"w":25,"h":33,"offX":2,"offY":2,"sourceW":29,"sourceH":39},
+"8":{"x":172,"y":37,"w":24,"h":34,"offX":2,"offY":2,"sourceW":28,"sourceH":39},
+"9":{"x":219,"y":1,"w":25,"h":34,"offX":2,"offY":2,"sourceW":29,"sourceH":39},
+"退":{"x":1,"y":1,"w":63,"h":39,"offX":2,"offY":0,"sourceW":67,"sourceH":39},
+"重":{"x":198,"y":37,"w":29,"h":28,"offX":2,"offY":4,"sourceW":33,"sourceH":39},
+"输":{"x":98,"y":1,"w":30,"h":30,"offX":2,"offY":3,"sourceW":34,"sourceH":39},
+"搜":{"x":66,"y":1,"w":30,"h":30,"offX":2,"offY":3,"sourceW":34,"sourceH":39},
+"索":{"x":130,"y":1,"w":30,"h":30,"offX":2,"offY":3,"sourceW":34,"sourceH":39},
+" ":{"x":17,"y":42,"w":8,"h":39,"offX":0,"offY":0,"sourceW":8,"sourceH":39}}}

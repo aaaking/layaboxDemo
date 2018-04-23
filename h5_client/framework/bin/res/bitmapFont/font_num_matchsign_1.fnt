@@ -1,0 +1,17 @@
+{"file":"font_num_matchsign_1.png","frames":{
+"0":{"x":20,"y":32,"w":16,"h":26,"offX":2,"offY":2,"sourceW":20,"sourceH":29},
+"1":{"x":113,"y":29,"w":10,"h":25,"offX":2,"offY":2,"sourceW":14,"sourceH":29},
+"2":{"x":94,"y":29,"w":17,"h":25,"offX":2,"offY":2,"sourceW":21,"sourceH":29},
+"3":{"x":94,"y":1,"w":17,"h":26,"offX":2,"offY":2,"sourceW":21,"sourceH":29},
+"4":{"x":1,"y":32,"w":17,"h":25,"offX":2,"offY":2,"sourceW":21,"sourceH":29},
+"5":{"x":53,"y":30,"w":17,"h":25,"offX":2,"offY":3,"sourceW":21,"sourceH":29},
+"6":{"x":94,"y":56,"w":16,"h":26,"offX":2,"offY":2,"sourceW":20,"sourceH":29},
+"7":{"x":38,"y":57,"w":17,"h":24,"offX":2,"offY":3,"sourceW":21,"sourceH":29},
+"8":{"x":75,"y":29,"w":17,"h":26,"offX":2,"offY":2,"sourceW":21,"sourceH":29},
+"9":{"x":75,"y":1,"w":17,"h":26,"offX":2,"offY":2,"sourceW":21,"sourceH":29},
+"/":{"x":113,"y":1,"w":11,"h":26,"offX":2,"offY":2,"sourceW":15,"sourceH":29},
+":":{"x":38,"y":32,"w":6,"h":19,"offX":2,"offY":8,"sourceW":10,"sourceH":29},
+"月":{"x":27,"y":1,"w":24,"h":29,"offX":2,"offY":0,"sourceW":28,"sourceH":29},
+"日":{"x":53,"y":1,"w":20,"h":27,"offX":2,"offY":1,"sourceW":24,"sourceH":29},
+"名":{"x":1,"y":1,"w":24,"h":29,"offX":2,"offY":0,"sourceW":28,"sourceH":29},
+" ":{"x":112,"y":56,"w":5,"h":29,"offX":0,"offY":0,"sourceW":5,"sourceH":29}}}

@@ -1,0 +1,15 @@
+{
+	"version": "1.0.0",
+	"RES_VER": "1.0.0",
+	"IS_TEST": "true",
+	"WEB_SERVICE_URL": "http://test.simjoys.cn/api/",
+	"GAME_URL": "http://test.simjoys.cn/test/",
+	"WX_URL": "http://test.simjoys.cn/test/wx/",
+	"WX_APPID": "wxfa39b2e5644cd33e",
+	"WX_OPEN_APPID": "wx167fc77c49e6bca8",
+    "GAME":["jinyun_mj", "shisanshui", "shangqiu_mj"],
+    "SHOW_GAME":{"jinyun_mj":["jinyun_mj","jinyun_hz_mj","jinyun_gs_mj"],"shangqiu_mj":["shangqiu_mj"],"shisanshui":["shisanshui"]},
+	"APPNAME":"多多丽水麻将",
+	"APPAREA":"lishui",
+	"APPDESC":"麻将、大菠萝多种游戏任意选，专业打造丽水本土化休闲娱乐约局神器。"
+}

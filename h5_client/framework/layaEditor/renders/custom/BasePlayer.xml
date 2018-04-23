@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<uiComp>
+    <BasePlayer className="component.BasePlayer" inherit="View" skinLabel="skin" 
+     resName="bPlayer" icon="Box" >        
+    </BasePlayer>
+</uiComp>

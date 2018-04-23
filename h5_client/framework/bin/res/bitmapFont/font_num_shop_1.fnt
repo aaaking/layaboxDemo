@@ -1,0 +1,12 @@
+{"file":"font_num_shop_1.png","frames":{
+"0":{"x":1,"y":27,"w":16,"h":24,"offX":2,"offY":0,"sourceW":20,"sourceH":24},
+"1":{"x":1,"y":79,"w":11,"h":24,"offX":2,"offY":0,"sourceW":15,"sourceH":24},
+"2":{"x":20,"y":1,"w":16,"h":24,"offX":2,"offY":0,"sourceW":20,"sourceH":24},
+"3":{"x":19,"y":53,"w":16,"h":24,"offX":2,"offY":0,"sourceW":20,"sourceH":24},
+"4":{"x":1,"y":1,"w":17,"h":24,"offX":2,"offY":0,"sourceW":21,"sourceH":24},
+"5":{"x":1,"y":53,"w":16,"h":24,"offX":2,"offY":0,"sourceW":20,"sourceH":24},
+"6":{"x":38,"y":1,"w":16,"h":24,"offX":2,"offY":0,"sourceW":20,"sourceH":24},
+"7":{"x":37,"y":53,"w":16,"h":24,"offX":2,"offY":0,"sourceW":20,"sourceH":24},
+"8":{"x":19,"y":27,"w":16,"h":24,"offX":2,"offY":0,"sourceW":20,"sourceH":24},
+"9":{"x":37,"y":27,"w":16,"h":24,"offX":2,"offY":0,"sourceW":20,"sourceH":24},
+" ":{"x":56,"y":1,"w":5,"h":24,"offX":0,"offY":0,"sourceW":5,"sourceH":24}}}

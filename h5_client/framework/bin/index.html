@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset='utf-8' />
+	<title>H5GAMES</title>
+	<meta name='viewport' content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no'
+	/>
+	<meta name="renderer" content="webkit">
+	<meta name='apple-mobile-web-app-capable' content='yes' />
+	<meta name='full-screen' content='true' />
+	<meta name='x5-fullscreen' content='true' />
+	<meta name='360-fullscreen' content='true' />
+	<meta name="laya" screenorientation="portrait"  />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta http-equiv='expires' content='0' />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+</head>
+
+<body bgcolor="#ffffff">
+	
+	<!--SB广告劫持-->
+	<script type="text/javascript" src="libs/min/Bridge.min.js" loader="laya"></script>
+	<!--核心包，封装了显示对象渲染，事件，时间管理，时间轴动画，缓动，消息交互,socket，本地存储，鼠标触摸，声音，加载，颜色滤镜，位图字体等-->
+	<script type="text/javascript" src="libs/laya.core.js" loader="laya"></script>
+	<!--封装了webgl渲染管线，如果使用webgl渲染，可以在初始化时调用Laya.init(1000,800,laya.webgl.WebGL);-->
+	<script type="text/javascript" src="libs/laya.webgl.js" loader="laya"></script>
+	<!--是动画模块，包含了swf动画，骨骼动画等-->
+	<script type="text/javascript" src="libs/laya.ani.js" loader="laya"></script>
+	<!--md5-->
+	<script type="text/javascript" src="libs/min/md5.min.js" loader="laya"></script>
+	<!--包含更多webgl滤镜，比如外发光，阴影，模糊以及更多-->
+	<script type="text/javascript" src="libs/laya.filter.js" loader="laya"></script>
+	<!--封装了html动态排版功能-->
+	<script type="text/javascript" src="libs/laya.html.js" loader="laya"></script>
+	<!--粒子类库-->
+	<script type="text/javascript" src="libs/laya.particle.js" loader="laya"></script>
+	<!--提供tileMap解析支持-->
+	<script type="text/javascript" src="libs/laya.tiledmap.js" loader="laya"></script>
+	<!--提供了制作UI的各种组件实现-->
+	<script type="text/javascript" src="libs/laya.ui.js" loader="laya"></script>
+	<!--提供protobuf接口-->
+	<script type="text/javascript" src="libs/min/protobuf.min.js" loader="laya"></script>
+	<!--用户自定义顺序文件添加到这里-->
+	<!--微信-->
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+	<!--<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=UVG3kY9wtjYadd1vmWEttVd1GRPlzKq4"></script>-->
+	<!--jsfile--testTag-->
+	<!--<script type="text/javascript" src="libs/min/vconsole.min.js"></script>-->
+	
+
+	<!--jsfile--testTag-->
+	<!--jsfile--Custom-->
+	<script src="js/view/panel/BaseCtrl.js"></script>
+	<!--<script type="text/javascript" src="libs/clipboard.min.js"></script>-->
+	<!--<script type="text/javascript" src="libs/copy.js"></script>-->
+	<!--jsfile--Custom-->
+	<!--自定义的js(src文件夹下)文件自动添加到下面jsfile模块标签里面里-->
+	<!--删除标签，ide不会自动添加js文件，请谨慎操作-->
+	<!--jsfile--startTag-->
+	<script src="js/zhcLib/tools/utils/WxWeb.js"></script>
+	<script src="js/zhcLib/tools/utils/Utils.js"></script>
+	<script src="js/zhcLib/tools/utils/TweenUtils.js"></script>
+	<script src="js/zhcLib/tools/utils/TimeUtils.js"></script>
+	<script src="js/zhcLib/tools/utils/StringUtils.js"></script>
+	<script src="js/zhcLib/tools/utils/NativeHelper.js"></script>
+	<script src="js/zhcLib/tools/utils/MathUtils.js"></script>
+	<script src="js/zhcLib/tools/utils/Log.js"></script>
+	<script src="js/zhcLib/tools/utils/BezierUtils.js"></script>
+	<script src="js/zhcLib/tools/utils/Base64.js"></script>
+	<script src="js/zhcLib/tools/utils/Ajax.js"></script>
+	<script src="js/zhcLib/tools/ObjectPool.js"></script>
+	<script src="js/zhcLib/support/Reportor.js"></script>
+	<script src="js/zhcLib/support/EventManager.js"></script>
+	<script src="js/zhcLib/support/Dispatcher.js"></script>
+	<script src="js/zhcLib/AppStage.js"></script>
+	<script src="js/zhcLib/AppControl.js"></script>
+	<script src="js/view/xclub/ClubManager.js"></script>
+	<script src="js/view/sheet/PlaySheet.js"></script>
+	<script src="js/view/panel/hint/HintCtrl.js"></script>
+	<script src="js/view/panel/createTable/WaKeng.js"></script>
+	<script src="js/view/panel/createTable/ShiSanShui.js"></script>
+	<script src="js/view/panel/createTable/ShanxiMJ.js"></script>
+	<script src="js/view/panel/createTable/ShangQiuMJ.js"></script>
+	<script src="js/view/panel/createTable/JinYunMJ.js"></script>
+	<script src="js/view/panel/createTable/JinYunHzMJ.js"></script>
+	<script src="js/view/panel/createTable/JinYunGsMJ.js"></script>
+	<script src="js/view/panel/createTable/GuanPai.js"></script>
+	<script src="js/view/matchSign/MatchSignData.js"></script>
+	<script src="js/view/game/BaseWinCardManager.js"></script>
+	<script src="js/view/game/BaseTingCardManager.js"></script>
+	<script src="js/view/game/BaseHoldCardManager.js"></script>
+	<script src="js/view/game/BaseHandCardManager.js"></script>
+	<script src="js/view/game/BaseFoldCardManager.js"></script>
+	<script src="js/view/config/TableLayout.js"></script>
+	<script src="js/view/config/GameZorder.js"></script>
+	<script src="js/view/config/GameDef.js"></script>
+	<script src="js/view/components/marqueeText/MarqueeText.js"></script>
+	<script src="js/threeD/ThreeDScene.js"></script>
+	<script src="js/net/ProtoIDs.js"></script>
+	<script src="js/model/data/PlayerData.js"></script>
+	<script src="js/model/data/FontData.js"></script>
+	<script src="js/model/data/FontBitmapData.js"></script>
+	<script src="js/model/data/EffectData.js"></script>
+	<script src="js/model/data/BaseGameData.js"></script>
+	<script src="js/model/config/SoundConfig.js"></script>
+	<script src="js/model/config/ResourceConfig.js"></script>
+	<script src="js/model/config/PlayerInGamePosiConfig.js"></script>
+	<script src="js/model/config/OSConfig.js"></script>
+	<script src="js/model/config/MatchConfig.js"></script>
+	<script src="js/model/config/MaJiangLayOut.js"></script>
+	<script src="js/model/config/GameConfig.js"></script>
+	<script src="js/model/config/FontConfig.js"></script>
+	<script src="js/model/config/EventNames.js"></script>
+	<script src="js/model/config/EffectConfig.js"></script>
+	<script src="js/model/config/ButtonSoundEffect.js"></script>
+	<script src="js/model/cardsType/WaKengCardsType.js"></script>
+	<script src="js/model/GameLogic.js"></script>
+	<script src="js/model/DataStorage.js"></script>
+	<script src="js/manager/TweenManger.js"></script>
+	<script src="js/manager/SoundManager.js"></script>
+	<script src="js/manager/RoleManager.js"></script>
+	<script src="js/manager/RecordManager.js"></script>
+	<script src="js/manager/PlayerManager.js"></script>
+	<script src="js/manager/MaskManager.js"></script>
+	<script src="js/manager/LoginManager.js"></script>
+	<script src="js/manager/LineRendererManager.js"></script>
+	<script src="js/manager/FontManager.js"></script>
+	<script src="js/manager/FontBitmapManger.js"></script>
+	<script src="js/manager/EffectManager.js"></script>
+	<script src="js/manager/AnnounceManager.js"></script>
+	<script src="js/manager/AnimationManager.js"></script>
+	<script src="js/manager/AniEffectManager.js"></script>
+	<script src="js/control/ICtrl.js"></script>
+	<script src="js/component/BaseButton.js"></script>
+	<script src="js/component/BasePlayer.js"></script>
+	<script src="js/component/ScaleButton.js"></script>
+	<script src="js/component/State4Button.js"></script>
+	<script src="js/manager/DialogManager.js"></script>
+	<script src="js/manager/RealTimeSpeechManager.js"></script>
+	<script src="js/zhcLib/model/Model.js"></script>
+	<script src="js/model/data/RoleData.js"></script>
+	<script src="js/model/data/UserData.js"></script>
+	<script src="js/net/WebService.js"></script>
+	<script src="js/net/ClubWebService.js"></script>
+	<script src="js/net/MatchSignService.js"></script>
+	<script src="js/net/MenuServer.js"></script>
+	<script src="js/net/Server.js"></script>
+	<script src="js/ui/layaUI.max.all.js"></script>
+	<script src="js/view/components/BasePanel.js"></script>
+	<script src="js/view/components/bitmapFont/BPFont.js"></script>
+	<script src="js/view/components/bitmapFont/Font1.js"></script>
+	<script src="js/view/components/bitmapFont/TimerFont.js"></script>
+	<script src="js/view/components/head/HeadUI.js"></script>
+	<script src="js/view/components/head/HeadRenderer.js"></script>
+	<script src="js/view/components/keyBoard/KeyBoardNumUI.js"></script>
+	<script src="js/view/components/loading/LoadingCircle.js"></script>
+	<script src="js/view/components/loading/LoadingUI.js"></script>
+	<script src="js/view/components/loading/PreLoadingUI.js"></script>
+	<script src="js/view/components/menu/MatchHistoryCtrl.js"></script>
+	<script src="js/view/components/menu/MatchHistoryRenderer.js"></script>
+	<script src="js/view/components/menu/MenuFindUI.js"></script>
+	<script src="js/view/components/menu/MenuGameRenderer.js"></script>
+	<script src="js/view/components/menu/MenuHistoryDetailRenderer.js"></script>
+	<script src="js/view/components/menu/MenuHistoryScoreRenderer.js"></script>
+	<script src="js/view/components/menu/MenuLobbyUI.js"></script>
+	<script src="js/view/components/menu/MenuPersonUI.js"></script>
+	<script src="js/view/components/menu/MenuScoreUI.js"></script>
+	<script src="js/view/components/table/BatteryUI.js"></script>
+	<script src="js/view/components/table/NetSignalUI.js"></script>
+	<script src="js/view/components/table/PlayerInGameUI.js"></script>
+	<script src="js/view/components/table/RecordUI.js"></script>
+	<script src="js/view/components/table/TableMenuUI.js"></script>
+	<script src="js/view/dialog/BaseDialog.js"></script>
+	<script src="js/view/dialog/MatchOutLoseDialog.js"></script>
+	<script src="js/view/dialog/MatchOutWinDialog.js"></script>
+	<script src="js/view/dialog/MatchOverDialog.js"></script>
+	<script src="js/view/dialog/MatchRecordDialog.js"></script>
+	<script src="js/view/dialog/MatchShareDialog.js"></script>
+	<script src="js/view/dialog/MatchWaitDialog.js"></script>
+	<script src="js/view/dialog/PlayerInfoDialog.js"></script>
+	<script src="js/view/effect/BaseEffect.js"></script>
+	<script src="js/view/effect/AnimationEffect.js"></script>
+	<script src="js/view/effect/ParticleEffect.js"></script>
+	<script src="js/view/effect/SequenceEffect.js"></script>
+	<script src="js/view/effect/VipUpgradeEffect.js"></script>
+	<script src="js/view/game/BaseCardTypeView.js"></script>
+	<script src="js/view/game/BaseCardView.js"></script>
+	<script src="js/view/game/BaseChooseScore.js"></script>
+	<script src="js/view/game/BaseDealCardsView.js"></script>
+	<script src="js/view/game/BaseFoldCardView.js"></script>
+	<script src="js/view/game/BaseGameEndDialog.js"></script>
+	<script src="js/view/game/BaseHandCardView.js"></script>
+	<script src="js/view/game/BaseHoldCardView.js"></script>
+	<script src="js/view/game/BaseOptChoiceView.js"></script>
+	<script src="js/view/game/BaseTingCardView.js"></script>
+	<script src="js/view/game/BaseWinCardView.js"></script>
+	<script src="js/view/game/ChoiceCard.js"></script>
+	<script src="js/view/game/ChoiceView.js"></script>
+	<script src="js/view/game/LeftCardView.js"></script>
+	<script src="js/view/game/MJBaseControl.js"></script>
+	<script src="js/view/game/RuleInfoView.js"></script>
+	<script src="js/view/game/TimeLimitView.js"></script>
+	<script src="js/view/game/poker/BoomCountUI.js"></script>
+	<script src="js/view/game/poker/CardUI.js"></script>
+	<script src="js/view/game/poker/CardBigUI.js"></script>
+	<script src="js/view/game/poker/CardSmallUI.js"></script>
+	<script src="js/view/game/poker/Clock.js"></script>
+	<script src="js/view/game/poker/EffectBoom.js"></script>
+	<script src="js/view/game/poker/EffectDanShun.js"></script>
+	<script src="js/view/game/poker/EffectFeiJi.js"></script>
+	<script src="js/view/game/poker/EffectShuangShun.js"></script>
+	<script src="js/view/game/poker/PokerCountUI.js"></script>
+	<script src="js/view/game/poker/SanDaiEr.js"></script>
+	<script src="js/view/game/poker/SiDaiSan.js"></script>
+	<script src="js/view/mask/PanelMask.js"></script>
+	<script src="js/view/matchSign/MatchRewardRenderer.js"></script>
+	<script src="js/view/matchSign/MatchSignCostRenderer.js"></script>
+	<script src="js/view/matchSign/MatchSignCreateCtrl.js"></script>
+	<script src="js/view/matchSign/MatchSignCtrl.js"></script>
+	<script src="js/view/matchSign/MatchSignInfoCtrl.js"></script>
+	<script src="js/view/matchSign/MatchSignKind.js"></script>
+	<script src="js/view/matchSign/MatchSignMatchListRenderer.js"></script>
+	<script src="js/view/matchSign/MatchSignRewardRenderer.js"></script>
+	<script src="js/view/matchSign/MatchSignRuleCtrl.js"></script>
+	<script src="js/view/matchSign/MatchSignRuleRenderer.js"></script>
+	<script src="js/view/matchSign/MatchSignUserList2Renderer.js"></script>
+	<script src="js/view/matchSign/MatchSignUserListRenderer.js"></script>
+	<script src="js/view/matchSign/date/DateLabelGrayRenderer.js"></script>
+	<script src="js/view/matchSign/date/DateLabelRenderer.js"></script>
+	<script src="js/view/matchSign/date/DateScroll.js"></script>
+	<script src="js/view/matchSign/date/DateUI.js"></script>
+	<script src="js/zhcLib/AppPage.js"></script>
+	<script src="js/view/page/TablePage.js"></script>
+	<script src="js/view/page/MatchPage.js"></script>
+	<script src="js/view/page/BaseMJPage.js"></script>
+	<script src="js/view/page/BasePokerPage.js"></script>
+	<script src="js/view/page/LoginPage.js"></script>
+	<script src="js/view/page/MenuPage.js"></script>
+	<script src="js/view/panel/AlertCtrl.js"></script>
+	<script src="js/view/panel/PlayerInfo/PlayerInfoCtrl.js"></script>
+	<script src="js/view/panel/agreement/AgreementCtrl.js"></script>
+	<script src="js/view/panel/alert/AlertInGameCtrl.js"></script>
+	<script src="js/view/panel/alert/AlertDissolveCtrl.js"></script>
+	<script src="js/view/panel/alert/AlertMenuCtrl.js"></script>
+	<script src="js/view/panel/chat/ChatContent.js"></script>
+	<script src="js/view/panel/chat/ChatCtrl.js"></script>
+	<script src="js/view/panel/createTable/CreateItem.js"></script>
+	<script src="js/view/panel/createTable/CreateTableCtrl.js"></script>
+	<script src="js/view/panel/createTable/JoinTableCtrl.js"></script>
+	<script src="js/view/panel/gameEnd/GameEndCtrl.js"></script>
+	<script src="js/view/panel/helper/HelpCtrl.js"></script>
+	<script src="js/view/panel/helper/KefuCtrl.js"></script>
+	<script src="js/view/panel/login/AccountLoginCtrl.js"></script>
+	<script src="js/view/panel/poker/GameEndCrtl.js"></script>
+	<script src="js/view/panel/poker/GameEndInfoRenderer.js"></script>
+	<script src="js/view/panel/poker/GameEndLoseCtrl.js"></script>
+	<script src="js/view/panel/poker/GameEndWinCtrl.js"></script>
+	<script src="js/view/panel/report/ReportCtrl.js"></script>
+	<script src="js/view/panel/report/ReportDescRenderer.js"></script>
+	<script src="js/view/panel/report/ReportRenderer.js"></script>
+	<script src="js/view/panel/setup/SetupCtrl.js"></script>
+	<script src="js/view/panel/shop/ShopCtrl.js"></script>
+	<script src="js/view/panel/shop/ShopHCtrl.js"></script>
+	<script src="js/view/panel/shop/ShopRenderer.js"></script>
+	<script src="js/view/panel/shop/ShopVCtrl.js"></script>
+	<script src="js/view/panel/tableEnd/TableEndCtrl.js"></script>
+	<script src="js/view/panel/tableEnd/TableEndShuCtrl.js"></script>
+	<script src="js/view/panel/update/UpdateCtrl.js"></script>
+	<script src="js/view/sheet/PlaySheetView.js"></script>
+	<script src="js/view/xclub/ClubAlert.js"></script>
+	<script src="js/view/xclub/ClubCreate.js"></script>
+	<script src="js/view/xclub/ClubCtrl.js"></script>
+	<script src="js/view/xclub/ClubInfoCtrl.js"></script>
+	<script src="js/view/xclub/ClubJoin.js"></script>
+	<script src="js/view/xclub/ClubListRenderer.js"></script>
+	<script src="js/view/xclub/ClubMember.js"></script>
+	<script src="js/view/xclub/ClubPayType.js"></script>
+	<script src="js/view/xclub/ClubPlayerRenderer.js"></script>
+	<script src="js/view/xclub/ClubRecharge.js"></script>
+	<script src="js/view/xclub/ClubRename.js"></script>
+	<script src="js/view/xclub/ClubSearch.js"></script>
+	<script src="js/view/xclub/GameListRenderer.js"></script>
+	<script src="js/view/xclub/MyClubCtrl.js"></script>
+	<script src="js/view/xclub/MyClubListRenderer.js"></script>
+	<script src="js/zhcLib/lineRenderer/LineRenderer.js"></script>
+	<script src="js/zhcLib/tools/utils/Native.js"></script>
+	<!--jsfile--endTag-->
+
+	<!--启动类添加到这里-->
+	<!--jsfile--Main-->
+	<script src="js/LayaAir3D.js"></script>
+	<!--jsfile--Main-->
+	
+</body>
+
+</html>

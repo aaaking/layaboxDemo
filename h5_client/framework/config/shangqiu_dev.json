@@ -1,0 +1,15 @@
+{
+    "version": "1.0.0",
+    "RES_VER": "1.0.0",
+    "IS_TEST": "true",
+    "WEB_SERVICE_URL": "http://test.simjoys.cn/api/",
+    "GAME_URL": "http://test.simjoys.cn/test/shangqiu/",
+    "WX_URL": "http://test.simjoys.cn/test/shangqiu/wx/",
+    "WX_APPID": "wxfa39b2e5644cd33e",
+    "WX_OPEN_APPID": "wx167fc77c49e6bca8",
+    "GAME":["shangqiu_mj", "shisanshui"],
+    "SHOW_GAME":{"shangqiu_mj":["shangqiu_mj"],"shisanshui":["shisanshui"]},
+    "APPNAME":"多多商丘麻将",
+    "APPAREA":"shangqiu",
+    "APPDESC":"商丘麻将、大菠萝多种游戏任意选，专业打造商丘本土化休闲娱乐约局神器。"
+}

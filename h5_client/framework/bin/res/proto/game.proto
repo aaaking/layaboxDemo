@@ -1,0 +1,527 @@
+package game;
+
+message HeartbeatNtf {
+    optional uint32 time = 1;
+}
+
+message JoinTableReq {
+    required uint32 tableid = 1;
+    optional string version = 2;
+}
+
+message JoinTableRep {
+    required int32 result = 1;
+}
+
+//做下请求
+message SitdownReq {
+	required int32 seatid = 1;
+	optional double longitude = 2; //经度
+	optional double latitude = 3;  //纬度
+}
+
+message SitdownRep {
+	required int32 result = 1;
+}
+
+message SitdownNtf {
+	optional int32 uid = 1;
+	optional int32 seatid = 2;
+	optional int32 score = 3;
+}
+
+//站起请求
+message StandupReq {
+}
+
+message StandupRep {
+	required int32 result = 1;
+}
+
+message StandupNtf {
+	required uint32 uid = 1;
+	required uint32 seatid = 2;
+}
+
+
+//桌子开始请求
+message StartTableReq {
+}
+
+message StartTableRep {
+	required int32 result = 1;
+}
+
+message StartTableNtf {
+}
+
+//房主请求结算桌子
+message TableEndReq {
+	
+}
+
+
+message TableWillEndNtf {
+	
+}
+
+//玩家准备
+message PlayerReadyReq {
+}
+
+message PlayerReadyRep {
+	required int32 result = 1;
+}
+
+message PlayerReadyNtf {
+	required uint32 seatid = 1;
+}
+
+
+//表情
+message EmoticonReq {
+	required uint32 emoticon_num = 1;
+	optional uint32 seatid = 2;
+}
+
+message EmoticonNtf {
+	required uint32 emoticon_num = 1;
+	required uint32 seatid = 2;
+}
+
+//道具使用
+message UseGoodsReq {
+	required uint32 id = 1;
+	optional uint32 target_seatid = 2;
+}
+
+message UseGoodsRep {
+	required int32 result = 1;
+}
+
+
+message UseGoodsNtf {
+	required uint32 id = 1;
+	optional uint32 use_seatid = 2;
+	optional uint32 target_seatid = 3;
+}
+
+message TableInfoNtf{
+	message PlayerInfo {
+		required uint32 uid = 1;
+		required uint32 seatid = 2;		
+		optional int32	score = 3;
+		optional uint32 status = 4;
+		optional uint32 table_status = 5;
+	}
+
+	optional uint32 tableid = 1;
+	optional int32 start_time = 2;
+	optional int32 max_player = 3;
+	optional int32 owner 	  = 4;
+	repeated PlayerInfo playerinfo = 5;
+	optional uint32 total_hand_count = 6; 		//总局数
+	optional uint32 duration = 7;		//总时间
+	optional int32 	base_score = 8;
+	optional int32  divide = 9;
+	optional int32  curr_hand_count = 10;
+}
+
+
+
+//牌组，记录吃碰杠牌组信息
+message CardSet {
+	repeated uint32 cards = 1;
+	optional uint32 opttype = 2;
+	optional uint32 from_seatid = 3;
+	optional uint32 count = 4;
+}
+
+message Opt {
+	required uint32 opttype = 1;  //0出牌 1摸牌 2吃 3碰 4明杠 5暗杠 6碰杠 7听牌 8胡牌 9弃牌
+	repeated uint32 cards = 2;
+}
+
+//玩家操作通知
+message PlayerOptNtf {
+	required uint32 seatid = 1;
+	optional uint32 timeout = 2;
+	repeated Opt opts = 3;
+}
+
+//玩家操作
+message PlayerOptReq {
+	optional Opt opts = 1;
+}
+
+message PlayerOptRep {
+	required uint32 result = 1;
+}
+
+message CardMoveNtf {
+	repeated uint32 cards = 1;
+	optional uint32 from_seatid = 2;
+	optional uint32 to_seatid = 3;
+	optional uint32 areaid = 4;
+	optional uint32 opttype = 5;
+	optional uint32 count = 6;
+}
+
+message ReconnectInfo {
+	message GamePlayer {
+		required uint32 uid = 1;
+		required uint32 seatid = 2;
+		repeated CardSet cards = 3;
+	}
+
+	repeated GamePlayer gameplayer = 1;
+    optional uint32 last_seatid = 2;
+    optional uint32 btn_seatid = 3;
+	optional uint32 left_card = 4;
+	optional uint32 curr_hand_count = 5;
+	repeated uint32 cards = 6;
+}
+
+message GameStartNtf {
+	message player {
+		optional uint32 uid = 1;
+		optional uint32 seatid = 2;
+		optional int32 score = 3;
+	}
+	repeated player players = 1;
+	required uint32 curr_hand_count = 2;
+	optional uint32 btn_seatid = 3;
+	optional uint32 left_card = 4;
+	optional uint32 base_score = 5;
+}
+
+
+message GameEndNtf {
+	message Score {
+		required uint32 seatid = 1;
+		optional int32 	win_score = 2;
+		optional int32 	score = 3;
+	}
+	
+	optional uint32 win_type = 1;
+	repeated Score scores = 2;
+	optional uint32 table_end = 3;
+}
+
+message ShowCardsNtf {
+	message ShownCards {
+		required uint32 seatid = 1;
+		repeated uint32 handcards = 2;
+		repeated CardSet hold_cards = 3;
+	}
+
+	repeated ShownCards showncards = 1;
+}
+
+//请求实时战绩
+message RealTimeRecordReq {
+}
+		
+message RealTimeRecordRep {
+	message PlayerInfo {
+		required uint32 uid = 1;
+		optional int32 score = 2;
+		repeated string info = 3;
+	}
+	repeated PlayerInfo player_info = 1;
+	repeated uint32 visiters = 2;
+}
+
+message TableEndNtf {
+	message PlayerInfo {
+		required int32 uid = 1;
+		optional int32 score = 2;
+		repeated string info = 3;
+	}
+	repeated PlayerInfo player_info = 1;
+	required int32 total_hand_count = 2;
+	optional uint32 end_time = 3;
+}
+
+message PlayerTableStatusReq {
+	required int32 type = 1;
+	required int32 status = 2;
+}
+
+
+message PlayerTableStatusNtf {
+	required int32 uid = 1;
+	required int32 status = 2;
+}
+
+message ShowInfoNtf {
+	optional int32 type = 1;
+	repeated int32 info = 2;
+	optional uint32 animation = 3;
+	repeated uint32 seatid = 4;
+}
+
+message PlayerChatReq {
+	required uint32 chattype = 1;
+	required string chatcontent = 2;
+}
+
+message PlayerChatNtf {
+	required uint32 uid = 1;
+	required uint32 chat_type = 2;
+	required string chat_content = 3;
+}
+
+message SetDeckCards {
+	repeated uint32 cards = 1;
+}
+
+message DetailNtf {
+	message PlayerInfo {
+		message Info {
+			optional int32 name = 1;
+			optional int32 value = 2;
+			optional int32 sign = 3;
+		}
+		optional uint32 seatid = 1;
+		repeated Info info = 2;
+		repeated CardSet cards = 3;
+	}
+
+	optional uint32 detail_type = 1;
+	repeated PlayerInfo player_info = 2;
+	optional string global_info = 3;
+}
+
+message UploadInfoReq {
+	optional string addr = 1;
+	optional double longitude = 2; 
+	optional double latitude = 3; 
+}
+
+message UserInfoReq {
+	repeated uint32 uids = 1;
+}
+
+message UserInfoRep {
+	message Info {
+		required uint32 uid = 1;
+		optional string ip = 2;
+		optional string addr = 3;
+	}
+	repeated Info info = 1;
+}
+
+message VoteReq {
+	required uint32 voteType = 1;
+	required uint32 reqType = 2;
+	optional uint32 result = 3;
+}
+
+message VoteRep {
+	required uint32 result = 1;
+}
+
+message VoteNtf {
+	message VoteResult {
+		required uint32 uid = 1;
+		optional uint32 result = 2;
+	}
+	
+	required uint32 vote_type = 1;
+	optional uint32 vote_result = 2;
+	repeated VoteResult result = 3;
+	optional uint32 timeout = 4;
+}
+
+message HistoryReq{
+	required uint32 hand = 1;
+}
+
+message TableDataReq {
+  required uint32 dataType = 1; //1 语音id
+  optional int32 data1 = 2;
+  optional string data2 = 3;
+}
+
+message TableDataNtf {
+  message TableData {
+    required uint32 uid = 1;
+    optional int32 data1 = 2;
+    optional string data2 = 3;
+  }
+
+  required uint32 data_type = 1;
+  repeated TableData table_data = 2;
+}
+
+message PlayerBackReq {
+	
+}
+
+
+
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//以下为比赛特有协议
+/////////比赛大厅协议
+message MatchHallStatusReq {
+    optional string channel = 1;
+}
+
+message MatchHallStatusRep {
+    optional int32 signin = 1;          // 1 已报名、 2 未报名、  3 等待验证
+    optional int32 status = 2;            //比赛状态
+    optional int32 total = 3;               //报名总人数
+    optional int32 begintime = 4;         //真实开始时间 大于0有效
+    optional int32 rank = 5;                //自己排名
+	optional int32 owner = 6;                //房主
+    optional uint32 leftcnt = 7;             //剩余人数
+}
+
+message MatchHallStartNtf {
+}
+
+//比赛即将开始
+message MatchHallWillStartNtf {
+    optional uint32 begintime = 1;
+}
+
+message MatchHallUserInfo {
+    required uint32 uid = 1;
+    optional string nickname = 2;
+    optional int32 rank = 3;
+    optional int32 score = 4;
+}
+
+message MatchHallUserListReq {
+    optional uint32 sequence = 1;
+}
+
+message MatchHallUserListRep {
+    optional uint32 sequence = 1;    
+    optional uint32 total = 2;          //报名总人数
+    repeated MatchHallUserInfo userlist = 3;
+    optional uint32 leftcnt = 4;
+}
+
+message MatchHallSigninNtf {
+    required uint32 uid = 1;
+    optional int32   signin = 2;
+    optional string nickname = 3;
+}
+
+message MatchHallStatusNtf {
+    optional int32 status = 1;
+}
+
+message MatchSignupReq {
+}
+
+message MatchSignupRep {
+	required int32 result = 1;
+}
+
+message MatchSignoutReq {
+}
+
+message MatchSignoutRep {
+	required int32 result = 1;
+}
+
+message MatchStartNtf{
+	required uint32 stage = 1;  //阶段 1初赛 2初赛进复赛等待 3复赛 4 决赛
+	required uint32 player_cnt = 2;
+}
+
+message MatchInfoNtf{
+	optional uint32 waiting = 1; 		//等待状态 0 不等待 1等待
+	optional uint32 stage = 2; 			//阶段 1初赛 2初赛进复赛等待 3复赛 4 决赛 
+	optional uint32 ranking = 3;
+	optional uint32 hands_cnt = 4;  	//初赛一共打了几局
+	optional uint32 rounds = 5;    		//复赛轮数
+	optional uint32 left_table = 6;
+	optional uint32 player_cnt = 7;
+	repeated uint32 swiss_player = 8;
+	optional uint32 total_player = 9;
+	optional uint32 match_score = 10;
+	optional uint32 swiss_round = 11;
+}
+
+message MatchUpdateRankNtf{
+	required uint32 ranking = 1;     //排名
+	optional uint32 player_cnt = 2;
+}
+
+message MatchBaseScoreNtf{
+	required uint32 score = 1;     			//底分
+	required uint32 multiple = 2;  			//淘汰倍数
+	optional uint32 next_update_time = 3;	//下次涨底分时间
+	optional uint32 next_base_score = 4;	//下一个底分
+}
+
+message MatchKickOutNtf{
+	required uint32 uid = 1;
+	required uint32 ranking = 2;
+	required uint32 player_cnt = 3;
+	optional uint32 reward = 4;
+}
+
+message MatchOverNtf{
+  message PlayerInfo {
+    required uint32 uid = 1;
+    optional uint32 ranking = 2;
+    optional int32 score = 3;
+    optional string nickname = 4;
+	optional uint32 reward = 5;
+  }
+
+  repeated PlayerInfo player_info = 1;
+  optional int32 over_type = 2;
+}
+
+message MatchRankInfoReq{
+	
+}
+
+message MatchRankInfoRep{
+	message PlayerInfo {
+		required uint32 uid = 1;
+		optional uint32 ranking = 2;
+		optional int32 score = 3;
+	}
+	repeated PlayerInfo player_info = 1;
+}
+
+message MatchRecordReq{
+
+}
+
+message MatchRecordRep{
+	message PlayerInfo {
+		required uint32 uid = 1;
+		optional uint32 ranking = 2;
+		optional int32 score = 3;
+		optional string nickname = 4;
+	}
+	repeated PlayerInfo player_info = 1;
+	optional PlayerInfo self_info = 2;
+}
+
+
+//比赛的相关信息
+message MsgMatchInfoNtf {
+	required uint32 type = 1;  //1 桌子结束
+	repeated int32 params = 2;
+}
+
+message MatchJoinReq {
+	
+}
+
+message MatchRewardListReq {
+}
+
+message MatchRewardListRep {
+	repeated uint32 reward = 1;
+}

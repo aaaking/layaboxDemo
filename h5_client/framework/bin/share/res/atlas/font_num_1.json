@@ -1,0 +1,29 @@
+{
+    "frames": {
+        "font_num_1.png": {
+            "frame": {
+                "h": 256,
+                "idx": 0,
+                "w": 256,
+                "x": 0,
+                "y": 0
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 256,
+                "w": 256
+            },
+            "spriteSourceSize": {
+                "h": 256,
+                "w": 256,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        }
+    },
+    "meta": {
+        "image": "font_num_1.png",
+        "prefix": "font_num_1/"
+    }
+}
