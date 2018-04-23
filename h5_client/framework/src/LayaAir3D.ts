@@ -8,14 +8,11 @@ class LayaAir3D {
         // Laya3D.init(960, 640, true);
         Laya.init(640, 960, Laya.WebGL);
         Laya.stage.bgColor = "#ffffff";
-        Laya.Stat.show(0,0);
-        // Laya.init(960,640,Laya.WebGL);
+        Laya.Stat.show(100,0);
         //适配模式
         // Laya.stage.scaleMode = Laya.Stage.SCALE_FIXED_HEIGHT;
         Laya.stage.scaleMode = Laya.Stage.SCALE_FIXED_WIDTH;
         Laya.stage.screenMode = Laya.Stage.SCREEN_VERTICAL;
-        //DEBUG信息
-        // Laya.Stat.show();
 
         if (Laya.Browser.window.conchConfig)
             NativeHelper.instance.init();
