@@ -11,7 +11,7 @@ class LoginPage extends AppPage {
         ]);
         AppPage.register(LoginPage, this._loadDatas);
         this.name = "LoginPage";
-        this.screenMode = Laya.Stage.SCREEN_VERTICAL;//////
+        this.screenMode = Laya.Stage.SCREEN_VERTICAL
     }
 
     public static PARAMS0_FIRST_ENTER = 1;
